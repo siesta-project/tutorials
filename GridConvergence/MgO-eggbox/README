@@ -1,0 +1,263 @@
+*******************************************************************************
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS (MESH CUTOFF, ETC.)
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT WARRANTY THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+THE RESULTS PRESENTED BELOW HAVE BEEN OBTAINED USING:
+Version of Siesta: siesta-3.0-b (serial mode)
+Compiler: g95 (version 0.92)
+Compilation flags: FFLAGS= -O2 -Wall
+                   FPPFLAGS= -DGRID_DP $(FPPFLAGS_CDF) $(FPPFLAGS_MPI)
+Double precision for the grid variables enabled.
+No linear algebra libraries used.
+RESULTS MIGHT DIFFER SLIGHTLY DEPENDING ON THE PLATFORM, COMPILER,
+AND COMPILATION FLAGS
+
+---------------------------------------------------------------------
+Pablo Aguado-Puente and Javier Junquera (2010)
+pablo.aguado@unican.es
+javier.junquera@unican.es
+---------------------------------------------------------------------
+*******************************************************************************
+
+* Edit the input file,  MgO.fdf, and study the different variables.
+Pay special attention to the variables we are focusing on, and
+check their meaning in the User's Guide:
+   MeshCutoff
+   %block AtomicCoordinatesOrigin
+
+**************************************************************
+Setting up the script to check the eggbox effect
+**************************************************************
+
+* To study the "eggbox" effect we are going to run several simulations
+displacing rigidly the whole system with respect the points of the grid.
+
+We have prepared an script in python, called autosiesta.py, to easy the task.
+This script does not require any spetial library and should run
+with any standard version of python.
+
+autosiesta.py is general purpose script, and it use is very simple.
+It will launch several runs of Siesta giving different values
+to a chosen parameter of the SystemLabel.fdf file.
+To run it, you only need two things:
+
+- The standard fdf input file for Siesta.
+- An input file for the script, called SystemLabel.in,
+where SystemLabel is defined in the standard input of Siesta.
+
+The file SystemLabel.in looks like 
+
+# ParameterLabel                Min        Max         Steps
+$AtomicCoordinatesOriginz       0.0     0.033333333      10
+
+* The first entry is the name of the tag that the script will search 
+in the standard fdf file. It is always preceeded by the dollar symbol, "$", and
+its name has to be exactly the same as it appears
+in the fdf file of Siesta. It might be an independent variable
+(for instance $LatticeConstant), or the entry of a block data structure.
+For instance, if you edit the MgO.fdf file in this particular example,
+you will find the following block:
+
+%block AtomicCoordinatesOrigin
+   0.0   0.0   $AtomicCoordinatesOriginz
+%endblock AtomicCoordinatesOrigin
+
+Obviously, in this example we are going to apply a rigid shift of the
+z-coordinate of the atomic positions in the input file.
+
+The second and third entries are, respectively,
+the minimum and maximum values that will be given to the input variable.
+
+The forth entry is the number of runs that will be carried out
+between the minimum and the maximum value. 
+
+* The shift in AtomicCoordinatesOrigin is given in the same units 
+as the atomic coordinates. To study the eggbox effect we only need 
+to scan the space between two consecutive grid points... 
+... But, how do we know the distance between consecutive points in the grid? 
+
+In a real simulation you would have to:
+1. run Siesta with the MeshCutoff you want to check,
+2. look in the output for the actual grid that has been used. 
+
+InitMesh: MESH =    18 x    18 x    30 =        9720
+InitMesh: Mesh cutoff (required, used) =   100.000   101.039 Ry
+
+In this exercise we have skip these steps,
+and we have supposed that we already know that the
+grid for this system with a cutoff of 100 Ry is 18x18x30. 
+
+Using fractional atomic coordinates, 
+this results in a distance between grid points along the
+third lattice vector of 1.0/30 = 0.03333...
+Check that this is the maximum value of the series in the 
+MgO.in file.
+
+* Copy the siesta executable to the directory where you are going to run
+  the example.
+
+* Be sure that the MeshCutoff corresponds to the value for which you have
+computed the minimum and the maximum value and run the script:
+
+$./autosiesta.py MgO
+
+* At the end, the script will write a SystemLabel.#.out file for each
+siesta run and a SystemLabel.script.out file with the values of the 
+total energy and maximum force in each calculation. 
+This file should be something like
+
+##AtomicCoordinatesOriginz                 Etot           Fmax
+                   0.0          -926.810479        0.000000
+          0.0033333333          -926.809976        0.074072
+          0.0066666666          -926.806475        0.119634
+          0.0099999999          -926.802290        0.119174
+          0.0133333332          -926.798439        0.067081
+          0.0166666665          -926.797228        0.000009
+          0.0199999998          -926.798439        0.067110
+          0.0233333331          -926.802290        0.119199
+          0.0266666664          -926.806475        0.119616
+          0.0299999997          -926.809975        0.074030
+           0.033333333          -926.810626        0.000021
+
+* Plot the total energy and the maximum force as a function of the grid shift:
+
+$gnuplot 
+gnuplot> plot "MgO.script.out" using 1:2 with lines # For the energy
+gnuplot> plot "MgO.script.out" using 1:3 with lines # For the forces
+
+* To produce a postscript file with one of the previous figures
+(for instance, the eggbox effect for the energy)
+
+gnuplot> plot "MgO.script.out" using 1:2 with lines
+gnuplot> set terminal postscript
+gnuplot> set output "MgO.eggbox-energy.ps"
+gnuplot> replot
+gnuplot> quit
+
+* To generate a pdf file from the previous postscript
+
+$ ps2pdf MgO.eggbox-energy.ps
+
+* Save the output file produced by the script with a different name,
+
+$ mv MgO.script.out MgO.script.100Ry.out
+
+**************************************************************
+Effect of increasing the MeshCutoff on the eggbox effect
+**************************************************************
+
+* Repeat the exercise doubling the MeshCutoff to 200 Ry.
+For this, edit the MgO.fdf file and change
+
+MeshCutoff              200 Ry      # Equivalent planewave cutoff for the grid
+
+Remember that, for each MeshCutoff at a given unit cell structure,
+we have to recheck how many point do we have in the grid along each 
+lattice vector.
+
+InitMesh: MESH =    30 x    30 x    36 =       32400
+InitMesh: Mesh cutoff (required, used) =   200.000   202.089 Ry
+
+* Modify the maximum value in the MgO.in script input file 
+so the system will be rigidly displaced between consecutive points for
+the new mesh:
+1.0/36.0 = 0.0277777... (fractional units)
+
+* Run the script again
+
+$./autosiesta.py MgO
+
+* Rename the output file of the script
+
+$ mv MgO.script.out MgO.script.200Ry.out
+
+* Plot the total energy and the maximum force as a function of the grid shift,
+and compare with the results obtained with 100 Ry.
+
+$gnuplot 
+gnuplot> plot "MgO.script.200Ry.out" using 1:2 with lines # For the energy
+gnuplot> plot "MgO.script.200Ry.out" using 1:3 with lines # For the forces
+gnuplot> plot "MgO.script.100Ry.out" using 1:2 with lines, "MgO.script.200Ry.out" using 1:2 with lines
+gnuplot> plot "MgO.script.100Ry.out" using 1:3 with lines, "MgO.script.200Ry.out" using 1:3 with lines
+
+**************************************************************
+Effect of the GridCellSampling in the eggbox effect
+**************************************************************
+
+* Repeat the exercise using a MeshCutoff of 100 Ry and the
+grid-cell sampling option
+(see the paper on Siesta, 
+J. M. Soler et al., J. Phys.: Condens. Matter 14, 2763 (2002),
+page 2763).
+
+* Edit the input file and add the following lines:
+
+%block GridCellSampling
+ 0.5 0.0 0.0
+ 0.0 0.5 0.0
+ 0.0 0.0 0.5
+%endblock GridCellSampling
+
+* Edit again the MgO.in file and restore the first value (0.033333333)
+for the maximum value
+
+$./autosiesta.py MgO
+$ mv MgO.script.out MgO.script.100Ry-gridcellsampling.out
+$ gnuplot
+gnuplot> plot "MgO.script.100Ry.out" using 1:2 with lines, "MgO.script.100Ry-gridcellsampling.out" using 1:2 with lines
+gnuplot> plot "MgO.script.100Ry.out" using 1:3 with lines, "MgO.script.100Ry-gridcellsampling.out" using 1:3 with lines
+
+By how much the eggbox effect is reduced?.
+
+
+**************************************************************
+Effect of filtering the atomic orbitals
+**************************************************************
+
+A new way to overcome the eggbox effect has been proposed in 
+
+E. Anglanda and J. M. Soler, Phys. Rev. B 73, 115122 (2006)
+E. Anglanda and J. M. Soler, Computer Physics Communications 180, 1134 (2009) 
+
+and consists in the filtering of the optimal filterings of the radial
+functions (atomic orbitals, non-linear core corrections, and neutral atom
+potentials) to avoid short-wave components.
+
+To test this new option, edit the input file, delete the
+lines corresponding to the grid cell sampling, and
+write these new lines:
+
+PAO.Filter T           # Filter the Pseudo Atomic Orbitals?
+VNA.Filter T           # Filter the Neutral Atom Potentials?
+FilterCutoff 100 Ry    # Kinetic energy cutoff of plane waves used to
+                       # filter all the atomic basis functions, 
+                       # the pseudo-core densities for partial core corrections,
+                       # and the neutral-atom potentials.
+                       # The FilterCutoff should be similar or lower
+                       # than the MeshCutoff to avoid the eggbox effect 
+                       # on the atomic forces. 
+
+$./autosiesta.py MgO
+$ mv MgO.script.out MgO.script.100Ry-filter.out
+$ gnuplot
+$ plot "MgO.script.100Ry-filter.out" using 1:2 with lines  
+$ plot "MgO.script.100Ry-filter.out" using 1:3 with lines  
+
+By how much the eggbox effect is reduced compared with the
+standard calculation?. And with respect the grid cell sampling?.
+How much time is it saved by using the filtering with respect 
+the grid cell sampling?
+
+A fine comparison between the two methods, 
+grid cell sampling and filtering would require
+the study of the convergence of a relevant quantity
+(for instance, the frequence of a phonon) with respect the cutoff,
+evaluating the computational cost of each method.
+
+

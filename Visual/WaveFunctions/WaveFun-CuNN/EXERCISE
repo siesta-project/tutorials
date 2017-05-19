@@ -1,0 +1,19 @@
+The WaveFun-CuNN directory
+contains the XCrySDen scripts with a visualization setup
+for several molecular orbitals of a Cu hexafluoroacytilacetonate,
+crystallized with a nitronyl nitroxide radical.
+
+The directory contains two XCrySDen script files
+WF513up.xcrysden  
+WF520up.xcrysden
+each restoring in full a working session of XCrySDen, stopped at some point. 
+There files can be read in with
+File -> Open Structure -> Open XCrySDen Scripting File
+and NOT, as all other examples, via
+File -> Open Structure -> Open XCF
+
+Exercise:
+
+Play around with visualization settings (colours, orientation
+of molecule, light sources, transparency options, cutting planes...)
+

@@ -1,0 +1,2876 @@
+SIESTA 1.3.7  -- [1.3f1 release] (04 Feb 2004)
+Architecture  : intel-nolibs
+Compiler flags: ifort  -mp1 -O3 -pc80 -prec_div -r8 -w
+SERIAL version
+
+* Running in serial mode
+>> Start of run:  29-MAR-2006  14:56:04
+
+                           ***********************       
+                           *  WELCOME TO SIESTA  *       
+                           ***********************       
+
+reinit: Reading from standard input
+************************** Dump of input data file ****************************
+System_Name  Graphite
+SystemLabel graphite
+LatticeConstant 2.460 Ang
+%block LatticeParameters
+   1.0    1.0    2.72   90.  90.  120.
+%endblock LatticeParameters
+Number_of_species  1
+%block Chemical_species_label
+  1   6   C
+%endblock Chemical_species_label
+%block AtomicMass
+  1  12.00
+%endblock AtomicMass
+Atomic_coordinates_format   Fractional
+Number_of_atoms   4
+%block Atomic_Coordinates_Origin
+     0.000  0.000  0.000
+%endblock Atomic_Coordinates_Origin
+%block AtomicCoordinatesAndAtomicSpecies
+   0.0         0.0        0.25   1
+   0.33333333  0.66666667 0.25   1
+   0.66666667  0.33333333 0.75   1
+   0.0         0.0        0.75   1
+%endblock AtomicCoordinatesAndAtomicSpecies
+PAO.BasisType  split
+PAO.EnergyShift 0.020 Ry
+PAO.BasisSize   DZP
+ kgrid_cutoff   12.0 Ang  #
+#%endblock kgrid_Monkhorst_Pack
+#%block GridCellSampling
+#  0.5   0.0   0.0
+#  0.0   0.5   0.0
+#  0.0   0.0   0.5
+#  0.0   0.5   0.5
+#  0.5   0.0   0.5
+#  0.5   0.5   0.0
+#  0.5   0.5   0.5
+#%endblock GridCellSampling
+#
+#  dynamical part
+MD.TypeOfRun     CG
+MD.VariableCell   T
+MD.NumCGsteps    50
+MD.FCfirst        1
+#
+# -- I/O part
+UseSaveData       F
+MD.UseSaveXV      F
+MD.UseSaveCG      F
+# -- Output part
+LongOutput        F
+WriteCoorStep     F
+WriteMullikenPop  0
+WriteMDhistory    T
+WriteMDXmol       T
+#
+#
+XC.functional         LDA           # Exchange-correlation functional
+XC.authors            CA            # Exchange-correlation version
+MeshCutoff           150.0   Ry
+NetCharge              0.00
+MaxSCFIterations      100
+DM.NumberPulay          3
+DM.MixSCF1              F
+DM.PulayOnFile          T
+DM.MixingWeight        .05
+DM.NumberKick           0
+DM.KickMixingWeight    .40
+DM.Tolerance          .1000000000E-03     # Default value
+************************** End of input data file *****************************
+
+reinit: -----------------------------------------------------------------------
+reinit: System Name: Graphite                                                   
+reinit: -----------------------------------------------------------------------
+reinit: System Label: graphite            
+reinit: -----------------------------------------------------------------------
+
+initatom: Reading input for the pseudopotentials and atomic orbitals ----------
+ Species number:            1  Label: C Atomic number:           6
+Ground state valence configuration:   2s02  2p02
+Reading pseudopotential information in formatted form from C.psf
+remass: Read atomic mass for species    1 as     12.00000
+For C, standard SIESTA heuristics set lmxkb to 3
+ (one more than the basis l, including polarization orbitals).
+Use PS.lmax or PS.KBprojectors blocks to override.
+
+<basis_specs>
+===============================================================================
+C                    Z=   6    Mass=  12.000        Charge=  0.0000    
+Lmxo=1 Lmxkb=3     BasisType=split      Semic=F
+L=0  Nsemic=0  Cnfigmx=2
+          n=1  nzeta=2  polorb=0
+               vcte:    0.0000    
+               rinn:    0.0000    
+                rcs:    0.0000      0.0000    
+            lambdas:    1.0000      1.0000    
+L=1  Nsemic=0  Cnfigmx=2
+          n=1  nzeta=2  polorb=1
+               vcte:    0.0000    
+               rinn:    0.0000    
+                rcs:    0.0000      0.0000    
+            lambdas:    1.0000      1.0000    
+-------------------------------------------------------------------------------
+L=0  Nkbl=1  erefs: 0.17977+309
+L=1  Nkbl=1  erefs: 0.17977+309
+L=2  Nkbl=1  erefs: 0.17977+309
+L=3  Nkbl=1  erefs: 0.17977+309
+===============================================================================
+</basis_specs>
+
+atom: Called for C   (Z =   6)
+
+read_vps: Pseudopotential generation method:
+read_vps: ATM3      Troullier-Martins                       
+
+read_vps: Valence configuration (pseudopotential and basis set generation):
+2s( 2.00) rc: 1.25
+2p( 2.00) rc: 1.25
+3d( 0.00) rc: 1.25
+4f( 0.00) rc: 1.25
+Total valence charge:    4.00000
+
+xc_check: Exchange-correlation functional:
+xc_check: Ceperley-Alder
+V l=0 = -2*Zval/r beyond r=  1.3951
+V l=1 = -2*Zval/r beyond r=  1.3777
+V l=2 = -2*Zval/r beyond r=  1.3777
+V l=3 = -2*Zval/r beyond r=  1.3777
+All V_l potentials equal beyond r=  1.2311
+This should be close to max(r_c) in ps generation
+All pots = -2*Zval/r beyond r=  1.3951
+
+VLOCAL1: 99.0% of the norm of Vloc inside     28.641 Ry
+VLOCAL1: 99.9% of the norm of Vloc inside     65.273 Ry
+atom: Maximum radius for 4*pi*r*r*local-pseudopot. charge    1.48507
+atom: Maximum radius for r*vlocal+2*Zval:    1.27815
+GHOST: No ghost state for L =  0
+GHOST: No ghost state for L =  1
+GHOST: No ghost state for L =  2
+GHOST: No ghost state for L =  3
+
+KBgen: Kleinman-Bylander projectors: 
+   l= 0   rc=  1.600766   el= -1.001946   Ekb=  7.816946   kbcos=  0.279978
+   l= 1   rc=  1.620907   el= -0.398597   Ekb= -4.829535   kbcos= -0.287433
+   l= 2   rc=  1.836783   el=  0.002326   Ekb= -1.327964   kbcos= -0.005365
+   l= 3   rc=  1.979871   el=  0.003420   Ekb= -0.522285   kbcos= -0.000569
+
+KBgen: Total number of  Kleinman-Bylander projectors:   16
+atom: -------------------------------------------------------------------------
+
+atom: SANKEY-TYPE ORBITALS:
+atom: Selected multiple-zeta basis: split     
+
+SPLIT: Orbitals with angular momentum L= 0
+
+SPLIT: Basis orbitals for state 2s
+
+SPLIT: PAO cut-off radius determinated from an
+SPLIT: energy shift=  0.020000 Ry
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    4.191849
+                 energy =   -0.983900
+                kinetic =    0.918801
+    potential(screened) =   -1.902702
+       potential(ionic) =   -5.506899
+
+   izeta = 2
+                 rmatch =    3.431921
+              splitnorm =    0.150000
+                 energy =   -0.849361
+                kinetic =    1.377262
+    potential(screened) =   -2.226623
+       potential(ionic) =   -6.060758
+
+SPLIT: Orbitals with angular momentum L= 1
+
+SPLIT: Basis orbitals for state 2p
+
+SPLIT: PAO cut-off radius determinated from an
+SPLIT: energy shift=  0.020000 Ry
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    4.870301
+                 energy =   -0.379088
+                kinetic =    2.614064
+    potential(screened) =   -2.993152
+       potential(ionic) =   -6.506293
+
+   izeta = 2
+                 rmatch =    3.475094
+              splitnorm =    0.150000
+                 energy =   -0.215528
+                kinetic =    3.940460
+    potential(screened) =   -4.155988
+       potential(ionic) =   -8.054000
+
+POLgen: Perturbative polarization orbital with L=  2
+
+POLgen: Polarization orbital for state 2p
+
+   izeta = 1
+                     rc =    4.870301
+                 energy =    1.279486
+                kinetic =    2.608016
+    potential(screened) =   -1.328529
+       potential(ionic) =   -4.267494
+atom: Total number of Sankey-type orbitals: 13
+
+atm_pop: Valence configuration(local Pseudopot. screening):
+ 2s( 2.00)                                                            
+ 2p( 2.00)                                                            
+Vna: chval, zval:    4.00000   4.00000
+
+Vna:  Cut-off radius for the neutral-atom potential:   4.870301
+
+atom: _________________________________________________________________________
+
+prinput: Basis input ----------------------------------------------------------
+
+PAO.BasisType split     
+
+%block ChemicalSpeciesLabel
+    1    6 C                       # Species index, atomic number, species label
+%endblock ChemicalSpeciesLabel
+
+%block PAO.Basis                 # Define Basis set
+C           2                    # Species label, number of l-shells
+ n=2   0   2                         # n, l, Nzeta 
+   4.192      3.432   
+   1.000      1.000   
+ n=2   1   2 P   1                   # n, l, Nzeta, Polarization, NzetaPol
+   4.870      3.475   
+   1.000      1.000   
+%endblock PAO.Basis
+
+prinput: ----------------------------------------------------------------------
+
+
+siesta: ******************** Simulation parameters ****************************
+siesta:
+siesta: The following are some of the parameters of the simulation.
+siesta: A complete list of the parameters used, including defect values,
+siesta: can be found in file out.fdf
+siesta:
+coor:   Atomic-coordinates input format  =     Fractional
+redata: Number of spin components        =     1
+redata: Long output                      =     F
+redata: Number of Atomic Species         =     1
+redata: Charge density info will appear in .RHO file
+redata: Write Mulliken Pop.              =     NO
+redata: Mesh Cutoff                      =   150.0000  Ry
+redata: Net charge of the system         =     0.0000 |e|
+redata: Max. number of SCF Iter          =   100
+redata: One Pulay mixing every           =     3 iterations
+redata: Mix DM in first SCF step ?       =     F
+redata: Write Pulay info on disk?        =     T
+redata: New DM Mixing Weight             =     0.0500
+redata: No kicks to SCF
+redata: DM Mixing Weight for Kicks       =     0.4000
+redata: DM Tolerance for SCF             =     0.000100
+redata: Use continuation files for DM    =     F
+redata: Neglect nonoverlap interactions  =     F
+redata: Method of Calculation            =     Diagonalization
+redata: Divide and Conquer               =     F
+redata: Electronic Temperature           =     0.0019  Ry
+redata: Fix the spin of the system       =     F
+redata: Dynamics option                  =     CG coord. optimization
+redata: Variable cell                    =     T
+redata: Use continuation files for CG    =     F
+redata: Maximum number of CG moves       =    50
+redata: Max atomic displ per move        =     0.2000  Bohr
+redata: Force tolerance                  =     0.0016  Ry/Bohr
+redata: Stress tolerance                 =     1.0000  GPa
+redata: ***********************************************************************
+
+siesta: Atomic coordinates (Bohr) and species
+siesta:      0.00000   0.00000   3.16114  1        1
+siesta:      0.00000   2.68394   3.16114  1        2
+siesta:      2.32436   1.34197   9.48341  1        3
+siesta:      0.00000   0.00000   9.48341  1        4
+
+initatomlists: Number of atoms, orbitals, and projectors:      4    52    64
+
+siesta: System type = bulk      
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.300 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+ 
+* Maximum dynamic memory allocated =     1 MB
+
+siesta:                 ==============================
+                            Begin CG move =      0
+                        ==============================
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.460000    0.000000    0.000000
+       -1.230000    2.130422    0.000000
+        0.000000    0.000000    6.691200
+
+outcell: Cell vector modules (Ang)   :    2.460000    2.460000    6.691200
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.0000
+outcell: Cell volume (Ang**3)        :     35.0675
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   154.324 Ry
+ 
+* Maximum dynamic memory allocated =    15 MB
+
+stepf: Fermi-Dirac step function
+
+siesta: Program's energy decomposition (eV):
+siesta: Eions   =      1264.537925
+siesta: Ena     =       407.808940
+siesta: Ekin    =       384.534615
+siesta: Enl     =        37.187452
+siesta: DEna    =        -0.000001
+siesta: DUscf   =         0.000000
+siesta: DUext   =         0.000000
+siesta: Exc     =      -185.508408
+siesta: eta*DQ  =         0.000000
+siesta: Emadel  =         0.000000
+siesta: Eharris =      -621.844574
+siesta: Etot    =      -620.515328
+siesta: FreeEng =      -620.515328
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.8446     -620.5153     -620.5153  1.8670 -5.2134
+timer: Routine,Calls,Time,% = IterSCF        1      11.840  84.09
+siesta:    2     -621.3538     -621.0831     -621.0831  0.1168 -4.3346
+siesta:    3     -621.3203     -621.1023     -621.1023  0.0880 -4.3992
+siesta:    4     -621.2759     -621.2276     -621.2276  0.0063 -4.6136
+siesta:    5     -621.2757     -621.2334     -621.2334  0.0027 -4.6273
+siesta:    6     -621.2757     -621.2355     -621.2355  0.0026 -4.6272
+siesta:    7     -621.2756     -621.2567     -621.2567  0.0024 -4.6232
+siesta:    8     -621.2756     -621.2586     -621.2586  0.0022 -4.6231
+siesta:    9     -621.2756     -621.2660     -621.2660  0.0007 -4.6235
+siesta:   10     -621.2756     -621.2658     -621.2658  0.0007 -4.6242
+siesta:   11     -621.2756     -621.2646     -621.2646  0.0007 -4.6254
+siesta:   12     -621.2756     -621.2638     -621.2638  0.0006 -4.6257
+siesta:   13     -621.2756     -621.2643     -621.2643  0.0005 -4.6257
+siesta:   14     -621.2756     -621.2691     -621.2691  0.0007 -4.6251
+siesta:   15     -621.2756     -621.2701     -621.2701  0.0007 -4.6251
+siesta:   16     -621.2756     -621.2739     -621.2739  0.0004 -4.6261
+siesta:   17     -621.2756     -621.2740     -621.2740  0.0004 -4.6262
+siesta:   18     -621.2756     -621.2734     -621.2734  0.0002 -4.6265
+siesta:   19     -621.2756     -621.2734     -621.2734  0.0001 -4.6265
+siesta:   20     -621.2756     -621.2735     -621.2735  0.0001 -4.6262
+
+siesta: E_KS(eV) =             -621.2737
+
+siesta: E_KS - E_eggbox =      -621.2737
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.070943
+ Res    0.045196    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.070943    constrained
+
+cgvc: No target stress found, assuming hydrostatic MD.TargetPressure.
+
+cgvc: Target stress (kBar)
+cgvc:         0.000       0.000       0.000
+cgvc:         0.000       0.000       0.000
+cgvc:         0.000       0.000       0.000
+ 
+* Maximum dynamic memory allocated =    16 MB
+
+siesta:                 ==============================
+                            Begin CG move =      1
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.349 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.476908   -0.004064    0.000000
+       -1.241974    2.143033    0.000000
+        0.000000    0.000000    6.586784
+
+outcell: Cell vector modules (Ang)   :    2.476912    2.476912    6.586784
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1880
+outcell: Cell volume (Ang**3)        :     34.9300
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   153.475 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.0277     -620.8174     -620.8174  0.0160 -4.5533
+siesta:    2     -621.0226     -621.0198     -621.0198  0.0040 -4.5831
+siesta:    3     -621.0227     -621.0242     -621.0242  0.0037 -4.5829
+siesta:    4     -621.0219     -621.0216     -621.0216  0.0008 -4.5722
+siesta:    5     -621.0219     -621.0216     -621.0216  0.0007 -4.5722
+siesta:    6     -621.0219     -621.0216     -621.0216  0.0001 -4.5723
+siesta:    7     -621.0219     -621.0216     -621.0216  0.0001 -4.5723
+
+siesta: E_KS(eV) =             -621.0217
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    3.228821
+ Res    2.143882    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    3.228821    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =      2
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.303 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.461160   -0.000279    0.000000
+       -1.230822    2.131288    0.000000
+        0.000000    0.000000    6.684036
+
+outcell: Cell vector modules (Ang)   :    2.461160    2.461160    6.684036
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.0130
+outcell: Cell volume (Ang**3)        :     35.0584
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   154.655 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2811     -621.4157     -621.4157  0.0134 -4.6322
+siesta:    2     -621.2773     -621.2751     -621.2751  0.0027 -4.6224
+siesta:    3     -621.2774     -621.2706     -621.2706  0.0025 -4.6222
+siesta:    4     -621.2767     -621.2760     -621.2760  0.0008 -4.6228
+siesta:    5     -621.2767     -621.2760     -621.2760  0.0007 -4.6230
+siesta:    6     -621.2767     -621.2764     -621.2764  0.0000 -4.6246
+
+siesta: E_KS(eV) =             -621.2764
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.202191
+ Res    0.133256    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.202191    constrained
+
+cgvc: Finished line minimization    1.  Mean atomic displacement =    0.0069
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =      3
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.308 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.462438   -0.000520    0.000000
+       -1.231669    2.132274    0.000000
+        0.000000    0.000000    6.675427
+
+outcell: Cell vector modules (Ang)   :    2.462438    2.462438    6.675427
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.0242
+outcell: Cell volume (Ang**3)        :     35.0457
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   155.054 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2784     -621.2579     -621.2579  0.0010 -4.6238
+siesta:    2     -621.2784     -621.2784     -621.2784  0.0003 -4.6253
+siesta:    3     -621.2784     -621.2781     -621.2781  0.0003 -4.6253
+siesta:    4     -621.2784     -621.2784     -621.2784  0.0001 -4.6251
+
+siesta: E_KS(eV) =             -621.2784
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.226222
+ Res    0.150469    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.226222    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =      4
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.315 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.464482   -0.000906    0.000000
+       -1.233025    2.133851    0.000000
+        0.000000    0.000000    6.661651
+
+outcell: Cell vector modules (Ang)   :    2.464482    2.464482    6.661651
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.0421
+outcell: Cell volume (Ang**3)        :     35.0251
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   155.255 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2808     -621.2484     -621.2484  0.0169 -4.6240
+siesta:    2     -621.2808     -621.2808     -621.2808  0.0006 -4.6262
+siesta:    3     -621.2808     -621.2807     -621.2807  0.0005 -4.6261
+siesta:    4     -621.2808     -621.2808     -621.2808  0.0001 -4.6260
+siesta:    5     -621.2808     -621.2808     -621.2808  0.0001 -4.6259
+siesta:    6     -621.2808     -621.2808     -621.2808  0.0000 -4.6257
+
+siesta: E_KS(eV) =             -621.2808
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.279607
+ Res    0.185473    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.279607    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =      5
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.326 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.467752   -0.001523    0.000000
+       -1.235195    2.136375    0.000000
+        0.000000    0.000000    6.639611
+
+outcell: Cell vector modules (Ang)   :    2.467753    2.467753    6.639611
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.0707
+outcell: Cell volume (Ang**3)        :     34.9918
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   154.799 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2836     -621.2322     -621.2322  0.0019 -4.6240
+siesta:    2     -621.2836     -621.2835     -621.2835  0.0008 -4.6279
+siesta:    3     -621.2836     -621.2826     -621.2826  0.0007 -4.6278
+siesta:    4     -621.2835     -621.2835     -621.2835  0.0001 -4.6271
+siesta:    5     -621.2835     -621.2835     -621.2835  0.0001 -4.6271
+siesta:    6     -621.2835     -621.2836     -621.2836  0.0000 -4.6268
+
+siesta: E_KS(eV) =             -621.2836
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.352001
+ Res    0.234606    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.352001    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =      6
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.343 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.472985   -0.002510    0.000000
+       -1.238666    2.140413    0.000000
+        0.000000    0.000000    6.604347
+
+outcell: Cell vector modules (Ang)   :    2.472987    2.472987    6.604347
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1163
+outcell: Cell volume (Ang**3)        :     34.9377
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   154.074 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2854     -621.2041     -621.2041  0.0027 -4.6242
+siesta:    2     -621.2854     -621.2854     -621.2854  0.0012 -4.6301
+siesta:    3     -621.2854     -621.2838     -621.2838  0.0011 -4.6300
+siesta:    4     -621.2854     -621.2853     -621.2853  0.0002 -4.6291
+siesta:    5     -621.2854     -621.2853     -621.2853  0.0002 -4.6290
+siesta:    6     -621.2854     -621.2855     -621.2855  0.0000 -4.6286
+
+siesta: E_KS(eV) =             -621.2855
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.481377
+ Res    0.316382    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.481377    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =      7
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.371 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.481358   -0.004089    0.000000
+       -1.244220    2.146874    0.000000
+        0.000000    0.000000    6.547924
+
+outcell: Cell vector modules (Ang)   :    2.481361    2.481361    6.547924
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1889
+outcell: Cell volume (Ang**3)        :     34.8485
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   152.924 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2830     -621.1552     -621.1552  0.0034 -4.6251
+siesta:    2     -621.2829     -621.2828     -621.2828  0.0019 -4.6337
+siesta:    3     -621.2829     -621.2793     -621.2793  0.0017 -4.6334
+siesta:    4     -621.2829     -621.2825     -621.2825  0.0004 -4.6326
+siesta:    5     -621.2829     -621.2826     -621.2826  0.0003 -4.6326
+siesta:    6     -621.2829     -621.2831     -621.2831  0.0000 -4.6315
+
+siesta: E_KS(eV) =             -621.2831
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.643518
+ Res    0.428273    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.643518    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =      8
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.346 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.473878   -0.002678    0.000000
+       -1.239258    2.141102    0.000000
+        0.000000    0.000000    6.598333
+
+outcell: Cell vector modules (Ang)   :    2.473879    2.473879    6.598333
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1241
+outcell: Cell volume (Ang**3)        :     34.9283
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   153.951 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2855     -621.3988     -621.3988  0.0060 -4.6346
+siesta:    2     -621.2854     -621.2854     -621.2854  0.0017 -4.6269
+siesta:    3     -621.2854     -621.2875     -621.2875  0.0015 -4.6271
+siesta:    4     -621.2854     -621.2856     -621.2856  0.0003 -4.6279
+siesta:    5     -621.2854     -621.2855     -621.2855  0.0003 -4.6281
+siesta:    6     -621.2854     -621.2852     -621.2852  0.0000 -4.6288
+
+siesta: E_KS(eV) =             -621.2852
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.501042
+ Res    0.329664    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.501042    constrained
+
+cgvc: Finished line minimization    2.  Mean atomic displacement =    0.0683
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =      9
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.383 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.484098   -0.004292    0.000000
+       -1.245766    2.149146    0.000000
+        0.000000    0.000000    6.512525
+
+outcell: Cell vector modules (Ang)   :    2.484102    2.484102    6.512525
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1980
+outcell: Cell volume (Ang**3)        :     34.7335
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   150.136 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2845     -621.1225     -621.1225  0.0057 -4.6440
+siesta:    2     -621.2841     -621.2838     -621.2838  0.0023 -4.6521
+siesta:    3     -621.2841     -621.2865     -621.2865  0.0021 -4.6522
+siesta:    4     -621.2840     -621.2844     -621.2844  0.0006 -4.6524
+siesta:    5     -621.2840     -621.2843     -621.2843  0.0005 -4.6521
+siesta:    6     -621.2840     -621.2837     -621.2837  0.0000 -4.6505
+
+siesta: E_KS(eV) =             -621.2837
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.714718
+ Res    0.474039    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.714718    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     10
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.363 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.478534   -0.003413    0.000000
+       -1.242223    2.144767    0.000000
+        0.000000    0.000000    6.559241
+
+outcell: Cell vector modules (Ang)   :    2.478536    2.478536    6.559241
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1578
+outcell: Cell volume (Ang**3)        :     34.8403
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   153.321 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2938     -621.3750     -621.3750  0.0034 -4.6411
+siesta:    2     -621.2937     -621.2936     -621.2936  0.0011 -4.6375
+siesta:    3     -621.2936     -621.2919     -621.2919  0.0011 -4.6373
+siesta:    4     -621.2937     -621.2932     -621.2932  0.0003 -4.6371
+siesta:    5     -621.2937     -621.2933     -621.2933  0.0003 -4.6372
+siesta:    6     -621.2937     -621.2938     -621.2938  0.0000 -4.6380
+
+siesta: E_KS(eV) =             -621.2938
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.056058
+ Res    0.036379    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.056058    constrained
+
+cgvc: Finished line minimization    3.  Mean atomic displacement =    0.0311
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     11
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.352 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.476375   -0.003475    0.000000
+       -1.241197    2.142866    0.000000
+        0.000000    0.000000    6.516001
+
+outcell: Cell vector modules (Ang)   :    2.476378    2.476378    6.516001
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1608
+outcell: Cell volume (Ang**3)        :     34.5493
+
+InitMesh: MESH =    16 x    16 x    50 =       12800
+InitMesh: Mesh cutoff (required, used) =   150.000   153.583 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3036     -621.3361     -621.3361  0.0057 -4.6564
+siesta:    2     -621.3034     -621.3033     -621.3033  0.0020 -4.6403
+siesta:    3     -621.3034     -621.3064     -621.3064  0.0013 -4.6422
+siesta:    4     -621.3034     -621.3035     -621.3035  0.0004 -4.6466
+siesta:    5     -621.3034     -621.3035     -621.3035  0.0003 -4.6465
+siesta:    6     -621.3034     -621.3034     -621.3034  0.0000 -4.6459
+
+siesta: E_KS(eV) =             -621.3034
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.093427
+ Res    0.059849    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.093427    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     12
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.334 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.472921   -0.003574    0.000000
+       -1.239556    2.139825    0.000000
+        0.000000    0.000000    6.446817
+
+outcell: Cell vector modules (Ang)   :    2.472924    2.472924    6.446817
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1656
+outcell: Cell volume (Ang**3)        :     34.0855
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   153.212 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3168     -621.3695     -621.3695  0.0081 -4.6761
+siesta:    2     -621.3165     -621.3163     -621.3163  0.0033 -4.6497
+siesta:    3     -621.3165     -621.3264     -621.3264  0.0013 -4.6553
+siesta:    4     -621.3165     -621.3169     -621.3169  0.0006 -4.6600
+siesta:    5     -621.3165     -621.3168     -621.3168  0.0005 -4.6598
+siesta:    6     -621.3165     -621.3165     -621.3165  0.0000 -4.6589
+
+siesta: E_KS(eV) =             -621.3165
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.137871
+ Res    0.089215    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.137871    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     13
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.305 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.467395   -0.003733    0.000000
+       -1.236930    2.134960    0.000000
+        0.000000    0.000000    6.336122
+
+outcell: Cell vector modules (Ang)   :    2.467398    2.467398    6.336122
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1734
+outcell: Cell volume (Ang**3)        :     33.3481
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   154.684 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3350     -621.4222     -621.4222  0.0128 -4.7082
+siesta:    2     -621.3342     -621.3336     -621.3336  0.0055 -4.6647
+siesta:    3     -621.3340     -621.3498     -621.3498  0.0024 -4.6736
+siesta:    4     -621.3340     -621.3347     -621.3347  0.0011 -4.6820
+siesta:    5     -621.3340     -621.3345     -621.3345  0.0009 -4.6818
+siesta:    6     -621.3340     -621.3341     -621.3341  0.0000 -4.6800
+
+siesta: E_KS(eV) =             -621.3341
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.209841
+ Res    0.137750    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.209841    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     14
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.268 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.460324   -0.003936    0.000000
+       -1.233571    2.128735    0.000000
+        0.000000    0.000000    6.194489
+
+outcell: Cell vector modules (Ang)   :    2.460327    2.460327    6.194489
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1833
+outcell: Cell volume (Ang**3)        :     32.4128
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   155.559 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3460     -621.4652     -621.4652  0.0170 -4.7441
+siesta:    2     -621.3446     -621.3433     -621.3433  0.0075 -4.6860
+siesta:    3     -621.3442     -621.3673     -621.3673  0.0035 -4.6986
+siesta:    4     -621.3442     -621.3457     -621.3457  0.0015 -4.7092
+siesta:    5     -621.3442     -621.3452     -621.3452  0.0013 -4.7090
+siesta:    6     -621.3441     -621.3442     -621.3442  0.0000 -4.7064
+
+siesta: E_KS(eV) =             -621.3442
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.312110
+ Res    0.200624    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.312110    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     15
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.269 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.460528   -0.003930    0.000000
+       -1.233668    2.128915    0.000000
+        0.000000    0.000000    6.198574
+
+outcell: Cell vector modules (Ang)   :    2.460531    2.460531    6.198574
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1830
+outcell: Cell volume (Ang**3)        :     32.4397
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   155.533 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3441     -621.3404     -621.3404  0.0005 -4.7045
+siesta:    2     -621.3441     -621.3441     -621.3441  0.0002 -4.7061
+siesta:    3     -621.3441     -621.3434     -621.3434  0.0001 -4.7058
+siesta:    4     -621.3441     -621.3441     -621.3441  0.0000 -4.7055
+
+siesta: E_KS(eV) =             -621.3441
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.307935
+ Res    0.198155    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.307935    constrained
+
+cgvc: Finished line minimization    4.  Mean atomic displacement =    0.1066
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     16
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.114 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.456353   -0.004139    0.000000
+       -1.231761    2.125195    0.000000
+        0.000000    0.000000    6.056941
+
+outcell: Cell vector modules (Ang)   :    2.456357    2.456357    6.056941
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1931
+outcell: Cell volume (Ang**3)        :     31.5877
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   156.047 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.2569     -621.3531     -621.3531  0.0175 -4.7664
+siesta:    2     -621.2540     -621.2521     -621.2521  0.0069 -4.7033
+siesta:    3     -621.2538     -621.2581     -621.2581  0.0054 -4.7080
+siesta:    4     -621.2535     -621.2531     -621.2531  0.0017 -4.7354
+siesta:    5     -621.2535     -621.2530     -621.2530  0.0015 -4.7356
+siesta:    6     -621.2534     -621.2530     -621.2530  0.0000 -4.7211
+
+siesta: E_KS(eV) =             -621.2530
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    2.033941
+ Res    1.353261    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    2.033941    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     17
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.265 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.459949   -0.003959    0.000000
+       -1.233403    2.128399    0.000000
+        0.000000    0.000000    6.178945
+
+outcell: Cell vector modules (Ang)   :    2.459953    2.459953    6.178945
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1844
+outcell: Cell volume (Ang**3)        :     32.3213
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   155.604 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3489     -621.2321     -621.2321  0.0155 -4.6760
+siesta:    2     -621.3468     -621.3452     -621.3452  0.0067 -4.7262
+siesta:    3     -621.3465     -621.3382     -621.3382  0.0051 -4.7215
+siesta:    4     -621.3463     -621.3459     -621.3459  0.0016 -4.7048
+siesta:    5     -621.3463     -621.3460     -621.3460  0.0014 -4.7051
+siesta:    6     -621.3463     -621.3462     -621.3462  0.0000 -4.7081
+
+siesta: E_KS(eV) =             -621.3462
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.060755
+ Res    0.033792    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.060755    constrained
+
+cgvc: Finished line minimization    5.  Mean atomic displacement =    0.0148
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     18
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.276 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.461078   -0.003360    0.000000
+       -1.233449    2.129676    0.000000
+        0.000000    0.000000    6.159020
+
+outcell: Cell vector modules (Ang)   :    2.461080    2.461080    6.159020
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1565
+outcell: Cell volume (Ang**3)        :     32.2557
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   155.505 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3478     -621.3246     -621.3246  0.0012 -4.7118
+siesta:    2     -621.3478     -621.3478     -621.3478  0.0003 -4.7098
+siesta:    3     -621.3478     -621.3475     -621.3475  0.0003 -4.7099
+siesta:    4     -621.3478     -621.3477     -621.3477  0.0001 -4.7108
+
+siesta: E_KS(eV) =             -621.3477
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.081653
+ Res    0.048100    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.081653    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     19
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.254 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.462883   -0.002402    0.000000
+       -1.233522    2.131718    0.000000
+        0.000000    0.000000    6.127140
+
+outcell: Cell vector modules (Ang)   :    2.462884    2.462884    6.127140
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.1118
+outcell: Cell volume (Ang**3)        :     32.1504
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   155.347 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3502     -621.3138     -621.3138  0.0015 -4.7168
+siesta:    2     -621.3502     -621.3502     -621.3502  0.0006 -4.7133
+siesta:    3     -621.3502     -621.3497     -621.3497  0.0005 -4.7135
+siesta:    4     -621.3502     -621.3500     -621.3500  0.0001 -4.7150
+siesta:    5     -621.3502     -621.3501     -621.3501  0.0001 -4.7150
+siesta:    6     -621.3502     -621.3503     -621.3503  0.0000 -4.7150
+
+siesta: E_KS(eV) =             -621.3503
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.110117
+ Res    0.066883    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.110117    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     20
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.152 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.465772   -0.000869    0.000000
+       -1.233639    2.134987    0.000000
+        0.000000    0.000000    6.076132
+
+outcell: Cell vector modules (Ang)   :    2.465772    2.465772    6.076132
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.0404
+outcell: Cell volume (Ang**3)        :     31.9806
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   155.095 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3529     -621.2968     -621.2968  0.0026 -4.7245
+siesta:    2     -621.3529     -621.3528     -621.3528  0.0010 -4.7187
+siesta:    3     -621.3529     -621.3518     -621.3518  0.0009 -4.7191
+siesta:    4     -621.3529     -621.3525     -621.3525  0.0002 -4.7215
+siesta:    5     -621.3529     -621.3525     -621.3525  0.0002 -4.7215
+siesta:    6     -621.3529     -621.3530     -621.3530  0.0000 -4.7215
+
+siesta: E_KS(eV) =             -621.3530
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.160763
+ Res    0.100518    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.160763    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     21
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    11.989 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.470394    0.001583    0.000000
+       -1.233826    2.140216    0.000000
+        0.000000    0.000000    5.994518
+
+outcell: Cell vector modules (Ang)   :    2.470395    2.470395    5.994518
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    119.9266
+outcell: Cell volume (Ang**3)        :     31.7058
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   154.350 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3511     -621.2671     -621.2671  0.0043 -4.7361
+siesta:    2     -621.3511     -621.3510     -621.3510  0.0018 -4.7258
+siesta:    3     -621.3511     -621.3489     -621.3489  0.0015 -4.7266
+siesta:    4     -621.3510     -621.3502     -621.3502  0.0004 -4.7308
+siesta:    5     -621.3510     -621.3503     -621.3503  0.0004 -4.7309
+siesta:    6     -621.3510     -621.3512     -621.3512  0.0000 -4.7308
+
+siesta: E_KS(eV) =             -621.3512
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.248113
+ Res    0.158198    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.248113    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     22
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.110 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.466959   -0.000240    0.000000
+       -1.233687    2.136329    0.000000
+        0.000000    0.000000    6.055179
+
+outcell: Cell vector modules (Ang)   :    2.466959    2.466959    6.055179
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.0111
+outcell: Cell volume (Ang**3)        :     31.9104
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   154.991 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3532     -621.4144     -621.4144  0.0032 -4.7199
+siesta:    2     -621.3532     -621.3531     -621.3531  0.0014 -4.7280
+siesta:    3     -621.3532     -621.3548     -621.3548  0.0012 -4.7273
+siesta:    4     -621.3531     -621.3537     -621.3537  0.0003 -4.7241
+siesta:    5     -621.3531     -621.3536     -621.3536  0.0003 -4.7241
+siesta:    6     -621.3531     -621.3530     -621.3530  0.0000 -4.7241
+
+siesta: E_KS(eV) =             -621.3530
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.183967
+ Res    0.116851    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.183967    constrained
+
+cgvc: Finished line minimization    6.  Mean atomic displacement =    0.0918
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     23
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    11.868 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.471844    0.003570    0.000000
+       -1.232830    2.142464    0.000000
+        0.000000    0.000000    5.933902
+
+outcell: Cell vector modules (Ang)   :    2.471846    2.471846    5.933902
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    119.8345
+outcell: Cell volume (Ang**3)        :     31.4511
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   153.884 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3009     -621.2170     -621.2170  0.0096 -4.7342
+siesta:    2     -621.3001     -621.2994     -621.2995  0.0031 -4.7120
+siesta:    3     -621.3001     -621.3002     -621.3002  0.0028 -4.7130
+siesta:    4     -621.2999     -621.3000     -621.3000  0.0012 -4.7247
+siesta:    5     -621.2999     -621.2998     -621.2999  0.0011 -4.7246
+siesta:    6     -621.2998     -621.2991     -621.2991  0.0001 -4.7228
+
+siesta: E_KS(eV) =             -621.2991
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    1.489112
+ Res    0.987088    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    1.489112    constrained
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     24
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.086 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.467451    0.000144    0.000000
+       -1.233601    2.136947    0.000000
+        0.000000    0.000000    6.042970
+
+outcell: Cell vector modules (Ang)   :    2.467451    2.467451    6.042970
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    119.9933
+outcell: Cell volume (Ang**3)        :     31.8645
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   154.926 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3547     -621.4153     -621.4153  0.0086 -4.7128
+siesta:    2     -621.3541     -621.3535     -621.3535  0.0030 -4.7329
+siesta:    3     -621.3540     -621.3534     -621.3534  0.0027 -4.7320
+siesta:    4     -621.3539     -621.3536     -621.3536  0.0012 -4.7227
+siesta:    5     -621.3539     -621.3538     -621.3538  0.0010 -4.7228
+siesta:    6     -621.3539     -621.3545     -621.3545  0.0003 -4.7235
+siesta:    7     -621.3539     -621.3545     -621.3545  0.0002 -4.7240
+siesta:    8     -621.3539     -621.3544     -621.3544  0.0002 -4.7244
+siesta:    9     -621.3539     -621.3538     -621.3538  0.0003 -4.7243
+siesta:   10     -621.3539     -621.3538     -621.3538  0.0003 -4.7243
+siesta:   11     -621.3539     -621.3539     -621.3539  0.0001 -4.7241
+
+siesta: E_KS(eV) =             -621.3539
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.016208
+ Res    0.007689    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.016208    constrained
+
+cgvc: Finished line minimization    7.  Mean atomic displacement =    0.0092
+ 
+* Maximum dynamic memory allocated =    17 MB
+
+siesta:                 ==============================
+                            Begin CG move =     25
+                        ==============================
+
+siesta: k-grid: Number of k-points =   200
+siesta: k-grid: Cutoff             =    12.087 Ang
+siesta: k-grid: Supercell and displacements
+siesta: k-grid:   10   0   0      0.500
+siesta: k-grid:    0  10   0      0.500
+siesta: k-grid:    0   0   4      0.500
+
+superc: Internal auxiliary supercell:     6 x     6 x     3  =     108
+superc: Number of atoms, orbitals, and projectors:    432  5616  6912
+
+outcell: Unit cell vectors (Ang):
+        2.464520   -0.000481    0.000000
+       -1.232676    2.134096    0.000000
+        0.000000    0.000000    6.043563
+
+outcell: Cell vector modules (Ang)   :    2.464520    2.464520    6.043563
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.0224
+outcell: Cell volume (Ang**3)        :     31.7827
+
+InitMesh: MESH =    16 x    16 x    48 =       12288
+InitMesh: Mesh cutoff (required, used) =   150.000   155.281 Ry
+
+siesta: iscf   Eharris(eV)      E_KS(eV)   FreeEng(eV)   dDmax  Ef(eV)
+siesta:    1     -621.3545     -621.4088     -621.4088  0.0024 -4.7326
+siesta:    2     -621.3545     -621.3545     -621.3545  0.0013 -4.7253
+siesta:    3     -621.3545     -621.3595     -621.3595  0.0008 -4.7261
+siesta:    4     -621.3545     -621.3546     -621.3546  0.0001 -4.7270
+
+siesta: E_KS(eV) =             -621.3546
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+ Tot    0.000000    0.000000    0.000000
+----------------------------------------
+ Max    0.039582
+ Res    0.020654    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+ Max    0.039582    constrained
+
+outcoor: Relaxed atomic coordinates (fractional):           
+   -0.00298331    0.00298331    0.25000000   1  C          1
+    0.33040585    0.66959415    0.25000000   1  C          2
+    0.66959415    0.33040585    0.75000000   1  C          3
+    0.00298331   -0.00298331    0.75000000   1  C          4
+
+outcell: Unit cell vectors (Ang):
+        2.464520   -0.000481    0.000000
+       -1.232676    2.134096    0.000000
+        0.000000    0.000000    6.043563
+
+outcell: Cell vector modules (Ang)   :    2.464520    2.464520    6.043563
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000    120.0224
+outcell: Cell volume (Ang**3)        :     31.7827
+
+siesta: Eigenvalues (eV):
+  ik is    eps
+   1  1 -17.53 -17.35 -16.90 -16.86 -15.20 -15.06  -5.97  -5.06  -4.43  -3.45
+          7.39   7.44   7.92   8.77   9.07   9.89  11.38  12.06  15.42  17.35
+         19.35  19.42  19.89  19.94  23.37  24.30  31.90  33.43  39.88  40.35
+         44.71  47.07  47.47  50.58  52.56  53.22  55.50  67.79  72.29  72.81
+         75.07  79.16  79.16  82.44 114.38 114.42 134.11 146.85 154.87 160.30
+        213.22 215.47
+   2  1 -18.21 -17.88 -16.90 -16.66 -14.51 -14.29  -6.70  -5.40  -3.76  -3.13
+          6.90   7.70   7.85   8.39   8.67   9.36  11.50  13.34  15.84  17.19
+         19.01  19.13  20.24  20.66  23.19  24.79  31.90  32.93  39.65  40.26
+         43.79  47.06  47.95  49.29  50.92  54.14  55.86  66.40  70.52  72.13
+         75.69  78.09  78.27  80.48 107.87 112.40 112.65 140.76 153.71 161.11
+        191.75 196.19
+   3  1 -19.73 -19.30 -16.39 -16.07 -12.59 -12.39  -8.36  -6.33  -2.80  -1.63
+          4.58   5.39   7.27   8.95   9.59  10.76  11.83  14.60  16.39  17.25
+         17.69  19.33  21.39  22.86  23.26  25.22  30.90  32.12  37.80  39.97
+         41.25  42.86  46.72  47.48  53.64  56.51  57.48  61.57  66.05  70.01
+         73.31  74.28  74.36  76.12  85.71 104.49 104.79 119.43 133.80 153.17
+        161.32 164.79
+   4  1 -20.94 -20.48 -15.42 -15.12 -11.04 -10.90  -9.75  -7.28  -1.62  -0.12
+          2.93   3.61   6.03   9.94  10.37  12.25  13.10  13.77  14.69  17.10
+         18.24  20.66  22.09  23.13  24.19  25.47  29.39  31.07  34.99  38.26
+         41.58  41.98  47.05  49.62  55.72  57.54  58.94  60.94  62.21  66.28
+         69.27  70.81  71.51  72.59  80.05  96.32  98.52 118.14 127.45 142.09
+        156.65 160.49
+   5  1 -21.74 -21.25 -14.13 -13.86 -10.70 -10.68 -10.56  -7.99  -0.23   1.13
+          3.10   3.70   5.09   9.69  10.00  10.77  11.91  13.20  14.83  17.70
+         18.69  21.03  22.65  23.64  24.26  26.11  29.56  30.62  36.85  38.82
+         42.46  42.86  46.88  49.99  54.27  55.50  56.47  60.77  62.40  63.28
+         66.19  71.89  72.63  73.00  79.14  93.69  97.19 126.06 133.83 138.59
+        151.49 163.23
+   6  1 -22.08 -21.59 -12.86 -12.69 -11.37 -11.25 -11.08  -8.32   0.81   1.71
+          4.43   5.00   5.57   7.24   7.72   9.33  12.67  13.38  13.72  17.59
+         19.10  20.74  22.31  24.63  25.12  26.91  29.99  31.50  40.00  42.86
+         43.36  43.98  47.71  49.05  50.48  51.63  52.42  59.82  62.78  64.17
+         65.25  71.34  73.33  73.55  85.70  93.37  99.06 103.63 134.23 139.62
+        159.66 171.51
+   7  1 -21.97 -21.48 -13.45 -13.21 -11.00 -10.95 -10.85  -8.21   0.40   1.53
+          3.90   4.36   4.94   8.46   9.16   9.54  12.36  13.32  14.14  17.69
+         18.95  20.97  22.55  24.12  24.86  26.43  29.73  31.30  38.14  41.74
+         42.50  43.34  46.71  49.20  52.76  53.35  55.00  60.11  62.18  64.16
+         65.25  71.78  73.26  73.54  80.91  94.46  97.82 119.34 132.60 139.25
+        151.60 166.17
+   8  1 -21.40 -20.92 -14.81 -14.52 -10.69 -10.56 -10.28  -7.69  -0.93   0.56
+          2.76   3.41   5.50  10.01  10.63  12.04  12.10  13.24  14.98  17.46
+         18.37  21.11  22.39  23.10  24.34  25.98  28.89  30.29  36.22  37.42
+         42.28  42.74  47.42  50.22  54.77  56.89  58.07  61.28  62.70  63.83
+         67.41  70.72  71.88  72.81  78.90  94.14  97.29 124.82 127.36 139.71
+        159.06 159.51
+   9  1 -20.39 -19.94 -15.96 -15.64 -11.71 -11.54  -9.11  -6.84  -2.24  -0.84
+          3.59   4.32   6.65   9.50  10.11  11.88  12.36  14.11  15.81  16.86
+         18.00  20.08  21.89  23.42  23.70  24.98  29.71  32.20  35.55  40.35
+         40.63  41.27  47.22  48.53  55.26  57.52  58.65  60.51  63.23  68.86
+         71.27  71.74  72.76  74.08  81.93 100.31 101.04 115.39 129.47 146.45
+        157.63 160.22
+  10  1 -19.00 -18.60 -16.71 -16.40 -13.56 -13.34  -7.53  -5.88  -3.28  -2.38
+          5.78   6.75   7.78   8.37   9.10   9.66  11.63  14.29  16.41  17.17
+         18.32  19.05  20.84  21.58  22.94  25.43  31.82  32.03  39.20  40.09
+         43.66  44.25  47.45  48.02  51.64  55.16  56.53  63.82  68.47  71.46
+         75.42  75.95  76.60  78.41  92.73 108.82 109.16 130.03 141.15 160.67
+        171.54 176.17
+  11  1 -18.21 -17.88 -16.90 -16.66 -14.51 -14.29  -6.70  -5.40  -3.76  -3.13
+          6.90   7.70   7.85   8.39   8.67   9.36  11.50  13.34  15.84  17.19
+         19.01  19.13  20.24  20.66  23.19  24.79  31.90  32.93  39.65  40.26
+         43.79  47.06  47.95  49.29  50.92  54.14  55.86  66.40  70.52  72.13
+         75.69  78.09  78.27  80.48 107.87 112.40 112.65 140.76 153.71 161.11
+        191.75 196.19
+  12  1 -19.95 -19.51 -15.17 -15.02 -13.71 -13.59  -8.55  -6.26  -2.39  -1.44
+          6.78   6.99   7.45   8.40   8.50   8.82   9.80  15.40  15.80  17.28
+         17.61  19.07  20.88  22.54  23.70  25.61  31.88  32.10  39.40  41.42
+         42.89  46.36  47.44  50.11  50.97  52.55  53.79  63.00  67.15  70.74
+         74.39  75.34  76.66  78.66 104.02 104.98 109.34 113.81 130.07 149.76
+        168.37 168.43
+  13  1 -21.40 -20.92 -14.02 -13.79 -11.93 -11.76 -10.26  -7.63  -0.47   0.54
+          4.82   5.23   5.75   8.06   8.95   9.38  12.28  13.88  14.75  16.93
+         18.50  20.11  22.01  24.17  24.56  26.28  30.48  31.70  38.83  41.94
+         42.61  43.73  46.93  48.36  51.89  52.74  54.93  60.20  65.06  66.06
+         67.96  71.68  73.96  74.56  85.86  98.62 101.28 112.39 127.62 140.85
+        151.77 167.98
+  14  1 -22.43 -21.92 -12.82 -12.59 -11.51 -10.26 -10.13  -8.69   1.27   2.37
+          3.30   3.72   4.36   8.82   9.19   9.49  11.00  12.05  15.97  18.45
+         19.25  21.41  23.17  24.01  24.57  27.07  29.37  30.36  37.95  40.50
+         43.04  44.01  47.06  50.41  52.87  53.32  54.03  58.11  60.60  62.51
+         64.25  71.82  72.70  74.64  78.42  90.47  95.15 129.26 136.31 141.35
+        153.68 162.91
+  15  1 -23.01 -22.49 -12.21 -11.53 -11.34  -9.75  -9.63  -9.30   2.72   3.22
+          3.60   3.62   4.14   7.49   7.67   9.20  10.20  10.92  17.40  19.38
+         19.93  21.75  23.11  24.69  25.23  27.83  29.23  30.49  39.62  41.89
+         43.02  45.04  47.34  49.91  50.81  51.90  53.83  54.28  58.58  61.44
+         64.94  71.55  72.95  76.16  78.21  86.77  92.60 109.07 138.01 154.48
+        164.48 173.03
+  16  1 -23.12 -22.60 -12.35 -11.02 -10.89  -9.87  -9.77  -9.43   3.10   3.19
+          3.87   4.21   4.61   6.40   6.61   9.10  10.39  10.87  17.15  19.43
+         20.31  21.88  22.53  25.55  25.99  27.65  29.14  31.12  41.16  43.12
+         44.08  44.91  46.52  48.97  49.75  50.00  54.22  55.30  57.69  59.95
+         65.49  70.20  73.34  75.66  80.18  85.55  92.22  94.42 140.49 161.61
+        168.55 191.40
+  17  1 -22.78 -22.26 -12.17 -11.96 -11.92  -9.83  -9.71  -9.06   2.05   3.06
+          3.17   3.47   4.03   8.65   8.73   9.35  10.10  11.18  17.18  19.14
+         19.38  21.73  23.62  24.02  24.58  27.88  28.84  30.03  38.84  40.28
+         43.27  44.66  47.70  50.98  52.25  52.37  53.93  54.87  60.09  61.44
+         64.26  72.66  72.79  75.34  77.26  88.00  93.51 132.84 135.19 145.66
+        157.50 161.11
+  18  1 -21.97 -21.48 -13.45 -13.21 -11.00 -10.95 -10.85  -8.21   0.40   1.53
+          3.90   4.36   4.94   8.46   9.16   9.54  12.36  13.32  14.14  17.69
+         18.95  20.97  22.55  24.12  24.86  26.43  29.73  31.30  38.14  41.74
+         42.50  43.34  46.71  49.20  52.76  53.35  55.00  60.11  62.18  64.16
+         65.25  71.78  73.26  73.54  80.91  94.46  97.82 119.34 132.60 139.25
+        151.60 166.17
+  19  1 -20.72 -20.26 -14.56 -14.36 -12.89 -12.74  -9.46  -6.97  -1.44  -0.41
+          5.88   6.16   6.87   7.79   8.73   9.12  10.76  14.97  15.70  16.81
+         17.89  19.49  21.47  23.52  23.82  26.24  31.25  32.00  39.38  41.78
+         42.95  45.01  47.54  49.02  51.01  52.52  53.66  61.37  66.08  69.10
+         71.20  73.47  75.49  76.76  93.43 101.91 105.42 110.11 128.04 143.78
+        155.53 166.27
+  20  1 -19.09 -18.69 -16.02 -15.79 -14.27 -14.09  -7.58  -5.61  -3.38  -2.30
+          6.98   7.44   7.93   8.37   8.60   9.22  10.06  14.53  15.93  17.22
+         18.41  19.10  20.48  21.32  23.25  25.23  31.96  32.64  39.49  40.86
+         43.35  46.88  47.87  49.60  50.89  53.49  55.03  64.82  68.76  72.39
+         76.62  76.81  77.10  80.05 107.03 110.61 111.88 128.60 141.61 152.80
+        177.05 185.53
+  21  1 -19.73 -19.30 -16.39 -16.07 -12.59 -12.39  -8.36  -6.33  -2.80  -1.63
+          4.58   5.39   7.27   8.95   9.59  10.76  11.83  14.60  16.39  17.25
+         17.69  19.33  21.39  22.86  23.26  25.22  30.90  32.12  37.80  39.97
+         41.25  42.86  46.72  47.48  53.64  56.51  57.48  61.57  66.05  70.01
+         73.31  74.28  74.36  76.12  85.71 104.49 104.79 119.43 133.80 153.17
+        161.32 164.79
+  22  1 -21.40 -20.92 -14.02 -13.79 -11.93 -11.76 -10.26  -7.63  -0.47   0.54
+          4.82   5.23   5.75   8.06   8.95   9.38  12.28  13.88  14.75  16.93
+         18.50  20.11  22.01  24.17  24.56  26.28  30.48  31.70  38.83  41.94
+         42.61  43.73  46.93  48.36  51.89  52.74  54.93  60.20  65.06  66.06
+         67.96  71.68  73.96  74.56  85.86  98.62 101.28 112.39 127.62 140.85
+        151.77 167.98
+  23  1 -22.66 -22.15 -11.84 -11.79 -11.73 -10.64 -10.56  -8.92   2.07   2.79
+          3.75   4.80   5.18   6.64   6.89   9.22  11.61  12.06  15.31  18.42
+         19.71  21.29  22.48  25.29  25.71  27.36  29.29  31.07  40.76  43.51
+         43.79  44.32  48.19  49.40  49.46  49.78  53.22  58.30  58.74  60.59
+         65.81  70.08  73.29  73.98  83.54  88.52  95.57  97.51 140.63 146.10
+        165.10 188.23
+  24  1 -23.47 -22.94 -12.78 -10.31 -10.17  -9.81  -9.19  -9.08   2.73   3.70
+          4.05   4.14   4.75   6.14   6.29   8.96   9.49   9.97  19.17  20.17
+         20.96  21.92  22.62  25.71  26.07  28.17  29.58  31.01  40.62  42.70
+         43.99  45.83  46.15  48.67  48.98  50.47  51.84  54.32  57.19  62.37
+         66.11  70.84  73.01  76.82  78.64  83.89  88.55  90.90 135.02 157.18
+        176.94 191.52
+  25  1 -23.82 -23.28 -13.22 -10.20  -9.25  -9.16  -8.63  -8.56   2.35   3.73
+          3.97   5.04   5.15   5.22   5.70   8.77   8.87   9.26  20.82  21.12
+         21.74  22.22  22.52  26.42  26.93  27.94  30.86  32.23  41.39  42.53
+         43.79  45.30  45.81  47.01  48.01  48.82  50.04  53.28  60.71  64.04
+         66.70  70.64  72.42  73.81  79.63  81.21  83.49  87.69 129.10 138.83
+        187.95 206.26
+  26  1 -23.70 -23.17 -13.07 -10.07  -9.69  -9.56  -8.76  -8.67   2.47   3.56
+          3.88   4.81   5.38   5.65   5.74   8.84   9.00   9.45  20.53  20.70
+         21.67  21.86  22.47  26.22  26.28  28.23  30.73  31.15  40.63  42.50
+         44.14  45.76  46.93  47.02  48.17  49.12  50.45  56.77  56.99  63.44
+         66.88  71.96  72.39  77.15  78.27  81.74  84.04  87.54 126.90 148.49
+        185.13 197.00
+  27  1 -23.12 -22.60 -12.35 -11.02 -10.89  -9.87  -9.77  -9.43   3.10   3.19
+          3.87   4.21   4.61   6.40   6.61   9.10  10.39  10.87  17.15  19.43
+         20.31  21.88  22.53  25.55  25.99  27.65  29.14  31.12  41.16  43.12
+         44.08  44.91  46.52  48.97  49.75  50.00  54.22  55.30  57.69  59.95
+         65.49  70.20  73.34  75.66  80.18  85.55  92.22  94.42 140.49 161.61
+        168.55 191.40
+  28  1 -22.08 -21.59 -12.86 -12.69 -11.37 -11.25 -11.08  -8.32   0.81   1.71
+          4.43   5.00   5.57   7.24   7.72   9.33  12.67  13.38  13.72  17.59
+         19.10  20.74  22.31  24.63  25.12  26.91  29.99  31.50  40.00  42.86
+         43.36  43.98  47.71  49.05  50.48  51.63  52.42  59.82  62.78  64.17
+         65.25  71.34  73.33  73.55  85.70  93.37  99.06 103.63 134.23 139.62
+        159.66 171.51
+  29  1 -20.61 -20.15 -15.21 -14.93 -12.33 -12.14  -9.34  -6.92  -1.78  -0.55
+          4.70   5.42   6.38   8.78   9.48  10.37  11.33  14.43  15.91  16.81
+         18.00  19.67  21.70  23.53  23.67  25.72  30.85  32.09  38.35  40.77
+         42.14  42.86  46.65  47.71  52.76  55.00  56.54  60.94  65.07  68.96
+         71.47  72.77  74.59  75.77  85.65 102.16 103.38 116.16 131.00 146.70
+        150.71 167.63
+  30  1 -18.82 -18.47 -17.40 -17.10 -12.72 -12.52  -7.51  -6.20  -3.19  -2.49
+          4.52   5.36   8.08   8.79   9.56  10.51  12.99  14.33  16.66  17.05
+         18.07  19.22  21.33  22.21  22.92  24.99  30.93  32.16  37.95  39.29
+         40.79  42.68  46.71  47.68  54.06  56.55  58.29  62.58  67.43  69.91
+         73.49  74.48  75.16  76.31  85.71 105.56 105.67 120.82 140.13 152.26
+        162.39 175.15
+  31  1 -20.94 -20.48 -15.42 -15.12 -11.04 -10.90  -9.75  -7.28  -1.62  -0.12
+          2.93   3.61   6.03   9.94  10.37  12.25  13.10  13.77  14.69  17.10
+         18.24  20.66  22.09  23.13  24.19  25.47  29.39  31.07  34.99  38.26
+         41.58  41.98  47.05  49.62  55.72  57.54  58.94  60.94  62.21  66.28
+         69.27  70.81  71.51  72.59  80.05  96.32  98.52 118.14 127.45 142.09
+        156.65 160.49
+  32  1 -22.43 -21.92 -12.82 -12.59 -11.51 -10.26 -10.13  -8.69   1.27   2.37
+          3.30   3.72   4.36   8.82   9.19   9.49  11.00  12.05  15.97  18.45
+         19.25  21.41  23.17  24.01  24.57  27.07  29.37  30.36  37.95  40.50
+         43.04  44.01  47.06  50.41  52.87  53.32  54.03  58.11  60.60  62.51
+         64.25  71.82  72.70  74.64  78.42  90.47  95.15 129.26 136.31 141.35
+        153.68 162.91
+  33  1 -23.47 -22.94 -12.78 -10.31 -10.17  -9.81  -9.19  -9.08   2.73   3.70
+          4.05   4.14   4.75   6.14   6.29   8.96   9.49   9.97  19.17  20.17
+         20.96  21.92  22.62  25.71  26.07  28.17  29.58  31.01  40.62  42.70
+         43.99  45.83  46.15  48.67  48.98  50.47  51.84  54.32  57.19  62.37
+         66.11  70.84  73.01  76.82  78.64  83.89  88.55  90.90 135.02 157.18
+        176.94 191.52
+  34  1 -24.05 -23.51 -13.51 -10.46  -8.46  -8.40  -8.16  -8.11   2.12   3.65
+          3.80   4.22   4.33   6.03   6.38   8.47   8.62   8.85  21.15  21.86
+         22.16  23.11  23.85  26.36  27.77  27.98  32.68  33.59  41.36  41.63
+         42.74  43.34  46.07  46.56  47.11  47.87  50.51  50.92  59.20  65.50
+         68.82  69.44  71.19  72.35  74.67  79.01  88.82  95.65 119.22 128.06
+        186.70 197.18
+  35  1 -24.16 -23.62 -13.66 -10.59  -8.03  -7.96  -7.92  -7.86   2.01   3.55
+          3.68   3.79   3.89   6.45   6.76   8.28   8.53   8.68  21.00  22.29
+         22.33  24.57  24.68  26.34  27.81  28.15  34.68  34.92  40.63  40.98
+         41.49  42.39  45.44  45.73  46.74  47.91  50.04  52.17  53.06  63.92
+         69.70  69.89  71.53  71.90  72.64  82.46 101.25 104.34 113.96 123.19
+        169.64 173.37
+  36  1 -23.82 -23.28 -13.22 -10.20  -9.25  -9.16  -8.63  -8.56   2.35   3.73
+          3.97   5.04   5.15   5.22   5.70   8.77   8.87   9.26  20.82  21.12
+         21.74  22.22  22.52  26.42  26.93  27.94  30.86  32.23  41.39  42.53
+         43.79  45.30  45.81  47.01  48.01  48.82  50.04  53.28  60.71  64.04
+         66.70  70.64  72.42  73.81  79.63  81.21  83.49  87.69 129.10 138.83
+        187.95 206.26
+  37  1 -23.01 -22.49 -12.21 -11.53 -11.34  -9.75  -9.63  -9.30   2.72   3.22
+          3.60   3.62   4.14   7.49   7.67   9.20  10.20  10.92  17.40  19.38
+         19.93  21.75  23.11  24.69  25.23  27.83  29.23  30.49  39.62  41.89
+         43.02  45.04  47.34  49.91  50.81  51.90  53.83  54.28  58.58  61.44
+         64.94  71.55  72.95  76.16  78.21  86.77  92.60 109.07 138.01 154.48
+        164.48 173.03
+  38  1 -21.74 -21.25 -14.13 -13.86 -10.70 -10.68 -10.56  -7.99  -0.23   1.13
+          3.10   3.70   5.09   9.69  10.00  10.77  11.91  13.20  14.83  17.70
+         18.69  21.03  22.65  23.64  24.26  26.11  29.56  30.62  36.85  38.82
+         42.46  42.86  46.88  49.99  54.27  55.50  56.47  60.77  62.40  63.28
+         66.19  71.89  72.63  73.00  79.14  93.69  97.19 126.06 133.83 138.59
+        151.49 163.23
+  39  1 -20.06 -19.62 -16.65 -16.31 -11.28 -11.13  -8.78  -6.72  -2.71  -1.26
+          2.80   3.53   7.06   9.78  10.52  13.06  13.75  14.26  15.58  16.81
+         17.78  20.42  21.73  22.71  24.14  24.75  29.18  31.50  33.93  37.58
+         40.72  41.35  47.70  49.11  57.04  58.79  60.10  61.08  62.15  69.04
+         69.68  70.42  71.33  72.80  80.86  98.38  99.38 111.94 128.61 146.90
+        149.73 167.17
+  40  1 -19.13 -18.77 -17.70 -17.39 -11.39 -11.25  -7.93  -6.62  -3.13  -2.14
+          2.74   3.49   8.06   9.14  10.65  12.87  14.55  14.90  16.13  16.86
+         17.31  20.30  21.55  22.49  24.06  24.37  28.99  32.06  32.76  37.48
+         40.19  41.09  48.05  48.91  57.77  58.43  60.57  61.52  62.89  68.44
+         69.74  71.02  71.83  73.00  81.42  99.58  99.81 109.07 131.98 140.65
+        154.46 171.48
+  41  1 -21.74 -21.25 -14.13 -13.86 -10.70 -10.68 -10.56  -7.99  -0.23   1.13
+          3.10   3.70   5.09   9.69  10.00  10.77  11.91  13.20  14.83  17.70
+         18.69  21.03  22.65  23.64  24.26  26.11  29.56  30.62  36.85  38.82
+         42.46  42.86  46.88  49.99  54.27  55.50  56.47  60.77  62.40  63.28
+         66.19  71.89  72.63  73.00  79.14  93.69  97.19 126.06 133.83 138.59
+        151.49 163.23
+  42  1 -23.01 -22.49 -12.21 -11.53 -11.34  -9.75  -9.63  -9.30   2.72   3.22
+          3.60   3.62   4.14   7.49   7.67   9.20  10.20  10.92  17.40  19.38
+         19.93  21.75  23.11  24.69  25.23  27.83  29.23  30.49  39.62  41.89
+         43.02  45.04  47.34  49.91  50.81  51.90  53.83  54.28  58.58  61.44
+         64.94  71.55  72.95  76.16  78.21  86.77  92.60 109.07 138.01 154.48
+        164.48 173.03
+  43  1 -23.82 -23.28 -13.22 -10.20  -9.25  -9.16  -8.63  -8.56   2.35   3.73
+          3.97   5.04   5.15   5.22   5.70   8.77   8.87   9.26  20.82  21.12
+         21.74  22.22  22.52  26.42  26.93  27.94  30.86  32.23  41.39  42.53
+         43.79  45.30  45.81  47.01  48.01  48.82  50.04  53.28  60.71  64.04
+         66.70  70.64  72.42  73.81  79.63  81.21  83.49  87.69 129.10 138.83
+        187.95 206.26
+  44  1 -24.16 -23.62 -13.66 -10.59  -8.03  -7.96  -7.92  -7.86   2.01   3.55
+          3.68   3.79   3.89   6.45   6.76   8.28   8.53   8.68  21.00  22.29
+         22.33  24.57  24.68  26.34  27.81  28.15  34.68  34.92  40.63  40.98
+         41.49  42.39  45.44  45.73  46.74  47.91  50.04  52.17  53.06  63.92
+         69.70  69.89  71.53  71.90  72.64  82.46 101.25 104.34 113.96 123.19
+        169.64 173.37
+  45  1 -24.05 -23.51 -13.51 -10.46  -8.46  -8.40  -8.16  -8.11   2.12   3.65
+          3.80   4.22   4.33   6.03   6.38   8.47   8.62   8.85  21.15  21.86
+         22.16  23.11  23.85  26.36  27.77  27.98  32.68  33.59  41.36  41.63
+         42.74  43.34  46.07  46.56  47.11  47.87  50.51  50.92  59.20  65.50
+         68.82  69.44  71.19  72.35  74.67  79.01  88.82  95.65 119.22 128.06
+        186.70 197.18
+  46  1 -23.47 -22.94 -12.78 -10.31 -10.17  -9.81  -9.19  -9.08   2.73   3.70
+          4.05   4.14   4.75   6.14   6.29   8.96   9.49   9.97  19.17  20.17
+         20.96  21.92  22.62  25.71  26.07  28.17  29.58  31.01  40.62  42.70
+         43.99  45.83  46.15  48.67  48.98  50.47  51.84  54.32  57.19  62.37
+         66.11  70.84  73.01  76.82  78.64  83.89  88.55  90.90 135.02 157.18
+        176.94 191.52
+  47  1 -22.43 -21.92 -12.82 -12.59 -11.51 -10.26 -10.13  -8.69   1.27   2.37
+          3.30   3.72   4.36   8.82   9.19   9.49  11.00  12.05  15.97  18.45
+         19.25  21.41  23.17  24.01  24.57  27.07  29.37  30.36  37.95  40.50
+         43.04  44.01  47.06  50.41  52.87  53.32  54.03  58.11  60.60  62.51
+         64.25  71.82  72.70  74.64  78.42  90.47  95.15 129.26 136.31 141.35
+        153.68 162.91
+  48  1 -20.94 -20.48 -15.42 -15.12 -11.04 -10.90  -9.75  -7.28  -1.62  -0.12
+          2.93   3.61   6.03   9.94  10.37  12.25  13.10  13.77  14.69  17.10
+         18.24  20.66  22.09  23.13  24.19  25.47  29.39  31.07  34.99  38.26
+         41.58  41.98  47.05  49.62  55.72  57.54  58.94  60.94  62.21  66.28
+         69.27  70.81  71.51  72.59  80.05  96.32  98.52 118.14 127.45 142.09
+        156.65 160.49
+  49  1 -19.13 -18.77 -17.70 -17.39 -11.39 -11.25  -7.93  -6.62  -3.13  -2.14
+          2.74   3.49   8.06   9.14  10.65  12.87  14.55  14.90  16.13  16.86
+         17.31  20.30  21.55  22.49  24.06  24.37  28.99  32.06  32.76  37.48
+         40.19  41.09  48.05  48.91  57.77  58.43  60.57  61.52  62.89  68.44
+         69.74  71.02  71.83  73.00  81.42  99.58  99.81 109.07 131.98 140.65
+        154.46 171.48
+  50  1 -20.06 -19.62 -16.65 -16.31 -11.28 -11.13  -8.78  -6.72  -2.71  -1.26
+          2.80   3.53   7.06   9.78  10.52  13.06  13.75  14.26  15.58  16.81
+         17.78  20.42  21.73  22.71  24.14  24.75  29.18  31.50  33.93  37.58
+         40.72  41.35  47.70  49.11  57.04  58.79  60.10  61.08  62.15  69.04
+         69.68  70.42  71.33  72.80  80.86  98.38  99.38 111.94 128.61 146.90
+        149.73 167.17
+  51  1 -22.08 -21.59 -12.86 -12.69 -11.37 -11.25 -11.08  -8.32   0.81   1.71
+          4.43   5.00   5.57   7.24   7.72   9.33  12.67  13.38  13.72  17.59
+         19.10  20.74  22.31  24.63  25.12  26.91  29.99  31.50  40.00  42.86
+         43.36  43.98  47.71  49.05  50.48  51.63  52.42  59.82  62.78  64.17
+         65.25  71.34  73.33  73.55  85.70  93.37  99.06 103.63 134.23 139.62
+        159.66 171.51
+  52  1 -23.12 -22.60 -12.35 -11.02 -10.89  -9.87  -9.77  -9.43   3.10   3.19
+          3.87   4.21   4.61   6.40   6.61   9.10  10.39  10.87  17.15  19.43
+         20.31  21.88  22.53  25.55  25.99  27.65  29.14  31.12  41.16  43.12
+         44.08  44.91  46.52  48.97  49.75  50.00  54.22  55.30  57.69  59.95
+         65.49  70.20  73.34  75.66  80.18  85.55  92.22  94.42 140.49 161.61
+        168.55 191.40
+  53  1 -23.70 -23.17 -13.07 -10.07  -9.69  -9.56  -8.76  -8.67   2.47   3.56
+          3.88   4.81   5.38   5.65   5.74   8.84   9.00   9.45  20.53  20.70
+         21.67  21.86  22.47  26.22  26.28  28.23  30.73  31.15  40.63  42.50
+         44.14  45.76  46.93  47.02  48.17  49.12  50.45  56.77  56.99  63.44
+         66.88  71.96  72.39  77.15  78.27  81.74  84.04  87.54 126.90 148.49
+        185.13 197.00
+  54  1 -23.82 -23.28 -13.22 -10.20  -9.25  -9.16  -8.63  -8.56   2.35   3.73
+          3.97   5.04   5.15   5.22   5.70   8.77   8.87   9.26  20.82  21.12
+         21.74  22.22  22.52  26.42  26.93  27.94  30.86  32.23  41.39  42.53
+         43.79  45.30  45.81  47.01  48.01  48.82  50.04  53.28  60.71  64.04
+         66.70  70.64  72.42  73.81  79.63  81.21  83.49  87.69 129.10 138.83
+        187.95 206.26
+  55  1 -23.47 -22.94 -12.78 -10.31 -10.17  -9.81  -9.19  -9.08   2.73   3.70
+          4.05   4.14   4.75   6.14   6.29   8.96   9.49   9.97  19.17  20.17
+         20.96  21.92  22.62  25.71  26.07  28.17  29.58  31.01  40.62  42.70
+         43.99  45.83  46.15  48.67  48.98  50.47  51.84  54.32  57.19  62.37
+         66.11  70.84  73.01  76.82  78.64  83.89  88.55  90.90 135.02 157.18
+        176.94 191.52
+  56  1 -22.66 -22.15 -11.84 -11.79 -11.73 -10.64 -10.56  -8.92   2.07   2.79
+          3.75   4.80   5.18   6.64   6.89   9.22  11.61  12.06  15.31  18.42
+         19.71  21.29  22.48  25.29  25.71  27.36  29.29  31.07  40.76  43.51
+         43.79  44.32  48.19  49.40  49.46  49.78  53.22  58.30  58.74  60.59
+         65.81  70.08  73.29  73.98  83.54  88.52  95.57  97.51 140.63 146.10
+        165.10 188.23
+  57  1 -21.40 -20.92 -14.02 -13.79 -11.93 -11.76 -10.26  -7.63  -0.47   0.54
+          4.82   5.23   5.75   8.06   8.95   9.38  12.28  13.88  14.75  16.93
+         18.50  20.11  22.01  24.17  24.56  26.28  30.48  31.70  38.83  41.94
+         42.61  43.73  46.93  48.36  51.89  52.74  54.93  60.20  65.06  66.06
+         67.96  71.68  73.96  74.56  85.86  98.62 101.28 112.39 127.62 140.85
+        151.77 167.98
+  58  1 -19.73 -19.30 -16.39 -16.07 -12.59 -12.39  -8.36  -6.33  -2.80  -1.63
+          4.58   5.39   7.27   8.95   9.59  10.76  11.83  14.60  16.39  17.25
+         17.69  19.33  21.39  22.86  23.26  25.22  30.90  32.12  37.80  39.97
+         41.25  42.86  46.72  47.48  53.64  56.51  57.48  61.57  66.05  70.01
+         73.31  74.28  74.36  76.12  85.71 104.49 104.79 119.43 133.80 153.17
+        161.32 164.79
+  59  1 -18.82 -18.47 -17.40 -17.10 -12.72 -12.52  -7.51  -6.20  -3.19  -2.49
+          4.52   5.36   8.08   8.79   9.56  10.51  12.99  14.33  16.66  17.05
+         18.07  19.22  21.33  22.21  22.92  24.99  30.93  32.16  37.95  39.29
+         40.79  42.68  46.71  47.68  54.06  56.55  58.29  62.58  67.43  69.91
+         73.49  74.48  75.16  76.31  85.71 105.56 105.67 120.82 140.13 152.26
+        162.39 175.15
+  60  1 -20.61 -20.15 -15.21 -14.93 -12.33 -12.14  -9.34  -6.92  -1.78  -0.55
+          4.70   5.42   6.38   8.78   9.48  10.37  11.33  14.43  15.91  16.81
+         18.00  19.67  21.70  23.53  23.67  25.72  30.85  32.09  38.35  40.77
+         42.14  42.86  46.65  47.71  52.76  55.00  56.54  60.94  65.07  68.96
+         71.47  72.77  74.59  75.77  85.65 102.16 103.38 116.16 131.00 146.70
+        150.71 167.63
+  61  1 -21.97 -21.48 -13.45 -13.21 -11.00 -10.95 -10.85  -8.21   0.40   1.53
+          3.90   4.36   4.94   8.46   9.16   9.54  12.36  13.32  14.14  17.69
+         18.95  20.97  22.55  24.12  24.86  26.43  29.73  31.30  38.14  41.74
+         42.50  43.34  46.71  49.20  52.76  53.35  55.00  60.11  62.18  64.16
+         65.25  71.78  73.26  73.54  80.91  94.46  97.82 119.34 132.60 139.25
+        151.60 166.17
+  62  1 -22.78 -22.26 -12.17 -11.96 -11.92  -9.83  -9.71  -9.06   2.05   3.06
+          3.17   3.47   4.03   8.65   8.73   9.35  10.10  11.18  17.18  19.14
+         19.38  21.73  23.62  24.02  24.58  27.88  28.84  30.03  38.84  40.28
+         43.27  44.66  47.70  50.98  52.25  52.37  53.93  54.87  60.09  61.44
+         64.26  72.66  72.79  75.34  77.26  88.00  93.51 132.84 135.19 145.66
+        157.50 161.11
+  63  1 -23.12 -22.60 -12.35 -11.02 -10.89  -9.87  -9.77  -9.43   3.10   3.19
+          3.87   4.21   4.61   6.40   6.61   9.10  10.39  10.87  17.15  19.43
+         20.31  21.88  22.53  25.55  25.99  27.65  29.14  31.12  41.16  43.12
+         44.08  44.91  46.52  48.97  49.75  50.00  54.22  55.30  57.69  59.95
+         65.49  70.20  73.34  75.66  80.18  85.55  92.22  94.42 140.49 161.61
+        168.55 191.40
+  64  1 -23.01 -22.49 -12.21 -11.53 -11.34  -9.75  -9.63  -9.30   2.72   3.22
+          3.60   3.62   4.14   7.49   7.67   9.20  10.20  10.92  17.40  19.38
+         19.93  21.75  23.11  24.69  25.23  27.83  29.23  30.49  39.62  41.89
+         43.02  45.04  47.34  49.91  50.81  51.90  53.83  54.28  58.58  61.44
+         64.94  71.55  72.95  76.16  78.21  86.77  92.60 109.07 138.01 154.48
+        164.48 173.03
+  65  1 -22.43 -21.92 -12.82 -12.59 -11.51 -10.26 -10.13  -8.69   1.27   2.37
+          3.30   3.72   4.36   8.82   9.19   9.49  11.00  12.05  15.97  18.45
+         19.25  21.41  23.17  24.01  24.57  27.07  29.37  30.36  37.95  40.50
+         43.04  44.01  47.06  50.41  52.87  53.32  54.03  58.11  60.60  62.51
+         64.25  71.82  72.70  74.64  78.42  90.47  95.15 129.26 136.31 141.35
+        153.68 162.91
+  66  1 -21.40 -20.92 -14.02 -13.79 -11.93 -11.76 -10.26  -7.63  -0.47   0.54
+          4.82   5.23   5.75   8.06   8.95   9.38  12.28  13.88  14.75  16.93
+         18.50  20.11  22.01  24.17  24.56  26.28  30.48  31.70  38.83  41.94
+         42.61  43.73  46.93  48.36  51.89  52.74  54.93  60.20  65.06  66.06
+         67.96  71.68  73.96  74.56  85.86  98.62 101.28 112.39 127.62 140.85
+        151.77 167.98
+  67  1 -19.95 -19.51 -15.17 -15.02 -13.71 -13.59  -8.55  -6.26  -2.39  -1.44
+          6.78   6.99   7.45   8.40   8.50   8.82   9.80  15.40  15.80  17.28
+         17.61  19.07  20.88  22.54  23.70  25.61  31.88  32.10  39.40  41.42
+         42.89  46.36  47.44  50.11  50.97  52.55  53.79  63.00  67.15  70.74
+         74.39  75.34  76.66  78.66 104.02 104.98 109.34 113.81 130.07 149.76
+        168.37 168.43
+  68  1 -18.21 -17.88 -16.90 -16.66 -14.51 -14.29  -6.70  -5.40  -3.76  -3.13
+          6.90   7.70   7.85   8.39   8.67   9.36  11.50  13.34  15.84  17.19
+         19.01  19.13  20.24  20.66  23.19  24.79  31.90  32.93  39.65  40.26
+         43.79  47.06  47.95  49.29  50.92  54.14  55.86  66.40  70.52  72.13
+         75.69  78.09  78.27  80.48 107.87 112.40 112.65 140.76 153.71 161.11
+        191.75 196.19
+  69  1 -19.09 -18.69 -16.02 -15.79 -14.27 -14.09  -7.58  -5.61  -3.38  -2.30
+          6.98   7.44   7.93   8.37   8.60   9.22  10.06  14.53  15.93  17.22
+         18.41  19.10  20.48  21.32  23.25  25.23  31.96  32.64  39.49  40.86
+         43.35  46.88  47.87  49.60  50.89  53.49  55.03  64.82  68.76  72.39
+         76.62  76.81  77.10  80.05 107.03 110.61 111.88 128.60 141.61 152.80
+        177.05 185.53
+  70  1 -20.72 -20.26 -14.56 -14.36 -12.89 -12.74  -9.46  -6.97  -1.44  -0.41
+          5.88   6.16   6.87   7.79   8.73   9.12  10.76  14.97  15.70  16.81
+         17.89  19.49  21.47  23.52  23.82  26.24  31.25  32.00  39.38  41.78
+         42.95  45.01  47.54  49.02  51.01  52.52  53.66  61.37  66.08  69.10
+         71.20  73.47  75.49  76.76  93.43 101.91 105.42 110.11 128.04 143.78
+        155.53 166.27
+  71  1 -21.40 -20.92 -14.81 -14.52 -10.69 -10.56 -10.28  -7.69  -0.93   0.56
+          2.76   3.41   5.50  10.01  10.63  12.04  12.10  13.24  14.98  17.46
+         18.37  21.11  22.39  23.10  24.34  25.98  28.89  30.29  36.22  37.42
+         42.28  42.74  47.42  50.22  54.77  56.89  58.07  61.28  62.70  63.83
+         67.41  70.72  71.88  72.81  78.90  94.14  97.29 124.82 127.36 139.71
+        159.06 159.51
+  72  1 -21.97 -21.48 -13.45 -13.21 -11.00 -10.95 -10.85  -8.21   0.40   1.53
+          3.90   4.36   4.94   8.46   9.16   9.54  12.36  13.32  14.14  17.69
+         18.95  20.97  22.55  24.12  24.86  26.43  29.73  31.30  38.14  41.74
+         42.50  43.34  46.71  49.20  52.76  53.35  55.00  60.11  62.18  64.16
+         65.25  71.78  73.26  73.54  80.91  94.46  97.82 119.34 132.60 139.25
+        151.60 166.17
+  73  1 -22.08 -21.59 -12.86 -12.69 -11.37 -11.25 -11.08  -8.32   0.81   1.71
+          4.43   5.00   5.57   7.24   7.72   9.33  12.67  13.38  13.72  17.59
+         19.10  20.74  22.31  24.63  25.12  26.91  29.99  31.50  40.00  42.86
+         43.36  43.98  47.71  49.05  50.48  51.63  52.42  59.82  62.78  64.17
+         65.25  71.34  73.33  73.55  85.70  93.37  99.06 103.63 134.23 139.62
+        159.66 171.51
+  74  1 -21.74 -21.25 -14.13 -13.86 -10.70 -10.68 -10.56  -7.99  -0.23   1.13
+          3.10   3.70   5.09   9.69  10.00  10.77  11.91  13.20  14.83  17.70
+         18.69  21.03  22.65  23.64  24.26  26.11  29.56  30.62  36.85  38.82
+         42.46  42.86  46.88  49.99  54.27  55.50  56.47  60.77  62.40  63.28
+         66.19  71.89  72.63  73.00  79.14  93.69  97.19 126.06 133.83 138.59
+        151.49 163.23
+  75  1 -20.94 -20.48 -15.42 -15.12 -11.04 -10.90  -9.75  -7.28  -1.62  -0.12
+          2.93   3.61   6.03   9.94  10.37  12.25  13.10  13.77  14.69  17.10
+         18.24  20.66  22.09  23.13  24.19  25.47  29.39  31.07  34.99  38.26
+         41.58  41.98  47.05  49.62  55.72  57.54  58.94  60.94  62.21  66.28
+         69.27  70.81  71.51  72.59  80.05  96.32  98.52 118.14 127.45 142.09
+        156.65 160.49
+  76  1 -19.73 -19.30 -16.39 -16.07 -12.59 -12.39  -8.36  -6.33  -2.80  -1.63
+          4.58   5.39   7.27   8.95   9.59  10.76  11.83  14.60  16.39  17.25
+         17.69  19.33  21.39  22.86  23.26  25.22  30.90  32.12  37.80  39.97
+         41.25  42.86  46.72  47.48  53.64  56.51  57.48  61.57  66.05  70.01
+         73.31  74.28  74.36  76.12  85.71 104.49 104.79 119.43 133.80 153.17
+        161.32 164.79
+  77  1 -18.21 -17.88 -16.90 -16.66 -14.51 -14.29  -6.70  -5.40  -3.76  -3.13
+          6.90   7.70   7.85   8.39   8.67   9.36  11.50  13.34  15.84  17.19
+         19.01  19.13  20.24  20.66  23.19  24.79  31.90  32.93  39.65  40.26
+         43.79  47.06  47.95  49.29  50.92  54.14  55.86  66.40  70.52  72.13
+         75.69  78.09  78.27  80.48 107.87 112.40 112.65 140.76 153.71 161.11
+        191.75 196.19
+  78  1 -17.53 -17.35 -16.90 -16.86 -15.20 -15.06  -5.97  -5.06  -4.43  -3.45
+          7.39   7.44   7.92   8.77   9.07   9.89  11.38  12.06  15.42  17.35
+         19.35  19.42  19.89  19.94  23.37  24.30  31.90  33.43  39.88  40.35
+         44.71  47.07  47.47  50.58  52.56  53.22  55.50  67.79  72.29  72.81
+         75.07  79.16  79.16  82.44 114.38 114.42 134.11 146.85 154.87 160.30
+        213.22 215.47
+  79  1 -19.00 -18.60 -16.71 -16.40 -13.56 -13.34  -7.53  -5.88  -3.28  -2.38
+          5.78   6.75   7.78   8.37   9.10   9.66  11.63  14.29  16.41  17.17
+         18.32  19.05  20.84  21.58  22.94  25.43  31.82  32.03  39.20  40.09
+         43.66  44.25  47.45  48.02  51.64  55.16  56.53  63.82  68.47  71.46
+         75.42  75.95  76.60  78.41  92.73 108.82 109.16 130.03 141.15 160.67
+        171.54 176.17
+  80  1 -20.39 -19.94 -15.96 -15.64 -11.71 -11.54  -9.11  -6.84  -2.24  -0.84
+          3.59   4.32   6.65   9.50  10.11  11.88  12.36  14.11  15.81  16.86
+         18.00  20.08  21.89  23.42  23.70  24.98  29.71  32.20  35.55  40.35
+         40.63  41.27  47.22  48.53  55.26  57.52  58.65  60.51  63.23  68.86
+         71.27  71.74  72.76  74.08  81.93 100.31 101.04 115.39 129.47 146.45
+        157.63 160.22
+  81  1 -20.39 -19.94 -15.96 -15.64 -11.71 -11.54  -9.11  -6.84  -2.24  -0.84
+          3.59   4.32   6.65   9.50  10.11  11.88  12.36  14.11  15.81  16.86
+         18.00  20.08  21.89  23.42  23.70  24.98  29.71  32.20  35.55  40.35
+         40.63  41.27  47.22  48.53  55.26  57.52  58.65  60.51  63.23  68.86
+         71.27  71.74  72.76  74.08  81.93 100.31 101.04 115.39 129.47 146.45
+        157.63 160.22
+  82  1 -20.72 -20.26 -14.56 -14.36 -12.89 -12.74  -9.46  -6.97  -1.44  -0.41
+          5.88   6.16   6.87   7.79   8.73   9.12  10.76  14.97  15.70  16.81
+         17.89  19.49  21.47  23.52  23.82  26.24  31.25  32.00  39.38  41.78
+         42.95  45.01  47.54  49.02  51.01  52.52  53.66  61.37  66.08  69.10
+         71.20  73.47  75.49  76.76  93.43 101.91 105.42 110.11 128.04 143.78
+        155.53 166.27
+  83  1 -20.61 -20.15 -15.21 -14.93 -12.33 -12.14  -9.34  -6.92  -1.78  -0.55
+          4.70   5.42   6.38   8.78   9.48  10.37  11.33  14.43  15.91  16.81
+         18.00  19.67  21.70  23.53  23.67  25.72  30.85  32.09  38.35  40.77
+         42.14  42.86  46.65  47.71  52.76  55.00  56.54  60.94  65.07  68.96
+         71.47  72.77  74.59  75.77  85.65 102.16 103.38 116.16 131.00 146.70
+        150.71 167.63
+  84  1 -20.06 -19.62 -16.65 -16.31 -11.28 -11.13  -8.78  -6.72  -2.71  -1.26
+          2.80   3.53   7.06   9.78  10.52  13.06  13.75  14.26  15.58  16.81
+         17.78  20.42  21.73  22.71  24.14  24.75  29.18  31.50  33.93  37.58
+         40.72  41.35  47.70  49.11  57.04  58.79  60.10  61.08  62.15  69.04
+         69.68  70.42  71.33  72.80  80.86  98.38  99.38 111.94 128.61 146.90
+        149.73 167.17
+  85  1 -19.13 -18.77 -17.70 -17.39 -11.39 -11.25  -7.93  -6.62  -3.13  -2.14
+          2.74   3.49   8.06   9.14  10.65  12.87  14.55  14.90  16.13  16.86
+         17.31  20.30  21.55  22.49  24.06  24.37  28.99  32.06  32.76  37.48
+         40.19  41.09  48.05  48.91  57.77  58.43  60.57  61.52  62.89  68.44
+         69.74  71.02  71.83  73.00  81.42  99.58  99.81 109.07 131.98 140.65
+        154.46 171.48
+  86  1 -18.82 -18.47 -17.40 -17.10 -12.72 -12.52  -7.51  -6.20  -3.19  -2.49
+          4.52   5.36   8.08   8.79   9.56  10.51  12.99  14.33  16.66  17.05
+         18.07  19.22  21.33  22.21  22.92  24.99  30.93  32.16  37.95  39.29
+         40.79  42.68  46.71  47.68  54.06  56.55  58.29  62.58  67.43  69.91
+         73.49  74.48  75.16  76.31  85.71 105.56 105.67 120.82 140.13 152.26
+        162.39 175.15
+  87  1 -19.09 -18.69 -16.02 -15.79 -14.27 -14.09  -7.58  -5.61  -3.38  -2.30
+          6.98   7.44   7.93   8.37   8.60   9.22  10.06  14.53  15.93  17.22
+         18.41  19.10  20.48  21.32  23.25  25.23  31.96  32.64  39.49  40.86
+         43.35  46.88  47.87  49.60  50.89  53.49  55.03  64.82  68.76  72.39
+         76.62  76.81  77.10  80.05 107.03 110.61 111.88 128.60 141.61 152.80
+        177.05 185.53
+  88  1 -19.00 -18.60 -16.71 -16.40 -13.56 -13.34  -7.53  -5.88  -3.28  -2.38
+          5.78   6.75   7.78   8.37   9.10   9.66  11.63  14.29  16.41  17.17
+         18.32  19.05  20.84  21.58  22.94  25.43  31.82  32.03  39.20  40.09
+         43.66  44.25  47.45  48.02  51.64  55.16  56.53  63.82  68.47  71.46
+         75.42  75.95  76.60  78.41  92.73 108.82 109.16 130.03 141.15 160.67
+        171.54 176.17
+  89  1 -18.72 -18.52 -17.74 -17.60 -11.95 -11.78  -7.57  -6.58  -3.07  -2.47
+          3.46   4.24   8.37   8.78  10.27  11.56  13.97  14.61  16.48  17.17
+         17.60  19.70  21.65  22.81  23.35  24.26  29.49  32.43  34.65  39.80
+         40.13  40.22  47.70  48.47  56.43  57.55  60.14  61.22  65.06  68.87
+         71.52  72.83  73.00  74.60  82.72 102.17 102.33 112.87 135.48 143.81
+        157.92 174.00
+  90  1 -19.63 -19.22 -17.25 -16.91 -11.15 -11.01  -8.35  -6.70  -2.97  -1.73
+          2.51   3.26   7.56   9.55  10.82  13.39  14.67  14.70  15.67  16.64
+         17.42  20.79  21.52  22.31  24.26  24.81  28.29  31.04  33.27  36.88
+         40.42  41.87  48.54  49.32  57.54  58.73  60.35  61.55  62.93  68.49
+         69.12  69.69  71.54  72.07  80.72  98.25  98.88 109.29 129.30 143.02
+        151.26 169.53
+  91  1 -19.00 -18.60 -16.71 -16.40 -13.56 -13.34  -7.53  -5.88  -3.28  -2.38
+          5.78   6.75   7.78   8.37   9.10   9.66  11.63  14.29  16.41  17.17
+         18.32  19.05  20.84  21.58  22.94  25.43  31.82  32.03  39.20  40.09
+         43.66  44.25  47.45  48.02  51.64  55.16  56.53  63.82  68.47  71.46
+         75.42  75.95  76.60  78.41  92.73 108.82 109.16 130.03 141.15 160.67
+        171.54 176.17
+  92  1 -19.09 -18.69 -16.02 -15.79 -14.27 -14.09  -7.58  -5.61  -3.38  -2.30
+          6.98   7.44   7.93   8.37   8.60   9.22  10.06  14.53  15.93  17.22
+         18.41  19.10  20.48  21.32  23.25  25.23  31.96  32.64  39.49  40.86
+         43.35  46.88  47.87  49.60  50.89  53.49  55.03  64.82  68.76  72.39
+         76.62  76.81  77.10  80.05 107.03 110.61 111.88 128.60 141.61 152.80
+        177.05 185.53
+  93  1 -18.82 -18.47 -17.40 -17.10 -12.72 -12.52  -7.51  -6.20  -3.19  -2.49
+          4.52   5.36   8.08   8.79   9.56  10.51  12.99  14.33  16.66  17.05
+         18.07  19.22  21.33  22.21  22.92  24.99  30.93  32.16  37.95  39.29
+         40.79  42.68  46.71  47.68  54.06  56.55  58.29  62.58  67.43  69.91
+         73.49  74.48  75.16  76.31  85.71 105.56 105.67 120.82 140.13 152.26
+        162.39 175.15
+  94  1 -19.13 -18.77 -17.70 -17.39 -11.39 -11.25  -7.93  -6.62  -3.13  -2.14
+          2.74   3.49   8.06   9.14  10.65  12.87  14.55  14.90  16.13  16.86
+         17.31  20.30  21.55  22.49  24.06  24.37  28.99  32.06  32.76  37.48
+         40.19  41.09  48.05  48.91  57.77  58.43  60.57  61.52  62.89  68.44
+         69.74  71.02  71.83  73.00  81.42  99.58  99.81 109.07 131.98 140.65
+        154.46 171.48
+  95  1 -20.06 -19.62 -16.65 -16.31 -11.28 -11.13  -8.78  -6.72  -2.71  -1.26
+          2.80   3.53   7.06   9.78  10.52  13.06  13.75  14.26  15.58  16.81
+         17.78  20.42  21.73  22.71  24.14  24.75  29.18  31.50  33.93  37.58
+         40.72  41.35  47.70  49.11  57.04  58.79  60.10  61.08  62.15  69.04
+         69.68  70.42  71.33  72.80  80.86  98.38  99.38 111.94 128.61 146.90
+        149.73 167.17
+  96  1 -20.61 -20.15 -15.21 -14.93 -12.33 -12.14  -9.34  -6.92  -1.78  -0.55
+          4.70   5.42   6.38   8.78   9.48  10.37  11.33  14.43  15.91  16.81
+         18.00  19.67  21.70  23.53  23.67  25.72  30.85  32.09  38.35  40.77
+         42.14  42.86  46.65  47.71  52.76  55.00  56.54  60.94  65.07  68.96
+         71.47  72.77  74.59  75.77  85.65 102.16 103.38 116.16 131.00 146.70
+        150.71 167.63
+  97  1 -20.72 -20.26 -14.56 -14.36 -12.89 -12.74  -9.46  -6.97  -1.44  -0.41
+          5.88   6.16   6.87   7.79   8.73   9.12  10.76  14.97  15.70  16.81
+         17.89  19.49  21.47  23.52  23.82  26.24  31.25  32.00  39.38  41.78
+         42.95  45.01  47.54  49.02  51.01  52.52  53.66  61.37  66.08  69.10
+         71.20  73.47  75.49  76.76  93.43 101.91 105.42 110.11 128.04 143.78
+        155.53 166.27
+  98  1 -20.39 -19.94 -15.96 -15.64 -11.71 -11.54  -9.11  -6.84  -2.24  -0.84
+          3.59   4.32   6.65   9.50  10.11  11.88  12.36  14.11  15.81  16.86
+         18.00  20.08  21.89  23.42  23.70  24.98  29.71  32.20  35.55  40.35
+         40.63  41.27  47.22  48.53  55.26  57.52  58.65  60.51  63.23  68.86
+         71.27  71.74  72.76  74.08  81.93 100.31 101.04 115.39 129.47 146.45
+        157.63 160.22
+  99  1 -19.63 -19.22 -17.25 -16.91 -11.15 -11.01  -8.35  -6.70  -2.97  -1.73
+          2.51   3.26   7.56   9.55  10.82  13.39  14.67  14.70  15.67  16.64
+         17.42  20.79  21.52  22.31  24.26  24.81  28.29  31.04  33.27  36.88
+         40.42  41.87  48.54  49.32  57.54  58.73  60.35  61.55  62.93  68.49
+         69.12  69.69  71.54  72.07  80.72  98.25  98.88 109.29 129.30 143.02
+        151.26 169.53
+ 100  1 -18.72 -18.52 -17.74 -17.60 -11.95 -11.78  -7.57  -6.58  -3.07  -2.47
+          3.46   4.24   8.37   8.78  10.27  11.56  13.97  14.61  16.48  17.17
+         17.60  19.70  21.65  22.81  23.35  24.26  29.49  32.43  34.65  39.80
+         40.13  40.22  47.70  48.47  56.43  57.55  60.14  61.22  65.06  68.87
+         71.52  72.83  73.00  74.60  82.72 102.17 102.33 112.87 135.48 143.81
+        157.92 174.00
+ 101  1 -17.46 -17.38 -16.91 -16.90 -15.18 -15.12  -5.47  -5.02  -4.38  -4.06
+          6.57   6.60   8.69   9.51   9.94  10.51  10.88  11.58  15.62  16.41
+         19.57  19.67  19.84  19.93  22.66  23.21  32.57  33.24  39.88  39.89
+         47.82  50.24  51.04  51.39  52.88  53.35  55.53  58.82  72.06  72.18
+         75.92  78.16  79.16  79.16 114.39 114.41 138.90 146.54 150.08 154.73
+        211.42 211.87
+ 102  1 -18.12 -17.98 -16.84 -16.74 -14.46 -14.37  -6.20  -5.61  -3.74  -3.49
+          6.67   6.80   7.92   8.24   9.79  10.87  11.12  12.54  15.92  16.43
+         19.29  19.34  20.20  20.34  22.97  23.85  32.29  32.71  39.43  39.84
+         47.20  48.01  50.70  51.28  53.42  54.60  55.60  59.02  69.87  70.08
+         76.29  77.89  78.22  78.38 112.27 112.40 115.10 130.65 148.10 154.23
+        190.52 192.51
+ 103  1 -19.62 -19.44 -16.30 -16.17 -12.53 -12.45  -7.78  -6.92  -2.58  -2.07
+          4.81   5.15   7.76   8.37  10.09  11.00  12.31  13.65  15.95  16.77
+         18.38  18.88  21.34  21.89  24.45  25.31  30.67  31.47  38.47  40.21
+         41.03  42.31  49.02  50.52  55.17  56.55  57.53  60.89  64.45  65.25
+         73.58  73.97  74.72  75.59  89.55 100.10 104.68 104.98 138.41 147.53
+        157.06 161.06
+ 104  1 -20.83 -20.63 -15.34 -15.21 -11.00 -10.94  -9.09  -8.08  -1.28  -0.65
+          3.14   3.43   7.13   8.76  10.92  11.75  13.10  13.33  15.55  16.60
+         18.29  19.57  21.63  22.28  25.41  26.97  29.48  32.42  33.87  36.61
+         41.62  42.09  45.74  46.64  55.78  58.18  60.08  61.08  64.39  67.15
+         68.12  68.77  71.40  71.54  84.93  95.70  98.83 102.82 133.42 145.46
+        146.57 154.49
+ 105  1 -21.62 -21.41 -14.06 -13.95 -10.66 -10.60  -9.98  -8.88   0.10   0.66
+          3.31   3.56   6.35   8.25  10.28  10.62  12.12  12.62  15.76  16.99
+         18.90  20.22  22.13  22.79  25.47  27.31  30.12  32.58  34.83  36.88
+         42.45  42.82  46.11  47.06  53.80  56.01  57.68  60.18  63.64  64.87
+         66.08  70.38  72.23  72.54  85.76  94.89  97.61 108.90 136.20 143.09
+        146.94 152.30
+ 106  1 -21.96 -21.75 -12.81 -12.74 -11.34 -11.29 -10.37  -9.25   1.06   1.43
+          5.11   5.21   6.07   7.33   7.59   7.93  12.68  13.07  14.89  16.21
+         19.79  20.41  23.43  24.13  25.30  27.07  30.66  32.15  38.68  40.43
+         43.49  43.74  48.87  50.33  51.52  51.72  56.14  60.71  62.39  64.26
+         65.46  70.72  74.42  75.22  89.94  93.37  99.53 105.28 114.76 124.90
+        149.29 154.24
+ 107  1 -21.84 -21.64 -13.38 -13.28 -10.95 -10.89 -10.24  -9.13   0.69   1.16
+          4.12   4.34   6.10   7.94   8.80   9.01  12.50  12.90  15.23  16.51
+         19.49  20.40  22.97  23.69  25.20  26.99  30.38  32.41  36.89  39.53
+         42.31  42.84  47.97  49.96  51.93  53.55  55.21  60.17  63.44  64.11
+         66.17  70.88  73.48  74.08  87.45  94.34  98.08 107.38 130.17 134.51
+        146.56 154.11
+ 108  1 -21.28 -21.08 -14.74 -14.61 -10.65 -10.59  -9.60  -8.54  -0.59   0.03
+          2.97   3.24   6.72   8.56  11.30  12.06  12.08  12.29  15.88  17.20
+         18.28  19.97  21.76  22.44  25.32  27.26  29.75  32.61  33.83  35.49
+         42.80  43.48  45.02  45.60  55.23  57.70  59.80  61.02  64.75  65.42
+         66.25  69.84  70.95  71.35  84.61  95.17  97.75 106.94 133.98 144.52
+        146.59 153.42
+ 109  1 -20.27 -20.09 -15.87 -15.74 -11.66 -11.59  -8.48  -7.54  -1.95  -1.36
+          3.81   4.12   7.53   8.73  10.49  11.31  13.10  13.84  15.57  16.29
+         18.37  19.18  21.74  22.46  24.94  25.83  29.70  31.65  36.44  38.95
+         40.65  41.13  47.68  49.04  55.52  57.50  58.96  60.97  63.62  66.35
+         70.57  71.20  72.92  73.39  86.16  96.59 101.17 101.95 134.95 145.90
+        150.24 155.78
+ 110  1 -18.89 -18.73 -16.63 -16.50 -13.50 -13.41  -7.00  -6.28  -3.17  -2.77
+          5.99   6.36   7.66   7.88   9.92  10.88  11.59  13.18  16.19  16.73
+         18.74  19.00  20.77  21.00  23.55  24.74  31.64  31.80  39.20  40.04
+         44.59  45.16  50.27  50.92  54.51  55.78  56.18  59.90  66.91  67.50
+         75.80  76.31  76.43  77.25  97.65 108.77 108.99 111.77 143.08 151.17
+        170.15 172.22
+ 111  1 -18.12 -17.98 -16.84 -16.74 -14.46 -14.37  -6.20  -5.61  -3.74  -3.49
+          6.67   6.80   7.92   8.24   9.79  10.87  11.12  12.54  15.92  16.43
+         19.29  19.34  20.20  20.34  22.97  23.85  32.29  32.71  39.43  39.84
+         47.20  48.01  50.70  51.28  53.42  54.60  55.60  59.02  69.87  70.08
+         76.29  77.89  78.22  78.38 112.27 112.40 115.10 130.65 148.10 154.23
+        190.52 192.51
+ 112  1 -19.83 -19.65 -15.12 -15.06 -13.69 -13.64  -7.93  -6.99  -2.11  -1.72
+          6.90   6.93   7.68   8.07   8.41   8.75  11.22  13.30  16.44  17.28
+         18.05  18.70  21.38  21.90  24.05  25.08  31.97  32.01  39.01  39.79
+         45.81  46.53  51.16  51.42  53.37  54.63  55.50  61.69  64.47  66.19
+         74.52  74.84  77.19  78.49 106.47 106.67 109.63 114.05 126.17 135.46
+        165.79 166.56
+ 113  1 -21.27 -21.08 -13.95 -13.86 -11.88 -11.82  -9.58  -8.50  -0.20   0.23
+          5.06   5.30   6.59   7.93   8.58   8.77  12.78  13.73  14.93  15.83
+         19.06  19.67  22.75  23.52  25.18  26.61  30.62  31.87  38.20  40.19
+         42.86  43.25  49.52  51.81  52.45  53.26  55.35  61.92  63.02  67.54
+         68.21  68.72  74.35  74.50  90.40  97.53 100.89 103.91 124.79 131.76
+        148.52 154.21
+ 114  1 -22.30 -22.09 -12.76 -12.67 -10.78 -10.22 -10.17  -9.63   1.54   1.99
+          3.51   3.72   5.66   7.75   8.99   9.12  11.27  11.70  16.71  17.81
+         19.67  20.94  22.65  23.29  25.36  27.49  30.92  32.97  35.46  37.76
+         43.29  43.76  46.63  47.39  51.56  53.34  55.26  58.52  60.43  61.09
+         67.48  71.21  72.97  73.90  87.59  93.18  96.03 118.45 136.63 138.74
+        146.56 153.55
+ 115  1 -22.88 -22.66 -11.49 -11.46 -11.38 -10.29  -9.71  -9.66   2.89   3.21
+          3.75   3.90   5.08   7.29   7.58   7.63  10.41  10.71  18.03  18.90
+         20.60  21.74  23.10  23.67  25.15  27.30  31.93  33.38  36.94  38.85
+         43.58  44.68  47.01  47.82  49.91  50.85  53.01  55.27  56.75  60.15
+         68.15  71.10  73.53  75.02  87.91  91.33  96.35 118.63 128.45 136.60
+        148.43 157.91
+ 116  1 -22.99 -22.78 -11.61 -10.98 -10.93 -10.42  -9.84  -9.80   3.28   3.53
+          4.33   4.38   5.05   6.45   6.55   7.22  10.52  10.73  17.85  18.75
+         20.98  21.65  24.12  24.63  24.95  26.84  31.81  33.45  38.80  41.06
+         43.28  44.25  46.77  47.74  49.70  50.19  52.62  54.77  57.74  62.08
+         65.95  70.04  75.79  79.45  83.04  87.78  97.87 102.34 121.25 123.81
+        153.55 159.40
+ 117  1 -22.65 -22.43 -12.11 -12.02 -11.19 -10.03  -9.80  -9.75   2.28   2.69
+          3.39   3.59   5.32   7.52   8.67   8.71  10.44  10.88  17.78  18.82
+         19.91  21.59  22.50  23.30  25.13  27.38  31.91  32.89  36.08  36.99
+         44.29  44.88  46.41  46.44  50.78  52.22  55.00  56.08  58.32  59.60
+         68.49  71.89  72.80  73.36  88.47  92.62  95.08 129.30 138.12 142.34
+        143.35 155.35
+ 118  1 -21.84 -21.64 -13.38 -13.28 -10.95 -10.89 -10.24  -9.13   0.69   1.16
+          4.12   4.34   6.10   7.94   8.80   9.01  12.50  12.90  15.23  16.51
+         19.49  20.40  22.97  23.69  25.20  26.99  30.38  32.41  36.89  39.53
+         42.31  42.84  47.97  49.96  51.93  53.55  55.21  60.17  63.44  64.11
+         66.17  70.88  73.48  74.08  87.45  94.34  98.08 107.38 130.17 134.51
+        146.56 154.11
+ 119  1 -20.61 -20.41 -14.50 -14.42 -12.86 -12.79  -8.80  -7.78  -1.15  -0.72
+          6.18   6.36   7.17   7.74   8.42   8.67  11.85  13.65  15.74  16.46
+         18.54  19.10  22.19  22.80  24.57  25.94  31.25  31.86  38.97  40.03
+         44.53  44.82  50.85  51.77  52.64  54.02  56.32  62.36  64.19  65.29
+         71.31  71.71  75.77  76.53  97.07 102.66 104.71 106.31 123.77 131.06
+        154.77 157.82
+ 120  1 -18.99 -18.82 -15.95 -15.85 -14.23 -14.15  -7.02  -6.19  -3.09  -2.65
+          6.80   6.88   7.95   8.24   9.18   9.74  11.01  13.02  16.27  16.89
+         18.74  18.98  20.67  20.89  23.33  24.36  32.22  32.46  39.35  39.87
+         46.46  47.54  51.02  51.31  53.87  54.83  54.98  59.95  67.62  68.28
+         76.86  77.07  77.27  78.68 110.11 110.71 114.33 125.20 137.63 143.38
+        177.98 180.70
+ 121  1 -19.62 -19.44 -16.30 -16.17 -12.53 -12.45  -7.78  -6.92  -2.58  -2.07
+          4.81   5.15   7.76   8.37  10.09  11.00  12.31  13.65  15.95  16.77
+         18.38  18.88  21.34  21.89  24.45  25.31  30.67  31.47  38.47  40.21
+         41.03  42.31  49.02  50.52  55.17  56.55  57.53  60.89  64.45  65.25
+         73.58  73.97  74.72  75.59  89.55 100.10 104.68 104.98 138.41 147.53
+        157.06 161.06
+ 122  1 -21.27 -21.08 -13.95 -13.86 -11.88 -11.82  -9.58  -8.50  -0.20   0.23
+          5.06   5.30   6.59   7.93   8.58   8.77  12.78  13.73  14.93  15.83
+         19.06  19.67  22.75  23.52  25.18  26.61  30.62  31.87  38.20  40.19
+         42.86  43.25  49.52  51.81  52.45  53.26  55.35  61.92  63.02  67.54
+         68.21  68.72  74.35  74.50  90.40  97.53 100.89 103.91 124.79 131.76
+        148.52 154.21
+ 123  1 -22.53 -22.32 -11.81 -11.77 -11.05 -10.63 -10.59  -9.89   2.26   2.54
+          4.83   4.91   5.58   6.70   6.80   7.54  11.68  11.89  16.20  17.33
+         20.40  20.99  23.93  24.57  25.34  27.15  30.93  32.61  38.77  41.06
+         43.74  43.84  47.97  48.02  50.76  50.85  55.97  56.43  61.04  62.79
+         64.43  70.12  75.99  78.85  85.98  89.15  99.48 102.42 114.87 121.03
+        151.32 156.71
+ 124  1 -23.34 -23.12 -12.03 -10.82 -10.27 -10.21  -9.16  -9.11   3.64   3.74
+          4.34   4.58   4.69   6.18   6.25   6.96   9.63   9.84  19.66  20.15
+         21.48  22.11  23.78  24.08  25.11  26.87  32.99  34.33  37.89  40.54
+         43.44  45.20  46.47  47.66  48.91  49.22  49.87  52.83  54.91  60.77
+         67.94  70.56  73.65  75.64  83.75  87.59  98.73 101.86 126.84 131.24
+        146.39 157.10
+ 125  1 -23.68 -23.46 -12.45 -11.23  -9.22  -9.18  -8.61  -8.58   3.67   3.76
+          4.30   5.07   5.11   5.37   5.56   6.67   8.99   9.16  21.24  21.25
+         22.37  22.51  23.98  25.06  25.39  26.37  34.20  35.16  39.14  40.85
+         43.10  44.33  45.54  46.83  47.51  48.81  49.24  52.30  55.58  61.01
+         67.24  70.29  73.29  75.72  77.35  81.44  89.36  97.52 117.89 121.04
+        136.40 148.17
+ 126  1 -23.57 -23.35 -12.31 -11.09  -9.65  -9.60  -8.73  -8.69   3.54   3.63
+          4.36   5.01   5.22   5.67   5.71   6.77   9.14   9.33  20.84  20.90
+         22.36  22.64  23.37  24.00  25.33  26.75  34.31  34.67  37.83  40.45
+         43.44  45.42  46.05  46.65  48.39  48.94  49.47  52.57  53.75  59.87
+         68.84  71.57  72.56  73.41  83.64  85.79  94.31 100.59 123.93 128.67
+        136.73 151.52
+ 127  1 -22.99 -22.78 -11.61 -10.98 -10.93 -10.42  -9.84  -9.80   3.28   3.53
+          4.33   4.38   5.05   6.45   6.55   7.22  10.52  10.73  17.85  18.75
+         20.98  21.65  24.12  24.63  24.95  26.84  31.81  33.45  38.80  41.06
+         43.28  44.25  46.77  47.74  49.70  50.19  52.62  54.77  57.74  62.08
+         65.95  70.04  75.79  79.45  83.04  87.78  97.87 102.34 121.25 123.81
+        153.55 159.40
+ 128  1 -21.96 -21.75 -12.81 -12.74 -11.34 -11.29 -10.37  -9.25   1.06   1.43
+          5.11   5.21   6.07   7.33   7.59   7.93  12.68  13.07  14.89  16.21
+         19.79  20.41  23.43  24.13  25.30  27.07  30.66  32.15  38.68  40.43
+         43.49  43.74  48.87  50.33  51.52  51.72  56.14  60.71  62.39  64.26
+         65.46  70.72  74.42  75.22  89.94  93.37  99.53 105.28 114.76 124.90
+        149.29 154.24
+ 129  1 -20.49 -20.30 -15.14 -15.02 -12.28 -12.20  -8.69  -7.70  -1.46  -0.95
+          4.92   5.23   7.19   8.25   9.52  10.02  12.31  13.74  15.57  16.32
+         18.54  19.14  22.00  22.68  24.77  25.89  30.70  31.70  38.51  40.25
+         41.88  42.39  49.44  51.09  54.22  55.09  56.55  61.42  63.63  66.03
+         71.09  71.54  74.85  75.43  89.89  99.60 103.00 103.72 134.38 140.96
+        150.15 156.14
+ 130  1 -18.72 -18.58 -17.33 -17.21 -12.66 -12.58  -7.02  -6.43  -3.26  -2.91
+          4.75   5.10   8.15   8.37  10.22  11.46  12.70  13.74  16.07  16.50
+         18.65  18.97  20.97  21.30  24.16  24.96  30.64  31.34  38.93  40.08
+         40.40  42.28  48.77  50.15  55.67  56.92  57.92  60.35  65.90  66.35
+         73.68  74.41  75.14  75.58  89.55 100.71 105.62 105.72 141.00 146.51
+        164.36 169.52
+ 131  1 -20.83 -20.63 -15.34 -15.21 -11.00 -10.94  -9.09  -8.08  -1.28  -0.65
+          3.14   3.43   7.13   8.76  10.92  11.75  13.10  13.33  15.55  16.60
+         18.29  19.57  21.63  22.28  25.41  26.97  29.48  32.42  33.87  36.61
+         41.62  42.09  45.74  46.64  55.78  58.18  60.08  61.08  64.39  67.15
+         68.12  68.77  71.40  71.54  84.93  95.70  98.83 102.82 133.42 145.46
+        146.57 154.49
+ 132  1 -22.30 -22.09 -12.76 -12.67 -10.78 -10.22 -10.17  -9.63   1.54   1.99
+          3.51   3.72   5.66   7.75   8.99   9.12  11.27  11.70  16.71  17.81
+         19.67  20.94  22.65  23.29  25.36  27.49  30.92  32.97  35.46  37.76
+         43.29  43.76  46.63  47.39  51.56  53.34  55.26  58.52  60.43  61.09
+         67.48  71.21  72.97  73.90  87.59  93.18  96.03 118.45 136.63 138.74
+        146.56 153.55
+ 133  1 -23.34 -23.12 -12.03 -10.82 -10.27 -10.21  -9.16  -9.11   3.64   3.74
+          4.34   4.58   4.69   6.18   6.25   6.96   9.63   9.84  19.66  20.15
+         21.48  22.11  23.78  24.08  25.11  26.87  32.99  34.33  37.89  40.54
+         43.44  45.20  46.47  47.66  48.91  49.22  49.87  52.83  54.91  60.77
+         67.94  70.56  73.65  75.64  83.75  87.59  98.73 101.86 126.84 131.24
+        146.39 157.10
+ 134  1 -23.91 -23.69 -12.74 -11.50  -8.44  -8.41  -8.15  -8.13   3.60   3.68
+          4.04   4.25   4.30   6.12   6.27   6.49   8.59   8.75  21.97  22.08
+         22.85  23.56  24.75  25.56  26.06  26.37  34.92  35.83  38.83  39.47
+         43.23  43.66  45.72  45.86  47.46  48.93  50.32  52.81  55.55  60.88
+         66.44  69.80  72.11  72.85  75.21  75.48  81.50  90.93 106.35 110.94
+        122.09 128.21
+ 135  1 -24.03 -23.80 -12.88 -11.64  -8.01  -7.98  -7.90  -7.87   3.56   3.58
+          3.82   3.86   3.87   6.39   6.54   6.65   8.41   8.56  22.11  22.27
+         23.24  24.84  25.26  25.74  26.55  26.83  35.45  35.75  37.58  37.99
+         44.01  44.24  45.76  46.15  47.85  49.52  51.28  54.10  54.43  58.96
+         65.89  68.68  71.78  72.00  73.39  73.76  76.86  89.76  90.19  97.49
+        116.02 118.34
+ 136  1 -23.68 -23.46 -12.45 -11.23  -9.22  -9.18  -8.61  -8.58   3.67   3.76
+          4.30   5.07   5.11   5.37   5.56   6.67   8.99   9.16  21.24  21.25
+         22.37  22.51  23.98  25.06  25.39  26.37  34.20  35.16  39.14  40.85
+         43.10  44.33  45.54  46.83  47.51  48.81  49.24  52.30  55.58  61.01
+         67.24  70.29  73.29  75.72  77.35  81.44  89.36  97.52 117.89 121.04
+        136.40 148.17
+ 137  1 -22.88 -22.66 -11.49 -11.46 -11.38 -10.29  -9.71  -9.66   2.89   3.21
+          3.75   3.90   5.08   7.29   7.58   7.63  10.41  10.71  18.03  18.90
+         20.60  21.74  23.10  23.67  25.15  27.30  31.93  33.38  36.94  38.85
+         43.58  44.68  47.01  47.82  49.91  50.85  53.01  55.27  56.75  60.15
+         68.15  71.10  73.53  75.02  87.91  91.33  96.35 118.63 128.45 136.60
+        148.43 157.91
+ 138  1 -21.62 -21.41 -14.06 -13.95 -10.66 -10.60  -9.98  -8.88   0.10   0.66
+          3.31   3.56   6.35   8.25  10.28  10.62  12.12  12.62  15.76  16.99
+         18.90  20.22  22.13  22.79  25.47  27.31  30.12  32.58  34.83  36.88
+         42.45  42.82  46.11  47.06  53.80  56.01  57.68  60.18  63.64  64.87
+         66.08  70.38  72.23  72.54  85.76  94.89  97.61 108.90 136.20 143.09
+        146.94 152.30
+ 139  1 -19.95 -19.76 -16.56 -16.42 -11.23 -11.17  -8.18  -7.32  -2.47  -1.84
+          3.02   3.33   7.95   9.18  10.85  12.04  14.04  14.19  15.84  16.60
+         17.95  19.15  21.18  21.77  25.27  26.52  28.98  31.64  34.06  36.54
+         41.05  41.28  45.88  46.18  57.12  58.72  61.46  62.46  63.89  66.82
+         70.06  70.35  70.53  71.03  84.85  95.63  99.58 100.61 132.99 140.87
+        152.80 160.61
+ 140  1 -19.03 -18.88 -17.62 -17.49 -11.35 -11.29  -7.44  -6.85  -3.17  -2.71
+          2.96   3.27   8.73   9.26  10.58  11.88  14.69  14.83  16.10  16.74
+         17.83  18.94  20.92  21.44  25.14  26.24  28.71  31.20  34.02  36.56
+         40.70  41.00  45.68  46.22  57.67  58.37  61.88  62.97  64.99  66.02
+         69.66  69.90  71.55  72.11  84.98  95.40  99.92 100.11 134.01 137.64
+        158.33 165.30
+ 141  1 -21.62 -21.41 -14.06 -13.95 -10.66 -10.60  -9.98  -8.88   0.10   0.66
+          3.31   3.56   6.35   8.25  10.28  10.62  12.12  12.62  15.76  16.99
+         18.90  20.22  22.13  22.79  25.47  27.31  30.12  32.58  34.83  36.88
+         42.45  42.82  46.11  47.06  53.80  56.01  57.68  60.18  63.64  64.87
+         66.08  70.38  72.23  72.54  85.76  94.89  97.61 108.90 136.20 143.09
+        146.94 152.30
+ 142  1 -22.88 -22.66 -11.49 -11.46 -11.38 -10.29  -9.71  -9.66   2.89   3.21
+          3.75   3.90   5.08   7.29   7.58   7.63  10.41  10.71  18.03  18.90
+         20.60  21.74  23.10  23.67  25.15  27.30  31.93  33.38  36.94  38.85
+         43.58  44.68  47.01  47.82  49.91  50.85  53.01  55.27  56.75  60.15
+         68.15  71.10  73.53  75.02  87.91  91.33  96.35 118.63 128.45 136.60
+        148.43 157.91
+ 143  1 -23.68 -23.46 -12.45 -11.23  -9.22  -9.18  -8.61  -8.58   3.67   3.76
+          4.30   5.07   5.11   5.37   5.56   6.67   8.99   9.16  21.24  21.25
+         22.37  22.51  23.98  25.06  25.39  26.37  34.20  35.16  39.14  40.85
+         43.10  44.33  45.54  46.83  47.51  48.81  49.24  52.30  55.58  61.01
+         67.24  70.29  73.29  75.72  77.35  81.44  89.36  97.52 117.89 121.04
+        136.40 148.17
+ 144  1 -24.03 -23.80 -12.88 -11.64  -8.01  -7.98  -7.90  -7.87   3.56   3.58
+          3.82   3.86   3.87   6.39   6.54   6.65   8.41   8.56  22.11  22.27
+         23.24  24.84  25.26  25.74  26.55  26.83  35.45  35.75  37.58  37.99
+         44.01  44.24  45.76  46.15  47.85  49.52  51.28  54.10  54.43  58.96
+         65.89  68.68  71.78  72.00  73.39  73.76  76.86  89.76  90.19  97.49
+        116.02 118.34
+ 145  1 -23.91 -23.69 -12.74 -11.50  -8.44  -8.41  -8.15  -8.13   3.60   3.68
+          4.04   4.25   4.30   6.12   6.27   6.49   8.59   8.75  21.97  22.08
+         22.85  23.56  24.75  25.56  26.06  26.37  34.92  35.83  38.83  39.47
+         43.23  43.66  45.72  45.86  47.46  48.93  50.32  52.81  55.55  60.88
+         66.44  69.80  72.11  72.85  75.21  75.48  81.50  90.93 106.35 110.94
+        122.09 128.21
+ 146  1 -23.34 -23.12 -12.03 -10.82 -10.27 -10.21  -9.16  -9.11   3.64   3.74
+          4.34   4.58   4.69   6.18   6.25   6.96   9.63   9.84  19.66  20.15
+         21.48  22.11  23.78  24.08  25.11  26.87  32.99  34.33  37.89  40.54
+         43.44  45.20  46.47  47.66  48.91  49.22  49.87  52.83  54.91  60.77
+         67.94  70.56  73.65  75.64  83.75  87.59  98.73 101.86 126.84 131.24
+        146.39 157.10
+ 147  1 -22.30 -22.09 -12.76 -12.67 -10.78 -10.22 -10.17  -9.63   1.54   1.99
+          3.51   3.72   5.66   7.75   8.99   9.12  11.27  11.70  16.71  17.81
+         19.67  20.94  22.65  23.29  25.36  27.49  30.92  32.97  35.46  37.76
+         43.29  43.76  46.63  47.39  51.56  53.34  55.26  58.52  60.43  61.09
+         67.48  71.21  72.97  73.90  87.59  93.18  96.03 118.45 136.63 138.74
+        146.56 153.55
+ 148  1 -20.83 -20.63 -15.34 -15.21 -11.00 -10.94  -9.09  -8.08  -1.28  -0.65
+          3.14   3.43   7.13   8.76  10.92  11.75  13.10  13.33  15.55  16.60
+         18.29  19.57  21.63  22.28  25.41  26.97  29.48  32.42  33.87  36.61
+         41.62  42.09  45.74  46.64  55.78  58.18  60.08  61.08  64.39  67.15
+         68.12  68.77  71.40  71.54  84.93  95.70  98.83 102.82 133.42 145.46
+        146.57 154.49
+ 149  1 -19.03 -18.88 -17.62 -17.49 -11.35 -11.29  -7.44  -6.85  -3.17  -2.71
+          2.96   3.27   8.73   9.26  10.58  11.88  14.69  14.83  16.10  16.74
+         17.83  18.94  20.92  21.44  25.14  26.24  28.71  31.20  34.02  36.56
+         40.70  41.00  45.68  46.22  57.67  58.37  61.88  62.97  64.99  66.02
+         69.66  69.90  71.55  72.11  84.98  95.40  99.92 100.11 134.01 137.64
+        158.33 165.30
+ 150  1 -19.95 -19.76 -16.56 -16.42 -11.23 -11.17  -8.18  -7.32  -2.47  -1.84
+          3.02   3.33   7.95   9.18  10.85  12.04  14.04  14.19  15.84  16.60
+         17.95  19.15  21.18  21.77  25.27  26.52  28.98  31.64  34.06  36.54
+         41.05  41.28  45.88  46.18  57.12  58.72  61.46  62.46  63.89  66.82
+         70.06  70.35  70.53  71.03  84.85  95.63  99.58 100.61 132.99 140.87
+        152.80 160.61
+ 151  1 -21.96 -21.75 -12.81 -12.74 -11.34 -11.29 -10.37  -9.25   1.06   1.43
+          5.11   5.21   6.07   7.33   7.59   7.93  12.68  13.07  14.89  16.21
+         19.79  20.41  23.43  24.13  25.30  27.07  30.66  32.15  38.68  40.43
+         43.49  43.74  48.87  50.33  51.52  51.72  56.14  60.71  62.39  64.26
+         65.46  70.72  74.42  75.22  89.94  93.37  99.53 105.28 114.76 124.90
+        149.29 154.24
+ 152  1 -22.99 -22.78 -11.61 -10.98 -10.93 -10.42  -9.84  -9.80   3.28   3.53
+          4.33   4.38   5.05   6.45   6.55   7.22  10.52  10.73  17.85  18.75
+         20.98  21.65  24.12  24.63  24.95  26.84  31.81  33.45  38.80  41.06
+         43.28  44.25  46.77  47.74  49.70  50.19  52.62  54.77  57.74  62.08
+         65.95  70.04  75.79  79.45  83.04  87.78  97.87 102.34 121.25 123.81
+        153.55 159.40
+ 153  1 -23.57 -23.35 -12.31 -11.09  -9.65  -9.60  -8.73  -8.69   3.54   3.63
+          4.36   5.01   5.22   5.67   5.71   6.77   9.14   9.33  20.84  20.90
+         22.36  22.64  23.37  24.00  25.33  26.75  34.31  34.67  37.83  40.45
+         43.44  45.42  46.05  46.65  48.39  48.94  49.47  52.57  53.75  59.87
+         68.84  71.57  72.56  73.41  83.64  85.79  94.31 100.59 123.93 128.67
+        136.73 151.52
+ 154  1 -23.68 -23.46 -12.45 -11.23  -9.22  -9.18  -8.61  -8.58   3.67   3.76
+          4.30   5.07   5.11   5.37   5.56   6.67   8.99   9.16  21.24  21.25
+         22.37  22.51  23.98  25.06  25.39  26.37  34.20  35.16  39.14  40.85
+         43.10  44.33  45.54  46.83  47.51  48.81  49.24  52.30  55.58  61.01
+         67.24  70.29  73.29  75.72  77.35  81.44  89.36  97.52 117.89 121.04
+        136.40 148.17
+ 155  1 -23.34 -23.12 -12.03 -10.82 -10.27 -10.21  -9.16  -9.11   3.64   3.74
+          4.34   4.58   4.69   6.18   6.25   6.96   9.63   9.84  19.66  20.15
+         21.48  22.11  23.78  24.08  25.11  26.87  32.99  34.33  37.89  40.54
+         43.44  45.20  46.47  47.66  48.91  49.22  49.87  52.83  54.91  60.77
+         67.94  70.56  73.65  75.64  83.75  87.59  98.73 101.86 126.84 131.24
+        146.39 157.10
+ 156  1 -22.53 -22.32 -11.81 -11.77 -11.05 -10.63 -10.59  -9.89   2.26   2.54
+          4.83   4.91   5.58   6.70   6.80   7.54  11.68  11.89  16.20  17.33
+         20.40  20.99  23.93  24.57  25.34  27.15  30.93  32.61  38.77  41.06
+         43.74  43.84  47.97  48.02  50.76  50.85  55.97  56.43  61.04  62.79
+         64.43  70.12  75.99  78.85  85.98  89.15  99.48 102.42 114.87 121.03
+        151.32 156.71
+ 157  1 -21.27 -21.08 -13.95 -13.86 -11.88 -11.82  -9.58  -8.50  -0.20   0.23
+          5.06   5.30   6.59   7.93   8.58   8.77  12.78  13.73  14.93  15.83
+         19.06  19.67  22.75  23.52  25.18  26.61  30.62  31.87  38.20  40.19
+         42.86  43.25  49.52  51.81  52.45  53.26  55.35  61.92  63.02  67.54
+         68.21  68.72  74.35  74.50  90.40  97.53 100.89 103.91 124.79 131.76
+        148.52 154.21
+ 158  1 -19.62 -19.44 -16.30 -16.17 -12.53 -12.45  -7.78  -6.92  -2.58  -2.07
+          4.81   5.15   7.76   8.37  10.09  11.00  12.31  13.65  15.95  16.77
+         18.38  18.88  21.34  21.89  24.45  25.31  30.67  31.47  38.47  40.21
+         41.03  42.31  49.02  50.52  55.17  56.55  57.53  60.89  64.45  65.25
+         73.58  73.97  74.72  75.59  89.55 100.10 104.68 104.98 138.41 147.53
+        157.06 161.06
+ 159  1 -18.72 -18.58 -17.33 -17.21 -12.66 -12.58  -7.02  -6.43  -3.26  -2.91
+          4.75   5.10   8.15   8.37  10.22  11.46  12.70  13.74  16.07  16.50
+         18.65  18.97  20.97  21.30  24.16  24.96  30.64  31.34  38.93  40.08
+         40.40  42.28  48.77  50.15  55.67  56.92  57.92  60.35  65.90  66.35
+         73.68  74.41  75.14  75.58  89.55 100.71 105.62 105.72 141.00 146.51
+        164.36 169.52
+ 160  1 -20.49 -20.30 -15.14 -15.02 -12.28 -12.20  -8.69  -7.70  -1.46  -0.95
+          4.92   5.23   7.19   8.25   9.52  10.02  12.31  13.74  15.57  16.32
+         18.54  19.14  22.00  22.68  24.77  25.89  30.70  31.70  38.51  40.25
+         41.88  42.39  49.44  51.09  54.22  55.09  56.55  61.42  63.63  66.03
+         71.09  71.54  74.85  75.43  89.89  99.60 103.00 103.72 134.38 140.96
+        150.15 156.14
+ 161  1 -21.84 -21.64 -13.38 -13.28 -10.95 -10.89 -10.24  -9.13   0.69   1.16
+          4.12   4.34   6.10   7.94   8.80   9.01  12.50  12.90  15.23  16.51
+         19.49  20.40  22.97  23.69  25.20  26.99  30.38  32.41  36.89  39.53
+         42.31  42.84  47.97  49.96  51.93  53.55  55.21  60.17  63.44  64.11
+         66.17  70.88  73.48  74.08  87.45  94.34  98.08 107.38 130.17 134.51
+        146.56 154.11
+ 162  1 -22.65 -22.43 -12.11 -12.02 -11.19 -10.03  -9.80  -9.75   2.28   2.69
+          3.39   3.59   5.32   7.52   8.67   8.71  10.44  10.88  17.78  18.82
+         19.91  21.59  22.50  23.30  25.13  27.38  31.91  32.89  36.08  36.99
+         44.29  44.88  46.41  46.44  50.78  52.22  55.00  56.08  58.32  59.60
+         68.49  71.89  72.80  73.36  88.47  92.62  95.08 129.30 138.12 142.34
+        143.35 155.35
+ 163  1 -22.99 -22.78 -11.61 -10.98 -10.93 -10.42  -9.84  -9.80   3.28   3.53
+          4.33   4.38   5.05   6.45   6.55   7.22  10.52  10.73  17.85  18.75
+         20.98  21.65  24.12  24.63  24.95  26.84  31.81  33.45  38.80  41.06
+         43.28  44.25  46.77  47.74  49.70  50.19  52.62  54.77  57.74  62.08
+         65.95  70.04  75.79  79.45  83.04  87.78  97.87 102.34 121.25 123.81
+        153.55 159.40
+ 164  1 -22.88 -22.66 -11.49 -11.46 -11.38 -10.29  -9.71  -9.66   2.89   3.21
+          3.75   3.90   5.08   7.29   7.58   7.63  10.41  10.71  18.03  18.90
+         20.60  21.74  23.10  23.67  25.15  27.30  31.93  33.38  36.94  38.85
+         43.58  44.68  47.01  47.82  49.91  50.85  53.01  55.27  56.75  60.15
+         68.15  71.10  73.53  75.02  87.91  91.33  96.35 118.63 128.45 136.60
+        148.43 157.91
+ 165  1 -22.30 -22.09 -12.76 -12.67 -10.78 -10.22 -10.17  -9.63   1.54   1.99
+          3.51   3.72   5.66   7.75   8.99   9.12  11.27  11.70  16.71  17.81
+         19.67  20.94  22.65  23.29  25.36  27.49  30.92  32.97  35.46  37.76
+         43.29  43.76  46.63  47.39  51.56  53.34  55.26  58.52  60.43  61.09
+         67.48  71.21  72.97  73.90  87.59  93.18  96.03 118.45 136.63 138.74
+        146.56 153.55
+ 166  1 -21.27 -21.08 -13.95 -13.86 -11.88 -11.82  -9.58  -8.50  -0.20   0.23
+          5.06   5.30   6.59   7.93   8.58   8.77  12.78  13.73  14.93  15.83
+         19.06  19.67  22.75  23.52  25.18  26.61  30.62  31.87  38.20  40.19
+         42.86  43.25  49.52  51.81  52.45  53.26  55.35  61.92  63.02  67.54
+         68.21  68.72  74.35  74.50  90.40  97.53 100.89 103.91 124.79 131.76
+        148.52 154.21
+ 167  1 -19.83 -19.65 -15.12 -15.06 -13.69 -13.64  -7.93  -6.99  -2.11  -1.72
+          6.90   6.93   7.68   8.07   8.41   8.75  11.22  13.30  16.44  17.28
+         18.05  18.70  21.38  21.90  24.05  25.08  31.97  32.01  39.01  39.79
+         45.81  46.53  51.16  51.42  53.37  54.63  55.50  61.69  64.47  66.19
+         74.52  74.84  77.19  78.49 106.47 106.67 109.63 114.05 126.17 135.46
+        165.79 166.56
+ 168  1 -18.12 -17.98 -16.84 -16.74 -14.46 -14.37  -6.20  -5.61  -3.74  -3.49
+          6.67   6.80   7.92   8.24   9.79  10.87  11.12  12.54  15.92  16.43
+         19.29  19.34  20.20  20.34  22.97  23.85  32.29  32.71  39.43  39.84
+         47.20  48.01  50.70  51.28  53.42  54.60  55.60  59.02  69.87  70.08
+         76.29  77.89  78.22  78.38 112.27 112.40 115.10 130.65 148.10 154.23
+        190.52 192.51
+ 169  1 -18.99 -18.82 -15.95 -15.85 -14.23 -14.15  -7.02  -6.19  -3.09  -2.65
+          6.80   6.88   7.95   8.24   9.18   9.74  11.01  13.02  16.27  16.89
+         18.74  18.98  20.67  20.89  23.33  24.36  32.22  32.46  39.35  39.87
+         46.46  47.54  51.02  51.31  53.87  54.83  54.98  59.95  67.62  68.28
+         76.86  77.07  77.27  78.68 110.11 110.71 114.33 125.20 137.63 143.38
+        177.98 180.70
+ 170  1 -20.61 -20.41 -14.50 -14.42 -12.86 -12.79  -8.80  -7.78  -1.15  -0.72
+          6.18   6.36   7.17   7.74   8.42   8.67  11.85  13.65  15.74  16.46
+         18.54  19.10  22.19  22.80  24.57  25.94  31.25  31.86  38.97  40.03
+         44.53  44.82  50.85  51.77  52.64  54.02  56.32  62.36  64.19  65.29
+         71.31  71.71  75.77  76.53  97.07 102.66 104.71 106.31 123.77 131.06
+        154.77 157.82
+ 171  1 -21.28 -21.08 -14.74 -14.61 -10.65 -10.59  -9.60  -8.54  -0.59   0.03
+          2.97   3.24   6.72   8.56  11.30  12.06  12.08  12.29  15.88  17.20
+         18.28  19.97  21.76  22.44  25.32  27.26  29.75  32.61  33.83  35.49
+         42.80  43.48  45.02  45.60  55.23  57.70  59.80  61.02  64.75  65.42
+         66.25  69.84  70.95  71.35  84.61  95.17  97.75 106.94 133.98 144.52
+        146.59 153.42
+ 172  1 -21.84 -21.64 -13.38 -13.28 -10.95 -10.89 -10.24  -9.13   0.69   1.16
+          4.12   4.34   6.10   7.94   8.80   9.01  12.50  12.90  15.23  16.51
+         19.49  20.40  22.97  23.69  25.20  26.99  30.38  32.41  36.89  39.53
+         42.31  42.84  47.97  49.96  51.93  53.55  55.21  60.17  63.44  64.11
+         66.17  70.88  73.48  74.08  87.45  94.34  98.08 107.38 130.17 134.51
+        146.56 154.11
+ 173  1 -21.96 -21.75 -12.81 -12.74 -11.34 -11.29 -10.37  -9.25   1.06   1.43
+          5.11   5.21   6.07   7.33   7.59   7.93  12.68  13.07  14.89  16.21
+         19.79  20.41  23.43  24.13  25.30  27.07  30.66  32.15  38.68  40.43
+         43.49  43.74  48.87  50.33  51.52  51.72  56.14  60.71  62.39  64.26
+         65.46  70.72  74.42  75.22  89.94  93.37  99.53 105.28 114.76 124.90
+        149.29 154.24
+ 174  1 -21.62 -21.41 -14.06 -13.95 -10.66 -10.60  -9.98  -8.88   0.10   0.66
+          3.31   3.56   6.35   8.25  10.28  10.62  12.12  12.62  15.76  16.99
+         18.90  20.22  22.13  22.79  25.47  27.31  30.12  32.58  34.83  36.88
+         42.45  42.82  46.11  47.06  53.80  56.01  57.68  60.18  63.64  64.87
+         66.08  70.38  72.23  72.54  85.76  94.89  97.61 108.90 136.20 143.09
+        146.94 152.30
+ 175  1 -20.83 -20.63 -15.34 -15.21 -11.00 -10.94  -9.09  -8.08  -1.28  -0.65
+          3.14   3.43   7.13   8.76  10.92  11.75  13.10  13.33  15.55  16.60
+         18.29  19.57  21.63  22.28  25.41  26.97  29.48  32.42  33.87  36.61
+         41.62  42.09  45.74  46.64  55.78  58.18  60.08  61.08  64.39  67.15
+         68.12  68.77  71.40  71.54  84.93  95.70  98.83 102.82 133.42 145.46
+        146.57 154.49
+ 176  1 -19.62 -19.44 -16.30 -16.17 -12.53 -12.45  -7.78  -6.92  -2.58  -2.07
+          4.81   5.15   7.76   8.37  10.09  11.00  12.31  13.65  15.95  16.77
+         18.38  18.88  21.34  21.89  24.45  25.31  30.67  31.47  38.47  40.21
+         41.03  42.31  49.02  50.52  55.17  56.55  57.53  60.89  64.45  65.25
+         73.58  73.97  74.72  75.59  89.55 100.10 104.68 104.98 138.41 147.53
+        157.06 161.06
+ 177  1 -18.12 -17.98 -16.84 -16.74 -14.46 -14.37  -6.20  -5.61  -3.74  -3.49
+          6.67   6.80   7.92   8.24   9.79  10.87  11.12  12.54  15.92  16.43
+         19.29  19.34  20.20  20.34  22.97  23.85  32.29  32.71  39.43  39.84
+         47.20  48.01  50.70  51.28  53.42  54.60  55.60  59.02  69.87  70.08
+         76.29  77.89  78.22  78.38 112.27 112.40 115.10 130.65 148.10 154.23
+        190.52 192.51
+ 178  1 -17.46 -17.38 -16.91 -16.90 -15.18 -15.12  -5.47  -5.02  -4.38  -4.06
+          6.57   6.60   8.69   9.51   9.94  10.51  10.88  11.58  15.62  16.41
+         19.57  19.67  19.84  19.93  22.66  23.21  32.57  33.24  39.88  39.89
+         47.82  50.24  51.04  51.39  52.88  53.35  55.53  58.82  72.06  72.18
+         75.92  78.16  79.16  79.16 114.39 114.41 138.90 146.54 150.08 154.73
+        211.42 211.87
+ 179  1 -18.89 -18.73 -16.63 -16.50 -13.50 -13.41  -7.00  -6.28  -3.17  -2.77
+          5.99   6.36   7.66   7.88   9.92  10.88  11.59  13.18  16.19  16.73
+         18.74  19.00  20.77  21.00  23.55  24.74  31.64  31.80  39.20  40.04
+         44.59  45.16  50.27  50.92  54.51  55.78  56.18  59.90  66.91  67.50
+         75.80  76.31  76.43  77.25  97.65 108.77 108.99 111.77 143.08 151.17
+        170.15 172.22
+ 180  1 -20.27 -20.09 -15.87 -15.74 -11.66 -11.59  -8.48  -7.54  -1.95  -1.36
+          3.81   4.12   7.53   8.73  10.49  11.31  13.10  13.84  15.57  16.29
+         18.37  19.18  21.74  22.46  24.94  25.83  29.70  31.65  36.44  38.95
+         40.65  41.13  47.68  49.04  55.52  57.50  58.96  60.97  63.62  66.35
+         70.57  71.20  72.92  73.39  86.16  96.59 101.17 101.95 134.95 145.90
+        150.24 155.78
+ 181  1 -20.27 -20.09 -15.87 -15.74 -11.66 -11.59  -8.48  -7.54  -1.95  -1.36
+          3.81   4.12   7.53   8.73  10.49  11.31  13.10  13.84  15.57  16.29
+         18.37  19.18  21.74  22.46  24.94  25.83  29.70  31.65  36.44  38.95
+         40.65  41.13  47.68  49.04  55.52  57.50  58.96  60.97  63.62  66.35
+         70.57  71.20  72.92  73.39  86.16  96.59 101.17 101.95 134.95 145.90
+        150.24 155.78
+ 182  1 -20.61 -20.41 -14.50 -14.42 -12.86 -12.79  -8.80  -7.78  -1.15  -0.72
+          6.18   6.36   7.17   7.74   8.42   8.67  11.85  13.65  15.74  16.46
+         18.54  19.10  22.19  22.80  24.57  25.94  31.25  31.86  38.97  40.03
+         44.53  44.82  50.85  51.77  52.64  54.02  56.32  62.36  64.19  65.29
+         71.31  71.71  75.77  76.53  97.07 102.66 104.71 106.31 123.77 131.06
+        154.77 157.82
+ 183  1 -20.49 -20.30 -15.14 -15.02 -12.28 -12.20  -8.69  -7.70  -1.46  -0.95
+          4.92   5.23   7.19   8.25   9.52  10.02  12.31  13.74  15.57  16.32
+         18.54  19.14  22.00  22.68  24.77  25.89  30.70  31.70  38.51  40.25
+         41.88  42.39  49.44  51.09  54.22  55.09  56.55  61.42  63.63  66.03
+         71.09  71.54  74.85  75.43  89.89  99.60 103.00 103.72 134.38 140.96
+        150.15 156.14
+ 184  1 -19.95 -19.76 -16.56 -16.42 -11.23 -11.17  -8.18  -7.32  -2.47  -1.84
+          3.02   3.33   7.95   9.18  10.85  12.04  14.04  14.19  15.84  16.60
+         17.95  19.15  21.18  21.77  25.27  26.52  28.98  31.64  34.06  36.54
+         41.05  41.28  45.88  46.18  57.12  58.72  61.46  62.46  63.89  66.82
+         70.06  70.35  70.53  71.03  84.85  95.63  99.58 100.61 132.99 140.87
+        152.80 160.61
+ 185  1 -19.03 -18.88 -17.62 -17.49 -11.35 -11.29  -7.44  -6.85  -3.17  -2.71
+          2.96   3.27   8.73   9.26  10.58  11.88  14.69  14.83  16.10  16.74
+         17.83  18.94  20.92  21.44  25.14  26.24  28.71  31.20  34.02  36.56
+         40.70  41.00  45.68  46.22  57.67  58.37  61.88  62.97  64.99  66.02
+         69.66  69.90  71.55  72.11  84.98  95.40  99.92 100.11 134.01 137.64
+        158.33 165.30
+ 186  1 -18.72 -18.58 -17.33 -17.21 -12.66 -12.58  -7.02  -6.43  -3.26  -2.91
+          4.75   5.10   8.15   8.37  10.22  11.46  12.70  13.74  16.07  16.50
+         18.65  18.97  20.97  21.30  24.16  24.96  30.64  31.34  38.93  40.08
+         40.40  42.28  48.77  50.15  55.67  56.92  57.92  60.35  65.90  66.35
+         73.68  74.41  75.14  75.58  89.55 100.71 105.62 105.72 141.00 146.51
+        164.36 169.52
+ 187  1 -18.99 -18.82 -15.95 -15.85 -14.23 -14.15  -7.02  -6.19  -3.09  -2.65
+          6.80   6.88   7.95   8.24   9.18   9.74  11.01  13.02  16.27  16.89
+         18.74  18.98  20.67  20.89  23.33  24.36  32.22  32.46  39.35  39.87
+         46.46  47.54  51.02  51.31  53.87  54.83  54.98  59.95  67.62  68.28
+         76.86  77.07  77.27  78.68 110.11 110.71 114.33 125.20 137.63 143.38
+        177.98 180.70
+ 188  1 -18.89 -18.73 -16.63 -16.50 -13.50 -13.41  -7.00  -6.28  -3.17  -2.77
+          5.99   6.36   7.66   7.88   9.92  10.88  11.59  13.18  16.19  16.73
+         18.74  19.00  20.77  21.00  23.55  24.74  31.64  31.80  39.20  40.04
+         44.59  45.16  50.27  50.92  54.51  55.78  56.18  59.90  66.91  67.50
+         75.80  76.31  76.43  77.25  97.65 108.77 108.99 111.77 143.08 151.17
+        170.15 172.22
+ 189  1 -18.65 -18.56 -17.74 -17.68 -11.90 -11.83  -7.13  -6.68  -3.24  -2.94
+          3.69   4.02   8.71   8.81  10.47  11.66  13.79  14.37  16.03  16.61
+         18.31  18.90  21.14  21.64  24.85  24.99  29.39  31.09  36.60  38.52
+         40.29  40.51  47.75  48.43  56.78  57.73  59.92  61.62  65.33  65.41
+         71.54  72.03  73.35  73.88  86.18  96.27 102.30 102.41 136.81 140.70
+        161.13 167.52
+ 190  1 -19.52 -19.35 -17.16 -17.02 -11.11 -11.05  -7.81  -7.10  -2.88  -2.33
+          2.73   3.04   8.39   9.42  10.81  12.08  14.68  14.69  16.23  16.88
+         17.45  19.12  20.99  21.52  25.07  26.79  28.27  31.54  33.04  35.75
+         41.27  42.54  44.15  46.00  57.80  58.74  62.79  63.30  64.69  67.22
+         68.65  68.92  70.23  70.99  84.45  95.24  99.09  99.79 132.57 138.10
+        155.49 163.04
+ 191  1 -18.89 -18.73 -16.63 -16.50 -13.50 -13.41  -7.00  -6.28  -3.17  -2.77
+          5.99   6.36   7.66   7.88   9.92  10.88  11.59  13.18  16.19  16.73
+         18.74  19.00  20.77  21.00  23.55  24.74  31.64  31.80  39.20  40.04
+         44.59  45.16  50.27  50.92  54.51  55.78  56.18  59.90  66.91  67.50
+         75.80  76.31  76.43  77.25  97.65 108.77 108.99 111.77 143.08 151.17
+        170.15 172.22
+ 192  1 -18.99 -18.82 -15.95 -15.85 -14.23 -14.15  -7.02  -6.19  -3.09  -2.65
+          6.80   6.88   7.95   8.24   9.18   9.74  11.01  13.02  16.27  16.89
+         18.74  18.98  20.67  20.89  23.33  24.36  32.22  32.46  39.35  39.87
+         46.46  47.54  51.02  51.31  53.87  54.83  54.98  59.95  67.62  68.28
+         76.86  77.07  77.27  78.68 110.11 110.71 114.33 125.20 137.63 143.38
+        177.98 180.70
+ 193  1 -18.72 -18.58 -17.33 -17.21 -12.66 -12.58  -7.02  -6.43  -3.26  -2.91
+          4.75   5.10   8.15   8.37  10.22  11.46  12.70  13.74  16.07  16.50
+         18.65  18.97  20.97  21.30  24.16  24.96  30.64  31.34  38.93  40.08
+         40.40  42.28  48.77  50.15  55.67  56.92  57.92  60.35  65.90  66.35
+         73.68  74.41  75.14  75.58  89.55 100.71 105.62 105.72 141.00 146.51
+        164.36 169.52
+ 194  1 -19.03 -18.88 -17.62 -17.49 -11.35 -11.29  -7.44  -6.85  -3.17  -2.71
+          2.96   3.27   8.73   9.26  10.58  11.88  14.69  14.83  16.10  16.74
+         17.83  18.94  20.92  21.44  25.14  26.24  28.71  31.20  34.02  36.56
+         40.70  41.00  45.68  46.22  57.67  58.37  61.88  62.97  64.99  66.02
+         69.66  69.90  71.55  72.11  84.98  95.40  99.92 100.11 134.01 137.64
+        158.33 165.30
+ 195  1 -19.95 -19.76 -16.56 -16.42 -11.23 -11.17  -8.18  -7.32  -2.47  -1.84
+          3.02   3.33   7.95   9.18  10.85  12.04  14.04  14.19  15.84  16.60
+         17.95  19.15  21.18  21.77  25.27  26.52  28.98  31.64  34.06  36.54
+         41.05  41.28  45.88  46.18  57.12  58.72  61.46  62.46  63.89  66.82
+         70.06  70.35  70.53  71.03  84.85  95.63  99.58 100.61 132.99 140.87
+        152.80 160.61
+ 196  1 -20.49 -20.30 -15.14 -15.02 -12.28 -12.20  -8.69  -7.70  -1.46  -0.95
+          4.92   5.23   7.19   8.25   9.52  10.02  12.31  13.74  15.57  16.32
+         18.54  19.14  22.00  22.68  24.77  25.89  30.70  31.70  38.51  40.25
+         41.88  42.39  49.44  51.09  54.22  55.09  56.55  61.42  63.63  66.03
+         71.09  71.54  74.85  75.43  89.89  99.60 103.00 103.72 134.38 140.96
+        150.15 156.14
+ 197  1 -20.61 -20.41 -14.50 -14.42 -12.86 -12.79  -8.80  -7.78  -1.15  -0.72
+          6.18   6.36   7.17   7.74   8.42   8.67  11.85  13.65  15.74  16.46
+         18.54  19.10  22.19  22.80  24.57  25.94  31.25  31.86  38.97  40.03
+         44.53  44.82  50.85  51.77  52.64  54.02  56.32  62.36  64.19  65.29
+         71.31  71.71  75.77  76.53  97.07 102.66 104.71 106.31 123.77 131.06
+        154.77 157.82
+ 198  1 -20.27 -20.09 -15.87 -15.74 -11.66 -11.59  -8.48  -7.54  -1.95  -1.36
+          3.81   4.12   7.53   8.73  10.49  11.31  13.10  13.84  15.57  16.29
+         18.37  19.18  21.74  22.46  24.94  25.83  29.70  31.65  36.44  38.95
+         40.65  41.13  47.68  49.04  55.52  57.50  58.96  60.97  63.62  66.35
+         70.57  71.20  72.92  73.39  86.16  96.59 101.17 101.95 134.95 145.90
+        150.24 155.78
+ 199  1 -19.52 -19.35 -17.16 -17.02 -11.11 -11.05  -7.81  -7.10  -2.88  -2.33
+          2.73   3.04   8.39   9.42  10.81  12.08  14.68  14.69  16.23  16.88
+         17.45  19.12  20.99  21.52  25.07  26.79  28.27  31.54  33.04  35.75
+         41.27  42.54  44.15  46.00  57.80  58.74  62.79  63.30  64.69  67.22
+         68.65  68.92  70.23  70.99  84.45  95.24  99.09  99.79 132.57 138.10
+        155.49 163.04
+ 200  1 -18.65 -18.56 -17.74 -17.68 -11.90 -11.83  -7.13  -6.68  -3.24  -2.94
+          3.69   4.02   8.71   8.81  10.47  11.66  13.79  14.37  16.03  16.61
+         18.31  18.90  21.14  21.64  24.85  24.99  29.39  31.09  36.60  38.52
+         40.29  40.51  47.75  48.43  56.78  57.73  59.92  61.62  65.33  65.41
+         71.54  72.03  73.35  73.88  86.18  96.27 102.30 102.41 136.81 140.70
+        161.13 167.52
+siesta: Fermi energy =      -4.726990 eV
+
+siesta: Program's energy decomposition (eV):
+siesta:-Eions   =   -1264.537925
+siesta: Ena     =     407.948399
+siesta: Ekin    =     452.164863
+siesta: Enl     =     -15.747296
+siesta: DEna    =     -12.883624
+siesta: DUscf   =       0.930434
+siesta: DUext   =       0.000000
+siesta: Exc     =    -189.229435
+siesta: eta*DQ  =       0.000000
+siesta: Emadel  =       0.000000
+siesta: Ekinion =       0.000000
+siesta: Eharris =    -621.354500
+siesta: Etot    =    -621.354584
+siesta: FreeEng =    -621.354585
+
+siesta: Final energy (eV):
+siesta:       Kinetic =     452.164863
+siesta:       Hartree =     140.553363
+siesta:    Ext. field =       0.000000
+siesta:   Exch.-corr. =    -189.229435
+siesta:  Ion-electron =    -706.204323
+siesta:       Ion-ion =    -318.639052
+siesta:       Ekinion =       0.000000
+siesta:         Total =    -621.354584
+
+siesta: Stress tensor (static) (eV/Ang**3):
+siesta:    -0.000145    0.003012    0.000000
+siesta:     0.003012    0.003333    0.000000
+siesta:     0.000000    0.000000    0.005295
+
+siesta: Constrained stress tensor (static) (eV/Ang**3):
+siesta:    -0.000145    0.003012    0.000000
+siesta:     0.003012    0.003333    0.000000
+siesta:     0.000000    0.000000    0.005295
+
+siesta: Cell volume =         31.782675 Ang**3
+
+siesta: Pressure (static):
+siesta:                Solid            Molecule  Units
+siesta:          -0.00003080         -0.00002734  Ry/Bohr**3
+siesta:          -0.00282773         -0.00251053  eV/Ang**3
+siesta:          -4.53057708         -4.02235502  kBar
+ 
+* Maximum dynamic memory allocated : Node    0 =    17 MB
+* Maximum memory occured during ranger                        
+
+timer: CPU execution times:
+timer:  Routine       Calls   Time/call    Tot.time        %
+timer:  siesta            1    1725.120    1725.120   100.00
+timer:  Setup             1       0.510       0.510     0.03
+timer:  bands             1       0.000       0.000     0.00
+timer:  writewave         1       0.010       0.010     0.00
+timer:  KSV_init          1       0.000       0.000     0.00
+timer:  IterMD           26      66.328    1724.540    99.97
+timer:  hsparse          28       0.482      13.510     0.78
+timer:  overfsm          52       0.142       7.360     0.43
+timer:  IterSCF         194       8.731    1693.850    98.19
+timer:  kinefsm          52       0.142       7.410     0.43
+timer:  nlefsm           52       3.692     191.970    11.13
+timer:  DHSCF           194       2.017     391.230    22.68
+timer:  DHSCF1           26       0.095       2.460     0.14
+timer:  DHSCF2           26       0.940      24.440     1.42
+timer:  REORD          1216       0.000       0.140     0.01
+timer:  POISON          220       0.005       1.020     0.06
+timer:  DHSCF3          194       1.701     329.940    19.13
+timer:  rhoofd          194       1.056     204.950    11.88
+timer:  CELLXC          194       0.009       1.760     0.10
+timer:  vmat            194       0.629     121.950     7.07
+timer:  diagon          168       6.387    1073.050    62.20
+timer:  cdiag         67200       0.005     318.058    18.44
+timer:  DHSCF4           26       1.310      34.060     1.97
+timer:  dfscf            26       1.236      32.130     1.86
+  
+>> End of run:  29-MAR-2006  15:24:49

@@ -1,0 +1,97 @@
+System_Name  GaAs single cell 
+SystemLabel GaAs
+
+Lattice_constant 1.0 Bohr 
+%block Lattice_vectors
+   0.000             5.269735278       5.269735339    
+   5.269735305       0.000             5.269735294   
+   5.269735354       5.269735282       0.000        
+%endblock Lattice_vectors
+
+Number_of_species  2
+%block Chemical_species_label
+  1  31   Ga
+  2  33   As
+%endblock Chemical_species_label
+%block AtomicMass
+  1  65.39
+  2  78.96
+%endblock AtomicMass
+
+Atomic_coordinates_format   Bohr
+Number_of_atoms   2 
+%block Atomic_Coordinates_Origin
+     0.000  0.000  0.000
+%endblock Atomic_Coordinates_Origin
+%block Atomic_Coordinates_and_Atomic_Species
+   0.002531630       0.002533222       0.002530027   1 
+   2.635745009       2.635744984       2.635745014   2
+%endblock Atomic_Coordinates_and_Atomic_Species
+
+PAO.BasisType  split
+PAO.EnergyShift 0.020 Ry
+%block PAO.Basis
+ Ga  3   0.0  
+   n=4  0  2  
+     0.0  0.0
+   n=4  1  2
+     0.0  0.0
+   n=3  2  2
+     0.0  0.0
+ As  2   0.0
+   n=4  0  2
+     0.0  0.0
+   n=4  1  2
+     0.0 0.0
+%endblock PAO.Basis
+
+#kgrid_cutoff     6.0 Ang
+#kgrid_cutoff    20.0 Ang  #  makes 6 divisions -> 108 k-points
+#kgrid_cutoff   10.0 Ang  #
+#kgrid_cutoff     6.0 Ang
+%block kgrid_Monkhorst_Pack
+   8  0  0  0.   #
+   0  8  0  0.   #
+   0  0  8  0.   #
+%endblock kgrid_Monkhorst_Pack
+%block GridCellSampling
+  0.5   0.0   0.0 
+  0.0   0.5   0.0 
+  0.0   0.0   0.5 
+  0.0   0.5   0.5 
+  0.5   0.0   0.5 
+  0.5   0.5   0.0 
+  0.5   0.5   0.5 
+%endblock GridCellSampling
+#
+#  dynamical part
+MD.TypeOfRun     FC 
+MD.VariableCell   F
+MD.NumCGsteps   250
+MD.FCfirst        2
+MD.FClast         2
+#
+# -- I/O part
+UseSaveData       T
+MD.UseSaveXV      F
+MD.UseSaveCG      F
+# -- Output part
+LongOutput        T
+WriteCoorStep     F
+WriteMullikenPop  0
+WriteMDhistory    F
+WriteMDXmol       F
+#
+#
+XC.functional         LDA           # Exchange-correlation functional
+XC.authors            CA            # Exchange-correlation version
+MeshCutoff           300.0   Ry
+NetCharge              0.00
+MaxSCFIterations      100
+DM.NumberPulay          3
+DM.MixSCF1              F
+DM.PulayOnFile          F
+DM.MixingWeight        .05
+DM.NumberKick           0
+DM.KickMixingWeight    .40
+DM.Tolerance          .1000000000E-03     # Default value

@@ -1,0 +1,83 @@
+#
+# General System descriptors
+#
+
+SystemName      Manganese Oxide AFM2  # [111] magnetic ordering
+SystemLabel            MnO_AF2        # Short name for naming files
+
+NumberOfAtoms           4            # Number of atoms
+NumberOfSpecies         2            # Number of species
+
+%block Chemical_Species_Label
+  1   25    Mn
+  2    8     O
+%endblock Chemical_Species_Label
+
+%block PS.lmax                
+   Mn  3
+    O  3
+%endblock PS.lmax
+
+PAO.BasisSize DZP
+
+#
+# Lattice, coordinates, k-sampling
+#
+
+LatticeConstant     4.43 Ang
+AtomicCoordinatesFormat ScaledCartesian # Format for coordinates
+                                   #   - NotScaledCartesianBohr
+                                   #   - NotScaledCartesianAng
+                                   #   - ScaledCartesian
+                                   #   - ScaledByLatticeVectors
+%block LatticeVectors
+ 1.00     0.50      0.50
+ 0.50     1.00      0.50
+ 0.50     0.50      1.00
+%endblock LatticeVectors
+
+%block AtomicCoordinatesAndAtomicSpecies
+ 0.00   0.00   0.00  1
+ 1.00   1.00   1.00  1
+ 0.50   0.50   0.50  2
+ 1.50   1.50   1.50  2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+kgrid_cutoff 6 Ang
+
+#
+# DFT, Grid, SCF
+#
+
+XC.functional           GGA         # Exchange-correlation functional type
+XC.authors              PBE         # Particular parametrization of xc func
+SpinPolarized           .true.      # Spin unpolarized calculation
+MeshCutoff              150 Ry      # Equivalent planewave cutoff for the grid
+MaxSCFIterations        100         # Maximum number of SCF iterations per step
+DM.MixingWeight         0.200       # New DM amount for next SCF cycle
+DM.Tolerance            1.d-4       # Tolerance in maximum difference
+                                    # between input and output DM
+DM.NumberPulay          3           # Number of SCF steps between pulay mixing
+
+%block DM.InitSpin       # Describe the initial magnetic order (on Mn only)
+ 1   + 
+ 2   - 
+%endblock DM.InitSpin
+
+#
+# Options for saving/reading information
+#
+DM.UseSaveDM            .true.       # Use DM Continuation files
+MD.UseSaveXV            .false.      # Use stored positions and velocities
+
+#
+# Output options 
+#
+WriteMullikenPop  1
+%block ProjectedDensityOfStates
+ -25.0  10.0  0.1   700   eV
+%endblock ProjectedDensityOfStates
+SaveRho           T
+
+
+

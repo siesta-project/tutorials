@@ -1,0 +1,20 @@
+This directory contains structure and band structure data related
+to the MgB2 compound. 
+XCrySDen input files  MgB2.XSF  and  MgB2.BXSF  are already there,
+for reference purposes. You'll have to create the corresponding files
+by your own, using the available data with the prefix 'mgb2':
+.XV, .KP and .EIG
+
+Exercices:
+
+1. produce mgb2.XSCF from mgb2.XV, using the script 'xv2xsf'.
+Make acquaintance with the crystal sructure of MgB2. Extend the number
+of unit cells drawn along three crystal vectors.
+
+2. produce mg2.BXSF, using the script 'eig2bxsf'.
+View the Fermi energy with XCrySDen. Try the modi of showing
+the three Fermi surfaces separately, or all together. Switch between
+visualization modi over the Brillouin zone, and the unit cell
+in the reciprocal space (click the icons on the left of the main
+window).
+

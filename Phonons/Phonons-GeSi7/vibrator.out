@@ -1,0 +1,57 @@
+redata: System Name                      = GeSi7 cubic cell                                                                                                                                      
+redata: System Label                     = GeSi7               
+Number of Atoms                  =     8
+Lattice Constant    =    1.00000  Bohr
+Lattice vectors (in units of Lattice Constant) =
+          10.29223   0.00000   0.00000
+           0.00000  10.29223   0.00000
+           0.00000   0.00000  10.29223
+Lattice vectors (in Bohr) =
+          10.29223   0.00000   0.00000
+           0.00000  10.29223   0.00000
+           0.00000   0.00000  10.29223
+recoor: Atomic-coordinates input format  = Cartesian coordinates
+recoor:                                    (in Bohr units)
+recoor: Atomic coordinates (Bohr) and species
+recoor:    1     0.00000   0.00000   0.00000  2
+recoor:    2     2.61032   2.61032   2.61032  1
+recoor:    3     0.00000   5.14612   5.14612  1
+recoor:    4     2.61031   7.68192   7.68192  1
+recoor:    5     5.14612   0.00000   5.14612  1
+recoor:    6     7.68192   2.61031   7.68192  1
+recoor:    7     5.14612   5.14612   0.00000  1
+recoor:    8     7.68192   7.68192   2.61032  1
+lxmax    =     0
+lymax    =     0
+lzmax    =     0
+Number of unit cells in Supercell  =     1
+Eigenvectors =   True
+Computing Eigenvalues and Eigenvectors
+  eigenvalue #           1  omega= -4.313110948085009E-002
+  eigenvalue #           2  omega= -2.080312487494493E-002
+  eigenvalue #           3  omega=  2.307767193596861E-002
+  eigenvalue #           4  omega=   107.766401424457     
+  eigenvalue #           5  omega=   107.836448142450     
+  eigenvalue #           6  omega=   107.952340182577     
+  eigenvalue #           7  omega=   133.038282036669     
+  eigenvalue #           8  omega=   133.146794360535     
+  eigenvalue #           9  omega=   133.258739857255     
+  eigenvalue #          10  omega=   341.516089160683     
+  eigenvalue #          11  omega=   341.533950491356     
+  eigenvalue #          12  omega=   341.549434624118     
+  eigenvalue #          13  omega=   404.812865089350     
+  eigenvalue #          14  omega=   409.289630547635     
+  eigenvalue #          15  omega=   409.326883110985     
+  eigenvalue #          16  omega=   444.780835859976     
+  eigenvalue #          17  omega=   444.802325894079     
+  eigenvalue #          18  omega=   444.819671261835     
+  eigenvalue #          19  omega=   469.047458782087     
+  eigenvalue #          20  omega=   469.070871872724     
+  eigenvalue #          21  omega=   469.097095455435     
+  eigenvalue #          22  omega=   511.245953908980     
+  eigenvalue #          23  omega=   511.252340445907     
+  eigenvalue #          24  omega=   511.255275488038     
+
+ Writing eigenvalues and eigenvectors
+ to output file GeSi7.vectors                    
+

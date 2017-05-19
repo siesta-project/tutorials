@@ -1,0 +1,59 @@
+
+#FDF: Opened stdin                for input. Unit:  5
+
+fdf-debug              0     # Default value
+SystemName     GeSi7 cubic cell                                                                                                                    
+SystemLabel     GeSi7                                                                                                                               
+NumberOfAtoms                        8
+LatticeConstant          1.000000000           Bohr
+# Above item originally: LatticeConstant          1.000000000     Bohr      
+
+%block Lattice_vectors                                                         
+  10.292233548       0.000001893       0.000000582                             
+   0.000001893      10.292233579       0.000000141                             
+   0.000000582       0.000000141      10.292233345                             
+%endblock Lattice_vectors                                                      
+ 
+
+%block Lattice_vectors                                                         
+  10.292233548       0.000001893       0.000000582                             
+   0.000001893      10.292233579       0.000000141                             
+   0.000000582       0.000000141      10.292233345                             
+%endblock Lattice_vectors                                                      
+ 
+AtomicCoordinatesFormat     NotScaledCartesianBohr                                                                                                              
+
+%block Atomic_Coordinates_and_Atomic_Species                                   
+  -0.000001356       0.000000751      -0.000000980  2  72.59                   
+   2.610317403       2.610317613       2.610317706  1  28.09                   
+   0.000001037       5.146117200       5.146117801  1  28.09                   
+   2.610312833       7.681923581       7.681924039  1  28.09                   
+   5.146117395       0.000000243       5.146117999  1  28.09                   
+   7.681922437       2.610313972       7.681923040  1  28.09                   
+   5.146117833       5.146118105      -0.000001803  1  28.09                   
+   7.681919820       7.681920089       2.610316895  1  28.09                   
+%endblock Atomic_Coordinates_and_Atomic_Species                                
+ 
+
+%block Atomic_Coordinates_Origin                                               
+     0.000  0.000  0.000                                                       
+%endblock Atomic_Coordinates_Origin                                            
+ 
+SuperCell_1              0     # Default value
+SuperCell_2              0     # Default value
+SuperCell_3              0     # Default value
+
+%block BandLines                                                               
+  1  0.  0.  0.                                                                
+%endblock BandLines                                                            
+ 
+LatticeConstant          1.000000000           Bohr
+# Above item originally: LatticeConstant          1.000000000     Bohr      
+BandLinesScale     pi/a     # Default value
+
+%block BandLines                                                               
+  1  0.  0.  0.                                                                
+%endblock BandLines                                                            
+ 
+Eigenvectors              T
+SystemLabel     GeSi7                                                                                                                               

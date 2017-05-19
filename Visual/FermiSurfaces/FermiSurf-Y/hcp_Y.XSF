@@ -1,0 +1,12 @@
+ # crystal structure from hcp-Y.XV
+ CRYSTAL
+ # Cell vectors in Angstroem:
+ PRIMVEC
+   3.5264583   0.0000000  -0.0000001
+  -1.7632291   3.0539951   0.0000041
+  -0.0000002   0.0000074   5.5655355
+ # Atom coordinates in Angstroem:
+ PRIMCOORD
+    2    1
+  39         -0.00001778          0.00002555         -0.00021012
+  39          0.00002303          2.03596312          2.78297848

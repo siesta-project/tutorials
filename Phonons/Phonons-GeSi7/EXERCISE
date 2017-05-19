@@ -1,0 +1,28 @@
+The Phonons-GeSi7 directory 
+contains the results of frozen phonon calculation 
+(after a precedent relaxation) for a GeSi7 supercell.
+The calculated frequencies and eigenvectors are contaied in
+GeSi_7.bands 
+and
+GeSi_7.vectors
+From this, the vibration patterns in all phonon modes
+(but the three acoustic ones) have been calculated
+with the use of the vib2xsf script and saved as
+GeSi7.Mode_*.XSF  (static xsf file with arrows), and
+GeSi7.Mode_*.AXSF (animation xsf file). 
+
+Exercises:
+
+1. start 'xcrysden', open .XSF file(s), show vibration patters
+with arrows, get acquainted with changing the vizualization 
+parameters for the arrows. 
+
+2. start 'xcrysden', open .AXSF file(s), show animation
+of a phonon mode, get acquainted with manipulating 
+the animation control box.
+
+3. use 'vib2xsf' on the files from the 'vibrator' calculation,
+select phonon modes to vizualized and obtain your own .XSF and .AXSF
+files. (The old ones won't be overwritten because they have 
+the prefix 'GeSi7' and the new ones would have 'GeSi_7').
+Try 'xcryden' on your freshly generated .XSF and .AXSF files.

@@ -1,0 +1,13 @@
+ # crystal structure from mgb2.XV
+ CRYSTAL
+ # Cell vectors in Angstroem:
+ PRIMVEC
+   3.0653857   0.0002491  -0.0000140
+  -1.5324771   2.6548313   0.0000154
+  -0.0000225   0.0000149   3.4438146
+ # Atom coordinates in Angstroem:
+ PRIMCOORD
+    3    1
+  12          0.00001773         -0.00001480          0.00000641
+   5          0.00053165          1.76973689          1.72192202
+   5          1.53239015          0.88531935          1.72191712

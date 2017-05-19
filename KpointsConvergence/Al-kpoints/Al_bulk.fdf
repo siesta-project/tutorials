@@ -1,0 +1,92 @@
+#
+# General system descriptors
+#
+
+SystemName          FCC Al
+SystemLabel         Al
+NumberOfAtoms       1
+NumberOfSpecies     1
+
+#
+# Lattice, coordinates, k-sampling
+#
+
+%block ChemicalSpeciesLabel
+ 1  13 Al                      # Species index, atomic number, species label
+%endblock ChemicalSpeciesLabel
+
+LatticeConstant 4.05 Ang       # Experimental lattice parameter 4.05 Ang
+
+%block LatticeVectors
+  0.000  0.500  0.500
+  0.500  0.000  0.500
+  0.500  0.500  0.000
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat  ScaledCartesian
+
+%block AtomicCoordinatesAndAtomicSpecies
+  0.000  0.000  0.000  1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block kgrid_Monkhorst_Pack
+   4  0  0  0.5
+   0  4  0  0.5
+   0  0  4  0.5
+%endblock kgrid_Monkhorst_Pack
+
+#
+# Basis definition
+#
+
+PAO.EnergyShift 200 meV
+PAO.SplitNorm   0.15
+PAO.BasisSize   SZ 
+
+#
+# DFT, Grid, Convergence of SCF
+#
+
+MeshCutoff   125.0 Ry
+
+MaxSCFIterations 50
+DM.MixingWeight 0.5
+DM.NumberPulay  3
+ElectronicTemperature 300 K
+
+#
+# Eigenvalue problem: type of solver
+#
+
+SolutionMethod diagon
+
+#
+# Molecular dynamics and relaxations
+#
+
+MD.TypeOfRun       CG               # We are going to perform a
+                                    #   Conjugate Gradient (CG) minimization
+MD.VariableCell    .true.           # Is the lattice relaxed together with
+                                    #   the atomic coordinates?
+MD.NumCGsteps      50               # Number of CG steps for
+                                    #   coordinate optimization
+MD.MaxStressTol    0.0005 eV/Ang**3 # Tolerance in the maximum
+                                    #   stress in a MD.VariableCell CG optimi.
+%block GeometryConstraints          # Constraints impossed on
+   position   1                     #   the position of atom 1
+   stress     4   5   6             #   the shear stresses
+%endblock GeometryConstraints
+
+#
+# Output (Band structure calculation)
+#
+
+BandLinesScale pi/a
+
+%block BandLines
+1   1.0000 1.0000 1.0000  L       # Begin at L
+20  0.0000 0.0000 0.0000  \Gamma  # 20 points from L to gamma
+25  2.0000 0.0000 0.0000  X       # 25 points from gamma to X
+30  2.0000 2.0000 2.0000  \Gamma  # 30 points from X to gamma
+%endblock BandLines
+

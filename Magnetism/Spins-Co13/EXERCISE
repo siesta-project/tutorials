@@ -1,0 +1,14 @@
+This directory contains structure and magnetic moments
+for a Co13 cluster.
+The file co13+spin.XSF contains atomic positions 
+(columns 2-4) and spin vectors (columns 5-7) for each of 13 atoms.
+
+Exercice:
+
+show the cluster with spin moments represented by arrows.
+Try different modi of representing the atomic structure
+(click on icons in the panel on the right from the XCrySDen
+main window).
+Try to modify size, color etc. of atoms.
+Change the settings for the force representations.
+

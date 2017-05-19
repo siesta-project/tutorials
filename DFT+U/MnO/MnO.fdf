@@ -1,0 +1,148 @@
+#
+# General System descriptors
+#
+
+
+SystemName      Manganese Oxide AF2  # Descriptive name of the system
+SystemLabel            MnO           # Short name for naming files
+
+NumberOfAtoms           4            # Number of atoms
+NumberOfSpecies         2            # Number of species
+
+%block Chemical_Species_Label
+  1   25    Mn
+  2    8     O
+%endblock Chemical_Species_Label
+
+#
+# Basis definition
+#
+
+%block PS.lmax                
+   Mn  3
+    O  3
+%endblock PS.lmax
+
+PAO.BasisSize DZP
+
+#
+# Lattice, coordinates, k-sampling
+#
+
+LatticeConstant     4.43 Ang
+AtomicCoordinatesFormat ScaledCartesian # Format for coordinates
+                                   #   - NotScaledCartesianBohr
+                                   #   - NotScaledCartesianAng
+                                   #   - ScaledCartesian
+                                   #   - ScaledByLatticeVectors
+%block LatticeVectors
+-0.50     0.50      0.00
+ 0.00     0.50     -0.50
+ 1.00     0.00      1.00
+%endblock LatticeVectors
+
+%block AtomicCoordinatesAndAtomicSpecies
+0.000 0.000 0.000 1
+0.500 0.000 0.500 1
+0.500 0.500 0.500 2
+1.000 0.500 1.000 2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block AtomicCoordinatesOrigin
+   0.0   0.0   0.0
+%endblock AtomicCoordinatesOrigin
+
+%block kgrid_Monkhorst_Pack
+    4  0  0  0.5
+    0  4  0  0.5
+    0  0  4  0.5
+%endblock kgrid_Monkhorst_Pack
+
+#
+# DFT, Grid, SCF
+#
+
+XC.functional           GGA         # Exchange-correlation functional type
+XC.authors              PBE         # Particular parametrization of xc func
+SpinPolarized           .true.      # Spin unpolarized calculation
+MeshCutoff              150 Ry      # Equivalent planewave cutoff for the grid
+MaxSCFIterations        100         # Maximum number of SCF iterations per step
+DM.MixingWeight         0.200       # New DM amount for next SCF cycle
+DM.Tolerance            1.d-4       # Tolerance in maximum difference
+                                    # between input and output DM
+DM.NumberPulay          3           # Number of SCF steps between pulay mixing
+
+
+%block DM.InitSpin       # Describe the initially magnetic order (AF II)
+1  1.0
+2 -1.0
+3  0.0
+4  0.0
+%endblock DM.InitSpin
+
+#
+# Eigenvalue problem: order-N or diagonalization
+#
+
+SolutionMethod          diagon      # OrderN or Diagon
+
+
+#
+#  LDA+U Options
+#
+
+LDAU.FirstIteration .true.
+LDAU.PopTol 4.0d-4
+LDAU.ThresholdTol   1.0d-2
+LDAU.ProjectorGenerationMethod 2
+
+%block LDAU.proj
+Mn   1               # number of shells of projectors
+n=3    2             #  n, l
+<U_value>  0.000     # U(eV), J(eV)
+  0.000    0.000     # rc, \omega (if zero default values are taken)
+%endblock LDAU.proj
+
+#
+# Output options
+#
+
+#Plot band structure along some given directions
+
+BandLinesScale pi/a   
+
+%block BandLines
+1     2.000 0.000  0.000 X
+40    0.000 0.0000 0.000 Gamma
+15    0.500 0.5000 0.500 Z
+%endblock BandLines
+
+WriteMullikenPop 1         # Orbital Mulliken Populations 
+
+#Plot the PDOS in a selected energy range
+%block ProjectedDensityOfStates
+     -25.00  10.00  0.200  600 eV
+%endblock ProjectedDensityOfStates
+%block PDOS.kgrid_Monkhorst_Pack
+     6   0   0  0.5
+     0   6   0  0.5
+     0   0   6  0.5
+%endblock PDOS.kgrid_Monkhorst_Pack
+
+
+
+WriteCoorInitial        .true.
+WriteCoorStep           .true.
+WriteForces             .true.
+
+#
+# Options for saving/reading information
+#
+
+DM.UseSaveDM            .true.       # Use DM Continuation files
+MD.UseSaveXV            .false.      # Use stored positions and velocities
+MD.UseSaveCG            .false.      # Use stored positions and velocities
+
+
+
+

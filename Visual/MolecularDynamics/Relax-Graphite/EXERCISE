@@ -1,0 +1,16 @@
+The Relax-Graphite directory
+contains the results of conjugate-gradient structure relaxation of graphite.
+The (binary, obtained on an 32-bit Intel machine) molecular dynamics file
+graphite.MD
+is present
+
+Exercise:
+
+1. using 'md2axsf', create the .AXSF file
+for the animation with XCrySDen. In case of problem reading
+the binary .MD file, use the prepared
+relaxation.AXSF
+file.
+
+2. Choose the setting (number of units drawn, spatial orientation)
+in order to view the relaxation process with XCrySDen.

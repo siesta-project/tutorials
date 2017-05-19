@@ -1,0 +1,264 @@
+*******************************************************************************
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS (MESH CUTOFF, ETC.) 
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT WARRANTY THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+THE RESULTS PRESENTED BELOW HAVE BEEN OBTAINED USING:
+Version of Siesta: siesta-3.0-b (serial mode)
+Compiler: g95 (version 0.92)
+Compilation flags: FFLAGS= -O2 -Wall
+                   FPPFLAGS= -DGRID_DP $(FPPFLAGS_CDF) $(FPPFLAGS_MPI)
+Double precision for the grid variables enabled.
+No linear algebra libraries used. 
+RESULTS MIGHT DIFFER SLIGHTLY DEPENDING ON THE PLATFORM, COMPILER,
+AND COMPILATION FLAGS
+*******************************************************************************
+
+All the lines after the $ should be written by the user in the command line.
+
+* Inspect the input file, Al_bulk.fdf, and examine in detail 
+the different input variables. More information can be obtained from 
+the Siesta web page (http://www.icmab.es/siesta), following the link 
+Documentations, and then Manual.
+
+******************************************************************************
+Convergence of the structural geometry and energy with the number of k-points
+******************************************************************************
+
+In this particular example, for a given k-point sampling and
+starting from the experimental structure, we are going to 
+perform a structural relaxation of the lattice vectors using
+the conjugate gradient minimization algorithm.
+The optimization of the unit cell vectors is carried out subject
+to two constraints:
+(i) the position of the  atom in the unit cell is fixed at the origin, and
+(ii) the shear stresses are nullified in order to keep the cell angles
+fixed to 60 degrees, characteristic of the fcc lattice.
+Regarding this minimization procedure, 
+pay particular attention to the input variables:
+
+MD.TypeOfRun       CG               # We are going to perform a 
+                                    #   Conjugate Gradient (CG) minimization
+MD.VariableCell    .true.           # Is the lattice relaxed together with
+                                    #   the atomic coordinates?
+MD.NumCGsteps      50               # Number of CG steps for
+                                    #   coordinate optimization
+MD.MaxStressTol    0.0005 eV/Ang**3 # Tolerance in the maximum
+                                    #   stress in a MD.VariableCell CG optimi.
+%block GeometryConstraints          # Constraints impossed on 
+   position   1                     #   the position of atom 1
+   stress     4   5   6             #   the shear stresses
+%endblock GeometryConstraints
+
+* Run the code for a set of different k-point samplings.
+In order to do this, modify the diagonal element of the 
+Monkhorst-Pack matrix in the %block kgrid_Monkhorst_Pack.
+Let us try from (4 x 4 x 4) to (22 x 22 x 22) Monkhorst-Pack meshes.
+Save each output file in a separate file:
+
+$ siesta < Al_bulk.fdf > Al.diagonal_number_in_the_Monkhorst_Pack_mesh.out
+
+Save the band structure file (see below) for each 
+k-point sampling in a separate file.
+
+$ mv Al.bands Al.diagonal_number_in_the_Monkhorst_Pack_mesh.bands
+
+* Now, we are going to study the convergence 
+with respect the k-point sampling of:
+
+- the structural properties,
+- the energetic properties.
+
+In order to get this, edit all the output files,
+Al.diagonal_number_in_the_Monkhorst_Pack_mesh.out, and search for:
+
+- The converged relaxed structure:
+Those lines should look like something close to  
+
+outcoor: Relaxed atomic coordinates (scaled):
+    0.00000000    0.00000000    0.00000000   1       1  Al
+
+outcell: Unit cell vectors (Ang):
+        0.000000    2.108295    2.108295
+        2.108295    0.000000    2.108295
+        2.108295    2.108295    0.000000
+
+outcell: Cell vector modules (Ang)   :    2.981580    2.981580    2.981580
+outcell: Cell angles (23,13,12) (deg):     60.0000     60.0000     60.0000
+outcell: Cell volume (Ang**3)        :     18.7424
+
+- The Free Energy for the converged relaxed structure
+[we are interested in the Free Energy and not in the Kohn-Sham energy
+because we have introduced an Electronic Temperature and, in this case,
+the functional that must be minimized is the Free Energy.
+See the technical paper of Siesta,
+J. M. Soler et al., J. Phys.: Condens. Matter 14, 2745 (2002),
+page 2761, Eq. (59)].
+
+siesta: Program's energy decomposition (eV):
+siesta: Eions   =        88.830648
+siesta: Ena     =        22.933098
+siesta: Ekin    =        21.117956
+siesta: Enl     =         7.733159
+siesta: DEna    =         1.567599
+siesta: DUscf   =         0.037632
+siesta: DUext   =         0.000000
+siesta: Exc     =       -20.999449
+siesta: eta*DQ  =         0.000000
+siesta: Emadel  =         0.000000
+siesta: Emeta   =         0.000000
+siesta: Emolmec =         0.000000
+siesta: Ekinion =         0.000000
+siesta: Eharris =       -56.440653
+siesta: Etot    =       -56.440653
+siesta: FreeEng =       -56.441578    ---> We are interested in this number
+
+* Edit with your favorite text editor a file called, for instance,
+Al.convergencek.dat which should contain three columns:
+
+the first with the diagonal component of the Monkhorst-Pack mesh,
+the second with the cell vector module of one of the three lattice vector,
+and the third with the Free Energy:
+
+# Diagonal            Module of the first lattice vector       Free Energy
+# MP mesh                         Ang                               eV
+     4                         2.959837                         -56.406617
+     6                         2.977869                         -56.429728
+     8                         2.994786                         -56.439394
+    10                         2.987873                         -56.443370
+    12                         2.981853                         -56.443295
+    14                         2.978168                         -56.442584
+    16                         2.977970                         -56.441362
+    18                         2.981580                         -56.441578
+    20                         2.980470                         -56.442095
+    22                         2.982099                         -56.442299
+
+To compare with the lattice constant of the fcc lattice we have to 
+multiply the module of the first lattice vector by Sqrt(2).
+
+* Plot the cell vector module and the Free Energy as a function of
+the number of k-points 
+
+$ gnuplot
+gnuplot> plot "Al.convergencek.dat" using 1:2 with lines
+gnuplot> plot "Al.convergencek.dat" using 1:3 with lines
+
+* To produce a postscript file with one of the previous figures
+(for instance, for the convergence of the lattice vector with the number 
+of k-points)
+
+gnuplot> plot "Al.convergencek.dat" using 1:2 with lines
+gnuplot> set terminal postscript
+gnuplot> set output "Al.convergencek-latcon.ps"
+gnuplot> replot
+gnuplot> quit
+
+* To generate a pdf file from the previous postscript
+
+$ ps2pdf Al.convergencek-latcon.ps
+
+**************************************************************
+Convergence of the band structure with the number of k-points
+**************************************************************
+
+Now we are to study the convergence of the band structure with
+the number of k-points.
+
+* After a succesful run of the code, 
+Siesta produces a file, called Al.bands, containing the band structure
+along several lines in the Brilloin zone.
+Those lines are specified in the following tags of the input,
+
+#
+# Output (Band structure calculation)
+#
+
+BandLinesScale pi/a
+
+%block BandLines
+1   1.0000 1.0000 1.0000  L       # Begin at L
+20  0.0000 0.0000 0.0000  \Gamma  # 20 points from L to gamma
+25  2.0000 0.0000 0.0000  X       # 25 points from gamma to X
+30  2.0000 2.0000 2.0000  \Gamma  # 30 points from X to gamma
+%endblock BandLines
+
+To plot the band structure, you need to use the utility program
+gnubands.f, contained in the directory Util.
+
+First of all, you have to compile it (assuming the g95 compiler),
+
+$ g95 -o gnubands.x gnubands.f
+
+and then run
+
+$ gnubands.x <  Al.number_of_k_points.bands > Al.number_of_k_points.bands.dat
+
+You can plot the Al.number_of_k_points.bands.dat directly with gnuplot.
+
+$ gnuplot
+$ gnuplot> plot 'Al.bands.dat' with lines 
+
+***********************************************************************
+Convergence of the Density Of States (DOS) with the number of k-points
+***********************************************************************
+
+The Density Of States is computed in a two step process:
+
+First, we have to run a simulation with a sensible (converged) number
+of k-points and get the converged geometry and density matrix.
+
+Second, starting from the previously converged geometry and
+density matrix, we run a single SCF step with fixed geometry,
+but with many more k-points.
+This separate set of k-points, usually on a finer grid, can
+be generated using the %block PDOS.kgrid_Monkhorst_Pack.
+
+#
+# Output (Density Of States, DOS)
+#
+
+%block PDOS.kgrid_Monkhorst_Pack
+    30  0  0  0.5
+     0 30  0  0.5
+     0  0 30  0.5
+%endblock PDOS.kgrid_Monkhorst_Pack
+
+%block ProjectedDensityOfStates
+   -20.00  10.00  0.200  500  eV
+%endblock ProjectedDensityOfStates
+
+The DOS is very sensible to the number of k-points used to calculate it,
+and a smooth DOS usually require many k-point.
+Here, we are going to study this convergence.
+We assume that we have relaxed the structure with a (18 x 18 x 18)
+Monkhorst-Pack Mesh, and we want to compute the DOS.
+We have prepared this relaxed structure for you in the file
+Al_bulk_dos.fdf
+
+Run the code changing the number of diagonal component of the 
+Monkhorst-Pack mesh required to compute the Density Of States,
+from (4 x 4 x 4) to (18 x 18 x 18)
+
+$ siesta < Al_bulk_dos.fdf 
+
+Save each Al.DOS file with a different name
+
+$ mv Al.DOS Al.diagonal_number_in_the_PDOS_Monkhorst_Pack_mesh.DOS
+
+Plot the different Density Of States and study the convergence,
+from the peaky DOS with (4 x 4 x 4) to the smooth figure with (18 x 18 x 18)
+
+$ gnuplot
+$ gnuplot> plot "Al.444.DOS" using 1:2 with lines, "Al.181818.DOS" with lines
+
+Check how the DOS for Al looks like the standard DOS for a 
+3D free electron gas [it displays a functional form of the shape Sqrt(E)].
+
+
+
+

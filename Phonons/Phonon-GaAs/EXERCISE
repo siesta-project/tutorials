@@ -1,0 +1,17 @@
+The Phonon-GaAs directory
+contains the results of frozen Gamma-phonon calculation
+(after a precedent relaxation) for a GaAs cell.
+The calculated frequencies and eigenvectors are contaied in
+GaAs.bands
+and
+GaAs.vectors
+
+Exercise:
+
+1. using 'vib2xsf', create the .XSF and .AXSF files
+for the visualization of phonon modes. Choose a reasonable size
+of the visualization cell (noting the latice constant of 5.65 Ang).
+
+2. Verify that the three acoustic modes correspond to the crystal's 
+displacement as a whole, and the three (almost degenerate) optical modes 
+are a movement of all cations agains the anions.
