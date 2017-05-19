@@ -1,0 +1,5 @@
+%block ChemicalSpeciesLabel
+  1   8   O.PBE
+  2   1   H.PBE
+%endblock ChemicalSpeciesLabel
+

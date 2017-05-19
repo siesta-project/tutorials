@@ -1,0 +1,40 @@
+# Sample FDF input file for fcbuild.f
+# Pablo Ordejon,  August 98
+
+SystemName           si54
+SystemLabel          si54
+
+NumberOfAtoms        2
+LatticeConstant      5.43  Ang
+
+%block LatticeVectors
+0.0 0.5 0.5        
+0.5 0.0 0.5
+0.5 0.5 0.0
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat   ScaledCartesian
+
+%block AtomicCoordinatesAndAtomicSpecies
+ 0.125   0.125   0.125  1   28.086
+-0.125  -0.125  -0.125  1   28.086
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+SuperCell_1          1
+SuperCell_2          1
+SuperCell_3          1
+
+AtomicDispl          0.04  Bohr
+
+BandLinesScale       pi/a
+%block BandLines
+ 1  2.000  2.000  2.000  \Gamma
+15  2.000  0.000  0.000       X
+25  0.000  0.000  0.000  \Gamma
+20  1.000  1.000  1.000       L
+20  2.000  0.000  0.000       X
+15  2.000  1.000  0.000       W
+20  1.000  1.000  1.000       L
+
+%endblock BandLines
+

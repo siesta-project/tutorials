@@ -1,0 +1,30 @@
+# Standard parameters for ice convergence checks
+
+# Chemical species info
+NumberOfSpecies        2
+%block ChemicalSpeciesLabel
+  1   8  O
+  2   1  H  
+%endblock ChemicalSpeciesLabel
+
+# Exchange-correlation functional
+xc.functional          GGA
+xc.authors             PBE
+
+# Integration mesh cutoffs
+MeshCutoff           200.0 Ry       # Real-space mesh cutoff.
+kGridCutoff            5.0 Ang      # Reciprocal k-mesh cutoff
+
+# SCF options
+SolutionMethod        diagon        # OrderN or Diagon
+ElectronicTemperature 25 meV        # Temp. for Fermi smearing
+MaxSCFIterations      50            # Maximum number of SCF iter
+DM.MixingWeight       0.3           # New DM amount for next SCF cycle
+DM.Tolerance          1.d-4         # Tolerance in maximum difference
+DM.NumberPulay        3
+DM.UseSaveDM          no
+
+# Fixed-geometry calculation
+MD.TypeOfRun          CG
+MD.NumCGsteps         0
+

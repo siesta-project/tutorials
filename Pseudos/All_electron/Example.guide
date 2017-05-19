@@ -1,0 +1,27 @@
+Guide to all-electron calculation examples:
+
+Si: The ground state and the Si+3 ion  (unpolarized calculations).
+    Note the insensitivity of the core electrons to the ionization of
+    three valence electrons. The file si.series.ae.inp contains a series
+    of jobs to study several excited states of the atom.
+
+N:  We know that Hund's rule should be obeyed for orbitals not completely 
+    full. Use the n_hund.ae.inp file to test whether that is so. In the first
+    calculation the effect of the spin is neglected. The second deals with
+    spin polarization effects, but the occupation of the 2p level is "wrong":
+    there are 2 electrons "down" and one "up". The third calculation should
+    correspond to the true ground state, with all the 2p electrons with their
+    spins aligned.
+
+Fe: Here is another example of the importance of spin effects in
+    certain cases.  Iron has 6 electrons in the 3d orbital. The proper
+    spin polarization lowers the energy.
+
+Pb: Lead is a heavy atom, and most of the electrons have velocities which are
+    a significant fraction of the speed of light. A relativistic calculation
+    should then be essential. The Dirac equation is solved, and spin effects
+    appear naturally through the j quantum number.
+
+Ba: Its core is quite large, and it is customary to consider the 5s and 5p
+    as "semicore states", putting them in the valence complex.
+

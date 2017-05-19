@@ -1,0 +1,27 @@
+Example basis optimization for the water molecule.
+Global soft-confinement parameters.
+Optimization of the split-norm parameters.
+
+TEMPLATE and VARS define the optimization problem. Be careful to match
+the names that you use in the TEMPLATE (without leading '$') with
+those in the VARS file. DO NOT leave any line blank in VARS (not even
+at the end).
+
+Look in PARAMS to set the appropriate values of the parameters which
+influence the Simplex process (it uses a two-level approach, with
+amoeba-like iterations followed by periodic restarts with new
+simplex hyper-tetrahedra of progressively smaller sizes. The stopping
+criteria are a fractional energy tolerance (compared to the differences
+between the highest and lowest energies of the vertices) and a minimum
+fractional size for the hyper-tetrahedron.
+
+The run_script.sh script simply drives Siesta to perform the calculations.
+You need at least siesta-2.1.46.
+
+To run the optimization, type
+
+  simplex 
+
+from this directory.
+
+(You might want to put all this in a queuing-system script...)

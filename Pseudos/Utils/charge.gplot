@@ -1,0 +1,16 @@
+there_is_ps=`test -f PSCHARGE && echo 1 || echo 0`
+there_is_pt=`test -f PTCHARGE && echo 1 || echo 0`
+#
+plot [0:3] 'AECHARGE' using 1:4 title "AE core charge" with lines , \
+     'AECHARGE' using 1:($2+$3-$4) title "AE valence charge" with lines
+if (there_is_ps == 1) \
+replot  'PSCHARGE' using 1:4 title "PS core charge" with lines,\
+        'PSCHARGE' using 1:($2+$3) title "PS valence charge" with lines
+#
+if (there_is_pt == 1) \
+replot  'PTCHARGE' using 1:4 title "PT core charge" with lines,\
+        'PTCHARGE' using 1:($2+$3) title "PT valence charge" with lines
+
+
+
+

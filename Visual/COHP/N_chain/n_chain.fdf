@@ -1,0 +1,35 @@
+SystemName          N chain
+SystemLabel         n_chain
+NumberOfAtoms       1
+NumberOfSpecies     1
+
+MeshCutoff  50 Ry
+
+%block ChemicalSpeciesLabel
+ 1  7  N
+%endblock ChemicalSpeciesLabel
+
+PAO.BasisSize SZ
+
+LatticeConstant 1.0 Ang
+%block LatticeVectors
+8.0 0.0 0.0
+0.0 8.0 0.0
+0.0 0.0 2.0
+%endblock LatticeVectors
+
+%block kgrid_Monkhorst_Pack
+1 0 0  0.0
+0 1 0  0.0
+0 0 50 0.0
+%endblock kgrid_Monkhorst_Pack 
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+ 2.000  2.000  1.000  1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+COOP.Write T
+%block Projected-density-of-states
+-20.00 4.00 0.500 500 eV
+%endblock Projected-density-of-states

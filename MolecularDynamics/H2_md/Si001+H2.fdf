@@ -1,0 +1,125 @@
+
+SystemName      Si001 + H2
+SystemLabel     Si001+H2
+
+# Species and atoms
+
+NumberOfSpecies        2
+NumberOfAtoms          38
+
+%block ChemicalSpeciesLabel
+  1   1  H 
+  2  14  Si 
+%endblock ChemicalSpeciesLabel
+
+%block AtomicMass
+ 1  2.013
+%endblock AtomicMass
+
+# General Variables
+
+MeshCutoff           50. Ry        # Mesh cutoff. real space mes
+XC.functional GGA
+XC.Authors  PBE
+
+Spinpolarized .false.
+
+
+SolutionMethod              diagon        # OrderN or Diagon
+
+# SCF options
+
+MaxSCFIterations      300           # Maximum number of SCF iter
+DM.MixingWeight       0.25           # New DM amount for next SCF cycle
+DM.Tolerance          1.d-4         # Tolerance in maximum difference
+                                    # between input and output DM
+DM.UseSaveDM          true          # to use continuation files
+DM.MixSCF1            true
+DM.NumberPulay         4
+
+
+# MD options
+
+MD.TypeofRun   Anneal
+MD.InitialTimeStep  1
+MD.FinalTimeStep   100
+MD.LengthTimeStep  2.0 fs
+MD.AnnealOption   Temperature
+MD.TargetTemperature  300.0 K
+MD.TauRelax  50.0 fs
+
+MD.UseSaveXV   .true.
+WriteMDhistory    .true.
+
+%block GeometryConstraints
+        position  from   19  to  38
+%endblock GeometryConstraints
+
+
+# Atomic coordinates
+
+
+LatticeConstant         1.91587 Ang
+
+
+%block LatticeVectors
+ 4.0     0.0     0.0
+ 0.0     4.0     0.0 
+ 0.0     0.0     8.0
+%endblock LatticeVectors
+
+
+
+AtomicCoordinatesFormat    Bohr
+
+%block AtomicCoordinatesAndAtomicSpecies
+      11.449096152       3.620202345      -8.313070747        1  H 
+      13.106542549       3.621016654      -8.325506604        1  H 
+       9.548438948       3.618923362     -16.541210979        2  Si
+      13.817205862       3.620847822     -15.309180773        2  Si
+       9.528270466      10.866602791     -16.580589107        2  Si
+      13.790382977      10.846154693     -15.308839631        2  Si
+       7.406101538      -0.000108928     -18.056395328        2  Si
+      14.268039181      -0.000697920     -17.990731589        2  Si
+       7.400674278       7.240493241     -18.092233975        2  Si
+      14.268278001       7.238006697     -17.983063045        2  Si
+       3.571414424      -0.000007639     -20.399498936        2  Si
+      10.883283639      -0.000633692     -20.931428915        2  Si
+       3.573258284       7.243442738     -20.425789208        2  Si
+      10.889439123       7.235737400     -20.912814093        2  Si
+       3.622183349       3.623006627     -23.077357499        2  Si
+      10.864199345       3.618406638     -23.384919566        2  Si
+       3.620283904      10.861372263     -23.080457914        2  Si
+      10.865877628      10.862592010     -23.385099171        2  Si
+       7.238876595       3.619448691     -25.736778053        2  Si
+      14.477753190       3.619448691     -25.736778053        2  Si
+       7.238012990      10.856486582     -25.737501819        2  Si
+      14.482369793      10.860400206     -25.737284500        2  Si
+       7.238876595       0.000000000     -28.310480236        2  Si
+      14.477753190       0.000000000     -28.310480236        2  Si
+       7.236705299       7.237017104     -28.310807159        2  Si
+      14.474107907       7.237017104     -28.310778813        2  Si
+       3.619448691       0.000000000     -30.884157853        2  Si
+      10.858325286       0.000000000     -30.884157853        2  Si
+       3.619424125       7.237026553     -30.883126062        2  Si
+      10.866139307       7.237026553     -30.883137400        2  Si
+       3.619535619       2.027521982     -32.725963147        1  H 
+       3.619537508      -2.027482298     -32.725980154        1  H 
+      10.858183557       2.026529876     -32.729474259        1  H 
+      10.858183557      -2.026503419     -32.729461031        1  H 
+       3.619509162       9.284967034     -32.733493708        1  H 
+       3.621468809       5.196956784     -32.733510716        1  H 
+      10.866137417       9.275867999     -32.720738052        1  H 
+      10.862221903       5.200167430     -32.736386880        1  H 
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+# Basis set
+
+PAO.BasisType    split
+PAO.BasisSize    SZ
+PAO.EnergyShift  0.25 eV
+
+PAO.NewSplitCode
+PAO.FixSplitTable
+

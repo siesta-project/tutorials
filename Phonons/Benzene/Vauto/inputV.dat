@@ -1,0 +1,7 @@
+C6H6.MD    # file with velocities
+Vauto.dat  # output file
+1          # initial time
+950        # final time
+900        # autocorrelation time
+0.000000000000003 # time step in s
+12   # number of atoms

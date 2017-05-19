@@ -1,0 +1,12 @@
+Please make sure that your files are readable/executable by the group,
+
+ie, use at least "chmod 640" for normal files,
+                 "chmod 750" for executable scripts
+                 "chmod 750" for directories
+
+Before the start of the Tutorial sessions, make sure that your directory
+is "clean", i.e., no output files, etc.
+
+If you re-arrange the directory structure, make sure to update the
+symbols in Config/tutorial.bashrc
+

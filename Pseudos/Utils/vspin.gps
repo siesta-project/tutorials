@@ -1,0 +1,25 @@
+set terminal postscript enhanced color
+set output "vspin.ps"
+#
+there_is_ps=`test -f PSCHARGE && echo 1 || echo 0`
+there_is_pt=`test -f PTCHARGE && echo 1 || echo 0`
+#
+set data style lines
+#
+# Note larger range
+#
+plot [0:5]   'AECHARGE' using 1:($2+$2-$4) title "AE vup(x2)",\
+         'AECHARGE' using 1:($3+$3-$4) title "AE vdown(x2)"
+#
+if (there_is_ps == 1) \
+replot   'PSCHARGE' using 1:($2+$2) title "PS vup(x2)",\
+         'PSCHARGE' using 1:($3+$3) title "PS vdown(x2)"
+#
+if (there_is_pt == 1) \
+replot   'PTCHARGE' using 1:($2+$2) title "PT vup(x2)", \
+         'PTCHARGE' using 1:($3+$3) title "PT vdown(x2)"
+#
+quit
+
+
+

@@ -1,0 +1,117 @@
+#
+# General System descriptors
+#
+
+
+SystemName Magnesium Oxide Crystal   # Descriptive name of the system
+SystemLabel            MgO           # Short name for naming files
+
+NumberOfAtoms           4            # Number of atoms
+NumberOfSpecies         2            # Number of species
+
+%block Chemical_Species_Label
+  1   12   Mg
+  2    8    O
+%endblock Chemical_Species_Label
+
+#
+# Basis definition
+#
+
+%block PS.lmax                       # Maximum angular momentum of KB proyector
+   Mg  3
+    O  3
+%endblock PS.lmax
+
+PAO.BasisSize DZP
+
+#
+# Lattice, coordinates, k-sampling
+#
+
+LatticeConstant     1.00 Ang
+AtomicCoordinatesFormat Fractional # Format for coordinates
+                                   #   - NotScaledCartesianBohr
+                                   #   - NotScaledCartesianAng
+                                   #   - ScaledCartesian
+                                   #   - ScaledByLatticeVectors
+%block LatticeVectors
+  2.977  0.000  0.000
+  0.000  2.977  0.000
+  0.000  0.000  4.210
+%endblock LatticeVectors
+
+%block AtomicCoordinatesAndAtomicSpecies
+  0.000  0.000  0.000   1
+  0.500  0.500  0.500   1
+  0.500  0.500  0.000   2
+  0.000  0.000  0.500   2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block AtomicCoordinatesOrigin
+   0.0   0.0   $AtomicCoordinatesOriginz
+%endblock AtomicCoordinatesOrigin
+
+%block kgrid_Monkhorst_Pack
+    4  0  0  0.5
+    0  4  0  0.5
+    0  0  4  0.5
+%endblock kgrid_Monkhorst_Pack
+
+#
+# DFT, Grid, SCF
+#
+
+XC.functional           LDA         # Exchange-correlation functional type
+XC.authors              CA          # Particular parametrization of xc func
+SpinPolarized           .false.     # Spin unpolarized calculation
+MeshCutoff              200 Ry      # Equivalent planewave cutoff for the grid
+FilterTol               0.018  Ry
+MaxSCFIterations        200         # Maximum number of SCF iterations per step
+DM.MixingWeight         0.200       # New DM amount for next SCF cycle
+DM.Tolerance            1.d-4       # Tolerance in maximum difference
+                                    # between input and output DM
+DM.NumberPulay          3           # Number of SCF steps between pulay mixing
+
+#
+# Eigenvalue problem: order-N or diagonalization
+#
+
+SolutionMethod          diagon      # OrderN or Diagon
+ElectronicTemperature   0 K         # Temp. for Fermi smearing
+
+#
+# Output options
+#
+
+WriteCoorInitial        .true.
+WriteCoorStep           .true.
+WriteForces             .true.
+WriteKpoints            .false.
+WriteEigenvalues        .false.
+WriteKbands             .false.
+WriteBands              .false.
+WriteMullikenPop        1            # Write Mulliken Population Analysis
+                                     #   - 0 = None
+                                     #   - 1 = atomic and orbital charges
+                                     #   - 2 = 1 + atomic overlap population
+                                     #   - 3 = 2 + orbital overlap population
+WriteCoorXmol           .false.
+WriteMDCoorXmol         .false.
+WriteMDhistory          .false.
+WriteCoorXmol           .false.
+
+#
+# Options for saving/reading information
+#
+
+DM.UseSaveDM            .true.       # Use DM Continuation files
+MD.UseSaveXV            .false.      # Use stored positions and velocities
+MD.UseSaveCG            .false.      # Use stored positions and velocities
+SaveRho                 .false.      # Write valence pseudocharge at the mesh
+SaveDeltaRho            .false.      # Write RHOscf-RHOatm at the mesh
+SaveElectrostaticPotential .false.   # Write the total elect. pot. at the mesh
+SaveTotalPotential      .false.      # Write the total pot. at the mesh
+WriteSiestaDim          .false.      # Write minimum dim to siesta.h and stop
+WriteDenchar            .false.      # Write information for DENCHAR
+

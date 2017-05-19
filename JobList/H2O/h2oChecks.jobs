@@ -1,0 +1,50 @@
+# Convergence tests for water molecule
+
+# Leave '$jobName' untouched. Do NOT substitute it by an actual name.
+%queue siesta < $jobName.fdf > $jobName.out
+
+%result energy maxForce
+
+%list Pseudo
+  %list XC
+    defaults.fdf; pseudoLDA.fdf
+    defaults.fdf; pseudoGGA.fdf
+    defaults.fdf; pseudoVDW.fdf
+  %endlist XC
+  %list Hardness
+    defaults.fdf; pseudoHard.fdf
+    defaults.fdf
+    defaults.fdf; pseudoSoft.fdf
+  %endlist Hardness
+%endlist Pseudo
+
+%list BasisSet
+    defaults.fdf; dzp.fdf
+    defaults.fdf; tzp.fdf
+    defaults.fdf; qzp.fdf
+%endlist BasisSet
+
+%list XC
+    defaults.fdf; XC.Functional LDA; XC.Authors PW92
+    defaults.fdf; XC.Functional GGA; XC.Authors PBE
+    defaults.fdf; XC.Functional VDW; XC.Authors DRSLL
+%endlist XC
+
+%list MeshCutoff
+    defaults.fdf; MeshCutoff 100 Ry      
+    defaults.fdf; MeshCutoff 200 Ry      
+    defaults.fdf; MeshCutoff 400 Ry      
+%endlist MeshCutoff
+
+%list DMtol
+    defaults.fdf; DM.Tolerance 1.d-3
+    defaults.fdf; DM.Tolerance 1.d-4
+    defaults.fdf; DM.Tolerance 1.d-5
+%endlist DMtol
+
+%list CellSize
+    defaults.fdf; LatticeConstant  5 Ang
+    defaults.fdf; LatticeConstant 10 Ang
+    defaults.fdf; LatticeConstant 20 Ang
+%endlist CellSize
+

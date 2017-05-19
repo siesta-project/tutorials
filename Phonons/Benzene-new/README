@@ -1,0 +1,214 @@
+*******************************************************************************
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS (MESH CUTOFF, ETC.) 
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT WARRANTY THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+THE RESULTS PRESENTED BELOW HAVE BEEN OBTAINED USING:
+Version of Siesta: trunk-462 (serial mode)
+Compiler: g95 (version 0.92)
+Compilation flags: FFLAGS= -O2 -Wall
+                   FPPFLAGS= -DGRID_DP $(FPPFLAGS_CDF) $(FPPFLAGS_MPI)
+Double precision for the grid variables enabled.
+No linear algebra libraries used. 
+RESULTS MIGHT DIFFER SLIGHTLY DEPENDING ON THE PLATFORM, COMPILER,
+AND COMPILATION FLAGS
+*******************************************************************************
+
+All the lines after the $ should be written by the user in the command line.
+
+* The goal of this exercise is to compute the vibrational frequency of
+  a molecule (benzene).
+
+* Before running the calculation to compute the vibrational frequencies,
+  the first step is to relax the geometrical structure of the system under
+  study. 
+
+  So, to start with, we run a conjugate gradient minimization to 
+  relax the atomic positions. 
+  The input file has been prepared for you in the file benzene.relax.fdf.
+  See how the structure of the benzene molecule has been introduced
+  in the Z-matrix format (especification of internal variables,
+  such as distances, angles, and torsional angles).
+  This allows the minimization including some constraints in the symmetry
+  in a trivial way.
+
+$ siesta < benzene.relax.fdf > benzene.relax.out
+
+* Edit the file benzene.relax.out and search for the relaxed structure
+
+outcoor: Relaxed atomic coordinates (Ang):
+    2.50762421    5.00000000    0.00000000   2       1  C
+    3.20542660    6.20862920   -0.00000000   2       2  C
+    4.60103140    6.20862920   -0.00000000   2       3  C
+    5.29883379    5.00000000   -0.00000000   2       4  C
+    4.60103140    3.79137080   -0.00000000   2       5  C
+    3.20542660    3.79137080   -0.00000000   2       6  C
+    1.40124960    5.00000000   -0.00000000   1       7  H
+    2.65223930    7.16677772   -0.00000000   1       8  H
+    5.15421870    7.16677772   -0.00000000   1       9  H
+    6.40520840    5.00000000   -0.00000000   1      10  H
+    5.15421870    2.83322228   -0.00000000   1      11  H
+    2.65223930    2.83322228   -0.00000000   1      12  H
+
+zmatrix: Z-matrix coordinates: (Ang ; deg )
+zmatrix: (Fractional coordinates have been converted to cartesian)
+molecule    1 (    12 atoms)
+      2.50762421      5.00000000      0.00000000
+      1.39560479     90.00000000     60.00000000
+      1.39560479    120.00000000     90.00000000
+      1.39560479    120.00000000      0.00000000
+      1.39560479    120.00000000      0.00000000
+      1.39560479    120.00000000      0.00000000
+      1.10637461    120.00000000    180.00000000
+      1.10637461    120.00000000      0.00000000
+      1.10637461    120.00000000      0.00000000
+      1.10637461    120.00000000      0.00000000
+      1.10637461    120.00000000      0.00000000
+      1.10637461    120.00000000      0.00000000
+
+------------------------------------------------------------------------------
+HOW TO COMPUTE THE FORCE CONSTANT MATRIX IN REAL SPACE
+------------------------------------------------------------------------------
+
+*  We prepare an input file, called benzene.ifc.fdf
+   to run Siesta and compute the interatomic force
+   constant in real space. 
+
+   Remember that, for a molecule, we do not require to build any supercell
+  
+   For this, just copy the relaxed coordinates and unit cell from
+   the benzene.XV generated after the relaxation to the 
+   AtomicCoordinatesAndAtomicSpecies block. 
+   Do not forget to include the atomic masses after the coordinates 
+   of each atom.
+  
+   Define also the unit cell lattice vectors.
+
+   We have prepared that file for you. It is name is benzene.ifc.fdf
+   Take a look to:
+
+LatticeConstant     1.0 Bohr
+%block LatticeVectors
+   20.932528150       0.000000000       0.000000000
+    0.000000000      19.551203193       0.000000000
+    0.000000000       0.000000000      10.714661844
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat NotScaledCartesianBohr
+%block AtomicCoordinatesAndAtomicSpecies
+    4.738724869       9.448634389       0.000000000     2    12.0107
+    6.057380810      11.732613477      -0.000000000     2    12.0107
+    8.694692693      11.732613477      -0.000000000     2    12.0107
+   10.013348634       9.448634389      -0.000000000     2    12.0107
+    8.694692693       7.164655301      -0.000000000     2    12.0107
+    6.057380810       7.164655301      -0.000000000     2    12.0107
+    2.647979028       9.448634389      -0.000000000     1     1.00794
+    5.012007889      13.543252488      -0.000000000     1     1.00794
+    9.740065613      13.543252488      -0.000000000     1     1.00794
+   12.104094475       9.448634389      -0.000000000     1     1.00794
+    9.740065613       5.354016289      -0.000000000     1     1.00794
+    5.012007889       5.354016289      -0.000000000     1     1.00794
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+*  To compute the interatomic force constant in real space, we have
+   to run Siesta
+
+$ siesta < benzene.ifc.fdf > benzene.ifc.out 
+
+*  The interatomic force constant matrix in real space are stored
+   in a file called SystemLabel.FC
+ 
+   Again, the explanation of the different entries of this file can
+   be found in the theoretical lectures.
+
+------------------------------------------------------------------------------
+HOW TO COMPUTE THE DYNAMICAL MATRIX AT THE GAMMA-POINT,
+AND THE PHONON EIGENFREQUENCIES AND EIGENVECTORS
+------------------------------------------------------------------------------
+
+*  Once the interatomic force constants in real space have been computed,
+   a discrete Fourier transform is performed to compute the dynamical matrix
+   in reciprocal space. 
+   Then, the dynamical matrix is diagonalized and its eigenfrequencies and
+   eigenvectors are computed.
+   This is done using the vibrator code.
+
+   In the case of a molecule, only the Gamma point is relevant.
+   It is specified in the same way as to compute the electronic
+   band structure, in the same file benzene.ifc.fdf
+
+Eigenvectors    .true.        # Compute both phonon eigenvalues and eigenvectors
+BandLinesScale  pi/a
+%block BandLines
+1   0.0   0.0   0.0   \Gamma  # Only the Gamma point (enough for a molecule)
+%endblock BandLines
+
+   To compute the vibrational frequencies
+ 
+   
+$ Your_siesta_directory/Util/Vibra/Src/vibrator < benzene.ifc.fdf > vibrator.out
+
+*   The output of this code is:
+
+    SystemLabel.bands: with the different mode frequencies (in cm^-1).
+    They are stored in the same way as the electronic band structure.
+
+    SystemLabel.vectors: with the eigenmodes at Gamma
+    (the format is self-explained).
+
+------------------------------------------------------------------------------
+HOW TO VISUALIZE THE PHONONS
+------------------------------------------------------------------------------
+
+*   After getting the .vectors file (calculated by vibrator) 
+    and the .XV file (computed in Siesta),
+    run the vib2xsf program.
+
+    You have to answer a few question on the fly,
+    regarding the name of the files where the .vectors are stored,
+    the units to be used to introduce the lattice vectors (Bohrs or Angstroms),
+    the zero of coordinates,
+    the unit cell lattice vectors,
+    the first mode to visualize,
+    the last mode to visualize,
+    the amplitude of the modes to be visualized, and
+    the number of steps in the movie.
+
+    You can play a little bit, but to save time we have prepared
+    all the answers in the file vib2xsf for you.
+
+    Just run
+
+$ vib2xsf < vib2xsf.dat
+
+    This will produce two files per mode:
+
+    .XSF file: contains a static structures (as in .XV), 
+    with arrors added to each atom to indicate displacement pattern.
+
+    .AXSF file: contains the animation of a phonon, for a (user-chosen) 
+    amplitude and number of steps.
+
+    They can be visualized using XCRYSDEN
+
+$ xcrysden
+
+    Select "File"
+    Open Structure
+    Open AXSF (Animation XCrySDen Structure File)
+    
+    And then select you file and type OK.
+
+    The same can be done to visualize the XSF file, but just chosing
+    Select "File"
+    Open Structure
+    Open XSF file (XCrySDen Structure File)
+    
+    
+
+

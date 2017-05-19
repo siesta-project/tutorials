@@ -1,0 +1,21 @@
+You shoud first run siesta with C6H6.fdf as input to find the relaxed geometry
+(there will be errors in the frequencies if you start from a non-relaxed
+geometry).
+
+We will assume that you have done this first step, and that the relaxed coordinates
+are in relax-system.fdf. Since this system is a molecule, we do not need to
+run fcbuild to generate a supercell. When run with file ForceConstants.fdf as input,
+Siesta will generate a .FC file with the force constants. (Note that ForceConstants.fdf
+"%includes" relax-system.fdf.)  This run will take quite a long time on a normal computer,
+so we have provided the file C6H6.FC.prebuilt for you.
+
+Finally, we need to run "vibra" with vibra.fdf as input to compute the vibration
+frequencies. Note that only the Gamma point is specified in the "bands" section.
+If you plot the "dispersion" you will see only a column of points. Note the huge
+"gap". Where does it come from?
+
+
+(If you use the pre-built FC file, remember to make a copy called C6H6.FC before running
+vibra.)
+
+

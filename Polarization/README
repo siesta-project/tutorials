@@ -1,0 +1,142 @@
+
+
+In this exercise you will calculate the macroscopic polarization
+in a polar material using the so-called Berry phase approach.
+We will obtain the behavior of the polarization 
+as a function of the atomic displacements.
+With this information you can calculate the so-called dynamical
+or Born charges that characterize the interaction between a
+macroscopic electric field and the elastic deformations of the 
+material. Experimentally the dynamical charges can easily 
+be proved by measuring the LO-TO splitting. This is a splitting 
+between vibrational modes (difference of their frequencies)
+that, in principle, could be degenerate
+due to the symmetry of the crystal when q-->0 (q being the
+wavevector of the vibration). However, when long range electrostatic
+forces are introduced these modes behave in a different way 
+when q-->0. LO modes produce accumulations of charge along
+the q direction and, for 3-D crystals, this translates
+into a macroscopic electric field when q-->0. In contrast TO modes
+are not charged and not affect for the long range electrostatic
+part of the dynamical matrix. The LO-TO splitting is proportional
+to the Born or dynamical effective charges and can be extremely
+large for ferroelectric materials. 
+
+Important note: These calculations only make sense for insulators!!!!!
+
+POLARIZATION AS A FUNTION OF THE BOND LENGHT IN c-BN
+
+Go to directory 
+'c-BN.pol_vs_bond_elongation' ,
+you will find there two SIESTA input files
+called 'c-BN.init.fdf' and 'c-BN.elongated.fdf'. 
+
+Edit file 'c-BN.init.fdf'. It contains  
+the information to produce a calculation for c-BN. At the
+end of the file you will notice the presence of a peculiar
+block:
+
+%block PolarizationGrids
+10  4   4
+4   10  4
+4   4   10
+%endblock PolarizationGrids
+
+This block contains the information about the k-space grids
+that will be used in order to compute the macroscopic polarization 
+using the geometric Berry phase approach 
+(R.D. King-Smith and D. Vanderbilt, PRB 47, 1651 (1993)).
+Only if this block is present, the calculation of the macroscopic
+polarization will be performed.
+In this approach, to compute the polarization along a given
+direction it is necessary to perform: i) a 1-D integral 
+in k-space along the chosen direction and ii) a 2-D integration
+of the result of the previous integral within the plane 
+perpendicular (also in k-space) to the chosen direcction.
+the block 'PolarizationGrids' specifies the k-space grids used
+perform these operation.
+Each line in block 'PolarizationGrids' corresponds to a 
+grid used to calculate the polarization along the 
+a given lattice vectors: the first row specifies the grid that
+will be used to calculate the polarization along the direction of the
+first lattice vector, the second row will be used for the calculation
+along the direction of the second lattice vector, and the third
+row for the third lattice vector.  The numbers in the diagonal of the
+matrix specify the number of points to be used in the one dimensional
+line integrals along the different directions. The other numbers
+specify the mesh used in the surface integrals.  
+If the number of point in one of the grids is zero, 
+the calculation will not be performed for this
+particular direction.
+
+You can play with the numbers in this block to check 
+for the convergence of the polarization as a function
+of the fineness of the grid.
+
+Notice, however, that the only the changes in polarization are
+physically relevant. The file 'c-BN.elongated.fdf' contains the 
+input for a c-BN system with one elongated BN bond. As a consequence
+the system has lost its perfect cubic symmetry and will develop
+a polarization along the direction parallel to the elongated
+bond. 
+
+You should calculate the behavior of a polarization as a function
+of this distorsion. An interesting aspect is that the calculated 
+curve might not be smooth. This is a consequence ill-definition
+of the electric polarization. The polarization per unit cell
+can only be defined modulo a quantum of polarization: 2eR, 
+being e the electron charge and R and arbitrary vector of the
+Bravais lattice. Once this effect is taken into account
+you should obtain a smooth curve. 
+
+A question you should answer:
+we said that "only" the changes of polarization make sense,
+therefore,  what is the meaning of this curve? 
+where should we set the zero of this curve?
+
+CALCULATE DYNAMICAL CHARGES FOR c-BN
+
+If you apply small enough displacements you can calculate 
+the Born or dynamical charges.
+
+The Born charges are tensors Z_xy defined as:
+
+Z(a)_xy =   dP_x/dy_a
+
+where dP_x is the change in the polarization along the x direction
+when the atom a is displaced by dy along the y direction.
+For a cubic crystal, like the c-BN for which you will perform
+the calculations, Z(a)_xy becomes a scalar Z(a). 
+
+You should check that this is indeed the case performing calculation
+of the Z(N) and Z(B) along different direction.
+
+Furthermore, the dynamical charge obey the so-called acoustic sum-rule:
+the sum of the dynamical charges for all the atoms in the cell should be
+zero. In our case this means that Z(N)=-Z(B).
+You should check to what extent this is true in our calculations, 
+and how the fulfillment of this rule
+depends on the fineness of the utilized k-space grids.
+
+
+BORN CHARGES FOR h-BN
+
+Hexagonal BN is layered material. Therefore, 'in plane' and
+'out of plane' dynamical charges might differ. Directories
+'h-BN.Z_parallel' and  'h-BN.Z_perpendicular' contain input files
+to perform these calculations. 
+
+BORN CHARGES FOR h-BN VERSUS LAYER-LAYER DISTANCE.
+
+The distance between different layers in h-BN can influence
+the values of the dynamical charges, particularly for out 
+of plane movements. Check this dependence performing a calculation
+for a larger value of the c/a ratio.
+
+
+
+ 
+  
+
+
+

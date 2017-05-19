@@ -1,0 +1,4 @@
+Computation of the velocity autocorrelation function from a Molecular
+Dynamics run on benzene. From this function one could get, via a 
+Fourier transform, an estimation of the vibration frequencies of
+the molecule.

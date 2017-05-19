@@ -1,0 +1,15 @@
+#
+# Driver for PS analysis
+# Note the very kludgeish mechanism to find out what is available
+# Gnuplot could be better in its interface to the OS...
+#
+there_is_s=`test -f PSPOTR0 && echo 1 || echo 0`
+there_is_p=`test -f PSPOTR1 && echo 1 || echo 0`
+there_is_d=`test -f PSPOTR2 && echo 1 || echo 0`
+there_is_f=`test -f PSPOTR3 && echo 1 || echo 0`
+#
+if (there_is_s == 1) call "subps.gplot" "0"
+if (there_is_p == 1) set terminal x11 1 ; call "subps.gplot" "1"
+if (there_is_d == 1) set terminal x11 2 ; call "subps.gplot" "2"
+if (there_is_f == 1) set terminal x11 3 ; call "subps.gplot" "3"
+#

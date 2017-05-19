@@ -1,0 +1,50 @@
+SystemName          Cluster of 4 water molecules
+SystemLabel         h2o_4_guess
+NumberOfAtoms       12
+NumberOfSpecies     2
+
+MeshCutoff 175.0 Ry
+
+%block ChemicalSpeciesLabel
+ 1  8  O      # Species index, atomic number, species label
+ 2  1  H
+%endblock ChemicalSpeciesLabel
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+       0.267555    0.399194   -1.034502  1
+      -0.134459    1.227539   -0.520959  2
+       0.516908    0.687223   -1.935898  2
+       1.968086   -0.106466    0.712888  1
+       2.226624   -1.048138    0.748577  2
+       1.322087    0.027792   -0.109801  2
+      -0.620211    2.146331    0.494296  1
+      -0.486524    3.107654    0.379485  2
+      -0.101512    1.848008    1.366033  2
+       0.729591    1.250286    2.393755  1
+       1.297316    0.585583    1.804706  2
+       0.224513    0.714034    3.038947  2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+SolutionMethod OrderN
+
+ON.RcLWF   2.0 Ang
+
+#---------------------- Just a guess
+ON.Eta     -4.0 eV
+#----------------------
+
+ON.etol    1.0d-8 
+
+
+DM.NumberPulay  4
+DM.MixingWeight  0.30
+
+UseSaveData F
+
+PAO.BasisSize DZP
+PAO.EnergyShift 0.05 eV
+
+MD.TypeOfRun   CG
+MD.NumCGSteps  0
+

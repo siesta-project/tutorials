@@ -1,0 +1,7 @@
+
+In this example you are going to study how the properties of
+bulk silicon depend on the range of the second zeta orbitals.
+Modify the split norm parameter and study how the orbitals
+and the bulk parameters change. Find the splitnorm which provides
+the best parameters of the bulk.
+

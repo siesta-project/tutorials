@@ -1,0 +1,31 @@
+SystemName          Water molecule
+SystemLabel         h2o-10meV
+
+NumberOfAtoms       3
+NumberOfSpecies     2
+
+%block ChemicalSpeciesLabel
+ 1  8  O      # Species index, atomic number, species label
+ 2  1  H
+%endblock ChemicalSpeciesLabel
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+       0.000000   -0.007702   -0.000001  1
+       0.776070    0.590459    0.000000  2
+      -0.776070    0.590459    0.000000  2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+MeshCutoff  175.0 Ry
+
+PAO.BasisSize DZP
+PAO.EnergyShift  400.0 meV
+PAO.Splitnorm  0.15
+
+MD.TypeOfRun   CG
+MD.NumCGSteps  100
+MD.MaxForTol   0.04 eV/Ang
+
+DM.UseSaveDM  Y
+DM.NumberPulay  4
+DM.MixingWeight  0.50

@@ -1,0 +1,32 @@
+SystemName      Bulk Silicon
+SystemLabel     Si
+NumberOfSpecies	        1
+NumberOfAtoms           2
+%block ChemicalSpeciesLabel
+  1  14  Si
+%endblock ChemicalSpeciesLabel
+LatticeConstant      5.41119733025 Ang
+%block LatticeVectors
+  0.00  0.50  0.50
+  0.50  0.00  0.50
+  0.50  0.50  0.00
+%endblock LatticeVectors
+AtomicCoordinatesFormat          ScaledByLatticeVectors
+%block AtomicCoordinatesAndAtomicSpecies
+  0.00  0.00  0.00        1
+  0.25  0.25  0.25        1
+%endblock AtomicCoordinatesAndAtomicSpecies
+%block kgrid_Monkhorst_Pack
+   4  0  0  0.5
+   0  4  0  0.5
+   0  0  4  0.5
+%endblock kgrid_Monkhorst_Pack
+BandLinesScale       pi/a
+%block BandLines
+1   1.5   1.5   0.0   K             # Begin at K
+38  0.0   0.0   0.0   \Gamma        # 38 points from K to Gamma
+36  0.0   2.0   0.0   X             # 36 points from Gamma to X
+18  1.0   2.0   0.0   W             # 18 points from X to W
+26  1.0   1.0   1.0   L             # 26 points from W to L
+31  0.0   0.0   0.0   \Gamma        # 31 points from L to Gamma
+%endblock BandLines

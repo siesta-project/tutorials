@@ -1,0 +1,22 @@
+
+In this example the DZP basis of silicon has been optimized using the simplex
+procedure. The fdf block is:
+
+%Block PAO.Basis
+Si   3     -0.05166
+ n=3   0   2   E    93.20134     4.27216
+     5.10412     4.04111
+     1.00000     1.00000
+ n=3   1   2   E    75.77391     6.21218
+     6.72537     3.95414
+     1.00000     1.00000
+ n=3   2   1   E   113.16599     2.84839
+     4.18127
+     1.00000
+%EndBlock PAO.Basis
+
+Study the effect of making the different parameters of the soft confinning potential
+cero. How does the tail of the orbitals vary? The total energy? The lattice constant/bulk modulus?
+
+Use the following rule of thumb: Vo=150, rinn=3/4 of Rc. Do the results vary too much?
+Can you find a better basis set?

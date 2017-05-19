@@ -1,0 +1,139 @@
+The simulations are performed by Python scripts, which call Siesta
+to obtain the forces and energies, as needed. 
+
+The "quality parameters" (basis sets, mesh cutoffs, etc) for the
+Siesta calculation are specified in an fdf file, but the initial
+geometry and velocities are set through a special Python object
+which can carry all the information about the system itself (species,
+masses, coordinates, velocities...).
+
+This object is of class "Structure", a subclass of the ASE ListOfAtoms
+class as defined in Siesta/ASEInterface.py. 
+
+There are several ways to set up the geometry part of a "Structure" object:
+
+1. By hand:
+
+atoms = Structure([Atom('H', (0.757,0.586,0.),label="H_test"),
+                     Atom('H', (-0.757,0.586,0.)),
+                     Atom('O', (0, 0, 0)) ],
+                      cell=(4.0, 4.0, 4.0), periodic=1)
+
+This is practical only for small systems.
+
+2. By reading a .STRUCT_OUT file from Siesta. These kinds of files
+are produced automatically by Siesta. File
+SystemLabel.STRUCT_OUT is written at the end of a run.
+
+
+This file can be used as follows:
+
+from Siesta.iofiles_to_structure import *
+
+atoms = struct_file_to_object("mco.STRUCT_OUT",["Mg","C","O"])
+
+The first argument is the file name, and the second is a list with the
+species labels that we want to assign to the atoms.
+
+3. From an fdf file
+
+By setting the fdf line
+
+Output.Structure.Only   T
+
+in the input file, Siesta will process the initial structural information,
+write a .STRUCT_OUTPUT file, and exit. Then, the procedure outlined in
+point 2. above can be used.
+
+SETTING UP THE VELOCITIES
+
+Once we have an object of class "Structure", we can use its methods
+to set and get information. In particular, to set the velocities
+at random (uniformly, not Maxwell-Boltzmann), so that the initial
+temperature is Target_temperature, and the center
+of mass is static, we could do:
+
+from Siesta.md_utils import init_velocities 
+
+Target_temperature = 400.0     # 400 Kelvin
+ma = atoms.GetMasses()
+va = init_velocities(Target_temperature,ma)    
+atoms.SetCartesianVelocities(va)
+
+
+For production, the positions and velocities are likely to come
+from thermalization runs. If those runs have been done with the
+internal MD machinery of Siesta, we will have an .STRUCT_OUT file
+and an .XV file. Unfortunately, for historical reasons, the
+information in the XV file is not synchronous: the velocities are at
+time "t" but the positions are at time "t+dt". Thus, to setup the
+initial Structure object we need to take two steps:
+
+
+atoms = struct_file_to_object("mco.STRUCT_OUT",["Mg","C","O"])
+atoms = set_velocities_from_XV("mco.XV",atoms)
+
+This will initialize correctly the "atoms" object.
+
+ANALYSIS OF MD RUNS
+
+An MD run with the Python scripts will produce a LOG file, in ASCII
+with prefixes to mark the different magnitudes.
+
+The LOG file can be converted to a binary MD file suitable for
+post-processing by Siesta-compatible tools by using the log2MD.sh
+script:
+
+log2MD.sh LOGfile
+
+(It will produce a MD file that can later be renamed and print out the
+number of records produced. By convention, regardless of the numbering
+of the steps in the LOG file, the first step in the MD file will be 1)
+
+CONTINUATION OF MD RUNS
+
+The LOG file contains enough information to allow the continuation of
+a simulation. The procedure in that case is:
+
+1. Set up an initial "atoms" object from any configuration (it can
+be the initial one, or whatever, as long as the number of atoms and
+the species numbers are right).
+
+2. Copy the last record of the LOG file to another file. 
+
+3. Use the "set_xv_from_LOG" script:
+
+atoms = set_xv_from_LOG("mco-last.LOG",atoms)
+
+This will set both the positions and the velocities.
+
+If using a thermostat, we want also the right starting values for
+the thermostat coordinate and velocity:
+
+atoms = set_xv_from_LOG("mco-last.LOG",atoms, get_thermostat=True)
+s, vs =  atoms.thermostat
+
+The thermostat coordinate and velocity are added in this case to the
+"thermostat" attribute of the "atoms" object. Those values should
+be used to initialize the thermostat for the continuation
+run. Strictly speaking, in the Nose-Poincare scheme for
+thermostatting one would also need the value H_0 that enters the
+effective Hamiltonian: 
+
+            H = s*(H_nose - H_0)
+
+The thermostat mass also needs to be kept.
+
+A possible solution is to print to the LOG file a header with
+the relevant information:
+
+In the first iteration, right after the statement
+
+out = open("LOG","w")
+
+use:
+
+        out.write("--HEAD-ms %14.7f \n" % (ms,))
+        out.write("--HEAD-h0 %14.7f \n" % (h0,))
+
+

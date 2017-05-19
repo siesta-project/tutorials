@@ -1,0 +1,66 @@
+# Input file for the benzene molecule using the Z-matrix
+# An atomic relaxation will be performed, 
+# starting from the experimental coordinates
+# (distance C-C = 1.39 Ang, distance C-H = 1.09 Ang, angles = 120 degrees),
+# with the constraint of the angles between C-C-C and C-C-H = 120 degrees.
+
+SystemName      benzene
+SystemLabel     benzene
+
+NumberOfSpecies 2
+NumberOfAtoms   12
+
+%block ChemicalSpeciesLabel
+1    1 H
+2    6 C
+%endblock ChemicalSpeciesLabel
+
+%block PS.lmax
+  C   3
+  H   3
+%endblock PS.lmax
+
+LatticeConstant     1.0 Bohr
+%block LatticeVectors
+   20.932528150       0.000000000       0.000000000      
+    0.000000000      19.551203193       0.000000000      
+    0.000000000       0.000000000      10.714661844      
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat NotScaledCartesianBohr
+%block AtomicCoordinatesAndAtomicSpecies
+    4.738724869       9.448634389       0.000000000     2    12.0107
+    6.057380810      11.732613477      -0.000000000     2    12.0107
+    8.694692693      11.732613477      -0.000000000     2    12.0107
+   10.013348634       9.448634389      -0.000000000     2    12.0107
+    8.694692693       7.164655301      -0.000000000     2    12.0107
+    6.057380810       7.164655301      -0.000000000     2    12.0107
+    2.647979028       9.448634389      -0.000000000     1     1.00794
+    5.012007889      13.543252488      -0.000000000     1     1.00794
+    9.740065613      13.543252488      -0.000000000     1     1.00794
+   12.104094475       9.448634389      -0.000000000     1     1.00794
+    9.740065613       5.354016289      -0.000000000     1     1.00794
+    5.012007889       5.354016289      -0.000000000     1     1.00794
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+MeshCutoff     200 Ry
+DM.NumberPulay  5
+DM.MixingWeight 0.3
+
+MD.TypeOfRun    FC            # Compute the interatomic force constants matrix
+MD.FCfirst      1             # Index of first atom to displace
+MD.FClast       12            # Index of the last atom to displace
+MD.FCdispl      0.040  Bohr   # Displacement to use for the computation
+                              #   of the interatomic force constant matrix
+                              #   (Remember that the second derivative of the
+                              #   energy with respect the displacement of two
+                              #   atoms is computed by means of a
+                              #   finite difference derivative of the forces)
+
+Eigenvectors    .true.        # Compute both phonon eigenvalues and eigenvectors
+BandLinesScale  pi/a
+%block BandLines
+1   0.0   0.0   0.0   \Gamma  # Only the Gamma point (enough for a molecule)
+%endblock BandLines
+

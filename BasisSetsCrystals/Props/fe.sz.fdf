@@ -1,0 +1,60 @@
+
+SystemName          bcc Fe
+SystemLabel         fe
+
+NumberOfAtoms       1
+NumberOfSpecies     1
+
+%block ChemicalSpeciesLabel
+ 1  26  Fe
+%endblock ChemicalSpeciesLabel
+
+%block PAO.Basis                 # Define Basis set
+Fe          2                    # Species label, number of l-shells
+ n=4   0   1                         # n, l, Nzeta
+   6.000
+   1.000
+ n=3   2   1                         # n, l, Nzeta
+   6.000
+   1.000
+%endblock PAO.Basis
+
+
+LatticeConstant     2.87  Ang
+%block LatticeVectors
+  0.500  0.500  0.500
+  0.500 -0.500  0.500
+  0.500  0.500 -0.500
+%endblock LatticeVectors
+
+MeshCutoff         250.0 Ry
+
+kgridcutoff        15. Ang
+
+MaxSCFIterations    50  
+DM.MixingWeight      0.1 
+DM.NumberPulay       4  
+DM.Tolerance         1.d-4
+DM.UseSaveDM             
+
+XC.Functional     GGA
+XC.authors        PBE
+
+SpinPolarized      T
+
+SolutionMethod       diagon    
+ElectronicTemperature  500.0 meV  
+# Methfessel-Paxton occupations is not working due to a bug
+# which needs to be fixed
+#OccupationFunction     MP
+#OccupationMPOrder      3
+
+MD.TypeOfRun          CG
+MD.NumCGSteps         1
+
+AtomicCoordinatesFormat  ScaledbyLatticeVectors
+%block AtomicCoordinatesAndAtomicSpecies
+    0.000    0.000    0.000   1 
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+

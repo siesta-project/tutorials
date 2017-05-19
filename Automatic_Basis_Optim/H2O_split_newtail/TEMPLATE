@@ -1,0 +1,50 @@
+SystemName          Water molecule
+SystemLabel         h2o
+NumberOfAtoms       3
+NumberOfSpecies     2
+
+Reparametrize.Pseudos T       # Options for more accuracy
+Restricted.Radial.Grid F
+PAO.SplitTailNorm T 
+
+MeshCutoff  200 Ry
+
+%block ChemicalSpeciesLabel
+ 1  8  O      # Species index, atomic number, species label
+ 2  1  H
+%endblock ChemicalSpeciesLabel
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+ 0.000  0.000  0.000  1
+ 0.757  0.586  0.000  2
+-0.757  0.586  0.000  2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+DM.Number.Pulay 4
+
+#
+# Full template for Basis parameters
+#
+Basis.Pressure 0.3 GPa         # As in Anglada et al
+PAO.SoftDefault    T           # Global soft-confinement options
+PAO.SoftPotential 50.0 Ry    
+PAO.SoftInnerRadius 0.70
+#
+PAO.BasisType    split
+PAO.EnergyShift 0.1 eV
+#
+# Specify only split-norm parameters
+%block PAO.Basis       
+O     2
+ n=2    0    2  S $spl_O
+   0.0   0.0
+   1.000   1.000
+ n=2    1    2  S $spl_O  P 1
+   0.0   0.0
+   1.000   1.000  
+H     1      
+ n=1    0    2  S $spl_H  P 1
+   0.0 0.0
+   1.000   1.000  
+%endblock PAO.Basis

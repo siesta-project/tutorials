@@ -1,0 +1,64 @@
+
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS (MESH CUTOFF, ETC.) 
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT WARRANTY THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+* Inspect the input file, h2o.fdf, and examine in detail 
+the different input variables. More information can be obtained from 
+the Siesta web page (http://www.icmab.es/siesta), following the link 
+Documentations, and then Manual.
+
+* Run Siesta using the default value of the supercell.
+Inspect the output file, and check the value used for the default unit cell
+and the dipole moment.
+
+* Modify the input file to introduce the unit cell by hand.
+For instance, if we want to simulate a cubic box with a length of 8.0 Ang,
+introduce the following lines in the input file.
+
+LatticeConstant     8.0 Ang
+%block LatticeVectors
+   1.0   0.0   0.0
+   0.0   1.0   0.0
+   0.0   0.0   1.0
+%endblock LatticeVectors
+
+* Run the code for a set of different lattice constants
+For instance, from 8.0 Ang to 15.00 Ang in steps of 1.00 Ang.
+Save each output file in a separate file:
+
+siesta < h2o.fdf > h2o.your_lattice_constant.out
+
+* Tabulate the total energy as a function of the lattice constant.
+In order to get this, type:
+
+grep "Total =" h2o.*.out > h2o.latcon.dat
+
+* Edit the h2o.latcon.dat file with your favorite text editor,
+and leave only two columns:
+the first with the interatomic distance (in this case, in Angstroms),
+and the second with the total energy (in this case, in eV).
+
+* Plot the total energy as a function of the lattice constant.
+
+gnuplot
+plot "h2o.latcon.dat" using 1:2 with lines
+
+Why the total energy depends on the lattice constant?.
+
+* Plot the dipole as a function of the lattice constant.
+
+grep "Electric dipole (a.u.)" h2o.*.out > h2o.dipole.dat
+
+Edit the h2o.dipole.dat file and leave only four columns:
+Lattice Constant (Ang)    Components of the dipole moment (electrons x bohr)
+
+gnuplot
+plot "h2o.dipole.dat" using 1:3 with lines
+
+Study the convergence of the dipole moment with the size of the simulation box.

@@ -1,0 +1,46 @@
+BASIS SETS II: CRYSTALS
+ 
+This exercise is intended to illustrate the optimization of the range
+of the basis set orbitals for a bulk system. In the bulk, the
+convergence with respect to basis set range is much faster than in
+molecules, since the basis does not need to reproduce the exponential
+decay into vacuum
+ 
+The system in which we will work is bulk bcc-Fe. This is a difficult
+system, for many reasons.  First, it needs core corrections for a
+proper description of the magnetism. Second, LDA does not yield the
+right ground state structure, and GGA is therefore necessary. Third,
+since the d-orbitals are very compact, and core corrections are
+present, a large MeshCutoff is necessary for proper
+convergence. Finally, metallic character with a large density of
+states at the Fermi level makes it necessary to use a fine k-point
+sampling. The input files have been built to take into account these
+stringent conditions.
+ 
+First, go to directory SZ-OptRc. Here, you have the input file fe.fdf.
+See that the basis set is defined explicitly using the block
+PAO.Basis. It is a Single-Z basis with both s and d orbitals localized
+to within rc=4.0 Bohr.
+ 
+We want to see which is the optimal radius for each of the orbitals in
+the Fe atom.  We will do it in a simple way. First, maintaining the d
+orbitals to rc=4.0 Bohr, change the radius of the s orbitals from 4.0
+up to 8.0 Bohrs in increments of, lets say, 0.5 Bohrs.  Plot the
+energy as a function of rc.  You will see that the energy converges
+quite quickly with rc, and even it shows a minumum!.
+ 
+Now, pick the value of rc for the s orbital that gives the minumum
+energy, and do the same procedure changing the rc of the d
+orbital. Plot the result and find the optimal radius for the d
+orbital.  Observe the results, and try to understand what's going on.
+ 
+In SZ-OptRc/Opt/rc.pdf you have a graph with the results that you
+should be able to reproduce.
+ 
+Once you have optimized the radii, lets go to the directory
+Props.  Here, you have input files with different sizes of basis: SZ,
+DZ and DZP. The radius of the first-Z is chosen close to the optimal
+one found before. Use these files to compute some physical properties
+of Fe, and see how they change as a function of the basis set. You can
+look at the equilibrium lattice constant, the total spin, the bulk
+modulus, etc. Choose your favorite property and try to get it!!!!

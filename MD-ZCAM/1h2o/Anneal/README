@@ -1,0 +1,7 @@
+Anneal of 1 H2O molecule to 300 K.
+After the run you can monitor T and P.
+You can also compute the vibrational density of states.
+Use the program vauto.X (in directory PHONONS).
+There are two output files:
+1.- filename.pDOS (vibrational density of states)
+2.- filename.EK (total kinetic energy).

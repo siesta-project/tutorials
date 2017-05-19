@@ -1,0 +1,9 @@
+set parametric
+ unset surface 
+set size ratio 1
+ set view 0, 0, 1, 1 
+ set style data lines 
+ set hidden 
+ set contour base 
+ set cntrparam levels auto 10 
+splot "Si.CON.SCF" using 1:2:3 with lines notitle

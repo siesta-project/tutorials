@@ -1,0 +1,68 @@
+# Standard parameters for H2O convergence checks
+
+# Chemical species info
+NumberOfSpecies  2
+%block ChemicalSpeciesLabel
+  1   8  O
+  2   1  H  
+%endblock ChemicalSpeciesLabel
+
+# Molecular geometry
+NumberOfAtoms   3
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+ 0.000  0.000  0.000  1
+ 0.757  0.586  0.000  2
+-0.757  0.586  0.000  2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+# Simulation cell
+LatticeConstant  10 Ang
+%block LatticeVectors   
+  1.0  0.0  0.0
+  0.0  1.0  0.0
+  0.0  0.0  1.0
+%endblock LatticeVectors   
+
+# Basis set
+%Block PAO.Basis
+O    3     -0.24233
+n=2   0   2   E    23.36061     3.39721
+     4.50769     2.64066
+     1.00000     1.00000
+n=2   1   2   E     2.78334     5.14253
+     6.14996     2.59356
+     1.00000     1.00000
+n=3   2   1   E    63.98188     0.16104
+     3.54403
+     1.00000
+H    2      0.46527
+n=1   0   2   E    99.93138     2.59932
+     4.20357     1.84463
+     1.00000     1.00000
+n=2   1   1   E    24.56504     2.20231
+     3.52816
+     1.00000
+%EndBlock PAO.Basis
+
+# Exchange-correlation functional
+xc.functional          GGA
+xc.authors             PBE
+
+# Integration mesh cutoffs
+MeshCutoff           200.0 Ry       # Real-space mesh cutoff.
+kGridCutoff            5.0 Ang      # Reciprocal k-mesh cutoff
+
+# SCF options
+SolutionMethod        diagon        # OrderN or Diagon
+ElectronicTemperature 25 meV        # Temp. for Fermi smearing
+MaxSCFIterations      50            # Maximum number of SCF iter
+DM.MixingWeight       0.3           # New DM amount for next SCF cycle
+DM.Tolerance          1.d-4         # Tolerance in maximum difference
+DM.NumberPulay        3
+DM.UseSaveDM          no
+
+# Fixed-geometry calculation
+MD.TypeOfRun          CG
+MD.NumCGsteps         0
+

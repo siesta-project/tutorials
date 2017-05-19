@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="http://www.eminerals.org/XSLT/display.xsl" type="text/xsl" ?>
+<cml xmlns="http://www.xml-cml.org/schema"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:dc="http://purl.org/dc/elements/1.1/title"
+ xmlns:siesta="http://www.uam.es/siesta/namespace"
+ xmlns:siestaUnits="http://www.uam.es/siesta/namespace/units"
+ xmlns:eMinerals="http://www.eminerals.org/namespace">
+ <metadata name="eMinerals:cmlSubsetVersion" content="0.9" />
+ <metadata name="dc:contributor" content="xmlf90 v1.99" />
+ <metadataList>
+  <metadata name="siesta:Program" content="Siesta" />
+  <metadata name="siesta:Version"
+   content="                                       siesta-2.6.21" />
+  <metadata name="siesta:Arch" content="gfortran-nolibs-netcdf" />
+  <metadata name="siesta:Flags" content="gfortran -O2" />
+  <metadata name="siesta:StartTime" content="2009-05-19T19-25-45" />
+  <metadata name="siesta:Mode" content="Serial" />
+  <metadata name="siesta:Nodes" content="1" />
+  <metadata name="siesta:NetCDF" content="true" />
+ </metadataList>
+ <module title="Initial System">
+  <molecule>
+   <atomArray>
+    <atom elementType="Si" id="a1" ref="siesta:e001"
+     x3="    0.000000                                 "
+     y3="    0.000000                                 "
+     z3="    0.000000                                 " />
+    <atom elementType="Si" id="a2" ref="siesta:e001"
+     x3="    1.352799                                 "
+     y3="    1.352799                                 "
+     z3="    1.352799                                 " />
+   </atomArray>
+  </molecule>
+  <lattice dictRef="siesta:ucell">
+   <latticeVector units="siestaUnits:angstrom" dictRef="cml:latticeVector">
+   0.000 5.113 5.113
+   </latticeVector>
+   <latticeVector units="siestaUnits:angstrom" dictRef="cml:latticeVector">
+   5.113 0.000 5.113
+   </latticeVector>
+   <latticeVector units="siestaUnits:angstrom" dictRef="cml:latticeVector">
+   5.113 5.113 0.000
+   </latticeVector>
+  </lattice>
+  <property dictRef="siesta:shape">
+   <scalar>bulk
+   </scalar>
+  </property>
+ </module>
+ <parameterList title="Input Parameters">
+  <parameter name="SystemName" dictRef="siesta:sname" value="Bulk Silicon" />
+  <parameter name="SystemLabel" dictRef="siesta:slabel" value="Si" />
+  <parameter name="LongOutput" dictRef="siesta:verbosity" value="false" />
+  <parameter name="NumberOfSpecies" dictRef="siesta:ns" value="1" />
+  <parameter name="WriteDenChar" value="false" />
+  <parameter name="WriteMullikenPop" value="0" />
+  <parameter name="MeshCutOff" dictRef="siesta:g2max">
+   <scalar units="siestaUnits:Ry">100.000
+   </scalar>
+  </parameter>
+  <parameter name="NetCharge" dictRef="siesta:NetCharge">
+   <scalar units="siestaUnits:e__">0.000
+   </scalar>
+  </parameter>
+  <parameter name="MaxSCFIterations" dictRef="siesta:maxscf" value="50" />
+  <parameter name="DM.NumberPulay" dictRef="siesta:maxsav" value="0" />
+  <parameter name="DM.NumberBroyden" dictRef="siesta:broyden_maxit" value="0" />
+  <parameter name="DM.MixSCF1" dictRef="siesta:mix" value="false" />
+  <parameter name="DM.PulayOnFile" dictRef="siesta:pulfile" value="false" />
+  <parameter name="DM.MixingWeight" dictRef="siesta:wmix"
+   value="0.250                                                                                               " />
+  <parameter name="DM.OccupancyTolerance" dictRef="siesta:occtol"
+   value="0.000                                                                                               " />
+  <parameter name="DM.NumberKick" dictRef="siesta:nkick" value="0" />
+  <parameter name="DM.KickMixingWeight" dictRef="siesta:wmixkick"
+   value="0.500                                                                                               " />
+  <parameter name="DM.Tolerance" dictRef="siesta:dDtol"
+   value="0.000                                                                                               " />
+  <parameter name="DM.RequireEnergyConvergence" dictRef="siesta:ReqEnergyConv"
+   value="false" />
+  <parameter name="DM.EnergyTolerance" dictRef="siesta:Energy_tolerance"
+   value="0.000                                                                                               " />
+  <parameter name="DM.RequireHarrisConvergence" dictRef="siesta:ReqHarrisConv"
+   value="false" />
+  <parameter name="DM.HarrisTolerance" dictRef="siesta:Harris_tolerance"
+   value="0.000                                                                                               " />
+  <parameter name="DM.UseSaveDM" dictRef="siesta:usesavedm" value="false" />
+  <parameter name="NeglNonOverlapInt" dictRef="siesta:negl" value="false" />
+  <parameter name="SolutionMethod" dictRef="siesta:SCFmethod" value="diagon" />
+  <parameter name="Diag.DivideAndConquer" dictRef="siesta:DaC" value="true" />
+  <parameter name="Diag.Memory" dictRef="siesta:MemoryFactor"
+   value="1.000                                                                                               " />
+  <parameter name="ElectronicTemperature" dictRef="siesta:etemp">
+   <scalar units="siestaUnits:Ry">0.002
+   </scalar>
+  </parameter>
+  <parameter name="FixSpin" dictRef="siesta:fixspin" value="false" />
+  <parameter name="TotalSpin" dictRef="siesta:ts"
+   value="0.000                                                                                               " />
+  <parameter name="MD.TypeOfRun" value="Verlet" />
+  <parameter name="MD.InitialTimeStep" value="1" />
+  <parameter name="MD.FinalTimeStep" value="1" />
+  <parameter name="MD.LengthTimeStep">
+   <scalar units="siestaUnits:fs">1.000
+   </scalar>
+  </parameter>
+  <parameter name="MD.InitialTemperature">
+   <scalar units="siestaUnits:K">0.000
+   </scalar>
+  </parameter>
+  <parameter name="MD.Quench" value="false" />
+  <parameter name="MD.BulkModulus">
+   <scalar units="siestaUnits:Ry_Bohr__3">0.007
+   </scalar>
+  </parameter>
+ </parameterList>
+ <propertyList title="k-points">
+  <property dictRef="siesta:nkpnt">
+   <scalar dataType="xsd:integer">32
+   </scalar>
+  </property>
+  <property dictRef="siesta:kcutof">
+   <scalar dataType="xsd:double" units="siestaUnits:angstrom">7.6526
+   </scalar>
+  </property>
+ </propertyList>
+ <property dictRef="siesta:kscell">
+  <matrix columns="3" rows="3" dataType="xsd:integer"> 4 0 0 0 4 0 0 0 4
+  </matrix>
+ </property>
+ <property dictRef="siesta:kdispl">
+  <array size="3" dataType="xsd:double">0.500 0.500 0.500
+  </array>
+ </property>
+ <module dictRef="MD" role="step" serial="1">
+  <molecule>
+   <atomArray>
+    <atom elementType="Si" id="a1" ref="siesta:e001"
+     x3="    0.000000                                 "
+     y3="    0.000000                                 "
+     z3="    0.000000                                 " />
+    <atom elementType="Si" id="a2" ref="siesta:e001"
+     x3="    1.352799                                 "
+     y3="    1.352799                                 "
+     z3="    1.352799                                 " />
+   </atomArray>
+  </molecule>
+  <lattice dictRef="siesta:ucell">
+   <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">0.000
+   2.706 2.706
+   </latticeVector>
+   <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">2.706
+   0.000 2.706
+   </latticeVector>
+   <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">2.706
+   2.706 0.000
+   </latticeVector>
+  </lattice>
+  <crystal title="Lattice Parameters">
+   <scalar title="a" dictRef="cml:a" units="units:angstrom                ">
+   3.826294                                                                                            
+   </scalar>
+   <scalar title="b" dictRef="cml:b" units="units:angstrom                ">
+   3.826294                                                                                            
+   </scalar>
+   <scalar title="c" dictRef="cml:c" units="units:angstrom                ">
+   3.826294                                                                                            
+   </scalar>
+   <scalar title="alpha" dictRef="cml:alpha"
+    units="units:degree                  ">60.000000                                                                                           
+   </scalar>
+   <scalar title="beta" dictRef="cml:beta"
+    units="units:degree                  ">60.000000                                                                                           
+   </scalar>
+   <scalar title="gamma" dictRef="cml:gamma"
+    units="units:degree                  ">60.000000                                                                                           
+   </scalar>
+  </crystal>
+  <module dictRef="SCF" role="step" serial="1">
+   <propertyList>
+    <property title="Mesh" dictRef="siesta:ntm">
+     <array size="3" dataType="xsd:integer">20 20 20
+     </array>
+    </property>
+    <property title="Requested Cut-Off" dictRef="siesta:g2max">
+     <scalar dataType="xsd:double" units="siestaUnits:Ry">100.0000
+     </scalar>
+    </property>
+    <property title="Actual Cut-Off" dictRef="siesta:g2mesh">
+     <scalar dataType="xsd:double" units="siestaUnits:Ry">113.2651
+     </scalar>
+    </property>
+   </propertyList>
+   <propertyList title="Energy Decomposition">
+    <property dictRef="siesta:Eions">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">380.802124                                                                                          
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ena">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">115.354581                                                                                          
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ekin">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">78.997046                                                                                           
+     </scalar>
+    </property>
+    <property dictRef="siesta:Enl">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">35.930064                                                                                           
+     </scalar>
+    </property>
+    <property dictRef="siesta:DEna">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+     </scalar>
+    </property>
+    <property dictRef="siesta:DUscf">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+     </scalar>
+    </property>
+    <property dictRef="siesta:DUext">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+     </scalar>
+    </property>
+    <property dictRef="siesta:Exc">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-64.670798                                                                                          
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ecorrec">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+     </scalar>
+    </property>
+    <property dictRef="siesta:Emad">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+     </scalar>
+    </property>
+    <property dictRef="siesta:Emeta">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+     </scalar>
+    </property>
+    <property dictRef="siesta:Emm">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ekinion">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+     </scalar>
+    </property>
+    <property dictRef="siesta:EharrsK">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.518111                                                                                         
+     </scalar>
+    </property>
+    <property dictRef="siesta:EtotK">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.191231                                                                                         
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeEK">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.191231                                                                                         
+     </scalar>
+    </property>
+   </propertyList>
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.5181111                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.1912311                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.1915798                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="2">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4773608                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4716790                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-3.9894960                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="3">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4767150                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4729989                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-3.9992922                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="4">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4764427                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4739077                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0059518                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="5">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4763184                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4745338                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0104797                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="6">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4762509                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4749663                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0135593                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="7">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4762207                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4752822                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0156537                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="8">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761797                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4754873                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0170782                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="9">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761855                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4756716                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0180468                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="10">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761901                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4758071                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0187056                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="11">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761857                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4758995                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0191539                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="12">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761929                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4759788                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0194586                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="13">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761940                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4760337                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0196659                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="14">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761921                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4760720                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0198069                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="15">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761924                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761024                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0199026                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module dictRef="SCF" role="step" serial="16">
+   <propertyList title="SCF Cycle">
+    <property dictRef="siesta:Eharrs">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761958                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:FreeE">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.4761283                                                                                        
+     </scalar>
+    </property>
+    <property dictRef="siesta:Ef">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-4.0199679                                                                                          
+     </scalar>
+    </property>
+   </propertyList>
+  </module>
+  <module title="SCF Finalization">
+   <propertyList title="Final KS Energy">
+    <property dictRef="siesta:E_KS">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.476136                                                                                         
+     </scalar>
+    </property>
+    <property dictRef="siesta:E_KS_egg">
+     <scalar dataType="xsd:double" units="siestaUnits:eV">-215.476136                                                                                         
+     </scalar>
+    </property>
+   </propertyList>
+   <propertyList title="Forces">
+    <property dictRef="siesta:forces">
+     <matrix units="siestaUnits:evpa" columns="3" rows="2" dataType="xsd:double">
+     -0.022 -0.022 -0.022 0.022 0.022 0.022
+     </matrix>
+    </property>
+    <property dictRef="siesta:ftot">
+     <array size="3" dataType="xsd:double">-0.000 -0.000 -0.000
+     </array>
+    </property>
+    <property dictRef="siesta:fmax">
+     <scalar dataType="xsd:double">0.0009
+     </scalar>
+    </property>
+    <property dictRef="siesta:fres">
+     <scalar dataType="xsd:double">0.0009
+     </scalar>
+    </property>
+    <property dictRef="siesta:cfmax">
+     <scalar dataType="xsd:double">0.0009
+     </scalar>
+    </property>
+   </propertyList>
+   <property dictRef="siesta:stress">
+    <matrix columns="3" rows="3" dataType="xsd:double"> 0.000 0.001 0.001 0.001
+    0.000 0.001 0.001 0.001 0.000
+    </matrix>
+   </property>
+   <property title="Pressure (Static)" dictRef="siesta:psol">
+    <scalar dataType="xsd:double">-0.0000
+    </scalar>
+   </property>
+   <property dictRef="siesta:tstress">
+    <matrix columns="3" rows="3" dataType="xsd:double"> 0.000 0.001 0.001 0.001
+    0.000 0.001 0.001 0.001 0.000
+    </matrix>
+   </property>
+   <property title="Pressure (Total)" dictRef="siesta:tpsol">
+    <scalar dataType="xsd:double">-0.0000
+    </scalar>
+   </property>
+  </module>
+  <molecule>
+   <atomArray>
+    <atom elementType="Si" id="a1" ref="siesta:e001"
+     x3="   -0.000004                                 "
+     y3="   -0.000004                                 "
+     z3="   -0.000004                                 " />
+    <atom elementType="Si" id="a2" ref="siesta:e001"
+     x3="    1.352803                                 "
+     y3="    1.352803                                 "
+     z3="    1.352803                                 " />
+   </atomArray>
+  </molecule>
+  <lattice dictRef="siesta:ucell">
+   <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">0.000
+   2.706 2.706
+   </latticeVector>
+   <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">2.706
+   0.000 2.706
+   </latticeVector>
+   <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">2.706
+   2.706 0.000
+   </latticeVector>
+  </lattice>
+ </module>
+ <module title="Finalization">
+  <molecule>
+   <atomArray>
+    <atom elementType="Si" id="a1" ref="siesta:e001"
+     x3="   -0.000004                                 "
+     y3="   -0.000004                                 "
+     z3="   -0.000004                                 " />
+    <atom elementType="Si" id="a2" ref="siesta:e001"
+     x3="    1.352803                                 "
+     y3="    1.352803                                 "
+     z3="    1.352803                                 " />
+   </atomArray>
+  </molecule>
+  <lattice dictRef="siesta:ucell">
+   <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">0.000
+   2.706 2.706
+   </latticeVector>
+   <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">2.706
+   0.000 2.706
+   </latticeVector>
+   <latticeVector units="siestaUnits:Ang" dictRef="cml:latticeVector">2.706
+   2.706 0.000
+   </latticeVector>
+  </lattice>
+  <propertyList title="Eigenvalues">
+   <property title="Fermi Energy" dictRef="siesta:E_Fermi">
+    <scalar dataType="xsd:double" units="siestaUnits:ev">-4.01997                                                                                            
+    </scalar>
+   </property>
+   <property title="Number of k-points" dictRef="siesta:nkpoints">
+    <scalar dataType="xsd:integer">32
+    </scalar>
+   </property>
+  </propertyList>
+  <bandList>
+   <band kpoint=" 0.0768064  0.0768064 -0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.146 -0.558 -0.418 -0.410 -0.156
+    -0.038 0.022 0.051 0.263 0.320 0.551 0.650 0.723 0.908 1.167 1.298 1.409
+    1.509 1.930 2.136 2.178 2.733 2.906 3.095 4.127 4.493
+    </array>
+   </band>
+   <band kpoint="-0.0768064  0.2304192 -0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.146 -0.558 -0.418 -0.410 -0.156
+    -0.038 0.022 0.051 0.263 0.320 0.551 0.650 0.723 0.908 1.167 1.298 1.409
+    1.509 1.930 2.136 2.178 2.733 2.906 3.095 4.127 4.493
+    </array>
+   </band>
+   <band kpoint="-0.2304192  0.3840321  0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.038 -0.753 -0.569 -0.464 -0.101
+    -0.047 0.060 0.131 0.373 0.419 0.665 0.701 0.812 1.028 1.081 1.146 1.346
+    1.482 1.730 1.884 2.036 2.568 2.881 3.464 4.120 5.627
+    </array>
+   </band>
+   <band kpoint=" 0.2304192 -0.0768064 -0.3840321"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.038 -0.753 -0.569 -0.464 -0.101
+    -0.047 0.060 0.131 0.373 0.419 0.665 0.701 0.812 1.028 1.081 1.146 1.346
+    1.482 1.730 1.884 2.036 2.568 2.881 3.464 4.120 5.627
+    </array>
+   </band>
+   <band kpoint=" 0.2304192 -0.0768064 -0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.146 -0.558 -0.418 -0.410 -0.156
+    -0.038 0.022 0.051 0.263 0.320 0.551 0.650 0.723 0.908 1.167 1.298 1.409
+    1.509 1.930 2.136 2.178 2.733 2.906 3.095 4.127 4.493
+    </array>
+   </band>
+   <band kpoint=" 0.0768064  0.0768064  0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.183 -0.435 -0.336 -0.336 -0.127
+    -0.094 -0.094 0.052 0.250 0.250 0.536 0.574 0.669 0.669 1.474 1.474 1.561
+    1.731 1.731 2.317 2.458 2.458 2.485 3.513 3.579 3.579
+    </array>
+   </band>
+   <band kpoint="-0.0768064  0.2304192  0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.109 -0.663 -0.492 -0.376 -0.114
+    -0.042 -0.022 0.165 0.181 0.455 0.514 0.692 0.820 0.993 1.095 1.262 1.262
+    1.682 1.852 2.067 2.206 2.543 3.319 3.446 3.831 4.874
+    </array>
+   </band>
+   <band kpoint=" 0.3840321 -0.2304192 -0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.023 -0.822 -0.490 -0.437 -0.154
+    -0.051 -0.006 0.241 0.401 0.497 0.581 0.584 0.711 0.835 1.317 1.341 1.493
+    1.537 1.619 1.800 2.081 2.520 2.811 3.291 5.061 6.303
+    </array>
+   </band>
+   <band kpoint=" 0.3840321 -0.2304192  0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.038 -0.753 -0.569 -0.464 -0.101
+    -0.047 0.060 0.131 0.373 0.419 0.665 0.701 0.812 1.028 1.081 1.146 1.346
+    1.482 1.730 1.884 2.036 2.568 2.881 3.464 4.120 5.627
+    </array>
+   </band>
+   <band kpoint=" 0.2304192 -0.0768064  0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.109 -0.663 -0.492 -0.376 -0.114
+    -0.042 -0.022 0.165 0.181 0.455 0.514 0.692 0.820 0.993 1.095 1.262 1.262
+    1.682 1.852 2.067 2.206 2.543 3.319 3.446 3.831 4.874
+    </array>
+   </band>
+   <band kpoint=" 0.0768064  0.0768064  0.3840321"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.070 -0.684 -0.520 -0.486 -0.218
+    -0.098 0.134 0.157 0.454 0.454 0.598 0.710 0.801 0.957 1.003 1.173 1.195
+    1.380 1.880 1.919 2.004 2.745 2.949 3.395 3.858 5.278
+    </array>
+   </band>
+   <band kpoint=" 0.5376449 -0.3840321 -0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.946 -0.832 -0.626 -0.543 -0.139
+    0.003 0.079 0.242 0.322 0.531 0.615 0.824 0.927 0.959 1.147 1.201 1.315
+    1.406 1.482 1.720 1.867 2.184 2.835 3.086 3.663 5.066
+    </array>
+   </band>
+   <band kpoint="-0.0768064  0.2304192 -0.3840321"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.038 -0.753 -0.569 -0.464 -0.101
+    -0.047 0.060 0.131 0.373 0.419 0.665 0.701 0.812 1.028 1.081 1.146 1.346
+    1.482 1.730 1.884 2.036 2.568 2.881 3.464 4.120 5.627
+    </array>
+   </band>
+   <band kpoint="-0.2304192  0.3840321 -0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.023 -0.822 -0.490 -0.437 -0.154
+    -0.051 -0.006 0.241 0.401 0.497 0.581 0.584 0.711 0.835 1.317 1.341 1.493
+    1.537 1.619 1.800 2.081 2.520 2.811 3.291 5.061 6.303
+    </array>
+   </band>
+   <band kpoint="-0.3840321  0.5376449 -0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.946 -0.832 -0.626 -0.543 -0.139
+    0.003 0.079 0.242 0.322 0.531 0.615 0.824 0.927 0.959 1.147 1.201 1.315
+    1.406 1.482 1.720 1.867 2.184 2.835 3.086 3.663 5.066
+    </array>
+   </band>
+   <band kpoint=" 0.0768064  0.0768064 -0.5376449"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.959 -0.824 -0.578 -0.522 -0.253
+    -0.172 0.305 0.311 0.497 0.517 0.638 0.645 0.817 0.871 1.070 1.218 1.304
+    1.411 1.531 1.603 1.944 2.246 2.763 3.058 3.279 4.477
+    </array>
+   </band>
+   <band kpoint=" 0.2304192  0.2304192 -0.3840321"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.023 -0.822 -0.490 -0.437 -0.154
+    -0.051 -0.006 0.241 0.401 0.497 0.581 0.584 0.711 0.835 1.317 1.341 1.493
+    1.537 1.619 1.800 2.081 2.520 2.811 3.291 5.061 6.303
+    </array>
+   </band>
+   <band kpoint=" 0.0768064  0.3840321 -0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.038 -0.753 -0.569 -0.464 -0.101
+    -0.047 0.060 0.131 0.373 0.419 0.665 0.701 0.812 1.028 1.081 1.146 1.346
+    1.482 1.730 1.884 2.036 2.568 2.881 3.464 4.120 5.627
+    </array>
+   </band>
+   <band kpoint="-0.0768064  0.5376449 -0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.959 -0.824 -0.578 -0.522 -0.253
+    -0.172 0.305 0.311 0.497 0.517 0.638 0.645 0.817 0.871 1.070 1.218 1.304
+    1.411 1.531 1.603 1.944 2.246 2.763 3.058 3.279 4.477
+    </array>
+   </band>
+   <band kpoint=" 0.3840321  0.0768064 -0.5376449"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.946 -0.832 -0.626 -0.543 -0.139
+    0.003 0.079 0.242 0.322 0.531 0.615 0.824 0.927 0.959 1.147 1.201 1.315
+    1.406 1.482 1.720 1.867 2.184 2.835 3.086 3.663 5.066
+    </array>
+   </band>
+   <band kpoint=" 0.3840321  0.0768064 -0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.038 -0.753 -0.569 -0.464 -0.101
+    -0.047 0.060 0.131 0.373 0.419 0.665 0.701 0.812 1.028 1.081 1.146 1.346
+    1.482 1.730 1.884 2.036 2.568 2.881 3.464 4.120 5.627
+    </array>
+   </band>
+   <band kpoint=" 0.2304192  0.2304192 -0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.109 -0.663 -0.492 -0.376 -0.114
+    -0.042 -0.022 0.165 0.181 0.455 0.514 0.692 0.820 0.993 1.095 1.262 1.262
+    1.682 1.852 2.067 2.206 2.543 3.319 3.446 3.831 4.874
+    </array>
+   </band>
+   <band kpoint=" 0.0768064  0.3840321  0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.070 -0.684 -0.520 -0.486 -0.218
+    -0.098 0.134 0.157 0.454 0.454 0.598 0.710 0.801 0.957 1.003 1.173 1.195
+    1.380 1.880 1.919 2.004 2.745 2.949 3.395 3.858 5.278
+    </array>
+   </band>
+   <band kpoint=" 0.5376449 -0.0768064 -0.3840321"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.946 -0.832 -0.626 -0.543 -0.139
+    0.003 0.079 0.242 0.322 0.531 0.615 0.824 0.927 0.959 1.147 1.201 1.315
+    1.406 1.482 1.720 1.867 2.184 2.835 3.086 3.663 5.066
+    </array>
+   </band>
+   <band kpoint=" 0.5376449 -0.0768064 -0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.959 -0.824 -0.578 -0.522 -0.253
+    -0.172 0.305 0.311 0.497 0.517 0.638 0.645 0.817 0.871 1.070 1.218 1.304
+    1.411 1.531 1.603 1.944 2.246 2.763 3.058 3.279 4.477
+    </array>
+   </band>
+   <band kpoint=" 0.3840321  0.0768064  0.0768064"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.070 -0.684 -0.520 -0.486 -0.218
+    -0.098 0.134 0.157 0.454 0.454 0.598 0.710 0.801 0.957 1.003 1.173 1.195
+    1.380 1.880 1.919 2.004 2.745 2.949 3.395 3.858 5.278
+    </array>
+   </band>
+   <band kpoint=" 0.2304192  0.2304192  0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-1.077 -0.762 -0.399 -0.399 -0.196
+    -0.056 -0.056 0.330 0.343 0.343 0.474 0.752 0.763 0.763 1.271 1.271 1.455
+    1.730 1.730 1.998 2.200 2.200 3.527 3.527 3.993 6.104
+    </array>
+   </band>
+   <band kpoint=" 0.6912577 -0.2304192 -0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.986 -0.811 -0.620 -0.462 -0.179
+    0.095 0.096 0.204 0.284 0.297 0.784 0.811 0.858 0.946 1.148 1.162 1.330
+    1.462 1.629 1.769 1.900 2.223 3.049 3.186 3.897 6.217
+    </array>
+   </band>
+   <band kpoint=" 0.0768064  0.3840321 -0.5376449"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.946 -0.832 -0.626 -0.543 -0.139
+    0.003 0.079 0.242 0.322 0.531 0.615 0.824 0.927 0.959 1.147 1.201 1.315
+    1.406 1.482 1.720 1.867 2.184 2.835 3.086 3.663 5.066
+    </array>
+   </band>
+   <band kpoint="-0.0768064  0.5376449 -0.3840321"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.946 -0.832 -0.626 -0.543 -0.139
+    0.003 0.079 0.242 0.322 0.531 0.615 0.824 0.927 0.959 1.147 1.201 1.315
+    1.406 1.482 1.720 1.867 2.184 2.835 3.086 3.663 5.066
+    </array>
+   </band>
+   <band kpoint="-0.2304192  0.6912577 -0.2304192"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.986 -0.811 -0.620 -0.462 -0.179
+    0.095 0.096 0.204 0.284 0.297 0.784 0.811 0.858 0.946 1.148 1.162 1.330
+    1.462 1.629 1.769 1.900 2.223 3.049 3.186 3.897 6.217
+    </array>
+   </band>
+   <band kpoint=" 0.2304192  0.2304192 -0.6912577"
+    weight="0.312500000000E-01                                                                                  ">
+    <array size="26" dataType="xsd:double">-0.986 -0.811 -0.620 -0.462 -0.179
+    0.095 0.096 0.204 0.284 0.297 0.784 0.811 0.858 0.946 1.148 1.162 1.330
+    1.462 1.629 1.769 1.900 2.223 3.049 3.186 3.897 6.217
+    </array>
+   </band>
+  </bandList>
+  <propertyList title="Energy Decomposition">
+   <property dictRef="siesta:Eions">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">380.802124                                                                                          
+    </scalar>
+   </property>
+   <property dictRef="siesta:Ena">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">115.354581                                                                                          
+    </scalar>
+   </property>
+   <property dictRef="siesta:Ekin">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">81.922155                                                                                           
+    </scalar>
+   </property>
+   <property dictRef="siesta:Enl">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">29.302399                                                                                           
+    </scalar>
+   </property>
+   <property dictRef="siesta:DEna">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">3.715669                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:DUscf">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">0.269785                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:DUext">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:Exc">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">-65.238601                                                                                          
+    </scalar>
+   </property>
+   <property dictRef="siesta:Ecorrec">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:Emad">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:Emeta">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:Emm">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:Ekinion">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:EharrsK">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">-215.476196                                                                                         
+    </scalar>
+   </property>
+   <property dictRef="siesta:EtotK">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">-215.476136                                                                                         
+    </scalar>
+   </property>
+   <property dictRef="siesta:FreeEK">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">-215.476136                                                                                         
+    </scalar>
+   </property>
+  </propertyList>
+  <propertyList title="Final Energy">
+   <property dictRef="siesta:Ekin">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">81.922155                                                                                           
+    </scalar>
+   </property>
+   <property dictRef="siesta:Uscf">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">14.608419                                                                                           
+    </scalar>
+   </property>
+   <property dictRef="siesta:DUext">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:Exc">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">-65.238601                                                                                          
+    </scalar>
+   </property>
+   <property dictRef="siesta:I-e">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">-101.702119                                                                                         
+    </scalar>
+   </property>
+   <property dictRef="siesta:I-I">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">-145.065989                                                                                         
+    </scalar>
+   </property>
+   <property dictRef="siesta:Ekinion">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">0.000000                                                                                            
+    </scalar>
+   </property>
+   <property dictRef="siesta:Etot">
+    <scalar dataType="xsd:double" units="siestaUnits:eV">-215.476136                                                                                         
+    </scalar>
+   </property>
+  </propertyList>
+  <property dictRef="siesta:stress">
+   <matrix units="siestaUnits:eV_Ang__3" columns="3" rows="3"
+    dataType="xsd:double"> 0.000 0.007 0.007 0.007 0.000 0.007 0.007 0.007 0.000
+   </matrix>
+  </property>
+  <propertyList title="Final Pressure">
+   <property title="cell volume" dictRef="siesta:cellvol">
+    <scalar dataType="xsd:double" units="siestaUnits:Ang__3">39.6114
+    </scalar>
+   </property>
+   <property title="Pressure of Solid" dictRef="siesta:pressSol">
+    <scalar dataType="xsd:double" units="siestaUnits:kbar">-0.2141
+    </scalar>
+   </property>
+   <property title="Pressure of Molecule" dictRef="siesta:pressMol">
+    <scalar dataType="xsd:double" units="siestaUnits:kbar">-1.4408
+    </scalar>
+   </property>
+  </propertyList>
+ </module>
+ <metadata name="siesta:EndTime" content="2009-05-19T19-26-04" />
+</cml>

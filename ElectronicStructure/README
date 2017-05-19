@@ -1,0 +1,8 @@
+Examples of computation of the electronic structure
+of two crystals: Al and MgO.
+
+Density of States
+Band Structure
+
+and the influence of the basis set and the k-point
+sampling on them, plus some "fatband" and DOS and COOP/COHP analysis.

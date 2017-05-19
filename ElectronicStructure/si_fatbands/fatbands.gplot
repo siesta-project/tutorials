@@ -1,0 +1,2 @@
+plot "3s.dat" using 1:2:(4*$3) with points pt 6 ps variable  
+replot "3p.dat" using 1:2:(4*$3) with points pt 6 ps variable 

@@ -1,0 +1,71 @@
+
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS FOR THE MESH CUTOFF AND THE SAMPLING IN K-SPACE.
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT WARRANTY THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+---------------------------------------------------------------------
+Pablo Aguado-Puente (2007)
+pablo.aguado@unican.es
+---------------------------------------------------------------------
+
+* Edit the input file, MgO.fdf, and study the different variables.
+Pay special attention to the new variables in this example, and
+check their meaning in the User's Guide:
+   BandLineScale
+   %block BandLines
+
+You can see the path chosen in k-space (%block BandLines) in this
+example in the figure BrillouinZone.jpg in this folder.
+
+* Select the lattice constant wich minimizes the total energy of the
+system (in this case, you do not have to compute it; it is given to 
+you and amounts to 4.117 Ang). Run the code setting the right lattice
+constant in the input.
+Once the input is ready, run a command like this:
+
+siesta < MgO.fdf > MgO.out 
+
+* Siesta write the bands information in a file called systemlabel.bands,
+in this case MgO.bands. Take a look at this file with a text editor:
+
+  - The first line of the file is the energy of the Fermi level.
+  - The numbers in the second line are minimum and maximum of the path
+    chosen in k-space.
+  - The numbers in the third line are the minimum and maximum energies
+    of the bands diagram.
+  - The numbers in the fourth line are the numers of orbitals/bands 
+    calculated, spin restricted (=1) or unrestricted (=2), and the
+    total number of k-points where the bands have been calculated.
+  - Then the bands are written in each k-point. Check that for each 
+    k-point (first column) there are as many bands as the first number
+    in the fourth line.
+  - At the end of the file the high symmetry k-points are written.
+    First the number of these points, and then in two columns, the 
+    position in the path and their name.
+
+* The file systemlabel.bands can be read using the file gnubands.f at
+the folder Siesta-folder/Util/ 
+
+To run it, execute:
+
+<your_Fortran_90_compiler> -o gnubands.x gnubands.f
+gnubands.x < MgO.bands > MgO.bands.gnuplot.dat
+gnuplot
+plot "MgO.bands.gnuplot.dat" using 1:2 with lines
+set xrange [0.0:3.34]   # 3.34 is the position of last point in the path in k
+set yrange [-30.0:25.0] # this is large enough to include all the valence bands
+replot
+
+The result is a plot with the band diagram of MgO. 
+
+The you can argue if this system is an insulator, a semiconductor or a metal. 
+What's the value of the gap?
+Compare it with the experimental value 7.8 eV. 
+Is it direct or indirect? 
+
+

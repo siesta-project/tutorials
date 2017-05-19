@@ -1,0 +1,9 @@
+Relax-CG:      Relaxation of a SiH system using conjugate gradients.
+Relax-Broyden: Relaxation of a SiH system using the Broyden method.
+Relax-Constraints: Relaxation of a slab representing a surface
+                   (fixing the positions of "bulk" atoms)
+Relax-ZM:      An example of the use of Zmatrix coordinates to enforce 
+               chemically meaningful constraints.
+VariableCell:  Combined relaxation of atomic positions and lattice vectors.
+               Relax-CG uses conjugate-gradients
+               Relax-PR uses "quenched" Parrinello-Rahman dynamics.

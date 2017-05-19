@@ -1,0 +1,8 @@
+Run first fcbuild with si54.fdf as input. That will generate the file FC.fdf, which
+is "%included" by si54-siesta.fdf. When Siesta is run with si54-siesta.fdf as 
+input, it will produce (after some time) a file called si54.FC, which contains
+the force constants.
+
+Finally, run "vibra" with si54.fdf as input to compute the phonon frequencies.
+To plot the phonon dispersion relation, run "gnubands" with si54.bands as input,
+and use gnuplot to plot the resulting data file.

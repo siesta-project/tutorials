@@ -1,0 +1,29 @@
+Dipole correction
+
+When a slab-like system is not symmetric (because of different
+terminations or due to the presence of an absorbate), it develops a
+dipole which, due to the periodic boundary conditions, creates an
+electric field in the vacuum. Far from the slab the field is constant
+(and so the potential linear).
+
+This spurious field can be compensated by an externally applied one, which
+is formally created by a dipole layer in the vacuum (far enough from the slab).
+
+In this directory we work with a somewhat non-physical example: a slab
+made of a layer of water molecules with their dipoles oriented along
+the z axis. The layer is just one big dipole.
+
+Currently the value of the applied field has to be guessed.
+
+You can use the macroave utility to process the .VH files to see the
+potential profile. Plots are available in the Plots directory.
+
+References:
+
+J. Neugebauer and M. Scheffler, PRB 46, 16067 (1992) 
+
+L. Bengtsson, PRB 59, 12301 (1999) 
+
+Liping Yu, V Ranjan, W Lu, J Bernholc, M. Buongiorno Nardelli,
+PHYSICAL REVIEW B 77, 245102 2008
+

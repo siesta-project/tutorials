@@ -1,0 +1,17 @@
+Systemlabel  si54
+Systemname   si54
+
+NumberOfSpecies 1
+
+%block chemicalspecieslabel
+1 14 Si
+%endblock chemicalspecieslabel
+
+PAO.BasisSize SZ
+
+MeshCutoff 130.0 Ry
+DM.MixingWeight  0.3
+DM.NumberPulay    3
+DM.Tolerance     1.0d-5
+
+%include FC.fdf

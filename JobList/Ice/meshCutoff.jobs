@@ -1,0 +1,26 @@
+# MeshCutoff convergence for water iceXI vs iceVIII
+
+# Leave '$jobName' untouched. Do NOT substitute it by an actual name.
+%queue siesta < $jobName.fdf > $jobName.out
+
+# %queue sh queue.sh $jobName 8    # real queuing of jobs on 8 cores/job
+
+%result energy pressure
+
+%list MeshCutoff
+  %list IceXI
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 100 Ry      
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 200 Ry      
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 300 Ry      
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 500 Ry      
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 800 Ry  
+  %endlist IceXI
+  %list IceVIII
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 100 Ry      
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 200 Ry      
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 300 Ry      
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 500 Ry      
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 800 Ry      
+  %endlist IceVIII
+%endlist MeshCutoff
+

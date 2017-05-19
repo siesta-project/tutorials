@@ -1,0 +1,64 @@
+#
+#  Due to the way in which we have constructed the
+#  pseudopotential, We need to consider as core shells
+#  1s2s2p3s3p3d4s4p4d
+#
+   ae Ba  True ground state (6s2)
+ n=Ba c=car
+       0.0       0.0       0.0       0.0       0.0       0.0
+    9    5
+    5    0     2.00
+    5    1     6.00
+    6    0     2.00
+    6    1     0.00
+    5    2     0.00 
+   ae Ba  6s1 6p1 5d0 
+ n=Ba c=car
+       0.0       0.0       0.0       0.0       0.0       0.0
+    9    5
+    5    0     2.00
+    5    1     6.00
+    6    0     1.00
+    6    1     1.00
+    5    2     0.00 
+   ae Ba  6s1 6p0 5d1 
+ n=Ba c=car
+       0.0       0.0       0.0       0.0       0.0       0.0
+    9    5
+    5    0     2.00
+    5    1     6.00
+    6    0     1.00
+    6    1     0.00
+    5    2     1.00 
+#
+   pt Ba  True ground state (6s2)
+ n=Ba c=car
+       0.0       0.0       0.0       0.0       0.0       0.0
+    9    5
+    5    0     2.00
+    5    1     6.00
+    6    0     2.00
+    6    1     0.00
+    5    2     0.00 
+   pt Ba  6s1 6p1 5d0 
+ n=Ba c=car
+       0.0       0.0       0.0       0.0       0.0       0.0
+    9    5
+    5    0     2.00
+    5    1     6.00
+    6    0     1.00
+    6    1     1.00
+    5    2     0.00 
+   pt Ba  6s1 6p0 5d1 
+ n=Ba c=car
+       0.0       0.0       0.0       0.0       0.0       0.0
+    9    5
+    5    0     2.00
+    5    1     6.00
+    6    0     1.00
+    6    1     0.00
+    5    2     1.00 
+#
+
+
+

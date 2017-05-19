@@ -1,0 +1,65 @@
+# SIESTA INPUT FILE
+
+#6.2  GENERAL SYSTEM DESCRIPTORS
+
+SystemName          METHANE
+SystemLabel         ch4-d.fdf 
+
+NumberOfAtoms       5
+NumberOfSpecies     2
+
+%block ChemicalSpeciesLabel
+ 1 1 H
+ 2 6 C.pe
+%endblock ChemicalSpeciesLabel
+
+#6.3  BASIS DEFINITION
+
+PAO.BasisSize     SZ 
+
+#6.4  LATTICE, COORDINATES, K-SAMPLING
+
+LatticeConstant  10 Ang
+
+AtomicCoordinatesFormat  Ang
+AtomCoorFormatOut Ang
+
+%block AtomicCoordinatesAndAtomicSpecies
+    0.000000  0.000000  0.000000  2 #  C  1
+    0.682793  0.682793  0.682793  1 #  H  2
+   -0.682793 -0.682793  0.682793  1 #  H  3
+   -0.682793  0.682793 -0.682793  1 #  H  4
+    0.682793 -0.682793 -0.682793  1 #  H  5
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block AtomicCoordinatesOrigin
+ 0.127 0.745 -0.33
+%endblock AtomicCoordinatesOrigin
+
+#6.5  DFT, GRID, SCF
+
+XC.Functional LDA
+XC.Authors    CA    #(Ceperley-Alder)
+
+MeshCutoff          30 Ry
+MaxSCFIterations    50
+DM.MixingWeight      0.15
+DM.NumberPulay        3
+DM.Tolerance         1.d-4
+
+#6.6  EINGENVALUE PROBLEM
+
+SolutionMethod       diagon    
+ElectronicTemperature  25 meV  
+
+#6.7  MOLECULAR DYMAMICS
+
+#6.8  PARALLEL OPTIONS
+
+#6.9  EFFICIENCY OPTIONS
+
+#6.10 OUTPUT OPTIONS
+
+LongOutput .true.
+
+#6.11 OPTIONS FOR SAVING/READING INFORMATION

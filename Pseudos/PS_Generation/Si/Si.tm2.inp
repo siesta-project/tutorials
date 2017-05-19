@@ -1,0 +1,20 @@
+#
+#  Pseudopotential generation for Silicon
+#  pg: simple generation
+#
+   pg      Silicon
+        tm2      3.0             # PS flavor, logder R
+ n=Si c=car                      # Symbol, XC flavor,{ |r|s}
+       0.0       0.0       0.0       0.0       0.0       0.0
+    3    4                       # norbs_core, norbs_valence
+    3    0      2.00      0.00   # 3s2
+    3    1      2.00      0.00   # 3p2
+    3    2      0.00      0.00   # 3d0
+    4    3      0.00      0.00   # 4f0
+      1.90      1.90      1.90      1.90      0.00      0.00
+#
+# Last line (above): 
+#    rc(s)     rc(p)     rc(d)     rc(f)   rcore_flag  rcore
+#
+#23456789012345678901234567890123456789012345678901234567890
+

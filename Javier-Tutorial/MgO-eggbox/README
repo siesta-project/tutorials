@@ -1,0 +1,80 @@
+
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS FOR THE MESH CUTOFF AND THE SAMPLING IN K-SPACE.
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT WARRANTY THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+---------------------------------------------------------------------
+Pablo Aguado-Puente (2009)
+pablo.aguado@unican.es
+---------------------------------------------------------------------
+
+* Edit the input file,  MgO.fdf, and study the different variables.
+Pay special attention to the variables we are focusing on, and
+check their meaning in the User's Guide:
+   MeshCutoff
+   %block AtomicCoordinatesOrigin
+
+* To study the "egg box" effect we are going to run several simulations
+shifting the real space grid with respect to the atomic coordinates. 
+We are going to use the script autosiesta.py for this. This scripts
+runs siesta giving different values to a chosen parameter of the 
+SystemLabel.fdf file. The series of values it will assign is defined 
+in its input file SystemLabel.in. 
+
+* Edit the MgO.in file and see how the series is defined 
+by a minimum and a maximum value, and a number of steps. The 
+ParameterLabel is the tag the script will search in the 
+SystemLabel.fdf file. Find the ParameterLabel in the siesta input file
+and make sure it coincides with that in the script input file.
+
+* The shift in AtomicCoordinatesOrigin is given in the same units 
+as the atomic coordinates. To study the eggbox effect we only need 
+to scan the space between two grid points, but how do we know the distance
+between the grid points? In a real simulation you would have to run
+siesta with the MeshCutoff you want to check and look in the 
+output for the actual grid that has been used. In this exercise 
+we skip this step and we suppose that we already know that the
+grid for this system with a cutoff of 100 Ry is 18x18x30. 
+Using fractional atomic coordinates, 
+this results in a distance between grid points of 1/30 = 0.03333...
+Check that this is the maximum value of the series in the 
+MgO.in file.
+
+* Ensure that the MeshCutoff is set to 100 Ry and run the script:
+
+$./autosiesta.py MgO
+
+* At the end, the script will write a SystemLabel.#.out file for each
+siesta run and a SystemLabel.script.out file with the values of the 
+total energy and maximum force in each calculation. Plot the total 
+energy as a function of the grid shift:
+
+$gnuplot etc etc
+
+* Edit the output and find the line that indicates the real space grid
+used:
+
+"InitMesh: MESH =    18 x    18 x    30"
+
+* Repeat the exercise for a MeshCutoff value of 200 Ry. In this case
+the grid will be 30x30x36, so the distance between grid points will be
+1/36 = 0.0277777... in fractional units. Set the MeshCutoff to 200 Ry
+in MgO.fdf and the maximum shift to 0.02777778 in MgO.in. Run the script,
+and plot the results. Check again the actual space grid used and compare
+the results.
+
+* Repeat the exercise using a MeshCutoff of 200 Ry and the
+%block GridCellSampling
+ 0.5 0.0 0.0
+ 0.0 0.5 0.0
+ 0.0 0.0 0.5
+%endblock GridCellSampling
+
+By how much the egg-box effect is reduced?.
+
+

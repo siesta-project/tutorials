@@ -1,0 +1,6 @@
+ AtomicCoordinatesFormat   Ang
+ %block AtomicCoordinatesAndAtomicSpecies
+   0.00000000    0.04324716    0.00000000   1
+  -0.76421517   -0.55214256    0.00000000   2
+   0.76421517   -0.55214256    0.00000000   2
+ %endblock AtomicCoordinatesAndAtomicSpecies

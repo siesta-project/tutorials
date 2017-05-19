@@ -1,0 +1,18 @@
+
+In this example you are going to study how the properties of
+bulk silicon depend on the range of the basis orbitals (DZP).
+
+Run the examples of each subdirectory and see which one reproduces
+the best values of the lattice constant and bulk modulus. Run your
+own examples modifying the value of the energy shift (PAO.EnergyShift)
+
+Compare the same orbital generated using different Eshifts. 
+The orbitals are stored in the ORB* files:
+ORB.Sl.z.Label
+
+l -> l quantum number of the orbital
+z -> which of the functions with the same l
+Label -> The label specified in the ChemicalSpeciesLabel block
+
+Remember: the orbitals stored in the ORB* files are divided by r**l
+

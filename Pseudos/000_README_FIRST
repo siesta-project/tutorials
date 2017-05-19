@@ -1,0 +1,57 @@
+This directory contains examples of all-electron and
+pseudopotential-generation atomic calculations.
+
+** WARNING: You should thoroughly test a pseudopotential before using it.
+            The input files in this tree are not meant to represent
+            good pseudopotentials.
+
+Input files have a .inp extension, and should be run using the ae.sh
+(all-electron), pg.sh (ps generation), or pt.sh (ps test) shell
+scripts in directory Utils. See the manual (Docs/atom.tex) for details.
+
+* NOTE the change in the location of the scripts *
+
+After the run, the output information and plotting scripts will reside
+in a sub-directory whose name is that of the input file without the
+.inp extension.
+
+Please refer to the user manual for the ATOM program for details on
+how to run the program and how to make sense of the output. 
+
+(** The aliases referred to in this section apply only
+    to the "live" tutorials, or to users who have set up the
+    aliases mentioned  ----
+For these exercises we have created the aliases ae, pg, and pt to
+perform all-electron, pseudopotential generation, and pseudopotential
+tests, respectively, and the alias gp to stand for gnuplot
+-persist. The alias energies, when used in the work directory, will
+show the inter-configuration energy changes (it is equivalent to grep
+"&d" OUT).  The aliases eigenvalues X, with X being s, p, d, will
+display the appropriate eigenvalues when applied to the OUT file.
+--- **)
+
+There are two directories: 
+
+* All electron -- contains some exercises to illustrate some general
+issues involved in computing the electronic structure of the
+atom. Please see the file Example.guide and run the examples by
+typing, for example ae si.ae.inp. Those exercises are not essential to
+follow the examples of pseudopotential generation, but they might help
+to broaden your understanding.
+
+* PS_Generation -- holds the exercises for pseudopotential generation
+and test. The material for each exercise is contained in a directory
+named after the element. Typically there are several XX.YYY.inp files,
+where XX is the element's symbol, and YYY is some identifier.  Input
+files for tests have the word test somewhere in YYY.  
+Please see the file Guide.txt for more information.
+
+
+
+
+
+
+
+
+
+

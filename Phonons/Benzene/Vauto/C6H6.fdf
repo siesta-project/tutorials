@@ -1,0 +1,57 @@
+SystemName          Benzene
+SystemLabel         C6H6             # Short name for naming files
+
+NumberOfAtoms           12            # Number of atoms
+NumberOfSpecies         2           # Number of species
+
+%block Chemical_Species_Label
+  1    6    C
+  2    1    H
+%endblock Chemical_Species_Label
+
+PAO.BasisSize   SZ
+
+AtomicCoordinatesFormat Ang
+%block AtomicCoordinatesAndAtomicSpecies
+   0.000  1.396  0.000  1
+   1.209  0.698  0.000  1
+   1.209 -0.698  0.000  1
+   0.000 -1.396  0.000  1
+  -1.209 -0.698  0.000  1
+  -1.209  0.698  0.000  1
+   0.000  2.479  0.000  2
+   2.147  1.240  0.000  2
+   2.147 -1.240  0.000  2
+   0.000 -2.479  0.000  2
+  -2.147 -1.240  0.000  2
+  -2.147  1.240  0.000  2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block LatticeVectors
+  1.000000  0.000000  0.000000
+  0.000000  1.000000  0.000000
+  0.000000  0.000000  1.000000
+%endblock LatticeVectors
+
+LatticeConstant        10.0000    Ang
+
+MeshCutoff           100. Ry
+
+xc.functional         LDA
+xc.authors            CA
+
+SolutionMethod        diagon        # OrderN or Diagon
+
+MaxSCFIterations      100
+DM.MixingWeight       0.20
+DM.Tolerance          1.d-4
+DM.NumberPulay         4
+ElectronicTemperature  300 K
+
+DM.UseSaveDM          true
+UseSaveData           true
+
+MD.TypeOfRun           verlet           # Type of dynamics:
+MD.FinalTimeStep       1000 fs
+MD.LengthTimeStep      3 fs
+WriteMDhistory        .true.

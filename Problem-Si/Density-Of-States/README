@@ -1,0 +1,74 @@
+
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS FOR THE MESH CUTOFF AND THE SAMPLING IN K-SPACE.
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT WARRANTY THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+---------------------------------------------------------------------
+Pablo Aguado-Puente (2007)
+pablo.aguado@unican.es
+---------------------------------------------------------------------
+
+* Edit the input file, Si.fdf, and study the different variables.
+Pay special attention to the new variables in this example, and
+check their meaning in the User's Guide:
+ 
+   MaxSCFIterations                  
+   ProjectedDensityOfStates
+   DM.UseSaveDM
+
+* Check how we have increased the density of the sampling in k by
+  orders of magnitude, but we do not allow for a complete SCF cycle.
+
+* Once the input is ready, run a command like this:
+
+siesta < Si.fdf > Si.out 
+
+* Siesta write the density of states in a file called systemlabel.DOS,
+in this case Si.DOS. Take a look at this file with a text editor. The
+first column is the energy and the other are the DOS for each spin 
+state. If the simulation is spin restricted, the third column will
+be 0.0.
+
+* The file systemlabel.DOS can be read directly by gnuplot, but to
+save time here we will use the script dos.py in the folder of this 
+example. You just have to run
+
+dos.py Si.DOS
+
+or
+
+python dos.py Si.DOS
+
+* The result is a plot with the projected density of states as a function
+of the energy. Check the position of the band gap and the Fermi level 
+comparing this plot with the one obtained in the previous example.
+
+* You can also plot the Projected Density Of States over selected orbitals
+using the pdosxml utility, by Alberto Garcia (in the directory Util/pdosxml),
+or the fmpdos program, by Andrei Postnikov.
+
+To run this last code, just type
+
+fmpdos
+
+and follow the instructions to run the code.
+
+To plot the proyected density of states, type
+
+gnuplot
+plot 'nameofyouroutputfile' u 1:2 w l
+
+
+NOTE: To run the script in python, you may need to install
+the following modules in python:
+
+Numerical python (http://sourceforge.net/project/showfiles.php?group_id=1369&package_id=1351)
+Scientific Python (http://dirac.cnrs-orleans.fr/plone/software/scientificpython/)
+Gnuplot module for Python (http://gnuplot-py.sourceforge.net/) 
+
+

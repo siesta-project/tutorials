@@ -1,0 +1,77 @@
+
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS FOR THE MESH CUTOFF AND THE SAMPLING IN K-SPACE.
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT WARRANTY THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+* Edit the input file, Si.fdf, and study the different variables.
+
+* Run the code for a set of different lattice constant,
+embracing the minimum of the energy.
+Save the output of each run in a different file.
+That is, for each lattice constant run a command like this:
+
+siesta < Si.fdf > Si.5.43.out &
+tail -f Si.5.43.out
+
+In this example, you can try with
+5.35 Ang
+5.37 Ang
+5.39 Ang
+5.41 Ang
+5.43 Ang
+5.45 Ang
+5.47 Ang
+5.49 Ang
+
+* Save in a file the data needed to plot a figure energy 
+versus lattice constant.
+In order to get this, type:
+
+grep "Total =" Si.*.out > Si.evslc.dat
+
+Edit the file Si.evsvol.dat with your favorite text editor and
+keep only the information of the lattice constant (in Ang) and 
+energy (in eV). 
+Introduce in the first line of this file the type of Bravais lattice
+of the system under study (sc, bcc, fcc, or diamond).
+For the present example, Si, it would be diamond
+It should look like something like:
+
+diamond
+5.35  -215.456759
+5.37  -215.467066
+5.39  -215.474148
+5.41  -215.476138
+5.43  -215.474312
+5.45  -215.469352
+5.47  -215.461848
+5.49  -215.451337
+
+
+Run the script to fit the energy versus volume data to the
+Murnaghan equation of state.
+
+python structure.py Si.evsvol.dat
+
+The result is a plot with the calculated points,
+the fitting curve and the values of the volume at the minimum (in Angstrom^3),
+the bulk modulus (in GPa), the energy at the minimum (in eV),
+and the pressure at the minimum.
+
+Compare the results provided with SIESTA with the experimental values:
+Lattice constant 5.43 Ang
+Bulk modulus 98.8 GPa
+
+NOTE: To run the script in python, you need to install
+the following modules in python:
+
+Numerical python (http://sourceforge.net/project/showfiles.php?group_id=1369&package_id=1351)
+Scientific Python (http://dirac.cnrs-orleans.fr/plone/software/scientificpython/)
+Gnuplot module for Python (http://gnuplot-py.sourceforge.net/) 
+
+

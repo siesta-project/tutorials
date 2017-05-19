@@ -1,0 +1,6 @@
+set xtics ('L' 0.000000, 'Gamma' 0.710978, 'X' 1.531946, 'Gamma' 2.692969)
+set grid
+plot "bands.dat" using 1:2 with lines 
+#set terminal postscript enhanced color
+#set output "bands.eps"
+#replot

@@ -1,0 +1,106 @@
+
+SystemName  H_chain_electrode 
+SystemLabel H_chain_electrode 
+
+==================================================
+==================================================
+# SPECIES AND BASIS
+
+# Number of species 
+NumberOfSpecies 1
+%block ChemicalSpeciesLabel
+  1  1 H 
+%endblock ChemicalSpeciesLabel
+
+PAO.BasisSize    SZ
+PAO.EnergyShift  0.05 Ry
+
+==================================================
+==================================================
+# K-points
+
+%block kgrid_Monkhorst_Pack
+1   0   0    0.0
+0   1   0    0.0
+0   0   60  0.0
+%endblock kgrid_Monkhorst_Pack
+
+==================================================
+==================================================
+# UNIT CELL AND ATOMIC POSITIONS
+
+# UNIT CELL
+LatticeConstant       1.0  Ang
+%block LatticeVectors
+10.000   0.0000   0.00
+0.0000   10.000   0.00  
+0.0000   0.000    3.0  
+%endblock LatticeVectors 
+
+# Atomic coordinates
+NumberOfAtoms 3
+AtomicCoordinatesFormat ScaledCartesian 
+%block AtomicCoordinatesAndAtomicSpecies
+       0.00000000      0.     0.0    1
+       0.00000000      0.     1.0    1 
+       0.00000000      0.     2.0    1 
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+==================================================
+==================================================
+# General variables
+
+ElectronicTemperature  100 K 
+MeshCutoff            350. Ry
+xc.functional         LDA           # Exchange-correlation functional
+xc.authors            CA 
+SpinPolarized .false.
+SolutionMethod Diagon
+
+==================================================
+==================================================
+# SCF variables
+
+DM.MixSCF1   T
+MaxSCFIterations      300           # Maximum number of SCF iter
+DM.MixH               T
+DM.MixingWeight       0.03          # New DM amount for next SCF cycle
+DM.Tolerance          1.d-4         # Tolerance in maximum difference
+DM.UseSaveDM          false          # to use continuation files
+DM.NumberPulay         5
+Diag.DivideAndConquer  no
+Diag.ParallelOverK    yes
+
+# Write electrode hamiltonian
+TS.SaveHS   .true.
+TS.SaveLead .true.
+
+==================================================
+==================================================
+# MD variables
+
+MD.FinalTimeStep  1
+MD.TypeOfRun      CG
+MD.NumCGsteps     0 
+MD.UseSaveXV      .true.
+
+==================================================
+==================================================
+# Output variables
+
+WriteMullikenPop                 0 
+WriteBands                      .false.
+SaveRho                         .false.
+SaveDeltaRho                    .false.
+SaveHS                          .false.
+SaveElectrostaticPotential      True 
+SaveTotalPotential              no
+WriteCoorXmol                   .true.
+WriteMDXmol                     .true.
+WriteMDhistory                  .false.
+WriteEigenvalues               no 
+
+==================================================
+==================================================
+

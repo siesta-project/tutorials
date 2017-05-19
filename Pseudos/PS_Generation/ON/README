@@ -1,0 +1,5 @@
+Example of "hybrid" pseudo generation.
+An explicit nuclear charge of 7.5 is entered, and also a population
+of 5.5 valence electrons, to simulate a 50% mixture of O and N. 
+
+(This works only for nearby elements.)

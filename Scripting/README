@@ -1,0 +1,38 @@
+Simple scripting examples.
+
+*NOTE: There seem to be some issues with the underlying code in
+       some systems (apparently including some with 64-bit architectures)
+
+All the examples use the "server interface" with FIFO pipes. Once launched
+with a special option, Siesta listens from the end of one of these
+pipes, waiting for a geometry. When it receives one it computes the
+energy, forces, and stresses, and goes back to listen. The details are hidden
+in a set of Python classes.
+
+client_h2o.py:  Simple one-point calculation for an H2O molecule.
+ase_relax.py :  Uses the "calculator" concept, as introduced by the CAMPOS team
+		in their ASE enviroment,  and one of the ASE modules for
+		"quenched molecular dynamics relaxation".
+bond.py      :  Computes and plots the energy of a water molecule as a function
+                of the bond length.
+
+(The pseudopotentials are obtained from the internet. If you do not
+have a working connection you will have to modify the scripts.)
+
+REQUIREMENTS:
+
+A working python installation.
+
+Numeric 
+(http://sourceforge.net/project/showfiles.php?group_id=1369&package_id=1351)
+
+ScientificPython 
+(http://dirac.cnrs-orleans.fr/plone/software/scientificpython/)
+
+Campos ASE package (https://wiki.fysik.dtu.dk/ase)
+
+Optionally, the Gnuplot python package (gnuplot-py.sourceforge.net).
+
+
+The Siesta-specific bits are in subdirectory "Siesta" in this
+directory. It is an evolving package, and the interfaces are not fixed yet.

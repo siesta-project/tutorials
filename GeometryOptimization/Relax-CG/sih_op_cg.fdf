@@ -1,0 +1,120 @@
+# -----------------------------------------------------------------------------
+# Interstitial H in a cubic c-Si supercell with 64 atoms
+#
+# Conjugate-gradients Optimization
+#
+# E. Artacho, April 1999
+# A. Garcia, December 2005
+# -----------------------------------------------------------------------------
+
+SystemName          H in 64-atom silicon
+SystemLabel         sih_op_cg
+
+NumberOfAtoms       65
+NumberOfSpecies     2
+
+%block ChemicalSpeciesLabel
+ 1  14  Si
+ 2   1  H 
+%endblock ChemicalSpeciesLabel
+
+PAO.BasisSize       SZ
+PAO.EnergyShift     300 meV
+
+%block PAO.Basis
+  H  1
+  0  1
+  0. 
+  0.8
+%endblock PAO.Basis
+
+LatticeConstant     5.430 Ang
+%block LatticeVectors
+2.0 0.0 0.0
+0.0 2.0 0.0
+0.0 0.0 2.0
+%endblock LatticeVectors
+
+MeshCutoff          40.0 Ry
+
+MaxSCFIterations    50  
+DM.MixingWeight      0.3 
+DM.NumberPulay       4
+DM.Tolerance         1.d-3
+DM.UseSaveDM             
+
+SolutionMethod       diagon    
+NumberOfEigenstates   150
+ElectronicTemperature  25 meV  
+
+MD.TypeOfRun         CG
+MD.NumCGsteps        50    
+
+AtomicCoordinatesFormat  ScaledCartesian
+%block AtomicCoordinatesAndAtomicSpecies
+    0.000    0.000    0.000   1 #  Si  1
+    0.250    0.250    0.250   1 #  Si  2
+    0.000    0.500    0.500   1 #  Si  3
+    0.250    0.750    0.750   1 #  Si  4
+    0.500    0.000    0.500   1 #  Si  5 
+    0.750    0.250    0.750   1 #  Si  6 
+    0.500    0.500    0.000   1 #  Si  7 
+    0.750    0.750    0.250   1 #  Si  8 
+    1.000    0.000    0.000   1 #  Si  9 
+    1.250    0.250    0.250   1 #  Si 10
+    1.000    0.500    0.500   1 #  Si 11
+    1.250    0.750    0.750   1 #  Si 12
+    1.500    0.000    0.500   1 #  Si 13 
+    1.750    0.250    0.750   1 #  Si 14 
+    1.500    0.500    0.000   1 #  Si 15 
+    1.750    0.750    0.250   1 #  Si 16 
+    0.000    1.000    0.000   1 #  Si 17 
+    0.250    1.250    0.250   1 #  Si 18
+    0.000    1.500    0.500   1 #  Si 19
+    0.250    1.750    0.750   1 #  Si 20
+    0.500    1.000    0.500   1 #  Si 21 
+    0.750    1.250    0.750   1 #  Si 22 
+    0.500    1.500    0.000   1 #  Si 23 
+    0.750    1.750    0.250   1 #  Si 24 
+    0.000    0.000    1.000   1 #  Si 25 
+    0.250    0.250    1.250   1 #  Si 26
+    0.000    0.500    1.500   1 #  Si 27
+    0.250    0.750    1.750   1 #  Si 28
+    0.500    0.000    1.500   1 #  Si 29 
+    0.750    0.250    1.750   1 #  Si 30 
+    0.500    0.500    1.000   1 #  Si 31 
+    0.750    0.750    1.250   1 #  Si 32 
+    1.000    1.000    0.000   1 #  Si 33 
+    1.250    1.250    0.250   1 #  Si 34
+    1.000    1.500    0.500   1 #  Si 35
+    1.250    1.750    0.750   1 #  Si 36
+    1.500    1.000    0.500   1 #  Si 37 
+    1.750    1.250    0.750   1 #  Si 38 
+    1.500    1.500    0.000   1 #  Si 39 
+    1.750    1.750    0.250   1 #  Si 40 
+    1.000    0.000    1.000   1 #  Si 41 
+    1.250    0.250    1.250   1 #  Si 42
+    1.000    0.500    1.500   1 #  Si 43
+    1.250    0.750    1.750   1 #  Si 44
+    1.500    0.000    1.500   1 #  Si 45 
+    1.750    0.250    1.750   1 #  Si 46 
+    1.500    0.500    1.000   1 #  Si 47 
+    1.750    0.750    1.250   1 #  Si 48 
+    0.000    1.000    1.000   1 #  Si 49 
+    0.250    1.250    1.250   1 #  Si 50
+    0.000    1.500    1.500   1 #  Si 51
+    0.250    1.750    1.750   1 #  Si 52
+    0.500    1.000    1.500   1 #  Si 53 
+    0.750    1.250    1.750   1 #  Si 54 
+    0.500    1.500    1.000   1 #  Si 55 
+    0.750    1.750    1.250   1 #  Si 56 
+    1.000    1.000    1.000   1 #  Si 57 
+    1.250    1.250    1.250   1 #  Si 58
+    1.000    1.500    1.500   1 #  Si 59
+    1.250    1.750    1.750   1 #  Si 60
+    1.500    1.000    1.500   1 #  Si 61 
+    1.750    1.250    1.750   1 #  Si 62 
+    1.500    1.500    1.000   1 #  Si 63 
+    1.750    1.750    1.250   1 #  Si 64 
+    1.125    1.125    1.125   2 #  H  65
+%endblock AtomicCoordinatesAndAtomicSpecies

@@ -1,0 +1,46 @@
+SystemName Magnesium Oxide Crystal   
+SystemLabel            MgO           
+
+NumberOfAtoms           2           
+NumberOfSpecies         2       
+
+%block Chemical_Species_Label
+  1   12   Mg
+  2    8    O
+%endblock Chemical_Species_Label
+
+LatticeConstant     4.117 Ang
+%block LatticeVectors
+  0.000  0.500  0.500
+  0.500  0.000  0.500
+  0.500  0.500  0.000
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat Fractional 
+%block AtomicCoordinatesAndAtomicSpecies
+  0.000  0.000  0.000   1
+  0.500  0.500  0.500   2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block kgrid_Monkhorst_Pack
+  6  0  0  0.5
+  0  6  0  0.5
+  0  0  6  0.5
+%endblock kgrid_Monkhorst_Pack
+
+XC.functional           LDA      
+XC.authors              CA       
+SpinPolarized           .false.  
+MeshCutoff              200 Ry    
+
+BandLinesScale       pi/a
+%block BandLines
+1   1.5   1.5   0.0   K             # Begin at K
+38  0.0   0.0   0.0   \Gamma        # 38 points from K to Gamma
+36  0.0   2.0   0.0   X             # 36 points from Gamma to X
+18  1.0   2.0   0.0   W             # 18 points from X to W
+26  1.0   1.0   1.0   L             # 26 points from W to L
+31  0.0   0.0   0.0   \Gamma        # 31 points from L to Gamma
+%endblock BandLines
+
+

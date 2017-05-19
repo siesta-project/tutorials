@@ -1,0 +1,33 @@
+SystemName          Water molecule layer with dipole
+SystemLabel         h2o
+NumberOfAtoms       3
+NumberOfSpecies     2
+
+MeshCutoff  50 Ry
+
+%block ChemicalSpeciesLabel
+ 1  8  O      # Species index, atomic number, species label
+ 2  1  H
+%endblock ChemicalSpeciesLabel
+
+LatticeConstant 1.0 Ang
+%block LatticeVectors
+3.0 0.0 0.0
+0.0 2.0 0.0
+0.0 0.0 10.0
+%endblock LatticeVectors
+
+%block AtomicCoordinatesOrigin
+0.0 0.0 5.0
+%endblock AtomicCoordinatesOrigin
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+ 0.000  0.000  0.000  1
+ 0.757  0.000  0.586  2
+-0.757  0.000  0.586  2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+save-delta-rho T
+save-electrostatic-potential T
+

@@ -1,0 +1,10 @@
+        Bulk Properties of Si
+
+1) Study the dependence with basis size (PAO.BasisSize)
+   The basis will be generated using the default parameters.
+   directory: Size
+2) Study the dependence with basis range (PAO.EnergyShift) 
+   You will modify the cutoff radious of the 1st zeta
+   directory: Range
+3) The role of the 2nd zeta (PAO.Splitnorm): the matchign radious (directory: Shape-Splitnorm) 
+4) The soft confinning potential (directory: Shape-Vsoft)

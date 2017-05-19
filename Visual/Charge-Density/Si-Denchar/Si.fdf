@@ -1,0 +1,73 @@
+SystemName      Bulk Silicon
+SystemLabel     Si
+NumberOfSpecies	        1
+NumberOfAtoms           2
+%block ChemicalSpeciesLabel
+  1  14  Si
+%endblock ChemicalSpeciesLabel
+
+LatticeConstant      5.41119733025 Ang
+%block LatticeVectors
+  0.00  0.50  0.50
+  0.50  0.00  0.50
+  0.50  0.50  0.00
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat          ScaledByLatticeVectors
+%block AtomicCoordinatesAndAtomicSpecies
+  0.00  0.00  0.00        1
+  0.25  0.25  0.25        1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block kgrid_Monkhorst_Pack
+   4  0  0  0.5
+   0  4  0  0.5
+   0  0  4  0.5
+%endblock kgrid_Monkhorst_Pack
+
+DM.UseSaveDM        .true.
+
+WriteDenchar            .true.       # Write information for DENCHAR
+WriteWaveFunctions T
+%block WaveFuncKPoints
+0.0 0.0 0.0
+%endblock WaveFuncKPoints
+
+#  *************************************************************************
+#                     Input variables for Denchar
+#  (besides SystemLabel, NumberOfSpecies and ChemicalSpecies, defined above)
+#  *************************************************************************
+
+Denchar.TypeOfRun      2D
+
+Denchar.PlotCharge          T
+###Denchar.PlotWaveFunctions   T
+
+Denchar.CoorUnits       bohr           # Format for coordinate of the points
+                                       # Bohr
+                                       # Ang
+
+Denchar.DensityUnits   Ele/bohr**3     # Units of Charge Density
+                                       # Ele/bohr**3
+                                       # Ele/Ang**3
+                                       # Ele/UnitCell
+
+Denchar.MinX           -5.0  bohr      # Minimum coord of the window in X-dir
+Denchar.MaxX            5.0  bohr      # Maximum coord of the window in X-dir
+
+Denchar.MinY           -5.0  bohr      # Minimum coord of the window in Y-dir
+Denchar.MaxY            5.0  bohr      # Maximum coord of the window in Y-dir
+
+Denchar.NumberPointsX    40            # Number of points in X-axis
+Denchar.NumberPointsY    40            # Number of points in Y-axis
+
+Denchar.PlaneGeneration  ThreeAtomicIndices      # Option to generate the plane
+                                                 # NormalVector
+                                                 # TwoLine
+                                                 # ThreePoints
+                                                 # ThreeAtomicIndices
+%block Denchar.Indices3Atoms                # Indices of three atoms
+   1  2  3
+%endblock Denchar.Indices3Atoms
+
+

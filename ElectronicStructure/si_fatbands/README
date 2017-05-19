@@ -1,0 +1,47 @@
+Fatbands for Si
+
+Take a look at the .fdf file. You will see three new lines:
+
+WFS.Write.For.Bands T             # For fat-bands analysis
+Wfs.band.min 1
+Wfs.band.max 8
+
+These tell the program to output the eigenvectors for the "band" states
+specified in the BandLines block.
+
+We are now going to produce a number of .EIGFAT files which contain
+*both* the eigenvalues and the projection weight for each orbital
+that we specify.
+
+
+ Rename the si_fatbands.bands.WFSX file to 'si_fatbands.WFSX'.
+
+ Execute the "fat" program with the fatbands.mpr file as input. We
+ must leave out the .mpr extension:
+
+    fat fatbands
+
+ Now process the EIGFAT files:
+
+eigfat2plot fatbands.fatbands_Si_3s.EIGFAT > 3s.dat
+eigfat2plot fatbands.fatbands_Si_3p.EIGFAT > 3p.dat
+eigfat2plot fatbands.fatbands_Si_3d.EIGFAT > 3d.dat
+
+ Plot with gnuplot, with typical commands:
+#
+
+plot "3s.dat" using 1:2:(4*$3) with points pt 6 ps variable  
+replot "3p.dat" using 1:2:(4*$3) with points pt 6 ps variable 
+
+(or use the fatbands.gplot script: gp fatbands.gplot)
+
+If we take the "density of states" of the "fat-bands", taking
+into account the weight of each orbital, we will get the
+"projected DOS" (pDOS) on each orbital. In fact, the file fatbands.mpr
+can be used as-is with the 'mprop' program to generate the
+files needed to plot the pDOS:
+
+   mprop fatbands
+
+You can plot some of the curves with the pdos-Si.gplot script.
+

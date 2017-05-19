@@ -1,0 +1,41 @@
+CH3 molecule.
+
+* Use of denchar + xcrysden (through an intermediate "Gaussian(TM)
+  cube format")
+
+Run Siesta on ch3_spin.fdf.
+It will take a few iterations to relax the geometry. 
+
+Then, run denchar on the same ch3_spin.fdf (it will only look at the
+relevant keywords). It will produce a few ".cube" files.
+
+Open any one of them with xcrysden and see the data grid information.
+For example:
+
+  xcrysden --g98_cube ch3.RHO.UP.cube
+
+(VESTA and Molekel can also be used to display 'cube' files)
+
+* Use of the .RHO output file + rho2xsf program (Andrei Postnikov's) +
+  xcrysden.
+
+
+After the Siesta run, you should find a ch3.RHO file in the
+directory. It contains the charge density on the points of the
+real-space grid.
+
+We convert it to a format readable by Xcrysden using the "rho2xsf"
+program by Andrei Postnikov. You can use it interactively, or through an
+input file already prepared (xsf.input) :
+
+rm -f ch3.XSF     # Make sure we remove any old files first
+rho2xsf < xsf.input 
+
+Now, open ch3.XSF with Xcrysden, and display the two datasets (spin up
+and down charge, deformation charge, total potential) associated to
+it. You can even combine the up (with factor +1.0) and down (with
+factor -1.0) and see the spin density.
+
+Make sure that the iso-value you choose is not to high, or the surface
+will be inside the big C atom...
+

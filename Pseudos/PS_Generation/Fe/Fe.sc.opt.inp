@@ -1,0 +1,18 @@
+#
+#  PS generation
+#  GGA (Perdew-Burke-Ernzerhof) XC , relativistic
+#  HSC, 3s and 3p as semicore states
+#  1 electron missing from the 4s orbital
+#  Optimized in PRAGMA
+#
+   pe   Fe, GGA
+        tm2      3.0
+ n=Fe c=pbr
+       0.0       0.0       0.0       0.0       0.0       0.0
+    3    3
+    3    0      2.00      0.00    # 3s2
+    3    1      6.00      0.00    # 3p6
+    3    2      7.00      0.00    # 3d7
+      1.20      1.25      1.20      1.40      0.00      0.70
+#                                                        |
+#                                       Radius of pseudocore

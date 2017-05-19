@@ -1,0 +1,22 @@
+This is a package of exercises for Siesta Tutorials. 
+
+The material is scattered in different subdirectories, and a given edition
+of the tutorial can use its own selection, hopefully using symbolic names
+and an easier to follow menu. For now, this package can be used to
+test the installation.
+
+There are some site-specific items here and there. Use your own judgement to
+adapt them to your site.
+
+All the examples should run with (at-least) siesta-2.0.2-rc44.
+
+See the INSTALL file for installation instructions.
+
+Alberto Garcia
+albertog@icmab.es
+
+
+
+
+
+

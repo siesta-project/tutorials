@@ -1,0 +1,9 @@
+there_is_core=`test -f COREQ && echo 1 || echo 0`
+#
+if (there_is_core==0) quit
+#
+plot [0:20] 'COREQ' using 1:2 title "Core Charge (q)" with lines,\
+             0.0 notitle with lines lt 0
+    
+
+

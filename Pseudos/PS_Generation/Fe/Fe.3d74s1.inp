@@ -1,0 +1,17 @@
+#
+#  PS generation with core corrections
+#  GGA (Perdew-Burke-Ernzerhof) XC , relativistic
+#  3d7 4s1 configuration
+#
+   pe   Fe, GGA, rcore=0.70
+        tm2      3.0
+ n=Fe c=pbr
+       0.0       0.0       0.0       0.0       0.0       0.0
+    5    4
+    4    0      1.00      0.00    # 4s1
+    4    1      0.00      0.00    # 4p0
+    3    2      7.00      0.00    # 3d7
+    4    3      0.00      0.00    # 4f0
+      2.00      2.00      2.00      2.00      0.00      0.70
+#                                                        |
+#                                       Radius of pseudocore

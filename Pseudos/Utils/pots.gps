@@ -1,0 +1,18 @@
+set terminal postscript enhanced color
+set output "pots.ps"
+#
+there_is_s=`test -f PSPOTR0 && echo 1 || echo 0`
+there_is_p=`test -f PSPOTR1 && echo 1 || echo 0`
+there_is_d=`test -f PSPOTR2 && echo 1 || echo 0`
+there_is_f=`test -f PSPOTR3 && echo 1 || echo 0`
+#
+set data style lines
+if (there_is_s == 0) print "No s pseudo... quiting..." ; quit
+#
+plot [0:4]  'PSPOTR0' title "V_s"
+if (there_is_p == 1) replot  'PSPOTR1' title "V_p" 
+if (there_is_d == 1) replot  'PSPOTR2' title "V_d" 
+if (there_is_f == 1) replot  'PSPOTR3' title "V_f" 
+#
+quit
+#

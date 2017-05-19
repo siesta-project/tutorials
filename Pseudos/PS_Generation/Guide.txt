@@ -1,0 +1,114 @@
+PSEUDOPOTENTIAL EXERCISES
+
+* Basic Example: Si 
+
+A simple example to get the mechanics right. Generate a
+pseudopotential by running pg Si.tm2.inp and analyze and plot the
+results. Then test the resulting pseudopotential by running pt
+Si.test.inp Si.tm2.vps.
+
+* A hard element: C 
+
+C is a first-row element, and the 2p state does not have nodes, as
+there are no other p states below it. Thus the pseudization cannot
+soften the wavefunction by a whole lot, and the pseudopotential can be
+quite hard. Here we explore two schemes for pseudopotential
+generation: Hammann-Schluter-Chiang (code hsc), and Troullier-Martins
+(code tm2).  Note how the rc's can be significantly larger for tm2
+while maintaining the transferability.  Check the "softness" or
+"hardness" of the resulting pseudopotentials by looking at their
+fourier transform.
+
+* Core Corrections: Na 
+
+There are two pseudopotential input files: One for a normal case
+without core corrections, and another one with corrections. Note how
+the transferability of the pseudopotential improves with the use of
+non-local core corrections. 
+
+* Core or valence?: Cu 
+
+The d electrons in Cu (and in Ga, and others) can be treated either as
+"core" or "valence"  (and actually as "core but corrected"). First
+generate and test the "3d in valence" pseudopotential found here
+(Cu.3dtm2.inp). (You will have to prepare an input file for the test.)
+Then prepare an input file for a "3d in core"
+pseudopotential. Generate the pseudo and test it. Finally, put core
+corrections to the pseudopotential of the "3d in core" case.
+
+* Semicore states: Ba 
+
+A somewhat technical example involving semicore states. Both the 5s
+and 5p states, which are normally thought of as "core states", are put
+in the valence. As previous versions of the program could only use ps
+generation configurations with one state per angular momentum channel,
+the "genuinely valence" 6s state was eliminated from the calculation
+(and also the 6p, not occupied in the atom but involved in scattering
+of solid-state electrons). The atomic configuration for
+pseudopotential generation was thus ionic. The input for this case is
+in Ba.sc-ionic.inp.
+
+Newer versions of the ATOM program do not have this limitation, and
+the full configuration can be used for pseudopotential
+generation. The input for this case is in Ba.sc-full.inp. The
+resulting pseudopotential is almost indistinguisable from the one
+generated with the ionic configuration, which attests to the soundness
+of the pseudopotential approximation. 
+
+In any case, the pseudopotential constructed is not expected to
+reproduce perfectly the 6s and 6p states, as their eigenvalues are
+more than 1 eV from those of the reference states 5s and 5p, but the
+actual results are not bad at all. (Use the "gp pt.gplot" command in
+the test directory. You can change the order of the configurations in
+the Ba.test.inp file to look at the plots in sequence: only the last
+configuration is plotted.)  Note that the 6s and 6p states have a
+node, as they must be orthogonal to the 5s and 5p states,
+respectively.
+
+As explained in the lecture, SIESTA will generate extra
+Kleinman-Bylander projectors associated to the 5s and 5p orbitals.
+
+A technical point: in the "ionic" case, the valence charge density
+written to the pseudopotential file is re-scaled so that the total
+charge is the full valence charge (including semicore states), but its
+range and shape are different from the true full valence charge. This
+has implications for the construction of PAOs by SIESTA.
+
+* Semicore states: Ti
+
+Another example of semicore states.
+
+*Fe 
+
+These are GGA pseudopotentials for Fe, all with core
+corrections. (Even if it were not strictly necessary, a pseudo-core
+helps to iron out some numerical instabilities which appear near the
+origin when the GGA is used.)  
+
+Fe.gga-cc.in: Pseudopotential with a
+3d6 4s2 configuration. The p-pseudo looks a bit ugly. Increasing rc
+(p) (Fe.large-rp.inp) fixes this, but is the pseudopotential more or
+less transferable?  
+
+Fe.4s13d7.inp: Pseudopotential with a 3d7-4s1
+configuration.  (Test the above pseudopotentials with Fe.test.inp)
+Fe.sc.inp: Pseudopotential with the 3s and 3p electrons in the
+valence.  
+
+Fe.sc.opt.inp: Same as above, but with the rc parameters
+roughly optimized for transferability while keeping the
+pseudopotentials relatively soft.  
+
+(To test the small-core pseudos we need a special test file:
+Fe.test.sc.inp) The above examples used the GGA. It has been shown
+that the LDA predicts the wrong ground-state for bulk Fe!.
+
+
+
+
+
+
+
+
+
+

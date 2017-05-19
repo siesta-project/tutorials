@@ -1,0 +1,40 @@
+Brief Description:
+
+The tbtrans code is used in order to obtain, in a post-processing way, the transport properties after 
+a TranSIESTA run. It was developed by M. Brandbyge, and the present version contains some 
+modifications made by F. D. Novaes.
+
+In order to run it, it requires the electrode's TSHS files (may be just one file if the left and right 
+electrodes are equal), and the scattering region's TSHS file. These  are generated in a TranSIESTA run. 
+The location of these files are specified by the (fdf) input options:
+
+TS.HSFileLeft  
+TS.HSFileRight
+TS.TBT.HSFile
+
+respectively for the left and right electrodes and the scattering region (for the latter one, 
+if nothing is  specified, it is assumed that the file name is is “system label”.TSHS file, and located 
+in the same directory from where the calculation is being launched).
+
+The energy widow and number of points for the computation of the transmission function is specified by
+
+TS.TBT.Emin 
+TS.TBT.Emax 
+TS.TBT.NPoints
+
+The current will be computed using the resulting transmission function, so be sure to make it suited 
+for the integration in the bias window. 
+
+The averaged (over k-points) transmission function is printed in the file “system label”.AVTRANS.
+
+The present version of the code is only parallelized over k-points, so the number of nodes should not 
+be bigger than the number of k-points.
+
+
+
+Compiling:
+
+Similar to SIESTA (and TranSIESTA), an arch.make file has to be put in the main directory of TBTrans. 
+It is also necessay to indicate wher the SIESTA Src directory is located. By default it is assumed 
+to be ../../Src from the Util directory. If this is not the case, change the SIESTA_DIR variable value 
+in the Makefile. To compile, type “make”

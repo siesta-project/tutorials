@@ -1,0 +1,13 @@
+As an exercise, generate and plot the "fatbands" and partial-DOS information
+for MgO.
+
+Follow the steps in the ../si_fatbands directory and in the
+DAY-1/Visual/COHP/N_chain directory.
+
+We have prepared for you the fatbands.mpr file, which can also be fed
+to the program "mprop" to compute the partial DOS for the given
+orbitals.
+
+
+
+

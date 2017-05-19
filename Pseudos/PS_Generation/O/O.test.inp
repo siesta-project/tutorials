@@ -1,0 +1,94 @@
+#
+# All-electron calculations for a series of O configurations
+#
+   ae O Test -- GS 2s2 2p4
+   O    ca
+       0.0
+    1    2
+    2    0      2.00
+    2    1      4.00
+   ae O Test -- 2s1.8 2p4.2
+   O    ca
+       0.0
+    1    2
+    2    0      1.80
+    2    1      4.20
+   ae O Test -- 2s1.6 2p4.4
+   O    ca
+       0.0
+    1    2
+    2    0      1.60
+    2    1      4.40
+   ae O Test -- 2s1.4 2p4.6
+   O    ca
+       0.0
+    1    2
+    2    0      1.40
+    2    1      4.60
+   ae O Test -- 2s1.2 2p4.8
+   O    ca
+       0.0
+    1    2
+    2    0      1.20
+    2    1      4.80
+   ae O Test -- 2s1.0 2p5.0
+   O    ca
+       0.0
+    1    2
+    2    0      1.00
+    2    1      5.00
+   ae O Test -- 2s2 2p3 3d1
+   O    ca
+       0.0
+    1    3
+    2    0      2.00
+    2    1      3.00
+    3    2      1.00
+#
+#  Test
+#
+   pt O Test -- GS 2s2 2p4
+   O    ca
+       0.0
+    1    2
+    2    0      2.00
+    2    1      4.00
+   pt O Test -- 2s1.8 2p4.2
+   O    ca
+       0.0
+    1    2
+    2    0      1.80
+    2    1      4.20
+   pt O Test -- 2s1.6 2p4.4
+   O    ca
+       0.0
+    1    2
+    2    0      1.60
+    2    1      4.40
+   pt O Test -- 2s1.4 2p4.6
+   O    ca
+       0.0
+    1    2
+    2    0      1.40
+    2    1      4.60
+   pt O Test -- 2s1.2 2p4.8
+   O    ca
+       0.0
+    1    2
+    2    0      1.20
+    2    1      4.80
+   pt O Test -- 2s1.0 2p5.0
+   O    ca
+       0.0
+    1    2
+    2    0      1.00
+    2    1      5.00
+   pt O Test -- 2s2 2p3 3d1
+   O    ca
+       0.0
+    1    3
+    2    0      2.00
+    2    1      3.00
+    3    2      1.00
+
+#2345678901234567890123456789012345678901234567890      Ruler

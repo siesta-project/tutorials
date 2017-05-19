@@ -1,0 +1,17 @@
+Visualization of a molecular dynamics run.
+
+Once you have run Siesta on the fdf file provided, you 
+will have .XV, .ANI, .MD, and .MDE files.
+
+The 'md2axsf' program by Andrei Postnikov can use the
+coordinate information in the .ANI or the .MD files, and
+will produce a .AXSF file.
+
+Run Xcrysden:
+
+xcrysden --axsf filename.AXSF
+
+and use the "animate" panel to watch the simulation.
+
+NOTE: You might want to change the origin in the .fdf
+file to avoid the "break" in the Si slab.

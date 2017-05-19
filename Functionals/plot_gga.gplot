@@ -1,0 +1,3 @@
+set xlabel "Vol (Ang^3)"
+set ylabel "E (eV)"
+plot "BCC/GGA/E-VS-vol-Fe-BCC-GGA.dat" w lp, "FCC/GGA/E-VS-vol-Fe-FCC-GGA.dat" w lp,"BCC/SGGA/E-VS-vol-Fe-BCC-GGA-Spinpol.dat" w lp

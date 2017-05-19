@@ -1,0 +1,65 @@
+# Input file for the benzene molecule using the Z-matrix
+# An atomic relaxation will be performed, 
+# starting from the experimental coordinates
+# (distance C-C = 1.39 Ang, distance C-H = 1.09 Ang, angles = 120 degrees),
+# with the constraint of the angles between C-C-C and C-C-H = 120 degrees.
+
+SystemName      benzene
+SystemLabel     benzene
+
+NumberOfSpecies 2
+NumberOfAtoms   12
+
+%block ChemicalSpeciesLabel
+1    1 H
+2    6 C
+%endblock ChemicalSpeciesLabel
+
+%block PS.lmax
+  C   3
+  H   3
+%endblock PS.lmax
+
+AtomicCoordinatesFormat NotScaledCartesianAng
+
+ZM.ForceTolLength   0.01   eV/Ang
+ZM.ForceTolAngle    0.0001 eV/deg
+ZM.MaxDisplLength   0.1    Ang
+ZM.MaxDisplAngle   20.0    deg
+
+%block Zmatrix
+molecule
+      2 0 0 0  xm1 ym1  zm1   0 0 0
+      2 1 0 0  CC  90.0 60.0  0 0 0
+      2 2 1 0  CC  CCC  90.0  0 0 0
+      2 3 2 1  CC  CCC  0.0   0 0 0
+      2 4 3 2  CC  CCC  0.0   0 0 0
+      2 5 4 3  CC  CCC  0.0   0 0 0
+      1 1 2 3  CH  CCH  180.0 0 0 0
+      1 2 1 7  CH  CCH  0.0   0 0 0
+      1 3 2 8  CH  CCH  0.0   0 0 0
+      1 4 3 9  CH  CCH  0.0   0 0 0
+      1 5 4 10 CH  CCH  0.0   0 0 0
+      1 6 5 11 CH  CCH  0.0   0 0 0
+constants
+        ym1 5.00
+        zm1 0.00
+        CCC 120.0
+        CCH 120.0
+variables
+        CC 1.390
+        CH 1.090
+constraints
+        xm1 CC -1.0 3.903229
+%endblock Zmatrix
+
+ZM.UnitsLength  Ang
+ZM.UnitsAngle   deg
+
+MD.TypeOfRun    CG
+MD.NumCGsteps   50
+
+MeshCutoff     200 Ry
+DM.NumberPulay  5
+DM.MixingWeight 0.3
+

@@ -1,0 +1,36 @@
+NOTE: The PDOS interface in the 'mprop' program (see Visual/COHP) is
+more powerful. This exercise is obsolete, as the need to compile
+different versions of the program for different orbitals is a
+nuisance.
+
+Generation of PDOS curves using Siesta's built-in PDOS
+block.
+
+This exercise shows the use of the "ProjectedDensityOfStates"
+block in Siesta.
+
+Run Siesta on n_chain.fdf  (note that we have removed the
+COOP.Write line and left only the "PDOS" block).
+
+The information is stored in an xml file called 'pdos.xml'. While
+it might look hard to process, it is in fact convenient to classify
+the different orbitals' contribution to the density of states.
+
+The pdos.xml file can be processed by the 'pdosxml' program in the
+Util/pdosxml directory of the Siesta distribution.
+
+Here we show a few examples of the "orbital selector" subroutine which
+is part of the program: m_2s.f90, m_2p.f90, m_2px.f90, and m_2pz.f90,
+and we have pre-compiled the corresponding versions of the pdosxml
+program:
+
+pdosxml_2s, etc
+
+You can run, for example:
+
+  pdosxml_2pz pdos.xml
+
+and plot the resulting curve with gnuplot.
+
+The PDOS interface in the 'mprop' program (see Visual/COOP) is more
+powerful.

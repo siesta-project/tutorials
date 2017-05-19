@@ -1,0 +1,49 @@
+# Low-defaults for H2O convergence checks
+
+# Chemical species info
+NumberOfSpecies  2
+%block ChemicalSpeciesLabel
+  1   8  O
+  2   1  H  
+%endblock ChemicalSpeciesLabel
+
+# Molecular geometry
+NumberOfAtoms   3
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+ 0.000  0.000  0.000  1
+ 0.757  0.586  0.000  2
+-0.757  0.586  0.000  2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+# Simulation cell
+LatticeConstant  5 Ang
+%block LatticeVectors   
+  1.0  0.0  0.0
+  0.0  1.0  0.0
+  0.0  0.0  1.0
+%endblock LatticeVectors   
+
+# Basis set
+PAO.BasisSize   SZ
+
+# Exchange-correlation functional
+xc.functional          LDA
+xc.authors             PW92
+
+# Integration mesh cutoffs
+MeshCutoff           100.0 Ry       # Real-space mesh cutoff.
+
+# SCF options
+SolutionMethod        diagon        # OrderN or Diagon
+ElectronicTemperature 25 meV        # Temp. for Fermi smearing
+MaxSCFIterations      10            # Maximum number of SCF iter
+DM.MixingWeight       0.3           # New DM amount for next SCF cycle
+DM.Tolerance          1.d-3         # Tolerance in maximum difference
+DM.NumberPulay        3
+DM.UseSaveDM          no
+
+# Fixed-geometry calculation
+MD.TypeOfRun          CG
+MD.NumCGsteps         0
+

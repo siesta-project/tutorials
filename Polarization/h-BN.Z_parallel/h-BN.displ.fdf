@@ -1,0 +1,63 @@
+SystemName       h-BN exp. latt.   # Descriptive name of the system
+SystemLabel            h-BN           # Short name for naming files
+
+# Output options
+
+WriteCoorStep  .true.
+WriteMullikenPop       1    
+
+# Species and atoms
+
+NumberOfSpecies        2       
+NumberOfAtoms          4      
+%block ChemicalSpeciesLabel
+  1  5  B
+  2  7  N
+%endblock ChemicalSpeciesLabel
+
+# Basis
+
+PAO.EnergyShift       200 meV
+PAO.BasisSize         DZP
+
+LatticeConstant       2.504 Ang  
+
+%block LatticeVectors          
+ 0.86603   0.500000  0.000000
+ 0.86603  -0.500000  0.000000 
+ 0.00000   0.000000  2.659700
+%endblock LatticeVectors
+
+KgridCutoff          10. Ang
+
+xc.functional         GGA           # Exchange-correlation functional
+xc.authors            PBE           # Exchange-correlation version
+MeshCutoff           140. Ry        # Mesh cutoff. real space mesh 
+
+# SCF options
+MaxSCFIterations       40           # Maximum number of SCF iter
+DM.MixingWeight       0.1           # New DM amount for next SCF cycle
+DM.Tolerance          1.d-4         # Tolerance in maximum difference
+                                    # between input and output DM
+DM.UseSaveDM          true          # to use continuation files
+DM.NumberPulay         5
+
+SolutionMethod        diagon        # OrderN or Diagon
+ElectronicTemperature  25 meV       # Temp. for Fermi smearing
+
+# Atomic coordinates
+AtomicCoordinatesFormat     Fractional    
+%block AtomicCoordinatesAndAtomicSpecies
+  0.010000000000    0.000000000000    0.000000000000  1
+  0.333333333333    0.333333333333    0.000000000000  2
+  0.333333333333    0.333333333333    0.500000000000  1
+  0.000000000000    0.000000000000    0.500000000000  2 
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+# Calculation of the macroscopic polarization
+%block PolarizationGrids
+10  4   2
+4   10  2
+4   4   10
+%endblock PolarizationGrids
+

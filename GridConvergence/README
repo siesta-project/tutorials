@@ -1,0 +1,132 @@
+Eggbox
+
+The purpose of this exercise is to see the importance
+of the meshcutoff. In particular:
+
+* how the properties of your system are
+affected by the meshcutoff value, and
+* how to get a good meshcutoff value.
+
+We will use the Methane (CH4) molecule.
+
+1) Check the input file named ch4-0.fdf
+in the directory mesh-30ry
+
+The system is a methane molecule, inside a
+cubic cell of 10 Ang side.
+The carbon atom is localized at the origin.
+
+Now, look for the the mesh cutoff chosen in the
+input file. Run SIESTA with this input file, using the
+pseudopotential file C.psf in the directory Pseudos
+
+Read the output, paying special attention to:
+
+-The mesh used in the calculation (look for the line
+ starting with: InitMesh: MESH = )
+-Total energy
+-Max atomic force
+-Total CPU execution time
+
+Can you calculate what is the distance between
+mesh points?
+
+Now, we do a small displacelemt in the 
+position of the molecule inside our "box".
+With SIESTA, you can do a rigid translation of
+the system, by using the input block:
+
+%block AtomicCoordinatesOrigin
+ x y z
+%endblock AtomicCoordinatesOrigin
+
+This is done in the input file ch4-d.fdf,
+which is exactly the same as the former one (ch4-0.fdf)
+but with a rigid translation of (0.127,0.745,-0.33) Ang.
+
+Run again SIESTA using this new input file.
+Analize your output file and compare with the former.
+Do you see anything strange? You should notice
+some signs that tell you that the meshcutoff that
+has been used is too small for this system.
+
+2) We will now do a series of calculations to see the
+'eggbox' effect.  Go to directory egg and use
+the input file ch4.fdf.
+We will plot a profile of the total
+energy as a function of the displacement of the molecule
+with respect to the mesh, by displacing it in small 
+steps in the x direction. 
+The eggbox (as a function of the displacement
+of the molecule) will be periodic, with a period
+that correspond to the distance between meshpoints (why?).
+Do a few (say, about ten) calculations to see one of these periods.
+How much to you need to displace the molecule? Of course,
+this depends on the spacing between mesh points, which
+you should have calculated before.
+Plot the total energy and the total force
+versus the displacement of the molecule.
+You should be able to reproduce the results
+shown in egg/Out/e.ps.
+
+Why are the properties of the molecule changing so much
+with this translation?
+Of course, the answer is that the meshcutoff is not sufficient
+for this system.
+
+
+3) Finding the right meshcutoff.
+
+Go to the directory mesh-cutoff.
+Use the ch4.fdf input file, and the same pseudopotential file as before.
+Do a series of calculations increasing the value
+of the meshcutoff parameter, by steps of 10 Ry.
+From the output files, extract:
+-The actual used meshcutoff used (which is usually different from
+ the one required in the input file!)
+-The total energy
+-The total force
+-The CPU time
+
+Plot the total energy and total force versus the requested
+meshcutoff and the used meshcutoff. Try to decide
+what would be a reasonable value for a real calculation
+in this system.
+
+An important issue: realize how the total time of your
+calculation has grown with the increment of mesh cutoff
+value. Always take this into account, in trying
+to reach a compromise between accuracy and computational
+time.
+
+You have plots with the results that you should
+obtain in mesh-cutoff/Out
+
+Once that you have chosen a meshcutoff whith you consider
+as converged, you can again plot the eggbox effect.
+(Notice that the mesh spacing has now changed!).
+See how the eggbox effect has reduced.
+
+4) Effect of the inclussion of Core Corrections in the Pseudopotential.
+
+Core corrections often make convergence with the
+meshcutoff be slower. As a matter of example,
+we will do the same calculation as before, but
+using a C pseudopotential that has a large core correction 
+term (note that this is not necessary for C, 
+but we do it as a matter of example). 
+
+Go to directory core. In file core.ps you can see
+the valence charge and the core correction included
+in the pseudopotential. You have the pseudopotential
+file in  C.pe.psf. Note that we have included
+a very hard core correction, just as a matter of
+illustration.
+
+Do similar tests as you did in Section 3. 
+See how the convergence of the total energies 
+and forces change with the inclusion of this 
+large core correction.
+
+You have plots with the results that you should
+obtain in core/Out. 

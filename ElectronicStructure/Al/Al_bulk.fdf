@@ -1,0 +1,67 @@
+#General system specifications
+SystemName          FCC Al
+SystemLabel         Al
+NumberOfAtoms       1
+NumberOfSpecies     1
+
+%block ChemicalSpeciesLabel
+ 1  13 Al      # Species index, atomic number, species label
+%endblock ChemicalSpeciesLabel
+#Experimental lattice parameter 4.05 Ang
+LatticeConstant 4.05 Ang
+
+%block LatticeVectors
+0.000000    0.500000   0.5000000
+0.500000    0.000000   0.5000000
+0.500000    0.500000   0.0000000
+%endblock LatticeVectors
+
+# Basis set definition
+PAO.EnergyShift 200 meV
+PAO.SplitNorm   0.15
+PAO.BasisSize   SZ 
+
+#Atomic coordinates
+AtomicCoordinatesFormat  scaledcartesian
+
+%block AtomicCoordinatesAndAtomicSpecies
+  0.000000      0.000000      0.000000   1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+#Real space grid 
+MeshCutoff 125.0 Ry
+
+# K-sampling (alternative specification using kgrid_cutoff)
+%block kgrid_Monkhorst_Pack
+     4  0  0  0.5
+     0  4  0  0.5
+     0  0  4  0.5
+%endblock kgrid_Monkhorst_Pack
+
+# Convergence of SCF 
+MaxSCFIterations 50
+DM.MixingWeight 0.5
+DM.NumberPulay  3
+ElectronicTemperature 300 K
+
+# Type of solver
+SolutionMethod diagon
+
+# Output (Band structure calculation)
+BandLinesScale pi/a
+
+%block BandLines
+1   1.0000 1.0000 1.0000  L       # Begin at L
+20  0.0000 0.0000 0.0000  \Gamma  # 20 points from L to gamma
+25  2.0000 0.0000 0.0000  X       # 25 points from gamma to X
+30  2.0000 2.0000 2.0000  \Gamma  # 30 points from X to gamma
+%endblock BandLines
+
+
+
+
+
+
+
+

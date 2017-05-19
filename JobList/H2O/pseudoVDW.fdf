@@ -1,0 +1,5 @@
+%block ChemicalSpeciesLabel
+  1   8   O.vdw
+  2   1   H.vdw
+%endblock ChemicalSpeciesLabel
+

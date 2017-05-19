@@ -1,0 +1,7 @@
+0.4  	# Initial value of lambda (size of simplex)
+0.5  	# Factor by which lambda decreases at each macro step
+0.01 	# Minimimum value of lambda
+40      # Maximum number of simplex iterations per macro step
+1.0e-5  # Fractional tolerance in function value
+#-----------------------------------------------
+# These are all the tunable operational parameters

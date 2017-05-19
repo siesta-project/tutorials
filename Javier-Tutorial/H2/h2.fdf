@@ -1,0 +1,16 @@
+SystemName          H2 molecule
+SystemLabel         h2
+NumberOfAtoms       2
+NumberOfSpecies     1
+
+%block ChemicalSpeciesLabel
+ 1  1  H
+%endblock ChemicalSpeciesLabel
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+ 0.000  0.000  0.000  1
+ 1.000  0.000  0.000  1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+DM.NumberPulay 3

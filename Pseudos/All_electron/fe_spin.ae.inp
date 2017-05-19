@@ -1,0 +1,15 @@
+   ae Fe all-electron Fake GS (equal up-down occ.)
+   Fe   ca
+         0
+    5    2
+    4    0      2.00
+    3    2      6.00
+   ae Fe all-electron True GS (spin-pol)
+   Fe   cas
+         0
+    5    2
+    4    0      1.00      1.00
+    3    2      5.00      1.00
+
+
+12345678901234567890123456789012345678901234567890      Ruler

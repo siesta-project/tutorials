@@ -1,0 +1,26 @@
+Analysis of the COOP and COHP curves for a chain of N atoms
+along the z axis.
+
+* Run Siesta on the n_chain.fdf file.
+
+Note the 'COOP.Write T' line in the file. This forces the creation of
+the files n_chain.fullBZ.WFSX and n_chain.HSX, which contain wave-function
+and Hamiltonian and Overlap information, respectively.
+
+These files can be processed by the mprop program (full documentation
+available typing 'mprop -h') to obtain the DOS, PDOS, COOP, and COHP
+curves for an arbitrary combination of orbitals.
+
+Before using mprop, issue the following command to link the WFSX file to
+the name expected by the program:
+
+ln -sf n_chain.fullBZ.WFSX n_chain.WFSX
+
+The type:
+
+'mprop pdos' to generate PDOS information (see file pdos.mpr). The
+curves can be plotted with the pdos.gplot script: 'gp pdos.gplot'.
+
+'mprop n_coo' to generate COOP and COHP curves. These display the
+energy-resolved bonding and antibonding character in the system.
+

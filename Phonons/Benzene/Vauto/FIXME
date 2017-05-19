@@ -1,0 +1,5 @@
+The MD file is a binary one, and thus non-portable. (It was generated
+on a Mac -- for reference for future conversions). It could be re-generated,
+but it could take a while during the tutorial.
+
+There is no code to compute the vibration frequencies.

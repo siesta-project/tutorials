@@ -1,0 +1,65 @@
+
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS (MESH CUTOFF, ETC.) 
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT WARRANTY THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+* Inspect the input file, h2.fdf, and examine in detail 
+the different input variables. More information can be obtained from 
+the Siesta web page (http://www.icmab.es/siesta), following the link 
+Documentations, and then Manual.
+
+* Run the code for a set of different interatomic distances.
+For instance, from 0.40 Ang to 3.00 Ang in steps of 0.10 Ang.
+Save each output file in a separate file:
+
+siesta < h2.fdf > h2.your_interatomic_distance.out
+
+* Tabulate the total energy as a function of the interatomic distance.
+In order to get this, type:
+
+grep "Total =" h2.*.out > h2.distance.dat
+
+* Edit the h2.distance.dat file with your favorite text editor,
+and leave only two columns:
+the first with the interatomic distance (in this case, in Angstroms),
+and the second with the total energy (in this case, in eV).
+At the end, it should look like this:
+
+0.40     -23.866759
+0.50     -27.849742
+0.60     -29.650016
+0.70     -30.376314
+0.80     -30.538122
+0.90     -30.390457
+1.00     -30.073718
+1.10     -29.669132
+1.20     -29.227841
+1.30     -28.777047
+1.40     -28.334721
+1.50     -27.911124
+1.60     -27.510996
+1.70     -27.137073
+1.80     -26.791029
+1.90     -26.472157
+2.00     -26.180416
+2.10     -25.914188
+2.20     -25.671301
+2.30     -25.454002
+2.40     -25.255192
+2.50     -25.077804
+2.60     -24.918596
+2.70     -24.772615
+2.80     -24.648741
+2.90     -24.533466
+3.00     -24.429634
+
+* Plot the total energy as a function of the interatomic distance.
+
+gnuplot
+plot "h2.distance.dat" using 1:2 with lines
+

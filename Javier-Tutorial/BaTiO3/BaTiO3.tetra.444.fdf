@@ -1,0 +1,144 @@
+#
+# General system descriptors
+#
+
+SystemName	BaTiO3 bulk
+#               tetragonal structure.
+#               300 Ry 
+#               4 x 4 x 4; 0.5 0.5 0.5 MP mesh
+SystemLabel	 BaTiO3
+NumberOfAtoms    5
+NumberOfSpecies	 3
+%block ChemicalSpeciesLabel
+      1      56     Ba
+      2      22     Ti
+      3       8     O
+%endblock ChemicalSpeciesLabel
+
+
+# Lattice, coordinates, k-sampling
+#
+
+LatticeConstant      3.942581 Ang     
+%block LatticeVectors
+  1.00  0.00  0.00
+  0.00  1.00  0.00
+  0.00  0.00  1.0080429546025813
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat	  Fractional
+%block AtomicCoordinatesAndAtomicSpecies 
+   0.0   0.0   0.00000000   1  
+   0.5   0.5   0.51194789   2 
+   0.5   0.5  -0.01517332   3
+   0.5   0.0   0.49005413   3
+   0.0   0.5   0.49005413   3
+%endblock AtomicCoordinatesAndAtomicSpecies 
+
+%block kgrid_Monkhorst_Pack
+   4   0   0    0.5
+   0   4   0    0.5
+   0   0   4    0.5
+%endblock kgrid_Monkhorst_Pack
+
+#
+# DFT, Grid, SCF
+#
+
+XC.Functional          LDA         # LDA = Local Density Approximation
+XC.Authors             CA          # CA = Ceperley-Alder
+SpinPolarized          .false.     # Are we going to perfom a spin polarized cal
+MeshCutoff             300 Ry      # Fineness of the integrations in real space
+
+DM.MixingWeight        0.400       # New DM amount for next SCF cycle
+DM.Tolerance           1.d-4       # Tolerance in maximum difference
+                                   # between input and output DM
+DM.NumberPulay         3
+MaxSCFIterations       100
+
+#
+# Eigenvalue problem: order-N or diagonalization
+#
+
+SolutionMethod         diagon
+ElectronicTemperature  100 K
+
+#
+# Output options
+#
+
+LongOutput              .false.
+WriteCoorStep           .true.
+WriteForces             .true.
+WriteMullikenPop        1            # Write Mulliken Population Analysis
+                                     #   - 0 = None
+                                     #   - 1 = atomic and orbital charges
+                                     #   - 2 = 1 + atomic overlap population
+                                     #   - 3 = 2 + orbital overlap population
+WriteCoorXmol           .false.
+WriteMDCoorXmol         .false.
+WriteMDhistory          .false.
+WriteEigenvalues        .false.
+
+#
+# Options for saving/reading information
+#
+
+DM.UseSaveDM            .false.      # Use DM Continuation files
+MD.UseSaveXV            .false.      # Use stored positions and velocities
+MD.UseSaveCG            .false.      # Use CG history information
+
+#
+# Basis definition
+#
+
+%block PS.lmax
+   Ba    3
+   Ti    3
+    O    3
+%endblock PS.lmax
+
+%block PAO.Basis
+Ba    5      0.70
+ n=5    0    1   E     98.95      5.90
+   6.39899920099572
+   1.00000000000000
+ n=6    0    2   E     97.95      6.50
+   6.99956358549850        5.99949655050583
+   1.00000000000000        1.00000000000000
+ n=5    1    1   E     96.95      6.09
+   6.59922580635556
+   1.00000000000000
+ n=5    2    1   E     95.95      6.60
+   7.09995685034315
+   1.00000000000000
+ n=6    1    1   E     94.96      6.60
+   7.09996103032325
+   1.00000000000000
+Ti    5      1.91
+ n=3    0    1   E     93.95      5.20
+   5.69946662616249
+   1.00000000000000
+ n=3    1    1   E     95.47      5.20
+   5.69941339465994
+   1.00000000000000
+ n=4    0    2   E     96.47      5.60
+   6.09996398975307        5.09944363262274
+   1.00000000000000        1.00000000000000
+ n=3    2    2   E     46.05      4.95
+   5.94327035784617        4.70009988294302
+   1.00000000000000        1.00000000000000
+ n=4    1    1   E      0.50      1.77
+   3.05365979938936
+   1.00000000000000
+O     3     -0.28
+ n=2    0    2   E     40.58      3.95
+   4.95272270428712        3.60331408800389
+   1.00000000000000        1.00000000000000
+ n=2    1    2   E     36.78      4.35
+   4.99990228025066        3.89745395068600
+   1.00000000000000        1.00000000000000
+ n=3    2    1   E     21.69      0.93
+   2.73276990670788
+   1.00000000000000
+%EndBlock PAO.Basis

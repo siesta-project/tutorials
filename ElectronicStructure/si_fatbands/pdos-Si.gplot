@@ -1,0 +1,5 @@
+plot "si_fatbands.ados" u 1:2 w l
+replot "fatbands.fatbands_Si_3s.pdos" u 1:2 w l
+replot "fatbands.fatbands_Si_3p.pdos" u 1:2 w l
+replot "fatbands.fatbands_Si_3d.pdos" u 1:2 w l
+

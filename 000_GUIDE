@@ -1,0 +1,15 @@
+Basis_Optimization: More advanced look at the different handles for tuning of basis sets.
+BasisSetsMolecules: Simple concepts about basis sets (molecules).
+BasisSetsCrystals:  Checks of the dependence of the properties of crystalline Fe on the basis set.
+Basic_Examples:     An overview of basic concepts.
+Pseudos:            Pseudopotential generation and testing.
+GridConvergence:    Exercises related to the real-space grid, including the eggbox effect.
+ElectronicStructure:Basic concepts of band-structure and density-of-states generation and plotting.
+Functionals:        Exploration of different functionals for Fe.
+Order-N:            Key concepts of the O(N) solver.
+GeometryOptimization: Relaxation of atomic coordinates (and optionally lattice vectors)
+MolecularDynamics:  Basic exercises: verlet, nose, parrinello-rahman, quenching for optimization.
+Phonons:            Use of the "Vibra" package, for a molecule and a crystal.
+OpticalProperties:  Use of electronic-structure information to compute optical properties.
+Polarization:       Berry-phase approach to compute electric polarization changes in insulators.
+Scripting:          Some very simple scripting examples.

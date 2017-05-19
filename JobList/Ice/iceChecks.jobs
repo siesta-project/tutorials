@@ -1,0 +1,81 @@
+# Convergence tests for water ice
+
+# Leave '$jobName' untouched. Do NOT substitute it by an actual name.
+%queue mpirun -np 8 psiesta < $jobName.fdf > $jobName.out
+
+%result energy pressure virial
+
+%list Pseudo
+  %list IceXI
+    defaults.fdf; iceXI.fdf; dzp.fdf; pseudoPBE.fdf
+    defaults.fdf; iceXI.fdf; dzp.fdf; pseudoLMKLL.fdf
+    defaults.fdf; iceXI.fdf; dzp.fdf; pseudoVV.fdf
+  %endlist IceXI
+  %list IceVIII
+    defaults.fdf; iceVIII.fdf; dzp.fdf; pseudoPBE.fdf
+    defaults.fdf; iceVIII.fdf; dzp.fdf; pseudoLMKLL.fdf
+    defaults.fdf; iceVIII.fdf; dzp.fdf; pseudoVV.fdf
+  %endlist IceVIII
+%endlist Pseudo
+
+%list BasisSet
+  %list IceXI
+    defaults.fdf; iceXI.fdf; dzp.fdf
+    defaults.fdf; iceXI.fdf; tzp.fdf
+    defaults.fdf; iceXI.fdf; qzp.fdf
+  %endlist IceXI
+  %list IceVIII
+    defaults.fdf; iceVIII.fdf; dzp.fdf
+    defaults.fdf; iceVIII.fdf; tzp.fdf
+    defaults.fdf; iceVIII.fdf; qzp.fdf
+  %endlist IceVIII
+%endlist BasisSet
+
+%list MeshCutoff
+  %list IceXI
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 100 Ry      
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 200 Ry      
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 300 Ry      
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 500 Ry      
+    defaults.fdf; iceXI.fdf; dzp.fdf; MeshCutoff 800 Ry  
+  %endlist IceXI
+  %list IceVIII
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 100 Ry      
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 200 Ry      
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 300 Ry      
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 500 Ry      
+    defaults.fdf; iceVIII.fdf; dzp.fdf; MeshCutoff 800 Ry      
+  %endlist IceVIII
+%endlist MeshCutoff
+
+%list kGrid
+  %list IceXI
+    defaults.fdf; iceXI.fdf; dzp.fdf; kGridCutoff  0 Ang
+    defaults.fdf; iceXI.fdf; dzp.fdf; kGridCutoff  5 Ang
+    defaults.fdf; iceXI.fdf; dzp.fdf; kGridCutoff 10 Ang
+  %endlist IceXI
+  %list IceVIII    
+    defaults.fdf; iceVIII.fdf; dzp.fdf; kGridCutoff  0 Ang
+    defaults.fdf; iceVIII.fdf; dzp.fdf; kGridCutoff  5 Ang
+    defaults.fdf; iceVIII.fdf; dzp.fdf; kGridCutoff 10 Ang
+  %endlist IceVIII
+%endlist kGrid
+
+%list DMtol
+  %list IceXI
+    defaults.fdf; iceXI.fdf; dzp.fdf; DM.Tolerance 1.d-3
+    defaults.fdf; iceXI.fdf; dzp.fdf; DM.Tolerance 3.d-4
+    defaults.fdf; iceXI.fdf; dzp.fdf; DM.Tolerance 1.d-4
+    defaults.fdf; iceXI.fdf; dzp.fdf; DM.Tolerance 3.d-5
+    defaults.fdf; iceXI.fdf; dzp.fdf; DM.Tolerance 1.d-5
+  %endlist IceXI
+  %list IceVIII    
+    defaults.fdf; iceVIII.fdf; dzp.fdf; DM.Tolerance 1.d-3
+    defaults.fdf; iceVIII.fdf; dzp.fdf; DM.Tolerance 3.d-4
+    defaults.fdf; iceVIII.fdf; dzp.fdf; DM.Tolerance 1.d-4
+    defaults.fdf; iceVIII.fdf; dzp.fdf; DM.Tolerance 3.d-5
+    defaults.fdf; iceVIII.fdf; dzp.fdf; DM.Tolerance 1.d-5
+  %endlist IceVIII
+%endlist DMtol
+
+

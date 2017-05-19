@@ -1,0 +1,26 @@
+SystemName      Bulk Silicon
+SystemLabel     Si
+NumberOfSpecies	        1
+NumberOfAtoms           2
+%block ChemicalSpeciesLabel
+  1  14  Si
+%endblock ChemicalSpeciesLabel
+
+LatticeConstant      5.49 Ang
+%block LatticeVectors
+  0.00  0.50  0.50
+  0.50  0.00  0.50
+  0.50  0.50  0.00
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat          ScaledByLatticeVectors
+%block AtomicCoordinatesAndAtomicSpecies
+  0.00  0.00  0.00        1
+  0.25  0.25  0.25        1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block kgrid_Monkhorst_Pack
+   4  0  0  0.5
+   0  4  0  0.5
+   0  0  4  0.5
+%endblock kgrid_Monkhorst_Pack

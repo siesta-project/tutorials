@@ -1,0 +1,4 @@
+plot "n_chain.ados" u 1:2 w l
+replot "pdos.PDOS_2pz.pdos" u 1:2 w l
+replot "pdos.PDOS_2s.pdos" u 1:2 w l
+replot "pdos.PDOS_2px_y.pdos" u 1:2 w l

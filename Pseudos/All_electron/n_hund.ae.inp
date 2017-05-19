@@ -1,0 +1,20 @@
+   ae N ground state all-electron non-pol
+   N    ca
+       0.0
+    1    2
+    2    0      2.00  
+    2    1      3.00
+   ae N (polarized) Not true GS 
+   N    cas
+       0.0
+    1    2
+    2    0      1.00      1.00
+    2    1      2.00      1.00
+   ae N True GS (polarized) 
+   N    cas
+       0.0
+    1    2
+    2    0      1.00      1.00
+    2    1      3.00      0.00
+
+12345678901234567890123456789012345678901234567890      Ruler

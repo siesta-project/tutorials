@@ -1,0 +1,86 @@
+
+WARNING: BEFORE RUNNING A CALCULATION FOR PRODUCTION,
+TEST THE PSEUDOPOTENTIAL AND BASIS SETS, AND PERFORM
+THE CONVERGENCE TESTS FOR THE MESH CUTOFF AND THE SAMPLING IN K-SPACE.
+
+IN THE PRESENT EXAMPLES, AND IN ORDER TO SPEED THE CALCULATIONS,
+WE PROVIDE SOME VALUES OF THESE PARAMETERS FOR YOU.
+
+WE DO NOT GUARANTEE THAT THE VALUES OF THESE PARAMETERS ARE CONVERGED.
+
+---------------------------------------------------------------------
+Pablo Aguado-Puente (2007)
+pablo.aguado@unican.es
+---------------------------------------------------------------------
+
+* Open the input file, Si.fdf, and study the different variables.
+Pay special attention to the new variables in this example, and
+check their meaning in the User's Guide:
+
+   WriteDenchar
+   WriteWaveFunctions
+   %block WaveFuncKPoints
+
+Notice that there are several extra lines in the input of Siesta
+that will be the input of the post-processing code denchar. You can
+find denchar's User's Guide at Siesta-folder/Utils/Denchar/Docs, and
+the code at Siesta-folder/Src/denchar. Pay special attention to the
+type of representation chosen (Denchar.TypeOfRun) and the plane 
+defined to calculate the properties (Denchar.PlaneGeneration and
+%block Denchar.Indices3Atoms).
+
+* Once you have understood the input, run Siesta
+
+siesta < Si.fdf > Si.out
+
+* Then you have to run denchar post-processing code to compute the 
+densities and wavefunctions at the points of a plane in a suitable 
+way from the output files of Siesta.
+The input of Siesta is used also as the input for denchar.
+
+denchar < Si.fdf
+
+* Check that denchar has written several files with names systemlabel.CON.*
+Those with extension *.WF# are eigenfunctions of the system in the k-points
+we chose in th input (%block WaveFuncKPoints). [Disabled in this example --
+if you enable it, you have to run "convert_wfs Si" after the Siesta run
+and before running Denchar]
+
+The file with *.SCF is the 
+Self Consistent Density, and the *.DEL is the substraction between the SCF
+density and the sum of the atomic densities.
+
+* Check the format of the previously explained files. The densities
+and wavefunctions can be plotted using gnuplot. Use the *.gplot
+scripts provided, or type the commands directly. For example, for a 2D plot:
+
+set contour
+unset surface
+set view map
+set cntrparam levels auto 10
+splot "Si.CON.SCF" with lines notitle 
+# (the aspect ration will come out "wrong" with most versions of gnuplot)
+
+* Analize the results:
+
+   - For the SC density (*.SCF file), look for the position of the atoms.
+     Remember that you defined the plane containing 3 atoms, one of them 
+     should be at (0,0) in the plane. Where are the maximums of the 
+     density, in the atoms or in the bonds? What kind of bonding is this?
+     Why we do not observe a maximum of the charge in the neighborhood of 
+     each atom?
+
+   - For the deformation density (*.DEL file), check also its value
+     in the bonding regions.
+     Compare the resulting figure with Fig 2.2 of the book by Richard Martin
+     (see the scanned figure in Figure-martin.png)
+
+     firefox Figure-martin.png   
+
+           (programs other than firefox might also work)
+
+   - For the wave functions (*.WF# files), check for instance that the 
+     WF1 is mainly due to the s orbitals of Si (notice that the WF
+     is negative, so you have to consider the maximums of the absolute
+     value)
+

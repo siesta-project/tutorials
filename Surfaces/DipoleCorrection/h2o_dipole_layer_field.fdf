@@ -1,0 +1,44 @@
+SystemName          Water molecule layer with dipole AND compensating field
+SystemLabel         h2o
+NumberOfAtoms       3
+NumberOfSpecies     2
+
+MeshCutoff  50 Ry
+
+%block ChemicalSpeciesLabel
+ 1  8  O      # Species index, atomic number, species label
+ 2  1  H
+%endblock ChemicalSpeciesLabel
+
+LatticeConstant 1.0 Ang
+%block LatticeVectors
+3.0 0.0 0.0
+0.0 2.0 0.0
+0.0 0.0 10.0
+%endblock LatticeVectors
+
+#
+# This value was obtained by trial and error, until the
+# profile was flat outside the slab.
+#
+%block ExternalElectricField
+  0.000  0.000  0.245  V/Bohr
+%endblock ExternalElectricField
+
+#
+# The change in origin is for cosmetic purposes, so that
+# the slab is centered along Z.
+#
+%block AtomicCoordinatesOrigin
+0.0 0.0 5.0
+%endblock AtomicCoordinatesOrigin
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+ 0.000  0.000  0.000  1
+ 0.757  0.000  0.586  2
+-0.757  0.000  0.586  2
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+save-delta-rho T
+save-electrostatic-potential T

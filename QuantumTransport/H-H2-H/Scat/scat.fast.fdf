@@ -1,0 +1,151 @@
+
+SystemName  scat.fast 
+SystemLabel scat.fast 
+
+==================================================
+==================================================
+# SPECIES AND BASIS
+
+# Number of species 
+NumberOfSpecies 1
+%block ChemicalSpeciesLabel
+  1  1 H 
+%endblock ChemicalSpeciesLabel
+
+PAO.BasisSize    SZ
+PAO.EnergyShift  0.05 Ry
+
+==================================================
+==================================================
+# K-points
+
+%block kgrid_Monkhorst_Pack
+3   0   0   0.0
+0   3   0   0.0
+0   0   60  0.5
+%endblock kgrid_Monkhorst_Pack
+
+==================================================
+==================================================
+# UNIT CELL AND ATOMIC POSITIONS
+
+# UNIT CELL
+LatticeConstant       2.92311 Ang
+%block LatticeVectors
+1.000000000   0.00000000000   0.0000000000
+0.500000000   0.86602540378   0.0000000000
+0.000000000   0.00000000000   2.4494897428
+%endblock LatticeVectors
+
+# Atomic coordinates
+NumberOfAtoms 3
+AtomicCoordinatesFormat ScaledCartesian
+%block AtomicCoordinatesAndAtomicSpecies
+       0.000000000       0.000000000       0.000000000    1
+       0.500000000       0.288675135       0.816496581    1
+       0.500000000      -0.288675135       1.632993162    1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block SuperCell
+1 0 0
+0 1 0
+0 0 3
+%endblock SuperCell
+
+==================================================
+==================================================
+# General variables
+
+ElectronicTemperature  100 K 
+MeshCutoff           350. Ry
+xc.functional         LDA           # Exchange-correlation functional
+xc.authors            CA 
+SpinPolarized .false.
+SolutionMethod Transiesta 
+
+==================================================
+==================================================
+# SCF variables
+
+DM.MixSCF1   T
+MaxSCFIterations      300           # Maximum number of SCF iter
+DM.MixH               T
+DM.MixingWeight       0.03          # New DM amount for next SCF cycle
+DM.Tolerance          1.d-4         # Tolerance in maximum difference
+DM.UseSaveDM          true          # to use continuation files
+DM.NumberPulay         5
+Diag.DivideAndConquer  no
+Diag.ParallelOverK     yes
+
+==================================================
+==================================================
+# MD variables
+
+MD.FinalTimeStep 1
+MD.TypeOfRun CG
+MD.NumCGsteps     000
+MD.UseSaveXV      .true.
+
+==================================================
+==================================================
+# Output variables
+
+WriteMullikenPop                1
+WriteBands                      .false.
+SaveRho                         .false.
+SaveDeltaRho                    .false.
+SaveHS                          .false.
+SaveElectrostaticPotential      True 
+SaveTotalPotential              no
+WriteCoorXmol                   .true.
+WriteMDXmol                     .true.
+WriteMDhistory                  .false.
+WriteEigenvalues                yes
+
+==================================================
+==================================================
+
+# Transiesta information
+
+# GENGF OPTIONS
+TS.ComplexContour.Emin    -30.0 eV 
+TS.ComplexContour.NPoles       03
+TS.ComplexContour.NCircle      30
+TS.ComplexContour.NLine        10 
+# BIAS OPTIONS
+TS.biasContour.NumPoints       00
+
+
+# TS OPTIONS
+TS.Voltage 0.000000 eV
+
+# TBT OPTIONS
+TS.TBT.Emin -1.0 eV
+TS.TBT.Emax +1.0 eV
+TS.TBT.NPoints 100
+TS.TBT.NEigen 3
+TS.TBT.Eta        0.000001 Ry
+
+# Write electrode hamiltonian
+TS.SaveHS   .true.
+TS.SaveLead .true.
+
+
+
+# LEFT ELECTRODE
+TS.HSFileLeft  ./elec.fast.TSHS 
+TS.ReplicateA1Left    1
+TS.ReplicateA2Left    1
+TS.NumUsedAtomsLeft   03
+TS.BufferAtomsLeft    0
+
+# RIGHT ELECTRODE
+TS.HSFileRight  ./elec.fast.TSHS 
+TS.ReplicateA1Right   1
+TS.ReplicateA2Right   1
+TS.NumUsedAtomsRight  03
+TS.BufferAtomsRight   0
+
+==================================================
+==================================================
+

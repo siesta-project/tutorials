@@ -1,0 +1,51 @@
+#General system specifications
+SystemName          CH4 molecule
+SystemLabel         ch4
+NumberOfAtoms       5
+NumberOfSpecies     2
+
+%block ChemicalSpeciesLabel
+ 1  6 C   # Species index, atomic number, species label
+ 2  1 H   # Species index, atomic number, species label
+%endblock ChemicalSpeciesLabel
+
+#Unit cell for the calculation
+LatticeConstant 15 Ang
+%block LatticeVectors 
+  1.000 0.000 0.000
+  0.000 1.000 0.000
+  0.000 0.000 1.000
+%endblock LatticeVectors
+
+#Atomic coordinates
+AtomicCoordinatesFormat  Ang
+
+%block AtomicCoordinatesAndAtomicSpecies
+  0.000      0.000      0.000   1
+  1.219     -0.284     -0.377   2 
+ -0.284      1.219     -0.377   2 
+ -0.140     -0.140      1.219   2 
+ -0.833     -0.833     -0.503   2 
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+# Basis set definition
+PAO.EnergyShift 250 meV
+PAO.SplitNorm   0.15
+PAO.BasisSize   SZ  
+
+#Real space grid 
+MeshCutoff 125.0 Ry
+
+# Convergence of SCF 
+MaxSCFIterations 50
+DM.MixingWeight 0.4
+DM.NumberPulay  2
+
+# Type of solution (diagon is the  default for less than 100 atoms)
+SolutionMethod diagon
+
+
+
+
+

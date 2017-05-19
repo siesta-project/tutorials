@@ -1,0 +1,54 @@
+
+#
+# General system descriptors
+#
+
+SystemName      Bulk Silicon in the diamond structure
+#               building the supercell to compute the phonons
+
+SystemLabel             Si
+NumberOfSpecies	        1
+NumberOfAtoms                       < FC.fdf
+%block ChemicalSpeciesLabel
+  1  14  Si
+%endblock ChemicalSpeciesLabel
+
+#
+# Lattice, coordinates, k-sampling
+#
+
+LatticeConstant                     < FC.fdf
+LatticeVectors                      < FC.fdf
+
+AtomicCoordinatesFormat             < FC.fdf     
+AtomicCoordinatesAndAtomicSpecies   < FC.fdf
+
+kgrid_cutoff         8.0 Ang
+
+#
+# Grid
+#
+
+MeshCutoff           200 Ry
+
+#
+# Basis definition
+#
+
+PAO.BasisSize   SZ
+
+#
+# Options to compute the interatomic force constants in real space
+#
+
+MD.TypeOfRun    < FC.fdf   # Compute the interatomic force constants matrix 
+MD.FCfirst      < FC.fdf   # Index of first atom to displace
+MD.FClast       < FC.fdf   # Index of the last atom to displace
+MD.FCdispl      < FC.fdf   # Displacement to use for the computation of the
+                           #   interatomic force constant matrix
+                           #   (Remember that the second derivative of the 
+                           #   energy with respect the displacement of two
+                           #   atoms is computed by means of a 
+                           #   finite difference derivative of the forces)
+
+

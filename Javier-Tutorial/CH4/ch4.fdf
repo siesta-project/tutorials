@@ -1,0 +1,50 @@
+#General system specifications
+SystemName          CH4 molecule
+SystemLabel         ch4
+NumberOfAtoms       5
+NumberOfSpecies     2
+
+%block ChemicalSpeciesLabel
+ 1  6 C   # Species index, atomic number, species label
+ 2  1 H   # Species index, atomic number, species label
+%endblock ChemicalSpeciesLabel
+
+
+#Atomic coordinates
+AtomicCoordinatesFormat NotScaledCartesianAng
+%block Zmatrix
+molecule 
+  1 0 0 0   0.000   0.000   0.000 0 0 0
+  2 1 0 0   CH      0.000   0.000 1 0 0
+  2 1 2 0   CH    109.471   0.000 1 0 0
+  2 1 2 3   CH    109.471 120.000 1 0 0
+  2 1 2 3   CH    109.471 240.000 1 0 0
+variables 
+    CH  1.089
+%endblock Zmatrix
+ZM.UnitsLength Ang
+ZM.UnitsAngle deg
+ZM.ForceTolLength 0.04 eV/Ang
+
+# Basis set definition
+PAO.EnergyShift 250 meV
+PAO.SplitNorm   0.15
+PAO.BasisSize   SZ  
+
+#Real space grid 
+MeshCutoff 125.0 Ry
+
+# Convergence of SCF 
+MaxSCFIterations 50
+DM.MixingWeight 0.1
+DM.NumberPulay  0
+
+# Type of solution (diagon is the  default for less than 100 atoms)
+SolutionMethod diagon
+
+
+MD.TypeOfRun      CG
+MD.NumCGsteps     10
+
+
+

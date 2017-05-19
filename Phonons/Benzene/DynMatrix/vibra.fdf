@@ -1,0 +1,46 @@
+SystemName          Benzene
+SystemLabel         C6H6             # Short name for naming files
+
+NumberOfAtoms           12            # Number of atoms
+NumberOfSpecies         2           # Number of species
+
+%block Chemical_Species_Label
+  1    6    C
+  2    1    H
+%endblock Chemical_Species_Label
+
+PAO.BasisSize   SZ
+
+AtomicCoordinatesFormat NoTScaledCartesianAng
+%block AtomicCoordinatesAndAtomicSpecies
+    0.00000000    1.44290298    0.00000000   1 12.01 C          1
+    1.24960962    0.72146528    0.00000000   1 12.01 C          2
+    1.24960963   -0.72146523    0.00000000   1 12.01 C          3
+   -0.00000003   -1.44290296    0.00000001   1 12.01 C          4
+   -1.24960960   -0.72146523    0.00000001   1 12.01 C          5
+   -1.24960963    0.72146530    0.00000000   1 12.01 C          6
+    0.00000000    2.62676573    0.00000000   2 1.007 H          7
+    2.27417591    1.31356239    0.00000000   2 1.007 H          8
+    2.27417590   -1.31356238    0.00000000   2 1.007 H          9
+    0.00000001   -2.62676569    0.00000000   2 1.007 H         10
+   -2.27417590   -1.31356238    0.00000000   2 1.007 H         11
+   -2.27417593    1.31356240    0.00000000   2 1.007 H         12
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+%block LatticeVectors
+  1.000000  0.000000  0.000000
+  0.000000  1.000000  0.000000
+  0.000000  0.000000  1.000000
+%endblock LatticeVectors
+
+LatticeConstant        10.0000    Ang
+
+MeshCutoff           400. Ry
+
+
+Eigenvectors  True
+BandLinesScale    ReciprocalLatticeVectors
+%block BandLines
+      1  0.000  0.000  0.000  \Gamma   # 20 points from L to gamma
+%endblock BandLines

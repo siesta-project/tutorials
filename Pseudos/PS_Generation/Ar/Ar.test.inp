@@ -1,0 +1,61 @@
+#
+# All-electron calculations for a series of Ar configurations
+#
+   ae Ar Test -- GS 3s2 3p6
+   Ar   vwr
+       0.0
+    3    2
+    3    0      2.00
+    3    1      6.00
+   ae Ar Test -- 3s2 3p5 3d1
+   Ar   vwr
+       0.0
+    3    3
+    3    0      2.00
+    3    1      5.00
+    3    2      1.00
+   ae Ar Test -- 3s2 3p5
+   Ar   vwr
+       0.0
+    3    2
+    3    0      2.00
+    3    1      5.00
+   ae Ar Test -- 3s2 3p4 3d2
+   Ar   vwr
+       0.0
+    3    3
+    3    0      2.00
+    3    1      4.00
+    3    2      2.00
+
+#
+# Pseudopotential test calculations
+#
+   pt Ar Test -- GS 3s2 3p6
+   Ar   vwr
+       0.0
+    3    2
+    3    0      2.00
+    3    1      6.00
+   pt Ar Test -- 3s2 3p5 3d1
+   Ar   vwr
+       0.0
+    3    3
+    3    0      2.00
+    3    1      5.00
+    3    2      1.00
+   pt Ar Test -- 3s2 3p5
+   Ar   vwr
+       0.0
+    3    2
+    3    0      2.00
+    3    1      5.00
+   pt Ar Test -- 3s2 3p4 3d2
+   Ar   vwr
+       0.0
+    3    3
+    3    0      2.00
+    3    1      4.00
+    3    2      2.00
+
+12345678901234567890123456789012345678901234567890      Ruler

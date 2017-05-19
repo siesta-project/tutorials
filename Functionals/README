@@ -1,0 +1,43 @@
+This exercise illustrates the use of different functionals and
+spin polarization.
+
+
+The system in which we will work is bulk Fe.
+This is a difficult system, for many reasons.
+First, it needs core corrections for a proper description
+of the magnetism. Second, the results depend a lot
+on the functional used.
+Third, since the d-orbitals are very compact, and
+core corrections are present, a large meshcutoff is
+necessary for proper convergence. Finally, metallic
+character with a large density of states at the Fermi level
+makes it necessary to use a fine k-point sampling.
+The input files have been built to take into account
+these stringent conditions.
+
+There are two subdirectories with BCC and FFC Fe.
+In each of this directories there are four directories
+with the same input except the functional : LDA
+GGA and spin polarized LDA and GGA.
+We are going to study how the bulk parameters 
+(lattice constant, bulk modulus) depend on the
+functional used. So in each subdirectory run make
+and a graph showing the FreeEnergy (the electronic
+temperature is quite high)  vs. cell volume
+will be plot. The data will be adjusted to a murnaghan
+equation of state and the bulk modulus will appear
+on the graph, while the lattice constant will be an output
+in the terminal. Each graph will be saved in a *.png file.
+
+You can plot all the graphs together executing:
+
+in this directory. 
+
+Answer these questions:
+Which is the most stable phase of Fe?
+How does the magnetic moment vary with each functional?
+
+There is a paper with the corresponding results obtained
+using a PW basis set in this directory. The main differences
+are due to the fact that the basis set isn't really well
+optimized. 

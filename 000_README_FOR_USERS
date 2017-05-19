@@ -1,0 +1,10 @@
+Use the "tuto_update" scripts to update the SIESTA directory
+when you are told to do so or if you feel that your copy has
+been corrupted. Take care to save any files that you might want
+to conserve, as it is not guaranteed that the update process will
+keep them.
+
+If you want to start from scratch, you can copy "tuto_update" to your
+home directory, remove the SIESTA directory, and run "tuto_update".
+Again, take care to save any files that you might want
+to conserve.

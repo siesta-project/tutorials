@@ -1,0 +1,11 @@
+set multiplot
+set size 1.0,0.5
+
+set autoscale
+set origin 0.0,0.5
+plot 'horizontal.results' using 1:($2*2-$4)*13.6  w l title 'Energy (eV)'
+
+set autoscale
+set origin 0.0,0.0
+plot 'horizontal.results' using 1:($3-$5)*(13.6*1.6e-29)/(0.53e-10)**3  w l title 'Pressure (GPa)'
+

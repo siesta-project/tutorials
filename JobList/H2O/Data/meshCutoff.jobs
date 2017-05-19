@@ -1,0 +1,16 @@
+# MeshCutoff convergence for water molecule
+
+# Leave '$jobName' untouched. Do NOT substitute it by an actual name.
+#%queue siesta < $jobName.fdf > $jobName.out
+%queue mpirun -np 4 psiesta < $jobName.fdf > $jobName.out
+
+%result energy maxForce
+
+%list MeshCutoff
+    defaults.fdf; MeshCutoff 100 Ry      
+    defaults.fdf; MeshCutoff 200 Ry      
+    defaults.fdf; MeshCutoff 300 Ry      
+    defaults.fdf; MeshCutoff 500 Ry      
+    defaults.fdf; MeshCutoff 800 Ry  
+%endlist MeshCutoff
+

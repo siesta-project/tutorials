@@ -1,0 +1,27 @@
+SstemName      Silicio en volumen
+SystemLabel     si
+NumberOfSpecies         1
+NumberOfAtoms           2
+%block ChemicalSpeciesLabel
+        1       14      Si
+%endblock ChemicalSpeciesLabel
+
+
+PAO.BasisSize SZ 
+
+LatticeConstant         lat Ang
+%block LatticeVectors
+        0.500000        0.500000        0.000000
+        0.000000        0.500000        0.500000
+        0.500000        0.000000        0.500000
+%endblock LatticeVectors
+AtomicCoordinatesFormat         ScaledCartesian
+%block AtomicCoordinatesAndAtomicSpecies
+        0.000000        0.000000        0.000000        1
+        0.250000        0.250000        0.250000        1
+%endblock AtomicCoordinatesAndAtomicSpecies
+kgrid_cutoff            10 Ang
+MeshCutoff              80 Ry
+DM.NumberPulay         3
+#
+WriteEigenvalues .false.

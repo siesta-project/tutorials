@@ -1,0 +1,88 @@
+Here we will focus on a crystalline material, FCC Al. 
+
+In bulk systems the electronic states can be characterized by a
+continuous quantum number k, the so-called Bloch vector or crystalline
+quasi-momentum of the electrons.  The space of allowed Bloch vector
+(the Brillouin zone) is usually sampled using a finite grid. The most
+popular scheme to generate this integration mesh is the Monkhorst-Pack
+algorithm. This is also used in SIESTA.  The integration grid in the
+Brillouin zone is specified using the block kgrid_Monkhorst_Pack
+
+For metals there are electronic bands that are not completely filled
+and therefore for an accurate description of the total energy, forces
+and all properties of the materials it is necessary to use a better
+sampling in reciprocal space (Bloch vectors) than for insulators. In
+the input file Al_bulk.fdf a 4x4x4 grid is used. This might be
+insufficient for a good description of aluminium.
+
+You should explore the convergence of total energy, the lattice
+parameter, and density of states respect to the fineness of the
+k-sampling.
+
+To plot the DOS you will use the utility program 'Eig2DOS'. This
+program reads the information contain in the file Al.EIG which
+contains all the eigenvalues for each k-point, and the Al.KP file
+which contains the k-point sampling information.  Useful options to
+the program (type 'Eig2DOS -h' for a full list) are the broadening for
+each state in eV (a value of the order of the default (0.2 eV) is
+usually reasonable), the number of energy points where the DOS will be
+calculated (200 by default) and the Emin and Emax of the energy window
+where the DOS will be calculated (the default is to compute the DOS in
+the whole range of energies available in the EIG file).
+
+For example:
+
+   Eig2DOS -k Al.KP  Al.EIG > dos 
+
+will compute the DOS in the whole range, using a grid of 200 points, a
+broadening ("smearing") of 0.2 eV, and using the k-point info from
+Al.KP. (The k-point file information is important when different
+k-points have different weights).
+
+   Eig2DOS -s 0.1 -n 400 -m -18.0 -M 4.0 -k Al.KP  Al.EIG > dos 
+
+will compute the DOS in the (18 eV ,4 eV) range, using a grid of 400
+points and a broadening of 0.1 eV.
+
+(Eig2DOS is an enhanced version of the old 'eig2dos' program)
+
+The content of the 'dos' file can be plotted using gnuplot:
+
+Student> gnuplot
+plot "dos" u 1:4 with lines
+
+The file Al_bulk.fdf will also produce a file Al.bands containing the
+band structure along the several lines in the Brillouin zone (BZ) as
+specified using the block BandLines. To learn more about the BZ for this case,
+you can visit:
+
+http://www.cryst.ehu.es/cgi-bin/cryst/programs/nph-kv-list?gnum=225&fig=fm3qmf
+
+or
+
+http://lamp.tu-graz.ac.at/~hadley/ss1/bzones/fcc.php
+
+(Note that the final Gamma point in the BandLines sequence is actually
+an image along (1,1,1) of the Gamma point at the origin.)
+
+To plot the band structure you need to use the utility program 'gnubands'
+
+gnubands < Al.bands > out.bands
+
+and you can plot 'out.bands' with 'gnuplot', using the 'bands.gplot'
+file provided (which has extra information to place and label the
+'ticks' for each symmetry point in the BZ):
+
+  gp bands.gplot
+
+
+A SZ basis set is specified in the file Al_bulk.fdf.  It might be
+quite interesting to see how the band structure changes when more
+complete basis sets are used (DZ,DZP).
+
+Also, it is instructive to see the behavior of the DOS when the
+k-point sampling gets more dense. For coarse samplings, it does not
+look at all like the "free-electron-like" curve we see in
+textbooks. This is due to the very simple method used to construct the
+DOS (just broadening a collection of discrete energy levels).
+

@@ -1,0 +1,5 @@
+%block ChemicalSpeciesLabel
+  1   8   O.gga
+  2   1   H.gga
+%endblock ChemicalSpeciesLabel
+

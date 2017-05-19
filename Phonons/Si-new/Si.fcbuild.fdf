@@ -1,0 +1,69 @@
+
+#
+# General system descriptors
+#
+
+SystemName      Bulk Silicon in the diamond structure
+#               building the supercell to compute the phonons
+
+SystemLabel             Si
+NumberOfSpecies	        1
+NumberOfAtoms           2
+%block ChemicalSpeciesLabel
+  1  14  Si
+%endblock ChemicalSpeciesLabel
+
+#
+# Lattice, coordinates, k-sampling
+#
+
+LatticeConstant         5.546790 Ang    # Theor. lattice parameter of bulk Si
+%block LatticeVectors
+  0.00  0.50  0.50
+  0.50  0.00  0.50
+  0.50  0.50  0.00
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat     Fractional
+%block AtomicCoordinatesAndAtomicSpecies
+ -0.125  -0.125  -0.125     1    28.086
+  0.125   0.125   0.125     1    28.086
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+kgrid_cutoff         8.0 Ang
+
+#
+# Grid
+#
+
+MeshCutoff           200 Ry
+
+#
+# Basis definition
+#
+
+PAO.BasisSize   SZ
+
+#
+# Options to generate the supercell
+#
+
+SuperCell_1    1     # number of shells in which the unit cell is 
+                     #   repeated in the direction of the first lattice vector.
+SuperCell_2    1     # Idem for the second lattice vector.
+SuperCell_3    1     # Idem for the third  lattice vector.
+
+#
+# High symmetry lines to plot the phonon band structure
+# 
+
+BandLinesScale       pi/a
+%block BandLines
+1   0.0   0.0   0.0   \Gamma        # Begin at Gamma
+45  2.0   0.0   0.0   X             # 45 points from Gamma to X
+17  2.0   0.5   0.5   K             # 17 points from X to K
+48  2.0   2.0   2.0   \Gamma        # 48 points from K to Gamma
+41  1.0   1.0   1.0   L             # 41 points from Gamma to L
+%endblock BandLines
+
+Eigenvectors     .true.     # Compute both phonon eigenvalues and eigenvectors

@@ -1,0 +1,75 @@
+# Water molecule for simplex minimisation
+
+SystemLabel         1h2o
+
+WriteCoorXmol
+WriteMDXmol
+WriteMDHistory
+
+NumberOfAtoms          3
+NumberOfSpecies        2
+
+xc.functional          GGA
+xc.authors             PBE
+
+%block ChemicalSpeciesLabel
+  1   8  O
+  2   1  H  
+%endblock ChemicalSpeciesLabel
+
+
+%Block PAO.Basis
+O    3     -0.24233
+n=2   0   2   E    23.36061     3.39721
+     4.50769     2.64066
+     1.00000     1.00000
+n=2   1   2   E     2.78334     5.14253
+     6.14996     2.59356
+     1.00000     1.00000
+n=3   2   1   E    63.98188     0.16104
+     3.54403
+     1.00000
+H    2      0.46527
+n=1   0   2   E    99.93138     2.59932
+     4.20357     1.84463
+     1.00000     1.00000
+n=2   1   1   E    24.56504     2.20231
+     3.52816
+     1.00000
+%EndBlock PAO.Basis
+
+LatticeConstant       9.865 Ang    # Lattice constant alat (3% larger)
+%block LatticeVectors   
+  1.0  0.0  0.0
+  0.0  1.0  0.0
+  0.0  0.0  1.0
+%endblock LatticeVectors   
+
+MeshCutoff           200.0 Ry       # Mesh cutoff. real space mesh
+
+# SCF options
+MaxSCFIterations      50            # Maximum number of SCF iter
+DM.MixingWeight       0.3           # New DM amount for next SCF cycle
+DM.Tolerance          2.d-4         # Tolerance in maximum difference
+DM.NumberPulay         3
+#DM.UseSaveDM
+
+SolutionMethod        diagon        # OrderN or Diagon
+
+#MD.TypeOfRun          Nose        # Type of dynamics:  Nose
+
+MD.LengthTimeStep     0.5 fs
+MD.InitialTimeStep   1
+MD.FinalTimeStep     5000
+##MD.NoseMass          0.2 Ry*fs**2
+
+MD.TypeOfRun          Anneal        # Type of dynamics:
+MD.AnnealOption       Temperature
+MD.TargetTemperature  300 K
+#MD.TypeOfRun          Verlet
+
+
+
+
+AtomicCoordinatesFormat             <system_xyz.fdf
+AtomicCoordinatesAndAtomicSpecies   <system_xyz.fdf

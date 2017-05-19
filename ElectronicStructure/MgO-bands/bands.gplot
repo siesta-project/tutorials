@@ -1,0 +1,9 @@
+set xtics  ('K' 0.000000 ,'Gamma' 0.856596 ,\
+'X' 1.664203 ,\
+'W' 2.068007 ,\
+'L' 2.639071 ,\
+'Gamma' 3.338479 )
+set grid
+set xrange [0.0:3.34]   # 3.34 is the position of last point in the path in k
+set yrange [-30.0:25.0] # this is large enough to include all the valence bands
+plot "bands.dat" using 1:2 with lines

@@ -1,0 +1,67 @@
+
+#
+# General system descriptors
+#
+
+SystemName      Bulk Silicon in the diamond structure
+#               relax the structure before computing the phonons
+
+SystemLabel             Si
+NumberOfSpecies	        1
+NumberOfAtoms           2
+%block ChemicalSpeciesLabel
+  1  14  Si
+%endblock ChemicalSpeciesLabel
+
+#
+# Lattice, coordinates, k-sampling
+#
+
+LatticeConstant         5.43 Ang    # Experimental lattice parameter of bulk Si
+%block LatticeVectors
+  0.00  0.50  0.50
+  0.50  0.00  0.50
+  0.50  0.50  0.00
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat     Fractional
+%block AtomicCoordinatesAndAtomicSpecies
+ -0.125  -0.125  -0.125     1
+  0.125   0.125   0.125     1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+kgrid_cutoff         8.0 Ang
+
+#
+# Grid
+#
+
+MeshCutoff           200 Ry
+
+#
+# Basis definition
+#
+
+PAO.BasisSize   SZ
+
+#
+# Molecular dynamics and relaxations
+#
+
+MD.TypeOfRun       CG               # We are going to perform a
+                                    #   Conjugate Gradient (CG) minimization
+MD.VariableCell    .true.           # Is the lattice relaxed together with
+                                    #   the atomic coordinates?
+MD.NumCGsteps      50               # Number of CG steps for
+                                    #   coordinate optimization
+MD.MaxCGDispl      0.02 Bohr        # Maximum atomic displacement
+                                    #   in one CG step
+MD.MaxForceTol     0.01 eV/Ang      # Tolerance in the maximum
+                                    #   atomic force
+MD.MaxStressTol    0.0001 eV/Ang**3 # Tolerance in the maximum
+                                    #   stress in a MD.VariableCell CG optimi.
+%block GeometryConstraints          # Constraints impossed on
+   position   1   2                 #   the position of atom 1 and 2
+   stress     4   5   6             #   the shear stresses
+%endblock GeometryConstraints
+

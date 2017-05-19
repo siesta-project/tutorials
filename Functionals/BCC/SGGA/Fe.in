@@ -1,0 +1,56 @@
+
+SystemName          bcc Fe
+SystemLabel         fe
+
+NumberOfAtoms       1
+NumberOfSpecies     1
+
+%block ChemicalSpeciesLabel
+ 1  26  Fe
+%endblock ChemicalSpeciesLabel
+
+%block PAO.Basis                 # Define Basis set
+Fe          2                    # Species label, number of l-shells
+ n=4   0   2  P  1                   # n, l, Nzeta
+   6.000  0.000
+   1.000  1.000
+ n=3   2   2                         # n, l, Nzeta
+   6.000  0.000
+   1.000  1.000
+%endblock PAO.Basis
+
+
+LatticeConstant  lat Ang
+%block LatticeVectors
+  0.500  0.500  0.500
+  0.500 -0.500  0.500
+  0.500  0.500 -0.500
+%endblock LatticeVectors
+
+MeshCutoff         250.0 Ry
+
+kgridcutoff        15. Ang
+
+MaxSCFIterations    50  
+DM.MixingWeight      0.1 
+DM.NumberPulay       4  
+DM.Tolerance         1.d-4
+DM.UseSaveDM         F    
+
+XC.Functional     GGA
+XC.authors        PBE
+
+SpinPolarized     T 
+
+SolutionMethod       diagon    
+ElectronicTemperature  25.0 meV  
+
+MD.TypeOfRun          CG
+MD.NumCGSteps         1
+
+AtomicCoordinatesFormat  ScaledbyLatticeVectors
+%block AtomicCoordinatesAndAtomicSpecies
+    0.000    0.000    0.000   1 
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+

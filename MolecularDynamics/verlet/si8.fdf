@@ -1,0 +1,62 @@
+
+SystemName          Si - 8 atoms supercell
+SystemLabel         si8
+
+NumberOfAtoms       8
+NumberOfSpecies     1
+
+%block ChemicalSpeciesLabel
+ 1  14  Si
+%endblock ChemicalSpeciesLabel
+
+PAO.BasisSize       SZ
+PAO.EnergyShift     300 meV
+
+
+LatticeConstant     5.535 Ang
+%block LatticeVectors
+  1.000  0.000  0.000
+  0.000  1.000  0.000
+  0.000  0.000  1.000
+%endblock LatticeVectors
+
+
+MeshCutoff          30.0 Ry
+
+%block kgrid_Monkhorst_Pack
+   2  0  0  0.0 
+   0  2  0  0.0 
+   0  0  2  0.0 
+%endblock kgrid_Monkhorst_Pack 
+
+
+MaxSCFIterations    50  
+DM.MixingWeight      0.3 
+DM.NumberPulay       3  
+DM.Tolerance         1.d-4
+DM.UseSaveDM             
+
+SolutionMethod       diagon    
+ElectronicTemperature  25 meV  
+
+MD.TypeOfRun          Verlet
+MD.InitialTimeStep    1
+MD.FinalTimeStep      200
+MD.LengthTimeStep           3.0 fs
+MD.InitialTemperature   300.0 K
+
+WriteMDHistory T
+
+AtomicCoordinatesFormat  ScaledbyLatticeVectors
+%block AtomicCoordinatesAndAtomicSpecies
+    0.000    0.000    0.000   1 #  Si  1
+    0.250    0.250    0.250   1 #  Si  2
+    0.000    0.500    0.500   1 #  Si  3
+    0.250    0.750    0.750   1 #  Si  4
+    0.500    0.000    0.500   1 #  Si  5 
+    0.750    0.250    0.750   1 #  Si  6 
+    0.500    0.500    0.000   1 #  Si  7 
+    0.750    0.750    0.250   1 #  Si  8 
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+

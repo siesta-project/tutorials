@@ -1,0 +1,125 @@
+From MCMFMC
+
+These exercises illustrate some important concepts only barely
+mentioned in class.
+
+1. Consider the hydrogen atom. It might seem perverse to use a
+formalism that includes interaction between parts of the 'electronic
+cloud' (and also exchange and correlation effects!) when only one
+electron is concerned. And it might come as a surprise that the
+calculated total energy of the atom is only around 10% off (the
+eigenvalue is off by more than that, but we could claim that
+'what is free comes with no guarantee'). What is going on is a near
+cancellation between the the Hartree term and the exchange-correlation
+term of the total energy. Perform the calculation and see for
+yourself. Incidentally, in a true Hartree-Fock calculation the
+cancellation is perfect.
+
+The lesson of this extreme example is to remember that we are
+approximating the complicated many-body problem by a 'simple' sort of
+mean-field theory. There have been attempts to incorporate
+self-interaction overcounting into the LDA formalism. See for example:
+
+J. Perdew and A. Zunger, Phys. Rev. B. 23, 5048 (1981)
+
+which, by the way, contains also one of the more widely used
+parametrizations of the Ceperley-Alder exchange-correlation
+calculations for the electron gas.
+
+2.  To generate a pseudopotential one needs to start with an
+electronic configuration of the atom. Usually it is the ground state,
+but it need not be so, and in some cases one needs to artificially
+populate an orbital which is empty in the ground state, just so that
+the corresponding angular momentum is represented in the
+pseudopotential.  For example, consider Si, whose ground state is
+[Ne]3s2 3p2. If one uses that configuration to construct the
+pseudopotential, only the s and p channels will be generated. That is
+why a configuration such as [Ne]3s2 3p0.50 3d0.5 is chosen (the
+appearance of fractional occupancies should not scare you -- remember
+we consider the electrons only through their charge density--). The
+choice is more or less arbitrary, although sometimes it helps to know
+something about the environment in which the atom is going to find
+itself in the solid-state calculation (i.e., we would prefer an ionic
+configuration for Na to do calculations for NaCl).  In any case,
+whatever the starting configuration, the pseudopotential, by
+definition and construction, should be basically the same, and should
+give equally satisfactory results when tested in any (up to a limit
+explored in the following exercise) configuration.  Convince yourself
+of this by choosing different electronic configurations to generate
+the pseudopotential for a given element (Si, or whatever) and test
+them on a series of atomic configurations (such as those exemplified
+bu the ATOM/ae/si.series.ae.inp file).
+
+
+3. In this exercise we look more closely at the role of the r_c 'core
+radius' parameter in the generation of a pseudopotential. We know that
+it is *not* (or it should not be used as) an adjustable parameter to
+fit condensed-state properties. By construction, the scattering
+properties of the pseudopotential and the true atomic potential are
+the same in an energy region around a given eigenvalue. So when we
+use the pseudopotential to calculate properties of a configuration
+different that that used for its generation (atomic or solid), we
+should expect good results, even if the eigenvalue changes due to
+hybridization, banding, etc. That is what is called transferability. 
+
+What is found 'experimentally' is that the larger the r_c, the lower
+the degree of transferability, but the softer the pseudopotential. By
+'softer' we mean here that one needs fewer fourier components to
+represent it in Fourier space. The price of higher transferability is
+a 'harder' pseudopotential.
+
+Test this 'empirical rule', using the plots you can generate after
+each pseudopotential generation.
+
+4. While the 'rule' explored in the previous exercise is inescapable
+(if r_c diminishes we are closer and closer to the 'wiggly' core
+region), there are still some opportunities to play with the way in
+which the pseudo-wavefunction is constructed from the true
+wavefunction. The idea is to make the pseudopotentials softer for a
+given degree of transferability. Thus the different methods: HSC
+(Hamann-Schluter-Chiang) KER (Kerker), TM2 (Improved
+Troullier-Martins), VAN (Vanderbilt 1988), BHS
+(Bachelet-Hamman-Schluter), and many others. (All of them retain the
+idea of norm conservation. There is a more recent method [Vanderbilt,
+1990] in which that idea is abandoned, obtaining 'ultrasoft'
+pseudopotentials at the expense of some complications in the use of
+the potential.)
+
+For the purposes of this exercise it will be enough to compare HSC and
+TM2 potentials. The way in which TM2 fits the pseudo-wavefunction to
+the true wavefunction allows the use of larger rc's (sometimes even
+larger than the position of the peak in the wavefunction).
+
+Again, Si could serve as an example, but the true usefulness of the
+TM2 approach lies in the softer potentials obtained for some 'problem'
+elements. Try it for C and a transition metal.
+
+5. To obtain the 'bare' pseudopotential one has to unscreen the total
+potential a valence electron sees.  In the standard pseudopotential
+approximation we unscreen with only the valence charge density, so we
+are neglecting the effect of the overlap of the core and valence
+charge densities (we dump the 'core only' terms in the
+pseudopotential). It is not too serious for the Hartree term, since it
+is linear (it depends on (n_c + n_v), that is, linearly). But the
+exchange-correlation term depends on the 1/3th power of the total
+charge density... The problems associated with this and a way to fix
+them are explained in: 
+
+S.G. Louie, S. Froyen, and M.L. Cohen, Phys. Rev. 26, 1738 (1983)
+(the paper makes some emphasis on spin-polarized systems, but the
+method works for all cases).
+
+The problem is more acute the larger the overlap of the 'valence'
+and 'core' densities. The quotes in the previous sentence refer to the
+arbitrariness in defining the terms 'core' and 'valence'. Take iron.
+It would be 'evident' to everybody that, since the 3d orbital is still
+filling up, one has to consider the 3d electrons as 'valence'. Now
+consider Zinc. The 3d orbital is full, and there is a strong
+temptation to consider it as 'core', since it makes up a full shell.
+If one takes that option (do it), one can see that there is an
+enormous overlap of the core and valence charge densities {Use the
+chargec macro [load chargec ; chargec] to plot it, to set a scale
+favoring the valence density}; it looks as if the valence charge is
+almost completely contained under the core charge. Clearly this is
+going to be a 'tough' case for a standard pseudopotential.
+

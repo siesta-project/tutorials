@@ -1,0 +1,25 @@
+Assuming that, after unpacking, you have placed the material in directory
+
+/some/path/to/package
+
+you need to edit Config/tutorial.bashrc to make the main symbol point
+to that directory:
+
+SIESTA_EXERCISES=/some/path/to/package
+
+The contents of this file should be read by the shell to import the environmental variables and aliases used by the package. In bash, you can use:
+
+ . /some/path/to/package/Config/tutorial.bashrc
+
+(and you can of course put a line like this in your $HOME/.bashrc )
+
+
+** Depending on your particular kind of package, you might have already a
+'bin' subdirectory populated with the executables for the tutorial. If not,
+create it, and put in it copies of 
+
+ siesta, atm, eig2dos, gnubands ...
+
+
+
+

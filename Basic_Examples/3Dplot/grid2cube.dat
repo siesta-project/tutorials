@@ -1,0 +1,5 @@
+ch3    #system label
+rho    #Type of file to read
+5.0 5.0 5.0   #Shift of the origin of coordinates
+1
+unformatted
