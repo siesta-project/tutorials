@@ -1,0 +1,39 @@
+SolutionMethod diagon
+
+# Regular SIESTA options:
+WriteEigenvalues T
+
+MD.TypeOfRun CG
+MD.NumCGsteps     0
+
+SystemName Carbon chain
+SystemLabel chain
+
+LatticeConstant 1.0 Ang
+%block LatticeVectors
+    12.0000      0.0000      0.0000
+     0.0000     12.0000      0.0000
+     0.0000      0.0000     1.42
+%endblock LatticeVectors
+
+NumberOfSpecies 1
+%block ChemicalSpeciesLabel
+1  6  C
+%endblock ChemicalSpeciesLabel
+
+NumberOfAtoms 1
+AtomicCoordinatesFormat Ang
+%block AtomicCoordinatesAndAtomicSpecies
+     0.0000      0.0000      0.0000   1  #  1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block kgrid_Monkhorst_Pack
+  1 0 0 0.
+  0 1 0 0.
+  0 0 200 0.
+%endblock kgrid_Monkhorst_Pack
+
+Diag.ParallelOverK T
+MeshCutoff 200. Ry
+DM.MixingWeight 0.2
+DM.NumberPulay 4

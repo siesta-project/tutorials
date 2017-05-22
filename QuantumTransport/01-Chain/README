@@ -1,0 +1,34 @@
+
+
+ Second example of TranSIESTA
+==============================
+
+Look at the structure in 00-Chain and in this folder.
+
+What are the differences?
+
+You should realise that this system is not periodic, hence
+this system cannot be simulated using _conventional_ siesta method.
+
+Follow the steps as prescribed in 00-Chain (in this case the fdf file is
+the same). The step 1) below has all the steps concatenated in a single
+step, without explanations.
+
+1) 
+  Run the electrode
+  $> cd elec
+  $> transiesta < elec.fdf | tee elec.out
+  $> cd ..
+  $> transiesta < chain.fdf | tee chain.out
+  $> tbtrans < chain.fdf | tee chain.tbt-out
+
+2) Plot the transmission from the perfect chain and for this
+   chain. 
+
+   How do they differ?
+   
+   Why is this difficult to simulate in siesta? And if you would
+   do it, how would you create the siesta structure?
+    HINT: The electrodes are infinite, draw the transiesta structure
+          and extend the structure with infinite electrodes.
+

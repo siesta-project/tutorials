@@ -1,0 +1,26 @@
+
+
+ Bulk calculations using TranSIESTA
+====================================
+
+Transiesta can also deal with periodicities in the x-y plane.
+
+Try and draw a simple system with periodicities.
+
+HINT: Draw a large bulk system and put a molecule in between:
+   -------------------------------------------
+   |  Bulk           Vacuum            Bulk  |
+   |  Bulk  \        Vacuum        /   Bulk  |
+   |  Bulk    \      Vacuum      /     Bulk  |
+   |  Bulk      \    Vacuum    /       Bulk  |
+   |  Bulk          Molecule           Bulk  |
+   |  Bulk      /    Vacuum    \       Bulk  |
+   |  Bulk    /      Vacuum      \     Bulk  |
+   |  Bulk  /        Vacuum        \   Bulk  |
+   |  Bulk           Vacuum            Bulk  |
+   -------------------------------------------
+
+What implications might this have for your calculations?
+ HINT: The calculation is still periodic in the transverse
+       direction.
+ 

@@ -1,0 +1,92 @@
+
+ First example of TranSIESTA
+=============================
+
+Purpose:
+
+Compare the siesta with transiesta for a perfect linear chain of Carbon 
+atoms.
+For perfectly symmetric systems the calculations are equivalent!
+
+To compare siesta with transiesta we are going to do 3 calculations,
+2 calculations related to transiesta and 
+1 calculation done by siesta.
+
+Why 2 calculations by transiesta?
+=================================
+
+transiesta is based on the description of electrodes and a "scattering" region.
+transiesta requires the electrode calculation to be performed before calculating the
+scattering region.
+
+So the sequence will be:
+
+ 1) Run transiesta for the electrode:
+     $> cd elec
+     $> transiesta < elec.fdf | tee elec.out
+    Once done you have calculated an electrode, the file "elec.TSHS" is found
+    in the directory and contains the Hamiltonian of the electrode.
+
+ 2) In step 1) you calculated the electrode and we are now going to calculate the 
+    "scattering" region.
+    
+    Assuming you have not changed directory since completing step 1) we go one
+    directory up:
+     $> cd ..
+     $> transiesta < chain.fdf | tee chain.out
+
+    This calculation takes some time. 
+    If you look at the output you will see that it starts a regular siesta
+    calculation, then moves on to do a transiesta calculation.
+
+    Please have a look at the output, use either:
+     $> more chain.out
+    or 
+     $> less chain.out
+
+ 3) Completing step 2) creates yet another Hamiltonian file "chain.TSHS".
+    From this we can calculate the transmission (and other useful things).
+    
+    To calculate the transmission we use the utility called tbtrans
+     $> tbtrans < chain.fdf | tee chain.tbt-out
+    notice that we can use the same FDF file.
+
+    We now have several extra files: 
+     chain.TBT.*
+    
+   
+ 4) Before we can compare the transiesta calculation with the siesta 
+    calculation we need to calculate it using siesta.
+
+    Assuming you have not changed directory since completing step 2) we go 
+    one directory up:
+     $> cd ..
+     $> cd siesta
+    and call siesta on the chain
+     $> siesta < chain.fdf | tee chain.out
+
+    This will calculate the chain using ONLY k-points.
+
+    After completion you will need to repeat the command from yesterday:
+     $> Eig2DOS -f -m -10 -M 10 chain.EIG > chain.DOS
+    which will calculate the density of states for the chain.
+
+ 5) Compare the two calculations:
+    First go one directory up:
+     $> cd ..
+    Use your favourite plotting utility to plot both the siesta DOS 
+    and the transiesta DOS.
+
+     $> xmgrace -legend load chain.TBT.DOS siesta/chain.DOS
+    or
+     $> gnuplot -p
+      >> plot "chain.TBT.DOS" u 1:2 w l, "siesta/chain.DOS" u 1:4 w l
+
+You have now completed the first example using transiesta, congratulations!
+
+In the following examples you will follow steps 1) to 3) _every_ time! 
+So if in doubt please re-read this documentation. 
+
+However, note that the fdf file have different names in the different directories.
+    
+     

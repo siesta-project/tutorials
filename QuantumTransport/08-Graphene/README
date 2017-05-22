@@ -1,0 +1,24 @@
+
+Graphene is requiring a lot of k-points for converging
+the transport properties.
+
+In this example you should learn two things:
+
+ 1) The importance of k-point sampling (much like example 04)
+
+ 2) The importance of describing the electrodes adequately
+    with ONLY principal cell connections.
+    For this you should check out the zig-zag example
+    and try and change the supercell block in the electrode.
+    Try with values 2 and 1 in the supercell block for the
+    z-direction:
+    %block SuperCell
+     1 0 0 
+     0 1 0
+     0 0 <1|2>
+    %endblock SuperCell
+ 
+    After having re-runned the electrode, run transiesta.
+    After having runned transiesta, how does it perform?
+    Will it converge?
+    

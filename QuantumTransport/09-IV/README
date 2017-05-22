@@ -1,0 +1,30 @@
+This directory contains an example of how to compute the
+I-V characteristics of a simple system.
+
+You will notice that calculating the I-V characteristics takes 
+a lot of time.
+
+The basics of calculating the I-V characteristics is that you need to
+calculate transiesta SCF for each bias and calculate the transmission
+for each of those converged SCF's.
+
+Consider this for loop as a method to compute the I-V characteristics
+
+for V in 0. 0.15 0.3 0.45 0.6 0.75 0.9 1.05 ; do
+   cd V$V
+   transiesta < system.fdf > system.out
+   tbtrans < system.fdf > system.tbt-out
+   cd ../
+done
+
+I have created a script which does this for you.
+What is important is that you SHOULD re-use the guess for the density matrix
+from the previous bias level. This will heavily decrease convergence time and
+will increase the possibility of convergence.
+
+To run and calculate the I-V curve just run:
+ $> cd ..
+ $> ./run-09.sh
+Then you can plot a file:
+ $> xmgrace IV.dat
+or use your favorite plotting utility.

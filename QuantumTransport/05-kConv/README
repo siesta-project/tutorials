@@ -1,0 +1,16 @@
+
+How does k-points affect the transiesta calculations?
+
+Try and change the k-point grids for the tbtrans calculations.
+
+First (as always) run the electrode, then transiesta, then
+play with tbtrans and the k-point sampling.
+
+ $> cd elec
+ $> transiesta < elec.fdf | tee elec.out
+ $> cd ..
+ $> transiesta < stackingfault.fdf | tee stackingfault.out
+ $> tbtrans < stackingfault.fdf | tee stackingfault.tbt-out
+
+How does these changes affect the transport/DOS?
+Will it converge?
