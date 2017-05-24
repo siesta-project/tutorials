@@ -12,7 +12,7 @@ runS $dir/siesta $sys
 
 # Calculate the DOS from siesta
 pushd $dir/siesta
-# -f == shift 0 to fermi-level 
+# -f == shift fermi-level to 0
 # -m == lowest energy calculated
 # -M == highest energy calculated
 # -k == tell the program how the k-points are weighted
@@ -20,6 +20,6 @@ Eig2DOS -f -m -10. -M 10. -k $sys.KP $sys.EIG > $sys.DOS
 popd
 
 # Plot the DOS, transmission and siesta DOS
-xmgrace -legend load -nxy $dir/chain.TBT.AVTRANS* $dir/siesta/$sys.DOS &
+xmgrace -legend load -nxy $dir/chain.TBT.AVDOS $dir/siesta/$sys.DOS &
 
-gnuplot -p -e "plot '$dir/chain.TBT.AVTRANS_Left-Right' u 1:4 w l, '$dir/siesta/chain.DOS' u 1:4 w l" &
+gnuplot -p -e "plot '$dir/chain.TBT.AVDOS' u 1:2 w l, '$dir/siesta/chain.DOS' u 1:4 w l" &

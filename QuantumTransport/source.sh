@@ -1,12 +1,17 @@
 #!/bin/bash
 
-_RUN="transiesta"
+_RUN="transiesta-4.1"
 _ts=${RUN-$_RUN}
 _tbt=${_ts//transiesta/tbtrans}
 _s=${_ts//transiesta/siesta}
 
 trap "echo 'You quitting on me?' ; pwd ; exit 1" SIGINT SIGTERM
 
+exeDIE() {
+    echo "Execution of $1 failed, the examples quits"
+    exit 1
+}
+    
 cleanTS() {
     local sys=$1 ; shift
     local del_dm=1
@@ -22,10 +27,11 @@ cleanTS() {
     if [ $del_dm -eq 0 ]; then
 	[ -e $sys.DM ] && mv $sys.DM old.DM
     fi
-    rm $sys.[^f]* fdf-* \
+    rm -f $sys.[^f]* fdf-* \
 	INPUT_TMP.* 0_* BASIS_* *.ion* \
 	CLOCK FORCE_STRESS NON_TR* TIMES \
-	${sys}.tbt* *.nc OCCS
+	${sys}.tbt* *.nc OCCS \
+	ts2ts.log BLOCK_INDEXES PARALLEL_DIST
     [ -e old.DM ] && cp old.DM $sys.DM
 }
 
@@ -35,7 +41,8 @@ runTS() {
     local sys=$1 ; shift
     pushd $dir
     cleanTS $sys $@
-    $_ts < $sys.fdf | tee $sys.out
+    $_ts < $sys.fdf > $sys.out
+    [ $? -ne 0 ] && exeDIE $_ts
     popd
 }
 
@@ -46,6 +53,7 @@ runS() {
     pushd $dir
     cleanTS $sys $@
     $_s < $sys.fdf > $sys.out
+    [ $? -ne 0 ] && exeDIE $_s
     popd
 }
 
@@ -54,6 +62,7 @@ runTBT() {
     local dir=$1 ; shift
     local sys=$1 ; shift
     pushd $dir
-    $_tbt < $sys.fdf | tee $sys.tbt-out
+    $_tbt < $sys.fdf > $sys.tbt-out
+    [ $? -ne 0 ] && exeDIE $_tbt
     popd
 }

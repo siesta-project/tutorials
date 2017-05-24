@@ -15,12 +15,13 @@ XC.functional         LDA           # Exchange-correlation functional
 XC.authors            CA
 PAO.BasisSize    SZP
 PAO.EnergyShift  0.005 Ry
+SCF.H.Tolerance 0.01 eV
 
 # K-points
 %block kgrid_Monkhorst_Pack
  4   0   0   0.0
  0   4   0   0.0
- 0   0  30   0.0
+ 0   0   5   0.0
 %endblock kgrid_Monkhorst_Pack
 
 
@@ -90,6 +91,7 @@ TS.Voltage    0.50000 eV
 TS.Elecs.Bulk true
 TS.Elecs.DM.Update cross-terms
 TS.Elecs.GF.ReUse true
+TS.Elecs.Neglect.Principal true
 %block TS.Elecs
   Left
   Right

@@ -18,7 +18,7 @@ PAO.EnergyShift  0.005 Ry
 %block kgrid_Monkhorst_Pack
  4   0   0   0.0
  0   4   0   0.0
- 0   0   60  0.5
+ 0   0   60  0.0
 %endblock kgrid_Monkhorst_Pack
 
 LatticeConstant       2.92311 Ang

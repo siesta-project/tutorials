@@ -11,6 +11,7 @@ pushd $dir
 pushd elec
 echo "Calculating the electrode..."
 $_ts < elec.fdf > elec.out
+[ $? -ne 0 ] && exeDIE $_ts
 echo "Done..."
 popd
 
@@ -29,12 +30,15 @@ rm -f $sys.[^f]*
 echo "Calculating for 0V..."
 setV 0. # set the bias
 $_ts < $sys.fdf > $sys.out-V0
+[ $? -ne 0 ] && exeDIE $_ts
 # Save the density matrix for zero bias (then we can use
 # this as a guess for the following bias)
 cp $sys.TSDE V0.TSDE
 echo "Calculating the current using tbtrans for 0V..."
-tbtrans < $sys.fdf > $sys.tbt-out-V0
+$_tbt < $sys.fdf > $sys.tbt-out-V0
+    [ $? -ne 0 ] && exeDIE $_ts
 mv $sys.TBT.AVTRANS* $sys.AVTRANS-V0
+rm -f $sys.TBT.nc
 
 # Clean up
 rm *.T*GF*
@@ -52,10 +56,13 @@ for V in 0.15 0.3 0.45 0.6 0.75 0.9 ; do
 
     setV $sign$V # set the bias
     $_ts < $sys.fdf > $sys.out-V$sign${V//./_}
+    [ $? -ne 0 ] && exeDIE $_ts
 
     echo "Calculating the current using tbtrans for $V V..."
-    tbtrans < $sys.fdf > $sys.tbt-out-V$sign${V//./_}
-    mv $sys.TBT.AVTRANS* $sys.TBT.AVTRANS-V$sign${V//._}
+    $_tbt < $sys.fdf > $sys.tbt-out-V$sign${V//./_}
+    [ $? -ne 0 ] && exeDIE $_ts
+    mv $sys.TBT.AVTRANS_Left-Right $sys.TBT.AVTRANS-V$sign${V//._}
+    rm -f $sys.TBT.nc
 
     # Clean up
     rm *.T*GF*
@@ -69,7 +76,7 @@ rm INPUT_TMP* fdf-*
 # Create the I-V curve
 echo "# Bias[V] Current[A]" > IV.dat
 for V in -0.9 -0.75 -0.6 -0.45 -0.3 -0.15 0 0.15 0.3 0.45 0.6 0.75 0.9 ; do
-    I=`grep Current $sys.tbt-out-V${V//./_} | awk '{print $5}'`
+    I=`grep '\[A\]' $sys.tbt-out-V${V//./_} | awk '{print $12}'`
     printf "%f\t%f\n" $V $I >> IV.dat
 done
 

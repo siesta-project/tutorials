@@ -3,7 +3,7 @@
  Bulk calculations using TranSIESTA
 ====================================
 
-Transiesta can also deal with periodicities in the x-y plane.
+Transiesta can also deal with periodicities along non-transport directions.
 
 Try and draw a simple system with periodicities.
 

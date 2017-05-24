@@ -14,6 +14,8 @@ for k in 4 8 12 ; do
     tbtkgrid $sys.fdf $k
     runTBT ./ $sys
     mv $sys.TBT.AVTRANS* $sys-k-$k.AVTRANS
+    # Clean-up to enable next calculation
+    rm *.TBT.nc
     mv $sys.tbt-out $sys-k-$k.tbt-out
 done
 popd

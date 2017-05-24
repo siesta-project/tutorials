@@ -2,7 +2,7 @@
 # This will create a function that changes the k-grid
 # block to a new one
 
-BNAME=TBT.kgrid_Monkhorst_Pack
+BNAME=TBT.k
 
 _tbtkgrid_help() {
     echo "Run the command: "

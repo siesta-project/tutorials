@@ -6,7 +6,8 @@ IMPORTANT: Read the entire thing, then go back and start.
 You may think it is stupid, but having an overview of what the purpose
 of the assignment is makes the steps easier! 
 
-REMEMBER: TranSIESTA has it's transport direction in the z-direction.
+REMEMBER: TranSIESTA can align it's transport direction along any direction
+	  However, you should in this example use the z-direction.
           Hence this assignment needs your chain to increase in the 
           z-direction.
 

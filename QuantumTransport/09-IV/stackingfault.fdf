@@ -20,7 +20,7 @@ PAO.EnergyShift  0.005 Ry
 %block kgrid_Monkhorst_Pack
  4   0   0   0.0
  0   4   0   0.0
- 0   0  30   0.0
+ 0   0   5   0.0
 %endblock kgrid_Monkhorst_Pack
 
 
@@ -63,7 +63,7 @@ MD.NumCGsteps     000
 
 
 
-TS.Voltage   -0.90000 eV
+TS.Voltage -0.9 eV
 
 %block TS.ChemPots
   Left
@@ -90,6 +90,7 @@ TS.Voltage   -0.90000 eV
 TS.Elecs.Bulk true
 TS.Elecs.DM.Update cross-terms
 TS.Elecs.GF.ReUse true
+TS.Elecs.Neglect.Principal true
 %block TS.Elecs
   Left
   Right

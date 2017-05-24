@@ -7,10 +7,10 @@ to reduce the size of the electrode and hence make the
 calculation faster.
 
 Any electrode which has a periodic arrangement in a cell
-direction is apt for Bloch's theorem.
+direction (not transport direction) is apt for Bloch's theorem.
 It is ALWAYS adviced to utilise this method if applicable.
 
-In this example we will cover the capacitor example but
+In this example we will cover the stacking fault example but
 extend the surface and use a repeated electrode.
 
 
@@ -23,6 +23,6 @@ extend the surface and use a repeated electrode.
 2. For the advanced users:
    Try and make a copy of the device and create a system
    with 3 repetitions in the x-direction.
-   HINT: Compare 02-Capacitor structure with this
+   HINT: Compare 02-SF structure with this
    structure. To figure out the way.
 

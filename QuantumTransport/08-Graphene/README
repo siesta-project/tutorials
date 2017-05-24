@@ -1,5 +1,5 @@
 
-Graphene is requiring a lot of k-points for converging
+Graphene is requiring lots of k-points for converging
 the transport properties.
 
 In this example you should learn two things:
