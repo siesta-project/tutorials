@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_RUN="transiesta-4.1"
+_RUN="transiesta"
 _ts=${RUN-$_RUN}
 _tbt=${_ts//transiesta/tbtrans}
 _s=${_ts//transiesta/siesta}
