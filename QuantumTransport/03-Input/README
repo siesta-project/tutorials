@@ -1,0 +1,83 @@
+
+Creating a first input for TranSIESTA
+=====================================
+
+IMPORTANT: Read the entire thing, then go back and start.
+You may think it is stupid, but having an overview of what the purpose
+of the assignment is makes the steps easier! 
+
+REMEMBER: TranSIESTA can align it's transport direction along any direction
+	  However, you should in this example use the z-direction.
+          Hence this assignment needs your chain to increase in the 
+          z-direction.
+
+The goal is to get a feel for what is important for constructing
+your first example. It is expected that many of you makes mistakes doing this
+exercise, so please do not be afraid to ask. :)
+
+1. Draw up your system on a piece of paper
+   Your goal should be to construct a chain
+   of atoms with some kind of defect in the middle
+   of the chain. 
+   The defect need not be severe.
+   Here is an example of how the chain might look.
+   
+    1     2     3     4     5     6    7     8     9    10    11    12
+   
+    o --- o --- o --- o --- o --- o -- o --- o --- o --- o --- o --- o ---
+
+   Where in the above example the defect is between atom 6 and 7.
+   (If you want a more exciting defect PLEASE DO SO! :) )
+   
+
+2. Test and try and setup your electrode.
+   This should ALWAYS be your first step in TranSIESTA.
+   Defining your electrode correctly has a huge influence on the system.
+
+   Make a chain and run transiesta on the electrode.
+   Try with 2, 3, 4 atoms and check the supercell for the range of the orbitals 
+   to ensure a connectivity only on 2 principal layers.
+
+   Which one would suspect to be the best one?
+   Hint: You can find the orbital range in the output of siesta and calculate
+         it.
+
+3. Create your full structure.
+
+   Do the following steps:
+     a) Input your first electrode
+     b) Input some more atoms and then a defect (you can make it longer than
+        the suggested 12 atoms, and if you have some "funny" looking defect, 
+        please introduce it). 
+        After the defect input some more atoms.
+     c)	Input your last electrode
+
+   Ensure that both electrodes are the same (the second electrode
+   is just the first electrode with an offset).
+
+4. Run the electrode calculation with "many" k-points in the transport
+   direction.
+
+5. Run your full structure.
+
+   Also run tbtrans on it.
+
+
+HINT: look at the first exercise we did today. You can if you want base your
+      1D system on this. It is advised to think about the electrode design and
+      how it was constructed to get a proper feel for TranSIESTA.
+      See, if you did not read everything first you would not see this hint!?!?
+   
+      And you wouldn't see this happy face before proceeding:
+
+                .---.
+               | o o |
+               |  >  |
+               | '-' |
+                '---'
+
+
+
+
+
+

@@ -1,3 +1,41 @@
-Taken from CESCA's server after the course.  The directory "tests"
-came from the Tests/transiesta directory in the Siesta distribution,
-and has been removed.
+In order to run the examples more easily I have created some scripts that
+will run them automatically.
+
+In order to execute the automatic scripts you need to have transiesta
+in your path.
+This can be done by putting the transiesta executable in a folder
+that is existing in the environment variable PATH.
+If this does not sound familiar you are encouraged to read about the
+PATH environment variable and how to "unix add folders to PATH", I have
+quoted it to be ready for a Google search.
+
+The examples requires that you compile siesta, transiesta and tbtrans.
+If you are in the top source folder of siesta
+you should execute these commands:
+ $> cd Obj
+ $> make
+ $> cp siesta <folder in your path>
+ $> make clean
+ $> make transiesta
+ $> cp transiesta <folder in your path>
+ $> cd ../Util/TS/TBtrans
+ $> make
+ $> cp tbtrans <folder in your path>
+
+After having transiesta in your path you can simply do:
+ $> ./run_TS.sh
+which will run all the examples automatically.
+In case you only want to run a single one of them do this:
+ $> ./run-00.sh
+to only run the 00 example.
+
+In case you want to utilise your MPI installation you can call the 
+examples via this construct:
+ $> RUN="mpirun -np 2 transiesta" ./run_TS.sh
+or
+ $> RUN="mpirun -np 2 transiesta" ./run-00.sh
+to execute transiesta using 2 MPI cores (this requires that you have
+compiled siesta/transiesta with MPI.
+
+However!! If I feel the question is more generic than just these examples
+I will encourage you to ask on the SIESTA mailing list which I also follow.

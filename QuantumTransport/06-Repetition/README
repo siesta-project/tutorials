@@ -1,0 +1,28 @@
+
+ Utilising Bloch's theorem
+===========================
+
+In this example we will make use of Bloch's theorem
+to reduce the size of the electrode and hence make the
+calculation faster.
+
+Any electrode which has a periodic arrangement in a cell
+direction (not transport direction) is apt for Bloch's theorem.
+It is ALWAYS adviced to utilise this method if applicable.
+
+In this example we will cover the stacking fault example but
+extend the surface and use a repeated electrode.
+
+
+1. Run the calculation for the repetition as any normal
+   transiesta calculation.
+    a) Run electrode
+    b) Run device
+    c) Run tbtrans
+
+2. For the advanced users:
+   Try and make a copy of the device and create a system
+   with 3 repetitions in the x-direction.
+   HINT: Compare 02-SF structure with this
+   structure. To figure out the way.
+

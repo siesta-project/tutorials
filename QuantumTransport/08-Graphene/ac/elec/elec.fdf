@@ -1,0 +1,52 @@
+# This will let you easily
+# create a twice as long electrode by
+# changing the last 1 to 2.
+%block SuperCell 
+  1 0 0
+  0 1 0
+  0 0 1
+%endblock SuperCell
+
+# K-points
+# For graphene, k-points are very important
+%block kgrid_Monkhorst_Pack
+ 10   0   0   0.0
+  0   1   0   0.0
+  0   0  50   0.0
+%endblock kgrid_Monkhorst_Pack
+
+SolutionMethod diagon
+MD.TypeOfRun CG
+MD.NumCGsteps     0
+
+SystemName Square graphene lattice
+SystemLabel elec
+
+LatticeConstant 1.0 Ang
+
+NumberOfSpecies 1
+%block ChemicalSpeciesLabel
+1  6  C
+%endblock ChemicalSpeciesLabel
+
+AtomicCoordinatesFormat  Ang
+
+
+NumberOfAtoms 4
+# This is basis for ARMCHAIR
+%block LatticeVectors
+     2.456      0.000      0.000 
+     0.000     14.000      0.000 
+     0.000      0.000      4.254 
+%endblock LatticeVectors
+%block AtomicCoordinatesAndAtomicSpecies
+     0.000    0.000   0.000  1 
+     0.000    0.000   1.418  1 
+     1.228    0.000   2.127  1 
+     1.228    0.000   3.545  1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+MeshCutoff 200. Ry
+DM.MixingWeight 0.2
+DM.NumberPulay 4
