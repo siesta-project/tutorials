@@ -1,0 +1,29 @@
+BN   
+A
+0. 0. 0.
+1 0 0
+-6. 6.
+0 1 0
+-6. 6.
+0 0 1
+-8.  8.
+BN
+1     
+72
+0.30
+200  0  10 
+2.0    invoice length of arrow
+0.25   diameter of arrow
+1      1 for penetrating,  0 for non penetrating
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y

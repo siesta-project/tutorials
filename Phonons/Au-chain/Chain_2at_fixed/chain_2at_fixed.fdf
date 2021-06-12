@@ -1,0 +1,72 @@
+System_Name  Au-chain-2at
+#  Basis and LDA pseudopotential from the Siesta database
+SpinPolarized  F  
+Number_of_atoms    2
+Number_of_species  1
+%block Chemical_species_label
+  1  79   Au
+%endblock Chemical_species_label
+%block AtomicMass
+  1  197  
+%endblock AtomicMass
+
+Lattice_constant   1.000 Ang 
+%block Lattice_vectors
+      10.000000000       0.000000000       0.000000000
+       0.000000000      10.000000000       0.000000000
+       0.000000000       0.000000000       5.759386000  
+%endblock Lattice_vectors
+
+Atomic_coordinates_format     Fractional
+%block Atomic_Coordinates_and_Atomic_Species
+       0.0    0.0   -0.25   1   196.97   Au    1
+       0.0    0.0    0.25   1   196.97   Au    2
+%endblock Atomic_Coordinates_and_Atomic_Species
+#%block BandLines
+#  1  0.  0.  0.
+#%endblock BandLines
+#Eigenvectors  T
+
+PAO.BasisType    split 
+%block PAO.Basis
+Au    3      0.02
+ n=6    0    2   E     10.00      6.00
+   6.500   5.500
+   1.000   1.000
+ n=6    1    1   E     10.42      3.69
+   5.850
+   1.000
+ n=5    2    2   E    102.50      5.62
+   7.200   5.570
+   1.000   1.000
+%endblock PAO.Basis
+
+%block kgrid_Monkhorst_Pack
+  1  0  0  0.   #
+  0  1  0  0.   #
+  0  0 20  0.   #
+%endblock kgrid_Monkhorst_Pack
+#
+# -- dynamical part
+MD.TypeOfRun  FC
+MD.VariableCell   F
+MD.FCfirst     1
+MD.FClast      2
+UseSaveData    T
+MD.UseSaveXV   F
+#
+MeshCutoff             150.0 Ry
+%block GridCellSampling
+  0.   0.5  0.5
+  0.5  0.   0.5
+  0.5  0.5  0.
+%endblock GridCellSampling
+XC.functional   LDA
+XC.authors      CA
+DM.InitApinAF           F
+DM.MixSCF1              F
+DM.PulayOnFile          F
+DM.MixingWeight        .25
+DM.NumberKick           0
+DM.KickMixingWeight    .50
+DM.Tolerance          .1000000000E-03     # Default value

@@ -1,0 +1,73 @@
+SystemName       BN-monolayer
+SystemLabel      BN           # Short name for naming files
+
+NumberOfSpecies        2       
+NumberOfAtoms         24      
+%block ChemicalSpeciesLabel
+  1   5   B 
+  2   7   N 
+%endblock ChemicalSpeciesLabel
+PAO.EnergyShift       50 meV
+PAO.BasisSize         DZP
+
+Lattice_constant 8.64293 Ang #  2*sqrt(3)*2.495 (initial lattice parameter)
+%block Lattice_vectors
+ 0.8660254  0.5   0.0
+ 0.0        1.0   0.0
+ 0.0        0.0   1.157  #  --> 10 Ang, as for the simple cell 
+%endblock Lattice_vectors
+
+AtomicCoordinatesFormat     Fractional    
+%block AtomicCoordinatesAndAtomicSpecies
+  0.166666666667    0.0               0.0    1 
+  0.333333333333    0.0               0.0    2 
+  0.666666666667    0.0               0.0    1 
+  0.833333333333    0.0               0.0    2 
+  0.0               0.166666666667    0.0    2 
+  0.333333333333    0.166666666667    0.0    1 
+  0.5               0.166666666667    0.0    2 
+  0.833333333333    0.166666666667    0.0    1 
+  0.0               0.333333333333    0.0    1 
+  0.166666666667    0.333333333333    0.0    2 
+  0.5               0.333333333333    0.0    1 
+  0.666666666667    0.333333333333    0.0    2 
+  0.166666666667    0.5               0.0    1 
+  0.333333333333    0.5               0.0    2 
+  0.666666666667    0.5               0.0    1 
+  0.833333333333    0.5               0.0    2 
+  0.0               0.666666666667    0.0    2 
+  0.333333333333    0.666666666667    0.0    1 
+  0.5               0.666666666667    0.0    2 
+  0.833333333333    0.666666666667    0.0    1 
+  0.0               0.833333333333    0.0    1 
+  0.166666666667    0.833333333333    0.0    2 
+  0.5               0.833333333333    0.0    1 
+  0.666666666667    0.833333333333    0.0    2 
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+# KgridCutoff          15. Ang
+%block kgrid_Monkhorst_Pack
+  4  0  0  0.   #
+  0  4  0  0.   #
+  0  0  1  0.   #
+%endblock kgrid_Monkhorst_Pack
+#
+# -- dynamical part
+MD.TypeOfRun     FC                # Default value
+MD.VariableCell   F
+MD.NumCGsteps    50
+MD.MaxStressTol    0.5 GPa       #  Default: 1.0 GPa
+MD.MaxForceTol     0.02 eV/Ang   #  Default: 0.04 eV/Ang
+#
+# -- I/O par10
+#%block BandLines
+#  1  0.00000   0.000000  0.000000  \Gamma
+# 40  2.00000   0.000000  0.000000  H
+# 28  1.00000   1.000000  0.000000  N
+# 28  0.00000   0.000000  0.000000  \Gamma
+# 34  1.00000   1.000000  1.000000  P
+#%endblock BandLines
+
+XC.functional         LDA           # Exchange-correlation functional
+XC.authors            CA            # Exchange-correlation version
+MeshCutoff           150. Ry        # Mesh cutoff. real space mesh 

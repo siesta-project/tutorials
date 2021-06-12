@@ -1,0 +1,58 @@
+SystemName       BN-monolayer
+SystemLabel      BN           # Short name for naming files
+Vibra.FC BN.FC
+
+NumberOfSpecies        2       
+NumberOfAtoms          2      
+%block ChemicalSpeciesLabel
+  1   5   B 
+  2   7   N 
+%endblock ChemicalSpeciesLabel
+PAO.EnergyShift       50 meV
+PAO.BasisSize         DZP
+
+LatticeConstant       2.495 Ang  
+%block LatticeParameters       
+  1.000  1.000  4.008   90.  90.  120. 
+%endblock LatticeParameters       
+
+AtomicCoordinatesFormat     Fractional    
+%block AtomicCoordinatesAndAtomicSpecies
+  0.666666666667    0.333333333333    0.0  1   10.81
+  0.333333333333    0.666666666667    0.0  2   14.01
+%endblock AtomicCoordinatesAndAtomicSpecies
+SuperCell_1          2
+SuperCell_2          2
+SuperCell_3          0
+
+# KgridCutoff          15. Ang
+%block kgrid_Monkhorst_Pack
+  8  0  0  0.   #
+  0  8  0  0.   #
+  0  0  1  0.   #
+%endblock kgrid_Monkhorst_Pack
+#
+# -- dynamical part
+MD.TypeOfRun     FC                # Default value
+MD.VariableCell   F
+MD.NumCGsteps    50
+MD.MaxStressTol    0.5 GPa       #  Default: 1.0 GPa
+MD.MaxForceTol     0.02 eV/Ang   #  Default: 0.04 eV/Ang
+#
+BandLinesScale        pi/a  
+#%block BandLines
+#  1  2.0       1.154701  0.0  \Gamma
+#  2  0.0       0.0       0.0  \Gamma
+#  4  1.333333  2.309401  0.0  \Gamma
+#%endblock BandLines
+%block BandLines
+  1  0.0       0.0       0.0  \Gamma
+ 35  0.0       1.154701  0.0  M      
+ 20  0.666667  1.154701  0.0  K     
+ 40  0.0       0.0       0.0  \Gamma
+%endblock BandLines
+Eigenvectors         True
+
+XC.functional         LDA           # Exchange-correlation functional
+XC.authors            CA            # Exchange-correlation version
+MeshCutoff           150. Ry        # Mesh cutoff. real space mesh 

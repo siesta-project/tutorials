@@ -1,0 +1,195 @@
+The aim of this exercise is to relax a BN monolayer,
+calculate frozen phonons on it and get familiarized with phonon dispersions
+in 2 dimensions. B.psf and N.psf pseudos (LDA) are common for all tasks.
+Executables to be used:
+($SIESTA_ROOT)/Obj/siesta
+($SIESTA_ROOT)/Util/... (from standard Siesta distribution);
+../../Tools/Sies2vesta/...
+../../Tools/Vibra_q=0/...
+../../Tools/Sies2LD/... (homemade tools)
+Specific tasks are explained below for each
+Directory/Input_file.fdf :
+
+Relax/BN_relax.fdf
+------------------
+Start from a graphene-type structure with large enough c parameter
+to prevent the overlap of the basis functions (say 10 Ang).
+Allow a priori a not flat geometry (different c-coordinates of B and N).
+The structure converges to a=2.495 Ang, fractional coordinates
+(2/3 1/3) and (1/3 2/3).
+[Tutor: 
+Basis set expansions are 7.32 Bohr (B) and 5.50 (N), so that
+the C parameter must be at least 7.8 Ang. We keep it =10.0 in the
+subsequent calculations. Note that the BN plane remains exactly flat,
+even as this was not imposed by symmetry (and the relaxation might have
+started from different z-coordinates of B and N).
+The values 
+MD.MaxStressTol    0.5 GPa       #  Default: 1.0 GPa
+MD.MaxForceTol     0.02 eV/Ang   #  Default: 0.04 eV/Ang
+need to be set below the defaults for a stable relaxation.
+A high enough mesh cutoff (250 Ry) and dense k-mesh may be needed 
+to achieve a smooth convergence. (Subsequent phonon calculations
+may be less critical in this sense). Even as the C-parameter would somehow
+adjust in the course of relaxation, we remember that this has no meaning
+and keep it fixed.
+The experimental lattice parameter of bulk BN seems to be 2.505 Ang -
+see, e.g., PRB83-115328. Our LDA estimate is 99.6% of it.  ]
+
+Phonon_G/phonon_G.fdf
+---------------------
+Run frozen phonon calculation with the "a" lattice parameter set to
+the relaxed value. The file BN.FC is created. The Gamma phonons
+can be calculated by
+../../Tools/Vibra_q=0/vibq0
+and passing when prompted the SystemLabel (here: BN) 
+of .XV and .FC files. resulting are the files
+BN.bands --> Gamma phonon frequencies, 3x(0), 727; 2x(1389) cm-1.
+[Tutor:
+Discuss the eigenvectors and the fact that the two degenerate
+vibrations occur in the plane. Exp. values, as cited in PRB83-115328 :
+783 cm-1 (A2u-TO) and 1367 cm-1 (E1u-TO).]
+Visualize the modes using the tool
+../../Tools/Sies2vesta/vib2vesta 
+that prompts to specify a number of parameters of plot; use, e.g.,
+a sample input file 
+vib2vesta.inp, i.e., run
+../../Tools/Sies2vesta/vib2vesta < vib2vesta.inp
+
+Phonon_GMK/phonon_GMK.fdf
+-------------------------
+This input file describes a supercell which is a [2*sqrt(3)]x[2*sqrt(3)]=12
+multiple of the primitive cell. This is the minimal cell which maps
+both M and K points of the Brillouin zone onto Gamma (see a separate
+discussion. - The supercell is small enough to be prepared by hand).
+The task is to calculate all Gamma phonons in this supercell and then
+project them onto different Q vectors of the Brillouin zone.
+The calculation demands to apply six trial translations to all 24 atoms
+in the supercell, that is a bit inefficient as all the 12 atoms within
+a given species are equivalent, and the FC blocks related to them can be
+genetared by permutations (see a separate discussion). Anyway, the FC file
+is directly created and saved as BN.FC_save.
+The G-phonon calculation:
+../../Tools/Vibra_q=0/vibq0
+and passing when prompted the SystemLabel (here: BN) 
+of .XV and .FC files. The resulting BN.bands file lists the frequencies
+of 72 modes, three of them =0 etc. up to (nearly 6-degenerate) 1478 cm-1.
+The character of these different modes can be revealed by projecting
+their eigenvectors onto waves with different Q-vector (see the lecture).
+The projection is done by
+../../Tools/Sies2LD/phdos
+and answering on prompt:
+BN
+BN
+Q
+0 0 0
+U
+that creates two files, BN.VSQ  and BN.WSQ. The first one lists
+the frequencies of all individual peak in the denity of modes, with
+weights attributed to participance of different atoms in the eigenvectors.
+The BN.WSQ presents the same information as a continuous function of energy,
+the peaks being somehow smeared (for more convenient plotting).
+In order to probe projections onto different symmetric points of the BZ,
+the following coordinates of Q-points can be specified (in Cartesian
+coordinates and units of 1/Bohr, omitting the 2*pi factor). For A=2.495 Bohr,
+M [0, 2*pi/(a*sqrt(30), 0] -> [0, 0.2314029, 0], or
+M [pi/a, pi/(a*sqrt(3)), 0] -> [0.2004008, 0.1157014, 0];
+K [2*pi/(3*a), 2*pi/(a*sqrt(3)), 0] -> [0.1336005, 0.2314029, 0];
+K [4*pi/(3*a), 0, 0] -> [0.2672011, 0, 0]
+In addition to calculating the total ("sum of squares") projection of
+the eigenvectors for a given Q-point, the phdos script permits separating
+the transversal and longitudinal (to a given direction) components
+of the eigenvectors; for this, one needs to pass 'P' instead of 'U'
+answering the last prompting and providing thereafter the components of
+the vector to project onto.
+
+
+Phonon_Q/phonon_Q.fdf
+-------------------------
+This task describes the calculation of Q-dependent phonon dispersion, using 
+the -fcbuild- and -vibra- executables from Util/Vibra/Src .
+and
+($SIESTA_ROOT)/Util/Vibra/Src/vibra.
+- The first step consist in constructing a supercell,
+($SIESTA_ROOT)/Util/Vibra/Src/fcbuild < BN_fcbuild.fdf > BN_fcbuild.out
+The input file BN_fcbuild.fdf
+is a slight variation of ../Phonon_G/phonon_G.fdf
+with atomic masses added in the AtomicCoordinatesAndAtomicSpecies block
+(not needed for Siesta nor for fcbuild; in fact they will be 
+only used by vibra), and
+SuperCell_1,2,3 replication gactors specified. With the choice
+SuperCell_1 = SuperCell_2 = 2, SuperCell_3 = 0,
+fcbuild 
+generates a 5*5*1 supercell with 50 atoms, for the Siesta calculation of
+force constants (atoms Nr 25 and 26 are displaced). 
+The relevant fragment of the input file is created by
+fcbuild and saved as 'FC.fdf'. It has to be integrated into the full
+Siesta input file, which is called
+phonon_FC-scell.fdf
+Note that 
+NumberOfAtoms,
+AtomicCoordinatesFormat,
+Lattice Constant / LatticeVectors  and
+AtomicCoordinatesFormat / AtomicCoordinatesAndAtomicSpecies
+need to be replaced by the new entries in FC.fdf.
+The number of k-points can be reduced as compared to single cell case.
+The generated BN.FC file (2*50*6+1 = 601 lines)
+- The second step is the calculation of force constants on a supercell,
+running siesta on the just prepared input file:
+($SIESTA_ROOT)/Obj/siesta < BN_FC-siesta.fdf > BN_FC-siesta.out
+The calculation yields the BN.FC file with 
+(2 displaced atoms)*(6 displacements)*(50 atoms in the supercell)+1 = 601 lines.
+- The third step is calculation of selected Q-dependent dispersions.
+($SIESTA_ROOT)/Util/Vibra/Src/vibra < BN_vibra.fdf
+The input file BN_vibra.fdf must be identical to BN_fcbuild in what
+regards the definition of the unit cell (2 atoms) and replication factors
+SuperCell_1          2
+SuperCell_2          2
+SuperCell_3          0
+Moreover, the input file for vibra must specify atomic masses
+in the AtomicCoordinatesAndAtomicSpecies block (they may have been already
+included earlier, but have no effect),
+the name of the FC file used,
+and the BandLines block. In order to meaningfully select the Q-path,
+we should take into account that the lattice vectors are:
+a_1 = [ A, 0 ]; a_2 = [ -A/2, A*sqrt(3)/2 ]   (A: the hex lattice constant),
+hence the reciprocal lattice vectors are:
+b_1 = [ 2*pi/A, 2*pi/(A*sqrt(3)) ]; b_1 = [ 0, 4*pi/(A*sqrt(3)) ].
+The M points are at ( 0, 2*pi/(A*sqrt(3)) ), ( pi/A, pi/(A*sqrt(3)) ),
+the K pointis are at ( 2*pi/(3*A), 2*pi/(A*sqrt(3)) ) and ( 4*pi/(3*A), 0 ).
+Applying +/- to X and Y coordinates, one can generate 6 points of each kind.
+First, in order to check that the points are correctly identified, we
+explore the following set of points: 
+BandLinesScale        pi/a
+%block BandLines
+  1  2.0       1.154701  0.0  \Gamma
+  2  0.0       0.0       0.0  \Gamma
+  4  1.333333  2.309401  0.0  K     
+%endblock BandLines
+This would probe the following sequence of 8 points:
+Gamma - M - Gamma - [half-way to K] - K - M - K.
+On performing the vibra calculation, we controle that, indeed, the results
+for the following points coincide: 1=3, 5=7 and 2=6, as expected.
+After this, one can try a more dense selection of points along the path
+Gamma - M - K - Gamma,
+respecting the relative lengths: sqrt(3) : 1 : 2
+for instance,
+%block BandLines     
+  1  0.0       0.0       0.0  \Gamma
+ 35  0.0       1.154701  0.0  M      
+ 20  0.666667  1.154701  0.0  K     
+ 40  0.0       0.0       0.0  \Gamma
+%endblock BandLines
+The file 'BN.bands' produced by Vibra contains,
+as functions of wavevector (in the first column) the vibration frequencies
+branch by branch (all subsequent columns). After having removed or
+commented (with '#' symbols at the beginning of each line) the header
+and the tailing parts, these data can be immediately plotted by Gnupot
+or XmGrace. Otherwise, use the script
+($SIESTA_ROOT)/Util/Bands/gnubands < BN.bands > bands.dat
+that will reformat the file, writing dispersions band by band. For the final
+plot, one would need to place labels at correct positions.
+The inspection of the plot reveals a problematic region of ~80% radius
+of the Brillouin zone within which the lowest branch goes imaginary. 
+In fact this is an artefact of too small replication parameter, that will
+be hopefully repared if taking larger SuperCell_1, SuperCell_2 for fcbuild
+and vibra.

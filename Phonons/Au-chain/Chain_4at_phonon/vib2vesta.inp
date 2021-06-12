@@ -1,0 +1,29 @@
+siesta   
+A
+0. 0. 0.
+1 0 0
+-1. 1.
+0 1 0
+-1. 1.
+0 0 1
+-10. 10.
+siesta
+1     
+12
+0.2
+ 50 137 20 
+2.2    invoice length of arrow
+0.5    diameter of arrow
+1      1 for penetrating,  0 for non penetrating
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y
+y

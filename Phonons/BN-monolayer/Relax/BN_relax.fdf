@@ -1,0 +1,63 @@
+SystemName       BN-monolayer
+SystemLabel      BN           # Short name for naming files
+
+WriteCoorStep
+WriteMullikenPop       1    
+
+NumberOfSpecies        2       
+NumberOfAtoms          2      
+%block ChemicalSpeciesLabel
+  1   5   B 
+  2   7   N 
+%endblock ChemicalSpeciesLabel
+
+# Basis
+
+PAO.EnergyShift       50 meV
+PAO.BasisSize         DZP
+Atomic_coordinates_format   Fractional
+
+LatticeConstant       1.00 Ang  
+%block LatticeParameters       
+  2.40  2.40  10.00   90.  90.  120. 
+%endblock LatticeParameters       
+
+# Atomic coordinates
+AtomicCoordinatesFormat     Fractional    
+%block AtomicCoordinatesAndAtomicSpecies
+  0.67  0.33  0.10  1 
+  0.33  0.67  0.90  2 
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+%block kgrid_Monkhorst_Pack
+ 10  0  0  0.   #
+  0 10  0  0.   #
+  0  0  1  0.   #
+%endblock kgrid_Monkhorst_Pack
+#
+# -- dynamical part
+MD.TypeOfRun     CG                # Default value
+MD.VariableCell   T
+MD.NumCGsteps    50
+MD.MaxStressTol    0.5 GPa       #  Default: 1.0 GPa
+MD.MaxForceTol     0.02 eV/Ang   #  Default: 0.04 eV/Ang
+#
+# -- I/O par10
+#%block BandLines
+#  1  0.00000   0.000000  0.000000  \Gamma
+# 40  2.00000   0.000000  0.000000  H
+# 28  1.00000   1.000000  0.000000  N
+# 28  0.00000   0.000000  0.000000  \Gamma
+# 34  1.00000   1.000000  1.000000  P
+#%endblock BandLines
+
+XC.functional         LDA           # Exchange-correlation functional
+XC.authors            CA            # Exchange-correlation version
+
+MeshCutoff           250. Ry        # Mesh cutoff. real space mesh 
+
+# SCF options
+#MaxSCFIterations       80           # Maximum number of SCF iter
+                                    # between input and output DM
+#DM.UseSaveDM          true          # to use continuation files
+#DM.NumberPulay         3

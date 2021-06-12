@@ -1,0 +1,28 @@
+Calculations of frozen phonons for a (flat) BN monolayer.
+Executables to be used:
+($SIESTA_ROOT)/Obj/siesta
+($SIESTA_ROOT)/Util/... (from standard Siesta distribution);
+../../Tools/Sies2vesta/...
+../../Tools/Vibra_q=0/...
+../../Tools/Sies2LD/... (homemade tools)
+Specific tasks are explained below for each
+Directory/Input_file.fdf :
+
+Relax/BN_relax.fdf
+------------------
+Calculation of equilibrium structure (lattice parameter) of isolated BN layer.
+
+Phonon_G/phonon_G.fdf
+---------------------
+Calculation of Gamma-phonon for an isolated BN layer.
+
+Phonon_GMK/phonon_GMK.fdf
+-------------------------
+Construction of supercell that would have Gamma, M and K points of the 
+modified crystal structure onto Gamma of the supercell. Calculate frozen
+Gamma phonon in such supercell.
+
+Phonon_Q/phonon_Q.fdf
+-------------------------
+Calculate phonon dispersions using the Vibra suite; 
+along the Gamma-M-K-Gamma path.

@@ -1,0 +1,269 @@
+The aim of this exercise is to study vireations in a free
+infinite linear chain of Au atoms, to find the frequency and
+the polarization of the hardest vibration mode. Several isolated
+tasks are prepared in separate directories. The Au (LDA) pseudo
+and the basis functions settings are from the Siesta database.
+Executables to be used:
+($SIESTA_ROOT)/Obj/siesta
+($SIESTA_ROOT)/Util/... (from standard Siesta distribution);
+../../Tools/Sies2vesta/...
+../../Tools/Vibra_q=0/...
+../../Tools/Sies2LD/... (homemade tools)
+Specific tasks are explained below for each
+Directory/Input_file.fdf :
+
+Bulk_relax/Bulk_relax.fdf
+-------------------------
+The lattice relaxation of the fcc Au crystal (primitive cell).
+The equilibrium lattice parameter is 4.0725 Ang,
+the interatomic distance 2.879693 Ang.
+For reference: the exp value of the lattice parameter - 4.078 Ang.
+
+Chain_2at_fixed/chain_2at_fixed.fdf
+----------------------------------------------
+First attempt of a frozen phonon calculation on an infinite chain.
+The linear chain is constructed with the interatomic distance as
+in the fcc Au. As we want to obtain a simple yet non-trivial result,
+we address the zone-boundary phonon; for this we would need a cell
+with two atoms. Hence the unit cell is chosen of the length
+2*(interatomic distance) along [001], and large enough (10 Ang)
+in the (X,Y) directions, in order to prevent the interaction between
+the (repeated) chains. We note that the maximal extension of
+the basis functions is 
+Vna:  Cut-off radius for the neutral-atom potential:   7.246712
+(in Bohr), hence the lateral lattice parameter must exceed
+7.246712*0.529177*2 = 7.669586632048 Ang .
+We note moreover that the k-mesh must be dense enough along the chain
+but can include just 1 point along (k_x, k_y), as there is no dispersion
+of electronic states along these directions.
+With the structure of the chain thus fixed, we try FC run
+that yields the force constants file,
+siesta.FC
+(Look at its elements and discuss the sign of returning forces
+and the symmetries). The Gamma phonon can be calculated with
+../../Tools/Vibra_q=0/vibq0
+passing on prompt
+'siesta'
+(the SystemLabel of .XV and .FC files); 
+the results are in 'siesta.bands' (eigenvalues) and
+'siesta.vectors' (eigenvectors). The vibration patterns can be
+visualized using the tool
+../../Tools/Sies2vesta/vib2vesta < vib2vesta.inp
+(open the obtained .vesta files with Vesta). On sees a Peyerls-type instability
+(vibration frequency of (i)*53 cm-1) of the zone-boundary phonon, 
+accompanied by two (degenerate) zigzag-type transversal vibrations (33 cm-1). 
+A different choice of the chain step would produce a different instability,
+for example, the compression of the (double) chain step from
+5.759386 to 5.15 Bohr
+results in two instable zigzag modes at (i)*54 cm-1 and one genuine
+longitudinal mode at 204 cm-1, i.e., there is an inversion of stable
+and instable modes. In order to go further, we need to figure out
+the configuration / tension of the chain.
+
+Chain_2at_relax/chain_2at_relax.fdf
+----------------------------------------------
+We try an unconstrained relaxation of a free-standing chain, assuming
+a 2-at. periodicity, a somehow shortened interatomic distance
+as related to bulk (c-parameter: 5.15 Ang), and an initial zigzag-type
+displacement of atoms.
+We allow 
+MD.VariableCell   T
+that will result in some (small and unphysical) distortion of the
+lateral unit cell sizes, which will be setback afterwards. It is important
+to set   
+MD.MaxStressTol    0.5 GPa       #  Default: 1.0 GPa
+MD.MaxForceTol     0.02 eV/Ang   #  Default: 0.04 eV/Ang
+to more accurate values than imposed by default.
+The unit cell was further compressed to (c-parameter: 4.61 Ang).
+The structure information from the resulting .XV file can be "frozen" 
+for futher use in FC calulations. It seems practical to convert its content
+into the format of the .fdf file, and read the structure information always
+from the latter, rather than from the .XV (i.e., to use MD.UseSaveXV = F).
+This would let to avoid the effect of accidental "contamination" of the .XV
+file in the course of FC calculation. The extraction of data is done by
+../../Tools/xv2fdf
+(passing when prompted the SystemLabel). The result (siesta.FDF)
+is incorporated into the inout file of frozen phonon calculation.
+
+Chain_2at_phonon/chain_2at_phonon.fdf
+-----------------------------------------------
+Frozen-phonon calcuation (Gamma phonon / 2 atoms in the relaxed 
+geometry). The Siesta salculation creates the 'siesta.FC' file, then
+the eigenvalues and eigenvectors are calculated by
+../../Tools/Vibra_q=0/vibq0
+passing on prompt 'siesta'. As before, the modes can be visualized with
+../../Tools/Sies2vesta/vib2vesta < vib2vesta.inp
+One notes, beyond the three zero-frequency (displacive) modes, one
+rotational mode at very low (either real or imaginary) frequency,
+and two genuine vibration modes, 
+212 cm-1 - longitudinal zone-boundary one and
+114 cm-1 - transversal (in the zigzag plane).
+The frequency of the rotational mode (of the chain around [001]
+ought to be, in principle, zero; its deviation from zero is
+a numerical "noise" (due to real-space mesh etc.)
+For reference: exp. value of L and T phonons at X are
+154 cm-1 and 92 cm-1, correspondingly.
+
+Chain_4at_phonon/chain_4at_phonon.fdf
+-----------------------------------------------
+(this exercise can be skipped) -
+Gamma phonon calculation on a supercell with 4 atoms,
+in otherwise the same geometry. This will produce twice more modes
+and provide reference frequencies at "half-way to the zone boundary",
+for a subsequent comparison with q-dispersed phonon branches.
+The frequencies which come out are the following:
+(i)3 cm-1; the rotational mode
+3x(zero) - rigid translations;
+2x(17 cm-1) - halfway-to-zone-boundary out-of-plane 
+2x(20 cm-1) - halfway-to-zone-boundary transversal in-plane 
+113 cm-1 - zone-boundary transversal in-plane 
+(it was already present in 2-atom calculation);
+2x(172 cm-1) - halfway-to-zone-boundary longitudinal;
+213 cm-1 - zone-boundary longitudinal (already present in 2-atom calculation).
+As before, the modes can be visualized with
+../../Tools/Sies2vesta/vib2vesta < vib2vesta.inp
+A further analysis can be done with tools that allow to project vibration
+eigenvectors onto particular Q vectors and polarizations. This is provided
+by phdos tool,
+../../Tools/Sies2LD/phdos
+When started, this script prompts for SystemLabel for the .XV and .vectors
+files, then for the option to choose (T: total density of modes;
+Q: Q-vector, projected, that's what is discussed below)
+and for the way the projection should be done - either longitudinal and
+transversal components separately, or just the module of their sum.
+An example (running the executable and answering the questions):
+../../Tools/Sies2LD/phdos
+Specify SystemLabel of .XV file: siesta
+Specify SystemLabel of .vectors file: siesta
+ Do you want total density of states (T), Q-vector convolution (Q), or Symmetry projection (S)? : Q
+ Enter  qx qy qz : 0 0 0.22962
+Do you want sUm of sqUares (U) 
+ or Projection onto a given Polarisation direction (P) ? : P
+Type three direction numbers for polarisation vector 
+ (normalization irrelevant) : 0 0 1
+---
+This creates six files. 'siesta.VSQ-L' and 'siesta.VSQ-T' contain (after 
+a header that explains what's inside) the list of discrete vibration 
+frequencies, each one coming with the contribution of given atomic type 
+(here: only one, Au) to the vibration with the given polarization. 
+'siesta.VSQ' is the module of their vectorial sum, i.e., the projection on 
+the given Q vector irrespectively of the polarization. The files
+'siesta-WCQ-T', 'siesta.WDQ-T' and 'siesta.WSQ' are the "broadened"
+representations of the above files, shown in a continuous distribution of
+weights along the wavenumbers axis, that might be convenient for plotting.
+The values of Q for the projection are given in units of inverse Bohr,
+WITHOUT the 2*pi factor (which will be internally added). Note that
+the interatomic distance (or, rather, its Z-projection) is A=4.355 Bohr;
+the "meaningful" values of Q can be probed, taking into account
+the Z-distance between adjacent atoms, A=4.355 Bohr: 
+(0. 0. 0.) - will emphasize the modes that come about in the Gamma-phonon
+calculation;
+(0. 0. 0.229620) stands for Q_z = the BZ boundary;
+(0. 0. 0.459240) stands for Q_z = the adjacent Gamma.
+
+
+Chain_2at_vibra/ ... .fdf
+-----------------------------------------------
+A sequence of steps, with corresponding input files, for calculating
+the phonon dispersion depending on general Q vector. Beyond -siesta-,
+the executables -fcbuild- and -vibra- from Util/Vibra/Src
+are used.
+- The first step consist in constructing a supercell,
+($SIESTA_ROOT)/Util/Vibra/Src/fcbuild < chain_2at-fcbuild.fdf 
+Essential entries in the .fdf file are
+SuperCell_1          0
+SuperCell_2          0
+SuperCell_3          4
+that specifies that the supercell will be expanded into (2*4+1 = 9)
+along the third translation vector. The corresponding input structure 
+information (with the third lattice parameter multiplied by 9,
+the number of atoms increased to 18, and their coordinates specified)
+is dumped into the fixed-name file, 'FC.fdf'. Moreover, this file
+specifies
+MD.TypeOfRun           FC
+MD.FCfirst              9
+MD.FClast              10
+that is, the displacements for frozen phonon calculations will be applied
+to all atoms in the unit cell which is in the middle of the supercell
+generated. 
+- The second step includes frozen phonons calculations (by siesta)
+on the supercell. The input file
+chain_9x2at-siesta.fdf
+was generated from the previously used one (for 2 atoms), replacing
+the structure information by that provided in 'FC.fdf'
+($SIESTA_ROOT)Obj/siesta < chain_9x2at-siesta.fdf 
+generates the 'siesta.FC' file which contains
+2(number of atoms displaced) * 6(trial displacements per atom) *
+18 (number of atoms) + 1 = 217 lines.
+- The third step includes the calculation of phonon dispersions
+for specified Q points in the reciprocal space,
+($SIESTA_ROOT)/Util/Vibra/Src/vibra < chain_2at-vibra.fdf 
+The input file
+chain_2at-vibra.fdf
+is largely similar to
+chain_2at-fcbuild.fdf ,
+in particular, the definition of the unit cell and replication numbers
+for the supercell,
+SuperCell_1          0
+SuperCell_2          0
+SuperCell_3          4
+must be the same. (In this case, vibra will know how to make sense
+of the FC file beforehand calculated). Moreover, the
+Atomic_Coordinates_and_Atomic_Species block must include masses of atoms
+in the 5th position in each line (it would be OK to include them
+already in all previous calculations, but they would have not been used).
+The name of the FC file may need to be specified as, e.g.,
+Vibra.FC   siesta.FC
+- Note that the file name by default will be <SystemLabel>.FC,
+but default <SystemLabel> is "siesta" and "vibra" in vibra.
+Finally, the list of Q points for plotting the phonon dispersion
+is given by, say
+BandLinesScale  ReciprocalLatticeVectors
+%block BandLines
+  1  0.  0.  0.
+  2  0.  0.  1.
+%endblock BandLines
+Eigenvectors  T
+Here, "ReciprocalLatticeVectors" means the Q-values are given in the units
+of respective reciprocal lattice vectors (with 2*pi included); 
+in the above example we start from Gamma and end up at Gamma in the adjacent 
+Brolluoin zone, passing by the zone boundary. {Please note that these notations
+are relative to the 2-atoms unit; correspondingly, the Gamma will include 
+three acoustic modes (of zero frequencies) along with and the modes which 
+include an antiphase movement of neighboring atoms in the chain; such modes 
+have been referred to, in the description of previous tasks, as "zone-boundary"
+ones (they are indeed zone boundary for the case of chain unit consisting 
+of just one atom). Correspondingly, the "zone boundary" at 
+(0. 0. 0.5)*2*pi/[length of C-vector] = 0.360686 [inverse Bohr]
+ would include the modes which have been
+referred to in the 4-atom-cell task as "halfway-to-zone-boundary".
+Indeed, all these modes can be found in the 'dispersion.bands' file,
+the first column of which includes the Q-path [in inverse Bohr] from
+the origin.
+A look at vibration eigenvectors (in 'vibra.vectors') implies that
+they are not real anymore, apart from those at Gamma. They cannot be
+immediately visualized with the vib2vesta (or other) tool.
+To conclude this test, we can calculate dispersion along the same path
+but with much more dense Q-mesh, say
+%block BandLines
+  1  0.  0.  0.
+ 48  0.  0.  1.
+%endblock BandLines
+The resulting dispersion data will be written into 'dispersion.bands'.
+This file is "human-readable" and contains, apart from some header lines
+and some tail lines, the Q-distance along the path in the first column
+and further on, column by column, the dispersions band by band.
+This information can be already plotted by Xmgrace or Gnuplot
+after suppressing (or, commenting with '#' symbols) the header and the tail
+parts which will confuse the plotting program. Otherwise, one can use
+the "gnubands" utility which will format the dispersion data differently -
+in blocks of two columns only, separated by empty lines. Par example:
+($SIESTA_ROOT)/Util/Bands/gnubands < dispersion.bands > bands.dat
+then 'bands'dat' can be directly plotted with either Xmgrace, or gnuplot.
+(For obtaining a nice plot, one would need to format the axes and place
+the labels along the X axis).
+
+We see that dispersions in the long-wavelength regime, i.e. close to,
+but not equal to, Gamma may be suspicious; they can be only improved
+by taking a much longer supercell for fcbuild and FC calculations.
+

@@ -1,0 +1,43 @@
+Vibrations in a free infinite linear chain of Au atoms, 
+Executables to be used:
+($SIESTA_ROOT)/Obj/siesta
+($SIESTA_ROOT)/Util/... (from standard Siesta distribution);
+../../Tools/Sies2vesta/...
+../../Tools/Vibra_q=0/...
+../../Tools/Sies2LD/... (homemade tools)
+Specific tasks are explained below for each
+Directory/Input_file.fdf :
+
+Bulk_relax/Bulk_relax.fdf
+-------------------------
+Find out the equilibrium lattice constant of fcc Au. (Exp.: 4.078 Ang)
+
+Chain_2at_fixed/chain_2at_fixed.fdf
+----------------------------------------------
+Calcuate frozen zone-boundary phonon for a linear chain of Au atoms 
+placed at nearest-neighbour distances like those in bulk fcc Au.
+Identify and discuss the dynamical intability.
+
+Chain_2at_relax/chain_2at_relax.fdf
+----------------------------------------------
+Structure optimization of zigzag-type distorted chain
+
+Chain_2at_phonon/chain_2at_phonon.fdf
+-----------------------------------------------
+Calculate frozen Gamma phonon in a zigzag-distorted linear chain
+(2 atoms / unit cell).
+
+Chain_4at_phonon/chain_4at_phonon.fdf
+-----------------------------------------------
+(this exercise can be skipped) -
+Gamma phonon calculation on a supercell with 4 atoms,
+in otherwise the same geometry. This will produce twice more modes
+and provide reference frequencies at "half-way to the zone boundary",
+for a subsequent comparison with q-dispersed phonon branches.
+
+Chain_2at_vibra/ ... .fdf
+-----------------------------------------------
+Calculate phonon dispersion using the Vibra suite
+(construction of supercell - FC calculation within a supercell -
+calculation of phonon dispersions).
+

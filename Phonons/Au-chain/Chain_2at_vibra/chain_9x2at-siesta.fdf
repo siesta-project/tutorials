@@ -1,0 +1,87 @@
+System_Name  Au-chain-2at
+#  Basis and LDA pseudopotential from the Siesta database
+SpinPolarized  F  
+Number_of_atoms   18
+Number_of_species  1
+%block Chemical_species_label
+  1  79   Au
+%endblock Chemical_species_label
+%block AtomicMass
+  1  197  
+%endblock AtomicMass
+
+Lattice_constant   1.000 Bohr
+%block LatticeVectors
+  18.8972687780     0.0000000000     0.0000000000
+   0.0000000000    18.8972687780     0.0000000000
+   0.0000000000     0.0000000000    78.3903875310
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat  NotScaledCartesianBohr
+%block AtomicCoordinatesAndAtomicSpecies
+   0.9449311120     0.3160585460   -37.0176830100      1
+  -0.9449311160    -0.3160585520   -32.6626614750      1
+   0.9449311120     0.3160585460   -28.3076399510      1
+  -0.9449311160    -0.3160585520   -23.9526184160      1
+   0.9449311120     0.3160585460   -19.5975968920      1
+  -0.9449311160    -0.3160585520   -15.2425753570      1
+   0.9449311120     0.3160585460   -10.8875538330      1
+  -0.9449311160    -0.3160585520    -6.5325322980      1
+   0.9449311120     0.3160585460    -2.1775107740      1
+  -0.9449311160    -0.3160585520     2.1775107610      1
+   0.9449311120     0.3160585460     6.5325322850      1
+  -0.9449311160    -0.3160585520    10.8875538200      1
+   0.9449311120     0.3160585460    15.2425753440      1
+  -0.9449311160    -0.3160585520    19.5975968790      1
+   0.9449311120     0.3160585460    23.9526184030      1
+  -0.9449311160    -0.3160585520    28.3076399380      1
+   0.9449311120     0.3160585460    32.6626614620      1
+  -0.9449311160    -0.3160585520    37.0176829970      1
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+PAO.BasisType    split 
+%block PAO.Basis
+Au    3      0.02
+ n=6    0    2   E     10.00      6.00
+   6.500   5.500
+   1.000   1.000
+ n=6    1    1   E     10.42      3.69
+   5.850
+   1.000
+ n=5    2    2   E    102.50      5.62
+   7.200   5.570
+   1.000   1.000
+%endblock PAO.Basis
+
+%block kgrid_Monkhorst_Pack
+  1  0  0  0.   #
+  0  1  0  0.   #
+  0  0 16  0.   #
+%endblock kgrid_Monkhorst_Pack
+#
+# -- dynamical part
+
+MD.TypeOfRun  FC
+MD.VariableCell   F
+MaxSCFIterations 400
+MD.FCfirst     9
+MD.FClast     10
+MD.FCDispl  0.03 Bohr
+UseSaveData    T
+MD.UseSaveXV   F
+#
+MeshCutoff             150.0 Ry
+%block GridCellSampling
+  0.   0.5  0.5
+  0.5  0.   0.5
+  0.5  0.5  0.
+%endblock GridCellSampling
+XC.functional   LDA
+XC.authors      CA
+DM.InitApinAF           F
+DM.MixSCF1              F
+DM.PulayOnFile          F
+DM.MixingWeight        .05
+DM.NumberKick           0
+DM.KickMixingWeight    .50
+DM.Tolerance          .1000000000E-03     # Default value
